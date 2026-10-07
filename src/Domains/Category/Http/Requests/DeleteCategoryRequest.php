@@ -1,0 +1,28 @@
+<?php
+
+declare(strict_types=1);
+
+namespace JayI\Keystone\Domains\Category\Http\Requests;
+
+use Illuminate\Http\JsonResponse;
+use JayI\Keystone\Domains\Category\Actions\DeleteCategoryAction;
+
+final class DeleteCategoryRequest extends CategoryRequest
+{
+    public function authorize(): bool
+    {
+        return $this->allows('delete', $this->category());
+    }
+
+    public function rules(): array
+    {
+        return DeleteCategoryAction::rules();
+    }
+
+    public function persist(): JsonResponse
+    {
+        app(DeleteCategoryAction::class)->execute($this->category());
+
+        return new JsonResponse(null, 204);
+    }
+}

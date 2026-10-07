@@ -1,0 +1,213 @@
+<?php
+
+declare(strict_types=1);
+
+namespace JayI\Keystone\Atrium\Http\Controllers;
+
+use Illuminate\Contracts\View\View;
+use Illuminate\Http\RedirectResponse;
+use Illuminate\Http\Request;
+use Illuminate\Support\Collection;
+use Illuminate\Support\Facades\Validator;
+use JayI\Atrium\Http\Controllers\Concerns\AuthorizesScreens;
+use JayI\Keystone\Atrium\Support\CategoryCodes;
+use JayI\Keystone\Atrium\Support\EditingSlot;
+use JayI\Keystone\Atrium\Support\ValueForm;
+use JayI\Keystone\Domains\Attribute\Models\AttributeModel;
+use JayI\Keystone\Domains\Family\Models\FamilyModel;
+use JayI\Keystone\Domains\Product\Actions\CreateProductAction;
+use JayI\Keystone\Domains\Product\Actions\DeleteProductAction;
+use JayI\Keystone\Domains\Product\Actions\ListProductsAction;
+use JayI\Keystone\Domains\Product\Actions\ShowProductAction;
+use JayI\Keystone\Domains\Product\Actions\UpdateProductAction;
+use JayI\Keystone\Domains\Product\Models\ProductModel;
+use JayI\Keystone\Domains\Workflow\Actions\ListProductVersionsAction;
+use JayI\Keystone\Domains\Workflow\Actions\RevertProductAction;
+use JayI\Keystone\Domains\Workflow\Actions\TransitionProductAction;
+use JayI\Keystone\Domains\Workflow\Enums\Transition;
+use JayI\Keystone\Exceptions\KeystoneException;
+
+final class ProductUiController
+{
+    use AuthorizesScreens;
+
+    public function index(Request $request): View
+    {
+        $this->authorizeScreen('viewAny', ProductModel::class);
+
+        $filters = $request->validate(ListProductsAction::rules());
+
+        /** @var view-string $view */
+        $view = 'keystone::ui.products.index';
+
+        try {
+            $products = app(ListProductsAction::class)->execute($filters)->withQueryString();
+            $error = null;
+        } catch (KeystoneException $e) {
+            // A search engine that is down or refuses the query still leaves
+            // the page usable.
+            $products = null;
+            $error = $e->getMessage();
+        }
+
+        return view($view, [
+            'products' => $products,
+            'error' => $error,
+            'filters' => $filters,
+            'families' => $this->families(),
+        ]);
+    }
+
+    public function create(): View
+    {
+        $this->authorizeScreen('create', ProductModel::class);
+
+        /** @var view-string $view */
+        $view = 'keystone::ui.products.create';
+
+        return view($view, ['families' => $this->families()]);
+    }
+
+    public function store(Request $request): RedirectResponse
+    {
+        $this->authorizeScreen('create', ProductModel::class);
+
+        $product = app(CreateProductAction::class)->execute($request->validate(CreateProductAction::rules()));
+
+        return redirect()
+            ->route('atrium.keystone.products.show', $product)
+            ->with('status', __('keystone::keystone.product_created'));
+    }
+
+    public function show(Request $request, ProductModel $product): View
+    {
+        $this->authorizeScreen('view', $product);
+
+        $product = app(ShowProductAction::class)->execute($product);
+
+        /** @var view-string $view */
+        $view = 'keystone::ui.products.show';
+
+        return view($view, [
+            'product' => $product,
+            'attributes' => $this->formAttributes($product, $request->query('add')),
+            'slot' => EditingSlot::fromRequest($request),
+            'inherited' => $product->inheritedValues(),
+            'addable' => $product->settableAttributes() === null
+                ? AttributeModel::query()->whereNotIn('code', array_keys($product->ownValues()))->orderBy('code')->pluck('code', 'code')->all()
+                : [],
+            'families' => $this->families(),
+            'history' => app(ListProductVersionsAction::class)->execute($product, ['per_page' => 10]),
+            'transitions' => array_values(array_filter(
+                Transition::cases(),
+                fn (Transition $transition): bool => in_array(
+                    $product->status,
+                    $transition->startsFrom(config('keystone.workflow.require_approval', true) !== false),
+                    true,
+                ) && ! ($transition === Transition::Unpublish && $product->published_version === null),
+            )),
+        ]);
+    }
+
+    public function transition(Request $request, ProductModel $product): RedirectResponse
+    {
+        $this->authorizeScreen('update', $product);
+
+        try {
+            app(TransitionProductAction::class)->execute($product, $request->validate(TransitionProductAction::rules()));
+        } catch (KeystoneException $e) {
+            return back()->withErrors(['transition' => $e->getMessage()]);
+        }
+
+        return back()->with('status', __('keystone::keystone.transitioned'));
+    }
+
+    public function revert(Request $request, ProductModel $product): RedirectResponse
+    {
+        $this->authorizeScreen('update', $product);
+
+        app(RevertProductAction::class)->execute($product, $request->validate(RevertProductAction::rules()));
+
+        return back()->with('status', __('keystone::keystone.reverted'));
+    }
+
+    public function update(Request $request, ProductModel $product): RedirectResponse
+    {
+        $this->authorizeScreen('update', $product);
+
+        /** @var array<string, mixed> $input */
+        $input = (array) $request->input('v', []);
+
+        $slot = EditingSlot::fromRequest($request);
+        $data = ['values' => ValueForm::toValues($input, $this->formAttributes($product, $request->input('add')), $slot)];
+
+        if ($request->has('categories')) {
+            $data['categories'] = CategoryCodes::fromForm($request->input('categories'));
+        }
+
+        if ($request->has('enabled')) {
+            $data['enabled'] = $request->boolean('enabled');
+        }
+
+        if (! $product->isVariant()) {
+            foreach (['family', 'owner'] as $field) {
+                if ($request->has($field)) {
+                    $data[$field] = $request->filled($field) ? $request->string($field)->toString() : null;
+                }
+            }
+        }
+
+        // The form builds the payload, so it is held to the Action's rules too.
+        app(UpdateProductAction::class)->execute($product, Validator::validate($data, UpdateProductAction::rules()));
+
+        return redirect()
+            ->route('atrium.keystone.products.show', ['product' => $product, ...$slot->query()])
+            ->with('status', __('keystone::keystone.product_updated'));
+    }
+
+    public function destroy(ProductModel $product): RedirectResponse
+    {
+        $this->authorizeScreen('delete', $product);
+
+        app(DeleteProductAction::class)->execute($product);
+
+        return redirect()
+            ->route('atrium.keystone.products.index')
+            ->with('status', __('keystone::keystone.product_deleted'));
+    }
+
+    /**
+     * The attributes the value form shows: the settable ones, or — for a
+     * product without a family — those it has values for plus one to add.
+     *
+     * @return Collection<int, AttributeModel>
+     */
+    private function formAttributes(ProductModel $product, mixed $add): Collection
+    {
+        $settable = $product->settableAttributes();
+
+        if ($settable !== null) {
+            return $settable->load('options');
+        }
+
+        $codes = array_keys($product->ownValues());
+
+        if (is_string($add) && $add !== '') {
+            $codes[] = $add;
+        }
+
+        return AttributeModel::query()->with('options')->whereIn('code', $codes)->orderBy('code')->get();
+    }
+
+    /**
+     * @return array<string, string>
+     */
+    private function families(): array
+    {
+        return FamilyModel::query()
+            ->orderBy('code')
+            ->get()
+            ->mapWithKeys(fn (FamilyModel $family): array => [$family->code => $family->label()])
+            ->all();
+    }
+}

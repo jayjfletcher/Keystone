@@ -1,0 +1,51 @@
+laravel: '@testbench'
+
+env:
+  - QUEUE_CONNECTION=sync
+
+providers:
+  - JayI\Atrium\AtriumServiceProvider
+  # The package itself is not auto-discovered by Testbench, so load it here.
+  - JayI\Keystone\KeystoneServiceProvider
+  - Workbench\App\Providers\WorkbenchServiceProvider
+
+migrations:
+  - database/migrations
+  - workbench/database/migrations
+  - vendor/jayi/impex/database/migrations
+  # jayi/pennantplus (dev dependency, auto-discovered) decides
+  # KeystoneSupportFeature through Pennant, whose features table lives here.
+  - vendor/laravel/pennant/database/migrations
+  # jayi/cortex (dev dependency, auto-discovered) adds its own dashboard
+  # screens, whose tables live here.
+  - vendor/jayi/cortex/database/migrations
+
+seeders:
+  - Workbench\Database\Seeders\DatabaseSeeder
+
+workbench:
+  start: '/atrium/keystone/products'
+  # Signed in, so the screens can ask Keystone's policies (keystone.authorization).
+  user: test@example.com
+  install: true
+  health: false
+  discovers:
+    web: true
+    api: true
+    commands: true
+    components: false
+    factories: true
+    views: false
+  build:
+    - asset-publish
+    - create-sqlite-db
+    - db-wipe
+    - migrate-fresh
+    - storage-link
+  assets:
+    - laravel-assets
+    - atrium-assets
+  sync:
+    - from: storage
+      to: workbench/storage
+      reverse: true

@@ -1,0 +1,28 @@
+<?php
+
+declare(strict_types=1);
+
+namespace JayI\Keystone\Domains\Attribute\Mcp\Tools;
+
+use Illuminate\Contracts\JsonSchema\JsonSchema;
+use JayI\Foundation\Mcp\Tool;
+use JayI\Keystone\Domains\Attribute\Mcp\Requests\ShowAttributeMcpRequest;
+use Laravel\Mcp\Response;
+use Laravel\Mcp\ResponseFactory;
+use Laravel\Mcp\Server\Attributes\Description;
+
+#[Description('Show an attribute with its group, settings and, for select and multiselect attributes, its options.')]
+final class ShowAttributeTool extends Tool
+{
+    public function handle(ShowAttributeMcpRequest $request): Response|ResponseFactory
+    {
+        return $request->persist();
+    }
+
+    public function schema(JsonSchema $schema): array
+    {
+        return [
+            'attribute' => $schema->string()->description('The attribute code.')->required(),
+        ];
+    }
+}

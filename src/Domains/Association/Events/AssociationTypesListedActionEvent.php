@@ -1,0 +1,27 @@
+<?php
+
+declare(strict_types=1);
+
+namespace JayI\Keystone\Domains\Association\Events;
+
+use Illuminate\Contracts\Pagination\CursorPaginator;
+use Illuminate\Foundation\Events\Dispatchable;
+use Illuminate\Queue\SerializesModels;
+use JayI\Foundation\Contracts\ActionFinishedEvent;
+use JayI\Keystone\Domains\Association\Models\AssociationTypeModel;
+
+/**
+ * Association types were listed.
+ */
+final class AssociationTypesListedActionEvent implements ActionFinishedEvent
+{
+    use Dispatchable;
+    use SerializesModels;
+
+    /**
+     * @param  CursorPaginator<int, AssociationTypeModel>  $associationTypes
+     */
+    public function __construct(
+        public CursorPaginator $associationTypes,
+    ) {}
+}

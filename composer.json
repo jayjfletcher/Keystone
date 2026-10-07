@@ -1,0 +1,155 @@
+{
+    "$schema": "https://getcomposer.org/schema.json",
+    "name": "jayi/keystone",
+    "description": "PIM",
+    "keywords": [
+        "laravel",
+        "jayi",
+        "keystone"
+    ],
+    "homepage": "https://github.com/jayi/keystone",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Jay Fletcher",
+            "email": "5743488+jayjfletcher@users.noreply.github.com",
+            "role": "Developer"
+        }
+    ],
+    "require": {
+        "php": "^8.4",
+        "jayi/atrium": "dev-main",
+        "jayi/foundation": "dev-main",
+        "laravel/framework": "^13.15",
+        "laravel/mcp": "^1.0"
+    },
+    "require-dev": {
+        "jayi/cortex": "dev-main",
+        "jayi/impex": "dev-main",
+        "jayi/pennantplus": "dev-main",
+        "jayi/stretch": "dev-main",
+        "larastan/larastan": "^3.12",
+        "laravel/pao": "^1.0",
+        "laravel/pint": "^1.29",
+        "laravel/scout": "^11.0",
+        "orchestra/testbench": "^11.0",
+        "pestphp/pest": "^5.0",
+        "pestphp/pest-plugin-laravel": "^5.0",
+        "pestphp/pest-plugin-type-coverage": "^5.0.2",
+        "phpstan/extension-installer": "^1.4"
+    },
+    "suggest": {
+        "jayi/cortex": "Let Cortex agents use the Keystone tools and manage the MCP instructions and tool descriptions (dev-main).",
+        "jayi/impex": "Import, export and syndicate products as Impex flows: file imports, feeds, ERP and storefront connectors (dev-main).",
+        "jayi/pennantplus": "Switch Keystone in Atrium on and off with the KeystoneSupportFeature Pennant feature (dev-main).",
+        "jayi/stretch": "Search products with Elasticsearch through the native Keystone search engine (dev-main).",
+        "laravel/scout": "Search products with any Laravel Scout engine: Meilisearch, Typesense, Algolia (^11.0)."
+    },
+    "autoload": {
+        "psr-4": {
+            "JayI\\Keystone\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "JayI\\Keystone\\Database\\Factories\\": "database/factories/",
+            "JayI\\Keystone\\Tests\\": "tests/",
+            "Workbench\\App\\": "workbench/app/",
+            "Workbench\\Database\\Factories\\": "workbench/database/factories/",
+            "Workbench\\Database\\Seeders\\": "workbench/database/seeders/"
+        }
+    },
+    "scripts": {
+        "post-autoload-dump": [
+            "@clear",
+            "@prepare"
+        ],
+        "prepare": [
+            "@php vendor/bin/testbench package:discover --ansi"
+        ],
+        "build": [
+            "@php vendor/bin/testbench workbench:create-sqlite-db --ansi",
+            "@php vendor/bin/testbench workbench:build --ansi"
+        ],
+        "serve": [
+            "Composer\\Config::disableProcessTimeout",
+            "@build",
+            "@php vendor/bin/testbench serve --ansi"
+        ],
+        "lint": [
+            "vendor/bin/pint --parallel"
+        ],
+        "lint:check": [
+            "vendor/bin/pint --parallel --test"
+        ],
+        "analyse": [
+            "vendor/bin/phpstan analyse"
+        ],
+        "test:types": [
+            "vendor/bin/pest --type-coverage --min=100"
+        ],
+        "test:unit": [
+            "vendor/bin/pest --parallel"
+        ],
+        "test": [
+            "@analyse",
+            "@lint:check",
+            "@test:types",
+            "@test:unit"
+        ],
+        "clear": [
+            "@php vendor/bin/testbench package:purge-skeleton --ansi"
+        ]
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "JayI\\Keystone\\KeystoneServiceProvider"
+            ],
+            "aliases": {
+                "Keystone": "JayI\\Keystone\\Facades\\Keystone"
+            }
+        },
+        "atrium": {
+            "plugins": [
+                "JayI\\Keystone\\Atrium\\KeystonePlugin"
+            ]
+        }
+    },
+    "config": {
+        "sort-packages": true,
+        "allow-plugins": {
+            "pestphp/pest-plugin": true,
+            "php-http/discovery": true,
+            "phpstan/extension-installer": true
+        }
+    },
+    "minimum-stability": "stable",
+    "prefer-stable": true,
+    "repositories": [
+        {
+            "type": "vcs",
+            "url": "https://github.com/jayjfletcher/Atrium.git"
+        },
+        {
+            "type": "vcs",
+            "url": "https://github.com/jayjfletcher/cortex.git"
+        },
+        {
+            "type": "vcs",
+            "url": "https://github.com/jayjfletcher/Stretch.git"
+        },
+        {
+            "type": "vcs",
+            "url": "https://github.com/jayjfletcher/Impex.git"
+        },
+        {
+            "type": "vcs",
+            "url": "https://github.com/jayjfletcher/PennantPlus.git"
+        },
+        {
+            "type": "vcs",
+            "url": "https://github.com/jayjfletcher/Foundation.git"
+        }
+    ]
+}

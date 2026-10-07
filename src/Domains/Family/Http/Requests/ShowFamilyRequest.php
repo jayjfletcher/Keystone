@@ -1,0 +1,29 @@
+<?php
+
+declare(strict_types=1);
+
+namespace JayI\Keystone\Domains\Family\Http\Requests;
+
+use Illuminate\Http\JsonResponse;
+use JayI\Keystone\Domains\Family\Actions\ShowFamilyAction;
+use JayI\Keystone\Domains\Family\Resources\FamilyResource;
+
+final class ShowFamilyRequest extends FamilyRequest
+{
+    public function authorize(): bool
+    {
+        return $this->allows('view', $this->family());
+    }
+
+    public function rules(): array
+    {
+        return ShowFamilyAction::rules();
+    }
+
+    public function persist(): JsonResponse
+    {
+        $family = app(ShowFamilyAction::class)->execute($this->family());
+
+        return (new FamilyResource($family))->response();
+    }
+}

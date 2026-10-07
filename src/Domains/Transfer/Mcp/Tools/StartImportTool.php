@@ -1,0 +1,31 @@
+<?php
+
+declare(strict_types=1);
+
+namespace JayI\Keystone\Domains\Transfer\Mcp\Tools;
+
+use Illuminate\Contracts\JsonSchema\JsonSchema;
+use JayI\Foundation\Mcp\Tool;
+use JayI\Keystone\Domains\Transfer\Mcp\Requests\StartImportMcpRequest;
+use Laravel\Mcp\Response;
+use Laravel\Mcp\ResponseFactory;
+use Laravel\Mcp\Server\Attributes\Description;
+
+#[Description('Start importing products from a .csv or .jsonl file, as an Impex run. Give an existing asset code or a URL to fetch. Asynchronous: poll the run with Impex\'s show-run-tool; its result counts succeeded and failed rows.')]
+final class StartImportTool extends Tool
+{
+    public function handle(StartImportMcpRequest $request): Response|ResponseFactory
+    {
+        return $request->persist();
+    }
+
+    public function schema(JsonSchema $schema): array
+    {
+        return [
+            'asset' => $schema->string()->description('Code of an asset holding the file.'),
+            'url' => $schema->string()->description('An http(s) URL to fetch the file from; it becomes an asset first.'),
+            'format' => $schema->string()->description('csv or jsonl; guessed from the file name when omitted.'),
+            'mode' => $schema->string()->description('upsert (default), create (skip existing) or update (skip missing).'),
+        ];
+    }
+}

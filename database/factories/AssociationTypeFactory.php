@@ -1,0 +1,29 @@
+<?php
+
+declare(strict_types=1);
+
+namespace JayI\Keystone\Database\Factories;
+
+use Illuminate\Database\Eloquent\Factories\Factory;
+use JayI\Keystone\Domains\Association\Models\AssociationTypeModel;
+
+/**
+ * @extends Factory<AssociationTypeModel>
+ */
+final class AssociationTypeFactory extends Factory
+{
+    protected $model = AssociationTypeModel::class;
+
+    /**
+     * @return array<string, mixed>
+     */
+    public function definition(): array
+    {
+        return [
+            'code' => 'type_'.fake()->unique()->lexify('??????'),
+            'labels' => [],
+            'is_two_way' => false,
+            'is_quantified' => false,
+        ];
+    }
+}

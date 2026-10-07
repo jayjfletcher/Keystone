@@ -1,0 +1,30 @@
+<?php
+
+declare(strict_types=1);
+
+namespace JayI\Keystone\Domains\Attribute\Mcp\Tools;
+
+use Illuminate\Contracts\JsonSchema\JsonSchema;
+use JayI\Foundation\Mcp\Tool;
+use JayI\Keystone\Domains\Attribute\Mcp\Requests\CreateAttributeGroupMcpRequest;
+use Laravel\Mcp\Response;
+use Laravel\Mcp\ResponseFactory;
+use Laravel\Mcp\Server\Attributes\Description;
+
+#[Description('Create an attribute group, a named section such as "marketing" or "technical" that attributes are organised into.')]
+final class CreateAttributeGroupTool extends Tool
+{
+    public function handle(CreateAttributeGroupMcpRequest $request): Response|ResponseFactory
+    {
+        return $request->persist();
+    }
+
+    public function schema(JsonSchema $schema): array
+    {
+        return [
+            'code' => $schema->string()->description('Unique code: lowercase letters, digits and underscores, starting with a letter. Never changes once created.')->required(),
+            'labels' => $schema->object()->description('Labels keyed by locale, such as {"en": "Color", "fr": "Couleur"}. Replaces all labels when given.'),
+            'sort_order' => $schema->integer()->description('Position in listings, lowest first.')->min(0),
+        ];
+    }
+}

@@ -1,0 +1,48 @@
+<?php
+
+declare(strict_types=1);
+
+namespace JayI\Keystone\Domains\Family\Resources;
+
+use Illuminate\Http\Request;
+use Illuminate\Http\Resources\Json\JsonResource;
+use JayI\Keystone\Domains\Attribute\Models\AttributeModel;
+use JayI\Keystone\Domains\Family\Models\FamilyVariantModel;
+
+/**
+ * @mixin FamilyVariantModel
+ */
+final class FamilyVariantResource extends JsonResource
+{
+    /**
+     * @return array<string, mixed>
+     */
+    public function toArray(Request $request): array
+    {
+        $codes = fn (iterable $attributes): array => collect($attributes)->map(fn (AttributeModel $attribute): string => $attribute->code)->values()->all();
+
+        return [
+            'id' => $this->id,
+            'code' => $this->code,
+            'family' => $this->whenLoaded('family', fn (): string => $this->family->code),
+            'labels' => $this->labels ?? [],
+            'levels' => $this->whenLoaded('variantAttributes', fn (): array => array_map(
+                fn (int $level): array => [
+                    'level' => $level,
+                    'axes' => $codes($this->resource->axesAt($level)),
+                    'attributes' => $codes($this->resource->attributesAt($level)->reject(
+                        fn (AttributeModel $attribute): bool => $this->resource->pivotOf($attribute)['is_axis'],
+                    )),
+                ],
+                range(1, $this->levels),
+            )),
+            'common_attributes' => $this->when(
+                $this->relationLoaded('family') && $this->family->relationLoaded('familyAttributes') && $this->relationLoaded('variantAttributes'),
+                fn (): array => $codes($this->resource->attributesAt(0)),
+            ),
+            'product_models_count' => $this->whenCounted('productModels'),
+            'created_at' => $this->created_at?->toIso8601String(),
+            'updated_at' => $this->updated_at?->toIso8601String(),
+        ];
+    }
+}

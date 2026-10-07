@@ -1,0 +1,11 @@
+# Agent OS Standards Index
+#
+# Keystone follows the jayi/foundation conventions: the main provider extends
+# JayI\Foundation\Support\PackageServiceProvider, domain providers extend
+# JayI\Foundation\Support\ServiceProvider, and event contracts, request
+# bases, MCP tool/server bases, the authorizer and the Cortex integration are
+# Foundation's. See AGENTS.md.
+
+frontend:
+  atrium-screens:
+    description: Screens use only Atrium components and safelisted utilities, no package stylesheet; show screens carry the audit trail

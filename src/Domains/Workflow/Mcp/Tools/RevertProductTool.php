@@ -1,0 +1,30 @@
+<?php
+
+declare(strict_types=1);
+
+namespace JayI\Keystone\Domains\Workflow\Mcp\Tools;
+
+use Illuminate\Contracts\JsonSchema\JsonSchema;
+use JayI\Foundation\Mcp\Tool;
+use JayI\Keystone\Domains\Workflow\Mcp\Requests\RevertProductMcpRequest;
+use Laravel\Mcp\Response;
+use Laravel\Mcp\ResponseFactory;
+use Laravel\Mcp\Server\Attributes\Description;
+
+#[Description('Restore a product\'s values, categories, associations, family, owner and enabled flag from an earlier version, recorded as a new version.')]
+final class RevertProductTool extends Tool
+{
+    public function handle(RevertProductMcpRequest $request): Response|ResponseFactory
+    {
+        return $request->persist();
+    }
+
+    public function schema(JsonSchema $schema): array
+    {
+        return [
+            'product' => $schema->string()->description('The product identifier.')->required(),
+            'version' => $schema->integer()->description('The version number to restore.')->min(1)->required(),
+            'comment' => $schema->string()->description('Why, recorded in the history.'),
+        ];
+    }
+}

@@ -1,0 +1,81 @@
+<?php
+
+declare(strict_types=1);
+
+namespace JayI\Keystone\Impex;
+
+use JayI\Keystone\Domains\Association\Services\Associations;
+use JayI\Keystone\Domains\Attribute\Data\ValueFilter;
+use JayI\Keystone\Domains\Attribute\Services\Values;
+use JayI\Keystone\Domains\Category\Models\CategoryModel;
+use JayI\Keystone\Domains\Product\Models\ProductModel;
+use JayI\Keystone\Domains\Workflow\Services\Versions;
+
+/**
+ * A product as an export writes it: API shape, own and inherited data merged,
+ * narrowed to a channel and locales when asked.
+ */
+final class ExportRecord
+{
+    /**
+     * The working copy.
+     *
+     * @return array<string, mixed>
+     */
+    public static function of(ProductModel $product, ValueFilter $filter): array
+    {
+        $associations = app(Associations::class)->present($product);
+
+        return [
+            'identifier' => $product->identifier,
+            'family' => $product->family?->code,
+            'parent' => $product->parent?->code,
+            'owner' => $product->effectiveOwner()?->code,
+            'enabled' => $product->enabled,
+            'categories' => $product->allCategories()->map(fn (CategoryModel $category): string => $category->code)->values()->all(),
+            'values' => (object) Values::toStandard($filter->apply($product->allValues())),
+            'associations' => (object) $associations['associations'],
+            'quantified_associations' => (object) $associations['quantified_associations'],
+        ];
+    }
+
+    /**
+     * The published version, or null when the product has none.
+     *
+     * @return array<string, mixed>|null
+     */
+    public static function published(ProductModel $product, ValueFilter $filter): ?array
+    {
+        if ($product->published_version === null) {
+            return null;
+        }
+
+        $snapshot = app(Versions::class)->find($product, $product->published_version)?->snapshot;
+
+        if ($snapshot === null) {
+            return null;
+        }
+
+        $values = [];
+
+        foreach ([$snapshot['inherited_values'] ?? [], $snapshot['values'] ?? []] as $standard) {
+            foreach (is_array($standard) ? $standard : [] as $code => $slots) {
+                foreach (is_array($slots) ? $slots : [] as $slot) {
+                    $values[$code][$slot['scope'] ?? Values::ALL_CHANNELS][$slot['locale'] ?? Values::ALL_LOCALES] = $slot['data'] ?? null;
+                }
+            }
+        }
+
+        return [
+            'identifier' => $snapshot['identifier'] ?? $product->identifier,
+            'family' => $snapshot['family'] ?? null,
+            'parent' => $snapshot['parent'] ?? null,
+            'owner' => $snapshot['owner'] ?? null,
+            'enabled' => $snapshot['enabled'] ?? true,
+            'categories' => $snapshot['categories'] ?? [],
+            'values' => (object) Values::toStandard($filter->apply($values)),
+            'associations' => (object) ($snapshot['associations'] ?? []),
+            'quantified_associations' => (object) ($snapshot['quantified_associations'] ?? []),
+        ];
+    }
+}

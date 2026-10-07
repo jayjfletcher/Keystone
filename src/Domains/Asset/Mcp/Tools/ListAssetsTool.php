@@ -1,0 +1,35 @@
+<?php
+
+declare(strict_types=1);
+
+namespace JayI\Keystone\Domains\Asset\Mcp\Tools;
+
+use Illuminate\Contracts\JsonSchema\JsonSchema;
+use JayI\Foundation\Mcp\Tool;
+use JayI\Keystone\Domains\Asset\Mcp\Requests\ListAssetsMcpRequest;
+use Laravel\Mcp\Response;
+use Laravel\Mcp\ResponseFactory;
+use Laravel\Mcp\Server\Attributes\Description;
+
+#[Description('List assets (images, documents, ...), newest first, by type or by the record they are linked to. Cursor paginated.')]
+final class ListAssetsTool extends Tool
+{
+    public function handle(ListAssetsMcpRequest $request): Response|ResponseFactory
+    {
+        return $request->persist();
+    }
+
+    public function schema(JsonSchema $schema): array
+    {
+        return [
+            'search' => $schema->string()->description('Match against the code, labels or file name.'),
+            'type' => $schema->string()->description('A MIME type, or a family such as image/*.'),
+            'product' => $schema->string()->description('Only assets linked to this product identifier.'),
+            'product_model' => $schema->string()->description('Only assets linked to this product model code.'),
+            'owner' => $schema->string()->description('Only assets linked to this owner code.'),
+            'role' => $schema->string()->description('With product, product_model or owner: only links in this role.'),
+            'cursor' => $schema->string()->description('Cursor from a previous page (next_cursor).'),
+            'per_page' => $schema->integer()->description('Results per page.')->min(1),
+        ];
+    }
+}
