@@ -40,7 +40,7 @@
             <fieldset class="flex min-w-0 flex-col gap-5" @disabled(! $canUpdate)>
 
                 <x-atrium::card :title="__('keystone::keystone.details')">
-                    <div class="flex flex-wrap items-end gap-4">
+                    <div class="flex flex-wrap items-start gap-4">
                         @unless ($product->isVariant())
                             <x-atrium::form.select
                                 name="family"
@@ -59,9 +59,10 @@
                         @else
                             <x-atrium::form.input name="owner" :label="__('keystone::keystone.owner')" :hint="__('keystone::keystone.owner_hint')" :value="$product->owner?->code" wrapper="w-56" />
                         @endif
-
-                        <input type="hidden" name="enabled" value="0">
-                        <x-atrium::form.checkbox name="enabled" :label="__('keystone::keystone.enabled')" :checked="$product->enabled" wrapper="w-auto" />
+                        <x-atrium::form.actions>
+                            <input type="hidden" name="enabled" value="0">
+                            <x-atrium::form.checkbox name="enabled" :label="__('keystone::keystone.enabled')" :checked="$product->enabled" wrapper="h-9 w-auto justify-center" />
+                        </x-atrium::form.actions>
                     </div>
                 </x-atrium::card>
 
@@ -86,9 +87,11 @@
 
         @if ($addable !== [] && $canUpdate)
             <x-atrium::card>
-                <form method="GET" action="{{ route('atrium.keystone.products.show', $product) }}" class="flex flex-wrap items-end gap-3">
+                <form method="GET" action="{{ route('atrium.keystone.products.show', $product) }}" class="flex flex-wrap items-start gap-3">
                     <x-atrium::form.select name="add" :label="__('keystone::keystone.add_attribute')" :placeholder="__('keystone::keystone.choose_attribute')" :options="$addable" wrapper="w-72" />
-                    <x-atrium::icon-button icon="plus" :label="__('keystone::keystone.add')" variant="outline" type="submit" />
+                    <x-atrium::form.actions>
+                        <x-atrium::icon-button icon="plus" :label="__('keystone::keystone.add')" variant="outline" type="submit" />
+                    </x-atrium::form.actions>
                 </form>
             </x-atrium::card>
         @endif

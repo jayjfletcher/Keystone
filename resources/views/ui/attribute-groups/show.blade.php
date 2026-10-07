@@ -18,7 +18,7 @@
 
         @keystoneCan('update', $group)
         <x-atrium::card data-testid="group-details-card" :title="__('keystone::keystone.details')">
-            <form method="POST" action="{{ route('atrium.keystone.attribute-groups.update', $group) }}" class="flex flex-wrap items-end gap-3">
+            <form method="POST" action="{{ route('atrium.keystone.attribute-groups.update', $group) }}" class="flex flex-wrap items-start gap-3">
                 @csrf
                 @method('PATCH')
                 <x-atrium::form.input
@@ -27,7 +27,9 @@
                     :value="$group->labels[$locale] ?? null"
                     wrapper="w-64" />
                 <x-atrium::form.input name="sort_order" type="number" min="0" :label="__('keystone::keystone.sort_order')" :value="$group->sort_order" wrapper="w-28" />
-                <x-atrium::icon-button icon="check" :label="__('keystone::keystone.save')" variant="primary" type="submit" data-testid="save-group" />
+                <x-atrium::form.actions>
+                    <x-atrium::icon-button icon="check" :label="__('keystone::keystone.save')" variant="primary" type="submit" data-testid="save-group" />
+                </x-atrium::form.actions>
             </form>
         </x-atrium::card>
         @endkeystoneCan

@@ -15,7 +15,7 @@
         {{-- Type options come from the enum itself, so a new case can never
              drift out of the filter list. --}}
         <x-atrium::card>
-            <form method="GET" action="{{ route('atrium.keystone.attributes.index') }}" class="flex flex-wrap items-end gap-3">
+            <form method="GET" action="{{ route('atrium.keystone.attributes.index') }}" class="flex flex-wrap items-start gap-3">
                 <x-atrium::form.input name="search" :label="__('keystone::keystone.search')" :value="$filters['search'] ?? null" wrapper="w-56" />
 
                 <x-atrium::form.select
@@ -33,9 +33,10 @@
                     :options="$groups"
                     :selected="$filters['group'] ?? null"
                     wrapper="w-48" />
-
-                <x-atrium::icon-button icon="funnel" :label="__('keystone::keystone.filter')" variant="primary" type="submit" data-testid="filter-attributes" />
-                <x-atrium::icon-button icon="x-mark" :label="__('keystone::keystone.clear')" variant="ghost" :href="route('atrium.keystone.attributes.index')" />
+                <x-atrium::form.actions>
+                    <x-atrium::icon-button icon="funnel" :label="__('keystone::keystone.filter')" variant="primary" type="submit" data-testid="filter-attributes" />
+                    <x-atrium::icon-button icon="x-mark" :label="__('keystone::keystone.clear')" variant="ghost" :href="route('atrium.keystone.attributes.index')" />
+                </x-atrium::form.actions>
             </form>
         </x-atrium::card>
 

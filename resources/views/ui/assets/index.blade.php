@@ -9,18 +9,20 @@
 
         @keystoneCan('create', AssetModel::class)
         <x-atrium::card :title="__('keystone::keystone.upload_asset')">
-            <form method="POST" action="{{ route('atrium.keystone.assets.store') }}" enctype="multipart/form-data" class="flex flex-wrap items-end gap-3">
+            <form method="POST" action="{{ route('atrium.keystone.assets.store') }}" enctype="multipart/form-data" class="flex flex-wrap items-start gap-3">
                 @csrf
                 <x-atrium::form.file name="file" :label="__('keystone::keystone.file')" required wrapper="w-72" />
                 <x-atrium::form.input name="code" :label="__('keystone::keystone.code')" :hint="__('keystone::keystone.asset_code_hint')" wrapper="w-48" />
                 <x-atrium::form.input :name="'labels['.$locale.']'" :label="__('keystone::keystone.label_field', ['locale' => $locale])" wrapper="w-56" />
-                <x-atrium::icon-button icon="arrow-up-tray" :label="__('keystone::keystone.upload')" variant="primary" type="submit" data-testid="upload-asset" />
+                <x-atrium::form.actions>
+                    <x-atrium::icon-button icon="arrow-up-tray" :label="__('keystone::keystone.upload')" variant="primary" type="submit" data-testid="upload-asset" />
+                </x-atrium::form.actions>
             </form>
         </x-atrium::card>
         @endkeystoneCan
 
         <x-atrium::card>
-            <form method="GET" action="{{ route('atrium.keystone.assets.index') }}" class="flex flex-wrap items-end gap-3">
+            <form method="GET" action="{{ route('atrium.keystone.assets.index') }}" class="flex flex-wrap items-start gap-3">
                 <x-atrium::form.input name="search" :label="__('keystone::keystone.search')" :value="$filters['search'] ?? null" wrapper="w-56" />
                 <x-atrium::form.select
                     name="type"
@@ -30,8 +32,10 @@
                     :selected="$filters['type'] ?? null"
                     wrapper="w-40" />
                 <x-atrium::form.input name="product" :label="__('keystone::keystone.product')" :value="$filters['product'] ?? null" wrapper="w-44" />
-                <x-atrium::icon-button icon="funnel" :label="__('keystone::keystone.filter')" variant="primary" type="submit" />
-                <x-atrium::icon-button icon="x-mark" :label="__('keystone::keystone.clear')" variant="ghost" :href="route('atrium.keystone.assets.index')" />
+                <x-atrium::form.actions>
+                    <x-atrium::icon-button icon="funnel" :label="__('keystone::keystone.filter')" variant="primary" type="submit" />
+                    <x-atrium::icon-button icon="x-mark" :label="__('keystone::keystone.clear')" variant="ghost" :href="route('atrium.keystone.assets.index')" />
+                </x-atrium::form.actions>
             </form>
         </x-atrium::card>
 

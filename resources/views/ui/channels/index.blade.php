@@ -28,11 +28,13 @@
             @endif
 
             @keystoneCan('create', \JayI\Keystone\Domains\Channel\Models\LocaleModel::class)
-            <form method="POST" action="{{ route('atrium.keystone.locales.store') }}" class="flex flex-wrap items-end gap-3">
+            <form method="POST" action="{{ route('atrium.keystone.locales.store') }}" class="flex flex-wrap items-start gap-3">
                 @csrf
                 <x-atrium::form.input name="code" :label="__('keystone::keystone.code')" :hint="__('keystone::keystone.locale_code_hint')" required wrapper="w-44" />
                 <x-atrium::form.input :name="'labels['.$uiLocale.']'" :label="__('keystone::keystone.label_field', ['locale' => $uiLocale])" wrapper="w-56" />
-                <x-atrium::icon-button icon="plus" :label="__('keystone::keystone.add')" variant="primary" type="submit" data-testid="create-locale" />
+                <x-atrium::form.actions>
+                    <x-atrium::icon-button icon="plus" :label="__('keystone::keystone.add')" variant="primary" type="submit" data-testid="create-locale" />
+                </x-atrium::form.actions>
             </form>
             @endkeystoneCan
         </x-atrium::card>
@@ -42,7 +44,7 @@
         <x-atrium::card data-testid="new-channel-card" :title="__('keystone::keystone.new_channel')">
             <form method="POST" action="{{ route('atrium.keystone.channels.store') }}" class="flex flex-col gap-4">
                 @csrf
-                <div class="flex flex-wrap items-end gap-3">
+                <div class="flex flex-wrap items-start gap-3">
                     <x-atrium::form.input name="code" :label="__('keystone::keystone.code')" :hint="__('keystone::keystone.code_hint')" required wrapper="w-56" />
                     <x-atrium::form.input :name="'labels['.$uiLocale.']'" :label="__('keystone::keystone.label_field', ['locale' => $uiLocale])" wrapper="w-56" />
                 </div>

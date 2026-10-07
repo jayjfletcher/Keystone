@@ -14,7 +14,7 @@
         </div>
     </div>
 
-    <div class="flex flex-wrap items-end gap-3">
+    <div class="flex flex-wrap items-start gap-3">
         <x-atrium::form.input name="currencies" :label="__('keystone::keystone.currencies')" :hint="__('keystone::keystone.currencies_hint')" :value="implode(', ', $channel?->currencies ?? [])" wrapper="w-56" />
         <x-atrium::form.select name="category_tree" :label="__('keystone::keystone.category_tree')" :placeholder="__('keystone::keystone.none')" :options="$trees" :selected="$channel?->categoryTree?->code" wrapper="w-56" />
     </div>

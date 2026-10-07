@@ -82,12 +82,14 @@
                 @endif
 
                 @keystoneCan('create', ProductModel::class)
-                <form method="POST" action="{{ route('atrium.keystone.products.store') }}" class="flex flex-wrap items-end gap-3">
+                <form method="POST" action="{{ route('atrium.keystone.products.store') }}" class="flex flex-wrap items-start gap-3">
                     @csrf
                     <input type="hidden" name="parent" value="{{ $model->code }}">
                     <x-atrium::form.input name="identifier" :label="__('keystone::keystone.identifier')" required wrapper="w-56" />
                     @include('keystone::ui.partials.axes', ['axes' => $model->familyVariant->axesAt($model->familyVariant->levels)])
-                    <x-atrium::icon-button icon="plus" :label="__('keystone::keystone.add_variant')" variant="primary" type="submit" data-testid="create-variant" />
+                    <x-atrium::form.actions>
+                        <x-atrium::icon-button icon="plus" :label="__('keystone::keystone.add_variant')" variant="primary" type="submit" data-testid="create-variant" />
+                    </x-atrium::form.actions>
                 </form>
                 @endkeystoneCan
             </x-atrium::card>
@@ -102,12 +104,14 @@
                 @endif
 
                 @keystoneCan('create', ProductModelModel::class)
-                <form method="POST" action="{{ route('atrium.keystone.product-models.store') }}" class="flex flex-wrap items-end gap-3">
+                <form method="POST" action="{{ route('atrium.keystone.product-models.store') }}" class="flex flex-wrap items-start gap-3">
                     @csrf
                     <input type="hidden" name="parent" value="{{ $model->code }}">
                     <x-atrium::form.input name="code" :label="__('keystone::keystone.code')" required wrapper="w-56" />
                     @include('keystone::ui.partials.axes', ['axes' => $model->familyVariant->axesAt(1)])
-                    <x-atrium::icon-button icon="plus" :label="__('keystone::keystone.add_sub_model')" variant="primary" type="submit" data-testid="create-sub-model" />
+                    <x-atrium::form.actions>
+                        <x-atrium::icon-button icon="plus" :label="__('keystone::keystone.add_sub_model')" variant="primary" type="submit" data-testid="create-sub-model" />
+                    </x-atrium::form.actions>
                 </form>
                 @endkeystoneCan
             </x-atrium::card>

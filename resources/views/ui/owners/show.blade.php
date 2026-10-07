@@ -34,12 +34,14 @@
 
         @keystoneCan('update', $owner)
         <x-atrium::card data-testid="owner-details-card" :title="__('keystone::keystone.details')">
-            <form method="POST" action="{{ route('atrium.keystone.owners.update', $owner) }}" class="flex flex-wrap items-end gap-3">
+            <form method="POST" action="{{ route('atrium.keystone.owners.update', $owner) }}" class="flex flex-wrap items-start gap-3">
                 @csrf
                 @method('PATCH')
                 <x-atrium::form.input :name="'labels['.$locale.']'" :label="__('keystone::keystone.label_field', ['locale' => $locale])" :value="$owner->labels[$locale] ?? null" wrapper="w-64" />
                 <x-atrium::form.input name="parent" :label="__('keystone::keystone.parent')" :hint="__('keystone::keystone.move_hint')" :value="$owner->parent?->code" wrapper="w-56" />
-                <x-atrium::icon-button icon="check" :label="__('keystone::keystone.save')" variant="primary" type="submit" data-testid="save-owner" />
+                <x-atrium::form.actions>
+                    <x-atrium::icon-button icon="check" :label="__('keystone::keystone.save')" variant="primary" type="submit" data-testid="save-owner" />
+                </x-atrium::form.actions>
             </form>
         </x-atrium::card>
         @endkeystoneCan
@@ -57,12 +59,14 @@
             @endif
 
             @keystoneCan('create', \JayI\Keystone\Domains\Owner\Models\OwnerModel::class)
-            <form method="POST" action="{{ route('atrium.keystone.owners.store') }}" class="flex flex-wrap items-end gap-3">
+            <form method="POST" action="{{ route('atrium.keystone.owners.store') }}" class="flex flex-wrap items-start gap-3">
                 @csrf
                 <input type="hidden" name="parent" value="{{ $owner->code }}">
                 <x-atrium::form.input name="code" :label="__('keystone::keystone.code')" required wrapper="w-48" />
                 <x-atrium::form.select name="type" :label="__('keystone::keystone.type')" :options="$types" required wrapper="w-44" />
-                <x-atrium::icon-button icon="plus" :label="__('keystone::keystone.add_child')" variant="primary" type="submit" data-testid="add-child-owner" />
+                <x-atrium::form.actions>
+                    <x-atrium::icon-button icon="plus" :label="__('keystone::keystone.add_child')" variant="primary" type="submit" data-testid="add-child-owner" />
+                </x-atrium::form.actions>
             </form>
             @endkeystoneCan
         </x-atrium::card>

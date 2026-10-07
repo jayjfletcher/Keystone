@@ -51,7 +51,7 @@
     @endif
 
     @if ($types->isNotEmpty() && $canUpdate)
-        <form method="POST" action="{{ route('atrium.keystone.associations.add') }}" class="mt-4 flex flex-wrap items-end gap-3">
+        <form method="POST" action="{{ route('atrium.keystone.associations.add') }}" class="mt-4 flex flex-wrap items-start gap-3">
             @csrf
             <input type="hidden" name="source_kind" value="{{ $sourceKind }}">
             <input type="hidden" name="source" value="{{ $sourceKey }}">
@@ -59,7 +59,9 @@
             <x-atrium::form.select name="target_kind" :label="__('keystone::keystone.target_kind')" :options="['products' => __('keystone::keystone.product'), 'product_models' => __('keystone::keystone.product_model')]" required wrapper="w-40" />
             <x-atrium::form.input name="target" :label="__('keystone::keystone.target')" required wrapper="w-44" />
             <x-atrium::form.input name="quantity" type="number" min="1" :label="__('keystone::keystone.quantity')" :hint="__('keystone::keystone.quantity_hint')" wrapper="w-28" />
-            <x-atrium::icon-button icon="plus" :label="__('keystone::keystone.add')" variant="primary" type="submit" data-testid="add-association" />
+            <x-atrium::form.actions>
+                <x-atrium::icon-button icon="plus" :label="__('keystone::keystone.add')" variant="primary" type="submit" data-testid="add-association" />
+            </x-atrium::form.actions>
         </form>
     @endif
 </x-atrium::card>

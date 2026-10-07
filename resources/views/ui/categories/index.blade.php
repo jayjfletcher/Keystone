@@ -9,11 +9,13 @@
 
         @keystoneCan('create', CategoryModel::class)
         <x-atrium::card data-testid="new-tree-card" :title="__('keystone::keystone.new_tree')">
-            <form method="POST" action="{{ route('atrium.keystone.categories.store') }}" class="flex flex-wrap items-end gap-3">
+            <form method="POST" action="{{ route('atrium.keystone.categories.store') }}" class="flex flex-wrap items-start gap-3">
                 @csrf
                 <x-atrium::form.input name="code" :label="__('keystone::keystone.code')" :hint="__('keystone::keystone.code_hint')" required wrapper="w-56" />
                 <x-atrium::form.input :name="'labels['.$locale.']'" :label="__('keystone::keystone.label_field', ['locale' => $locale])" wrapper="w-56" />
-                <x-atrium::icon-button icon="plus" :label="__('keystone::keystone.create')" variant="primary" type="submit" data-testid="create-tree" />
+                <x-atrium::form.actions>
+                    <x-atrium::icon-button icon="plus" :label="__('keystone::keystone.create')" variant="primary" type="submit" data-testid="create-tree" />
+                </x-atrium::form.actions>
             </form>
         </x-atrium::card>
         @endkeystoneCan

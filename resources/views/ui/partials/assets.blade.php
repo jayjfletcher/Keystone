@@ -17,13 +17,15 @@
     {{-- Uploading creates an asset and links it, which updates that asset. --}}
     @keystoneCan('create', \JayI\Keystone\Domains\Asset\Models\AssetModel::class)
     <div class="mt-4 flex flex-col gap-3">
-        <form method="POST" action="{{ route('atrium.keystone.assets.upload') }}" enctype="multipart/form-data" class="flex flex-wrap items-end gap-3">
+        <form method="POST" action="{{ route('atrium.keystone.assets.upload') }}" enctype="multipart/form-data" class="flex flex-wrap items-start gap-3">
             @csrf
             <input type="hidden" name="type" value="{{ $linkType }}">
             <input type="hidden" name="target" value="{{ $linkTarget }}">
             <x-atrium::form.file name="file" :label="__('keystone::keystone.upload_and_link')" required wrapper="w-72" />
             <x-atrium::form.input name="role" :label="__('keystone::keystone.role')" value="image" wrapper="w-32" />
-            <x-atrium::icon-button icon="arrow-up-tray" :label="__('keystone::keystone.upload')" variant="primary" type="submit" data-testid="upload-and-link" />
+            <x-atrium::form.actions>
+                <x-atrium::icon-button icon="arrow-up-tray" :label="__('keystone::keystone.upload')" variant="primary" type="submit" data-testid="upload-and-link" />
+            </x-atrium::form.actions>
         </form>
     </div>
     @endkeystoneCan

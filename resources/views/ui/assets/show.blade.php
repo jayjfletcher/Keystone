@@ -34,12 +34,14 @@
         <div class="flex flex-col gap-5 lg:col-span-2">
             @keystoneCan('update', $asset)
             <x-atrium::card :title="__('keystone::keystone.details')" data-testid="asset-details-card">
-                <form method="POST" action="{{ route('atrium.keystone.assets.update', $asset) }}" enctype="multipart/form-data" class="flex flex-wrap items-end gap-3">
+                <form method="POST" action="{{ route('atrium.keystone.assets.update', $asset) }}" enctype="multipart/form-data" class="flex flex-wrap items-start gap-3">
                     @csrf
                     @method('PATCH')
                     <x-atrium::form.input :name="'labels['.$locale.']'" :label="__('keystone::keystone.label_field', ['locale' => $locale])" :value="$asset->labels[$locale] ?? null" wrapper="w-64" />
                     <x-atrium::form.file name="file" :label="__('keystone::keystone.replace_file')" wrapper="w-72" />
-                    <x-atrium::icon-button icon="check" :label="__('keystone::keystone.save')" variant="primary" type="submit" data-testid="save-asset" />
+                    <x-atrium::form.actions>
+                        <x-atrium::icon-button icon="check" :label="__('keystone::keystone.save')" variant="primary" type="submit" data-testid="save-asset" />
+                    </x-atrium::form.actions>
                 </form>
             </x-atrium::card>
             @endkeystoneCan
@@ -91,12 +93,14 @@
                 @endif
 
                 @if ($canLink)
-                <form method="POST" action="{{ route('atrium.keystone.assets.attach', $asset) }}" class="mt-4 flex flex-wrap items-end gap-3">
+                <form method="POST" action="{{ route('atrium.keystone.assets.attach', $asset) }}" class="mt-4 flex flex-wrap items-start gap-3">
                     @csrf
                     <x-atrium::form.select name="type" :label="__('keystone::keystone.type')" :options="$types" required wrapper="w-40" />
                     <x-atrium::form.input name="target" :label="__('keystone::keystone.target')" :hint="__('keystone::keystone.target_hint')" required wrapper="w-48" />
                     <x-atrium::form.input name="role" :label="__('keystone::keystone.role')" value="media" wrapper="w-36" />
-                    <x-atrium::icon-button icon="link" :label="__('keystone::keystone.link')" variant="primary" type="submit" data-testid="attach-asset" />
+                    <x-atrium::form.actions>
+                        <x-atrium::icon-button icon="link" :label="__('keystone::keystone.link')" variant="primary" type="submit" data-testid="attach-asset" />
+                    </x-atrium::form.actions>
                 </form>
                 @endif
             </x-atrium::card>

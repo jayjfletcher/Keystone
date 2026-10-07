@@ -9,15 +9,17 @@
 
         @keystoneCan('create', AssociationTypeModel::class)
         <x-atrium::card data-testid="new-association-type-card" :title="__('keystone::keystone.new_association_type')">
-            <form method="POST" action="{{ route('atrium.keystone.association-types.store') }}" class="flex flex-wrap items-end gap-3">
+            <form method="POST" action="{{ route('atrium.keystone.association-types.store') }}" class="flex flex-wrap items-start gap-3">
                 @csrf
                 <x-atrium::form.input name="code" :label="__('keystone::keystone.code')" :hint="__('keystone::keystone.code_hint')" required wrapper="w-56" />
                 <x-atrium::form.input :name="'labels['.$locale.']'" :label="__('keystone::keystone.label_field', ['locale' => $locale])" wrapper="w-56" />
-                <input type="hidden" name="is_two_way" value="0">
-                <x-atrium::form.checkbox name="is_two_way" :label="__('keystone::keystone.two_way')" wrapper="w-auto" />
-                <input type="hidden" name="is_quantified" value="0">
-                <x-atrium::form.checkbox name="is_quantified" :label="__('keystone::keystone.quantified')" wrapper="w-auto" />
-                <x-atrium::icon-button icon="plus" :label="__('keystone::keystone.create')" variant="primary" type="submit" data-testid="create-association-type" />
+                <x-atrium::form.actions>
+                    <input type="hidden" name="is_two_way" value="0">
+                    <x-atrium::form.checkbox name="is_two_way" :label="__('keystone::keystone.two_way')" wrapper="h-9 w-auto justify-center" />
+                    <input type="hidden" name="is_quantified" value="0">
+                    <x-atrium::form.checkbox name="is_quantified" :label="__('keystone::keystone.quantified')" wrapper="h-9 w-auto justify-center" />
+                    <x-atrium::icon-button icon="plus" :label="__('keystone::keystone.create')" variant="primary" type="submit" data-testid="create-association-type" />
+                </x-atrium::form.actions>
             </form>
         </x-atrium::card>
         @endkeystoneCan

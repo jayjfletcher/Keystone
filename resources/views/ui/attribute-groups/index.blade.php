@@ -9,12 +9,14 @@
 
         @keystoneCan('create', AttributeGroupModel::class)
         <x-atrium::card data-testid="new-group-card" :title="__('keystone::keystone.new_group')">
-            <form method="POST" action="{{ route('atrium.keystone.attribute-groups.store') }}" class="flex flex-wrap items-end gap-3">
+            <form method="POST" action="{{ route('atrium.keystone.attribute-groups.store') }}" class="flex flex-wrap items-start gap-3">
                 @csrf
                 <x-atrium::form.input name="code" :label="__('keystone::keystone.code')" :hint="__('keystone::keystone.code_hint')" required wrapper="w-56" />
                 <x-atrium::form.input :name="'labels['.$locale.']'" :label="__('keystone::keystone.label_field', ['locale' => $locale])" wrapper="w-56" />
                 <x-atrium::form.input name="sort_order" type="number" min="0" :label="__('keystone::keystone.sort_order')" value="0" wrapper="w-28" />
-                <x-atrium::icon-button icon="plus" :label="__('keystone::keystone.create_group')" variant="primary" type="submit" data-testid="create-group" />
+                <x-atrium::form.actions>
+                    <x-atrium::icon-button icon="plus" :label="__('keystone::keystone.create_group')" variant="primary" type="submit" data-testid="create-group" />
+                </x-atrium::form.actions>
             </form>
         </x-atrium::card>
         @endkeystoneCan

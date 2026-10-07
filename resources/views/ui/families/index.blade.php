@@ -9,21 +9,25 @@
 
         @keystoneCan('create', FamilyModel::class)
         <x-atrium::card data-testid="new-family-card" :title="__('keystone::keystone.new_family')">
-            <form method="POST" action="{{ route('atrium.keystone.families.store') }}" class="flex flex-wrap items-end gap-3">
+            <form method="POST" action="{{ route('atrium.keystone.families.store') }}" class="flex flex-wrap items-start gap-3">
                 @csrf
                 <x-atrium::form.input name="code" :label="__('keystone::keystone.code')" :hint="__('keystone::keystone.code_hint')" required wrapper="w-56" />
                 <x-atrium::form.input :name="'labels['.$locale.']'" :label="__('keystone::keystone.label_field', ['locale' => $locale])" wrapper="w-56" />
                 <x-atrium::form.input name="sort_order" type="number" min="0" :label="__('keystone::keystone.sort_order')" value="0" wrapper="w-28" />
-                <x-atrium::icon-button icon="plus" :label="__('keystone::keystone.create_family')" variant="primary" type="submit" data-testid="create-family" />
+                <x-atrium::form.actions>
+                    <x-atrium::icon-button icon="plus" :label="__('keystone::keystone.create_family')" variant="primary" type="submit" data-testid="create-family" />
+                </x-atrium::form.actions>
             </form>
         </x-atrium::card>
         @endkeystoneCan
 
         <x-atrium::card>
-            <form method="GET" action="{{ route('atrium.keystone.families.index') }}" class="flex flex-wrap items-end gap-3">
+            <form method="GET" action="{{ route('atrium.keystone.families.index') }}" class="flex flex-wrap items-start gap-3">
                 <x-atrium::form.input name="search" :label="__('keystone::keystone.search')" :value="$filters['search'] ?? null" wrapper="w-56" />
-                <x-atrium::icon-button icon="funnel" :label="__('keystone::keystone.filter')" variant="primary" type="submit" data-testid="filter-families" />
-                <x-atrium::icon-button icon="x-mark" :label="__('keystone::keystone.clear')" variant="ghost" :href="route('atrium.keystone.families.index')" />
+                <x-atrium::form.actions>
+                    <x-atrium::icon-button icon="funnel" :label="__('keystone::keystone.filter')" variant="primary" type="submit" data-testid="filter-families" />
+                    <x-atrium::icon-button icon="x-mark" :label="__('keystone::keystone.clear')" variant="ghost" :href="route('atrium.keystone.families.index')" />
+                </x-atrium::form.actions>
             </form>
         </x-atrium::card>
 

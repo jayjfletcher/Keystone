@@ -11,7 +11,7 @@
         <x-atrium::card data-testid="new-owner-type-card" :title="__('keystone::keystone.new_owner_type')">
             <form method="POST" action="{{ route('atrium.keystone.owner-types.store') }}" class="flex flex-col gap-4">
                 @csrf
-                <div class="flex flex-wrap items-end gap-3">
+                <div class="flex flex-wrap items-start gap-3">
                     <x-atrium::form.input name="code" :label="__('keystone::keystone.code')" :hint="__('keystone::keystone.code_hint')" required wrapper="w-56" />
                     <x-atrium::form.input :name="'labels['.$locale.']'" :label="__('keystone::keystone.label_field', ['locale' => $locale])" wrapper="w-56" />
                 </div>

@@ -28,7 +28,7 @@
             <fieldset class="flex min-w-0 flex-col gap-5" @disabled(! $canUpdate)>
 
                 <x-atrium::card :title="__('keystone::keystone.details')">
-                    <div class="flex flex-wrap items-end gap-3">
+                    <div class="flex flex-wrap items-start gap-3">
                         <x-atrium::form.input
                             :name="'labels['.$locale.']'"
                             :label="__('keystone::keystone.label_field', ['locale' => $locale])"
@@ -97,7 +97,7 @@
                     @endif
 
                     @if ($canUpdate)
-                    <div class="mt-4 flex flex-wrap items-end gap-3">
+                    <div class="mt-4 flex flex-wrap items-start gap-3">
                         <x-atrium::form.select
                             name="add_attribute"
                             :label="__('keystone::keystone.add_attribute')"
@@ -106,7 +106,9 @@
                             wrapper="w-72" />
 
                         <input type="hidden" name="add_required" value="0">
-                        <x-atrium::form.checkbox name="add_required" :label="__('keystone::keystone.required')" wrapper="w-auto" />
+                        <x-atrium::form.actions>
+                            <x-atrium::form.checkbox name="add_required" :label="__('keystone::keystone.required')" wrapper="h-9 w-auto justify-center" />
+                        </x-atrium::form.actions>
                     </div>
                     @endif
                 </x-atrium::card>

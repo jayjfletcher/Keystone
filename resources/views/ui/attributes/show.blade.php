@@ -97,12 +97,14 @@
 
                 {{-- As the API asks: update the attribute and create an option. --}}
                 @if ($canUpdate && ScreenAccess::allows('create', AttributeOptionModel::class))
-                <form method="POST" action="{{ route('atrium.keystone.attributes.options.store', $attribute) }}" class="mt-4 flex flex-wrap items-end gap-3">
+                <form method="POST" action="{{ route('atrium.keystone.attributes.options.store', $attribute) }}" class="mt-4 flex flex-wrap items-start gap-3">
                     @csrf
                     <x-atrium::form.input name="code" :label="__('keystone::keystone.code')" required wrapper="w-48" />
                     <x-atrium::form.input :name="'labels['.$locale.']'" :label="__('keystone::keystone.label_field', ['locale' => $locale])" wrapper="w-56" />
                     <x-atrium::form.input name="sort_order" type="number" min="0" :label="__('keystone::keystone.sort_order')" value="0" wrapper="w-28" />
-                    <x-atrium::icon-button icon="plus" :label="__('keystone::keystone.add_option')" variant="primary" type="submit" data-testid="add-option" />
+                    <x-atrium::form.actions>
+                        <x-atrium::icon-button icon="plus" :label="__('keystone::keystone.add_option')" variant="primary" type="submit" data-testid="add-option" />
+                    </x-atrium::form.actions>
                 </form>
                 @endif
             </x-atrium::card>

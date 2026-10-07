@@ -14,7 +14,7 @@
         <x-atrium::flash />
 
         <x-atrium::card>
-            <form method="GET" action="{{ route('atrium.keystone.products.index') }}" class="flex flex-wrap items-end gap-3">
+            <form method="GET" action="{{ route('atrium.keystone.products.index') }}" class="flex flex-wrap items-start gap-3">
                 <x-atrium::form.input name="search" :label="__('keystone::keystone.search')" :value="$filters['search'] ?? null" wrapper="w-64" />
 
                 <x-atrium::form.select
@@ -44,9 +44,10 @@
                     :options="['1' => __('keystone::keystone.enabled'), '0' => __('keystone::keystone.disabled')]"
                     :selected="isset($filters['enabled']) ? (string) (int) $filters['enabled'] : null"
                     wrapper="w-40" />
-
-                <x-atrium::icon-button icon="funnel" :label="__('keystone::keystone.filter')" variant="primary" type="submit" data-testid="filter-products" />
-                <x-atrium::icon-button icon="x-mark" :label="__('keystone::keystone.clear')" variant="ghost" :href="route('atrium.keystone.products.index')" />
+                <x-atrium::form.actions>
+                    <x-atrium::icon-button icon="funnel" :label="__('keystone::keystone.filter')" variant="primary" type="submit" data-testid="filter-products" />
+                    <x-atrium::icon-button icon="x-mark" :label="__('keystone::keystone.clear')" variant="ghost" :href="route('atrium.keystone.products.index')" />
+                </x-atrium::form.actions>
             </form>
         </x-atrium::card>
 

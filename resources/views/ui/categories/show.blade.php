@@ -40,26 +40,30 @@
             @endif
 
             @keystoneCan('create', \JayI\Keystone\Domains\Category\Models\CategoryModel::class)
-            <form method="POST" action="{{ route('atrium.keystone.categories.store') }}" class="mt-4 flex flex-wrap items-end gap-3">
+            <form method="POST" action="{{ route('atrium.keystone.categories.store') }}" class="mt-4 flex flex-wrap items-start gap-3">
                 @csrf
                 <input type="hidden" name="parent" value="{{ $category->code }}">
                 <x-atrium::form.input name="code" :label="__('keystone::keystone.code')" required wrapper="w-48" />
                 <x-atrium::form.input :name="'labels['.$locale.']'" :label="__('keystone::keystone.label_field', ['locale' => $locale])" wrapper="w-56" />
                 <x-atrium::form.input name="sort_order" type="number" min="0" :label="__('keystone::keystone.sort_order')" value="0" wrapper="w-28" />
-                <x-atrium::icon-button icon="plus" :label="__('keystone::keystone.add_child')" variant="primary" type="submit" data-testid="add-subcategory" />
+                <x-atrium::form.actions>
+                    <x-atrium::icon-button icon="plus" :label="__('keystone::keystone.add_child')" variant="primary" type="submit" data-testid="add-subcategory" />
+                </x-atrium::form.actions>
             </form>
             @endkeystoneCan
         </x-atrium::card>
 
         @keystoneCan('update', $category)
         <x-atrium::card data-testid="category-details-card" :title="__('keystone::keystone.details')">
-            <form method="POST" action="{{ route('atrium.keystone.categories.update', $category) }}" class="flex flex-wrap items-end gap-3">
+            <form method="POST" action="{{ route('atrium.keystone.categories.update', $category) }}" class="flex flex-wrap items-start gap-3">
                 @csrf
                 @method('PATCH')
                 <x-atrium::form.input :name="'labels['.$locale.']'" :label="__('keystone::keystone.label_field', ['locale' => $locale])" :value="$category->labels[$locale] ?? null" wrapper="w-64" />
                 <x-atrium::form.input name="sort_order" type="number" min="0" :label="__('keystone::keystone.sort_order')" :value="$category->sort_order" wrapper="w-28" />
                 <x-atrium::form.input name="parent" :label="__('keystone::keystone.parent')" :hint="__('keystone::keystone.category_move_hint')" :value="$category->parent?->code" wrapper="w-56" />
-                <x-atrium::icon-button icon="check" :label="__('keystone::keystone.save')" variant="primary" type="submit" data-testid="save-category" />
+                <x-atrium::form.actions>
+                    <x-atrium::icon-button icon="check" :label="__('keystone::keystone.save')" variant="primary" type="submit" data-testid="save-category" />
+                </x-atrium::form.actions>
             </form>
         </x-atrium::card>
         @endkeystoneCan

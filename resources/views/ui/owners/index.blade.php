@@ -18,24 +18,28 @@
             @if ($types === [])
                 <x-atrium::empty-state :title="__('keystone::keystone.no_owner_types')" />
             @else
-                <form method="POST" action="{{ route('atrium.keystone.owners.store') }}" class="flex flex-wrap items-end gap-3">
+                <form method="POST" action="{{ route('atrium.keystone.owners.store') }}" class="flex flex-wrap items-start gap-3">
                     @csrf
                     <x-atrium::form.input name="code" :label="__('keystone::keystone.code')" required wrapper="w-48" />
                     <x-atrium::form.select name="type" :label="__('keystone::keystone.type')" :options="$types" required wrapper="w-44" />
                     <x-atrium::form.input name="parent" :label="__('keystone::keystone.parent')" :hint="__('keystone::keystone.parent_owner_hint')" wrapper="w-48" />
                     <x-atrium::form.input :name="'labels['.$locale.']'" :label="__('keystone::keystone.label_field', ['locale' => $locale])" wrapper="w-56" />
-                    <x-atrium::icon-button icon="plus" :label="__('keystone::keystone.create')" variant="primary" type="submit" data-testid="create-owner" />
+                    <x-atrium::form.actions>
+                        <x-atrium::icon-button icon="plus" :label="__('keystone::keystone.create')" variant="primary" type="submit" data-testid="create-owner" />
+                    </x-atrium::form.actions>
                 </form>
             @endif
         </x-atrium::card>
         @endkeystoneCan
 
         <x-atrium::card>
-            <form method="GET" action="{{ route('atrium.keystone.owners.index') }}" class="flex flex-wrap items-end gap-3">
+            <form method="GET" action="{{ route('atrium.keystone.owners.index') }}" class="flex flex-wrap items-start gap-3">
                 <x-atrium::form.input name="search" :label="__('keystone::keystone.search')" :value="$filters['search'] ?? null" wrapper="w-56" />
                 <x-atrium::form.select name="type" :label="__('keystone::keystone.type')" :placeholder="__('keystone::keystone.all_types')" :options="$types" :selected="$filters['type'] ?? null" wrapper="w-44" />
-                <x-atrium::icon-button icon="funnel" :label="__('keystone::keystone.filter')" variant="primary" type="submit" />
-                <x-atrium::icon-button icon="x-mark" :label="__('keystone::keystone.clear')" variant="ghost" :href="route('atrium.keystone.owners.index')" />
+                <x-atrium::form.actions>
+                    <x-atrium::icon-button icon="funnel" :label="__('keystone::keystone.filter')" variant="primary" type="submit" />
+                    <x-atrium::icon-button icon="x-mark" :label="__('keystone::keystone.clear')" variant="ghost" :href="route('atrium.keystone.owners.index')" />
+                </x-atrium::form.actions>
             </form>
         </x-atrium::card>
 

@@ -31,12 +31,14 @@
 
     @if ($transitions !== [])
         @keystoneCan('update', $product)
-        <form method="POST" action="{{ route('atrium.keystone.products.transition', $product) }}" class="mt-4 flex flex-wrap items-end gap-3" data-testid="transition-form">
+        <form method="POST" action="{{ route('atrium.keystone.products.transition', $product) }}" class="mt-4 flex flex-wrap items-start gap-3" data-testid="transition-form">
             @csrf
             <x-atrium::form.input name="comment" :label="__('keystone::keystone.comment')" wrapper="w-72" />
-            @foreach ($transitions as $transition)
-                <x-atrium::icon-button :icon="$transitionIcons[$transition->value]" :label="__('keystone::keystone.transition_'.$transition->value)" :variant="$transition->value === 'reject' || $transition->value === 'archive' ? 'outline' : 'primary'" type="submit" name="transition" :value="$transition->value" data-testid="transition-{{ $transition->value }}" />
-            @endforeach
+            <x-atrium::form.actions>
+                @foreach ($transitions as $transition)
+                    <x-atrium::icon-button :icon="$transitionIcons[$transition->value]" :label="__('keystone::keystone.transition_'.$transition->value)" :variant="$transition->value === 'reject' || $transition->value === 'archive' ? 'outline' : 'primary'" type="submit" name="transition" :value="$transition->value" data-testid="transition-{{ $transition->value }}" />
+                @endforeach
+            </x-atrium::form.actions>
         </form>
         @endkeystoneCan
     @endif
