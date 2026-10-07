@@ -22,7 +22,7 @@ it('contributes catalog navigation', function (): void {
         app(KeystonePlugin::class)->navigation(),
     );
 
-    expect($labels)->toBe(['Products', 'Product models', 'Categories', 'Assets', 'Owners', 'Families', 'Attributes', 'Channels', 'Import & export', 'Association types', 'Attribute groups']);
+    expect($labels)->toBe(['Products', 'Product models', 'Categories', 'Assets', 'Owners', 'Families', 'Attributes', 'Channels', 'Import & export', 'Association types', 'Attribute groups', 'Audit log']);
 });
 
 it('registers its routes inside the atrium group', function (): void {

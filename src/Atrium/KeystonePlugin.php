@@ -99,6 +99,9 @@ class KeystonePlugin extends Plugin
                 ->authorize(fn (Request $request): bool => ScreenAccess::allows('viewAny', AssociationTypeModel::class, $request)),
             NavItem::make(__('keystone::keystone.attribute_groups'))->icon(Icons::svg('squares-2x2'))->route('atrium.keystone.attribute-groups.index')->group($group)->sort(20)
                 ->authorize(fn (Request $request): bool => ScreenAccess::allows('viewAny', AttributeGroupModel::class, $request)),
+
+            // The package's own audit log, while an audit log is installed.
+            $this->historyNavItem('keystone')->group($group)->sort(90),
         ];
     }
 

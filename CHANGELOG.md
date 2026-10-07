@@ -2,6 +2,10 @@
 
 ## [Unreleased](https://github.com/jayi/keystone/compare/v0.1.0...1.x)
 
+### Added
+
+- An **Audit log** link in the package's sidebar group, opening its own audit log in Atrium (`/atrium/history/keystone`), shown while an audit log (jayi/keen) is installed and to those who may read the package's history.
+
 ### Breaking
 
 - Keystone ships no stylesheet: `resources/css/atrium.css` and its registration with Atrium's style hook are removed. The screens use only Atrium's components and safelisted utilities (bare form controls in table cells, `description-list`, `progress`, `flash`), and `ui/partials/status.blade.php` is replaced by `<x-atrium::flash />`, which also shows the first validation error. Requires a jayi/atrium with those components. Published views that include `keystone::ui.partials.status` must switch to `<x-atrium::flash />`.
