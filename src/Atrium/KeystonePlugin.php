@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use JayI\Atrium\Domains\Navigation\Data\NavGroup;
 use JayI\Atrium\Domains\Navigation\Data\NavItem;
 use JayI\Atrium\Domains\Plugins\Support\Plugin;
 use JayI\Atrium\Domains\Search\Data\SearchResult;
@@ -66,6 +67,16 @@ class KeystonePlugin extends Plugin
     public function features(): array
     {
         return $this->featuresFromConfig('keystone.atrium.features');
+    }
+
+    /**
+     * The package's section in the sidebar rail: its icon and its place.
+     */
+    public function navigationGroups(): array
+    {
+        return [
+            NavGroup::make(__('keystone::keystone.catalog'))->icon(Icons::svg('cube'))->sort(20),
+        ];
     }
 
     /**
