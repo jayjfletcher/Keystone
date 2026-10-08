@@ -19,6 +19,15 @@ class WorkbenchServiceProvider extends ServiceProvider
         // host-relative URLs so they load on whatever port `serve` picks.
         config()->set('keystone.media.disk', 'public');
         config()->set('filesystems.disks.public.url', '/storage');
+
+        // jayi/pennantplus's layered store: users who follow a feature's
+        // global value store nothing, as in a real application.
+        config()->set('pennant.default', 'pennantplus');
+        config()->set('pennant.stores.pennantplus', [
+            'driver' => 'pennantplus',
+            'connection' => null,
+            'table' => 'features',
+        ]);
     }
 
     /**
