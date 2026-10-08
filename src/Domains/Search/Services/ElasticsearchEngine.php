@@ -95,6 +95,7 @@ final class ElasticsearchEngine implements SearchEngine
                     'text' => ['type' => 'text'],
                     'created_at' => ['type' => 'date'],
                     'updated_at' => ['type' => 'date'],
+                    'changed_at' => ['type' => 'date'],
                 ],
             ],
         ]);
@@ -143,7 +144,7 @@ final class ElasticsearchEngine implements SearchEngine
         if ($query->updatedSince !== null) {
             $since = $query->updatedSince->toIso8601String();
 
-            $builder->filter(fn (QueryBuilderContract $q) => $q->range('updated_at')->gte($since));
+            $builder->filter(fn (QueryBuilderContract $q) => $q->range('changed_at')->gte($since));
         }
 
         if ($query->complete !== null) {

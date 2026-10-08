@@ -45,11 +45,10 @@ final class ListProductsAction
             'category' => ['sometimes', 'nullable', 'string', 'max:100'],
             'status' => ['sometimes', 'nullable', Rule::enum(ProductStatus::class)],
             'published' => ['sometimes', 'nullable', 'boolean'],
-            // Products whose own row changed at or after this moment. Only a
-            // change to the product's own columns moves its timestamp: a
-            // refiling, an association, an asset link, or anything it
-            // inherits from its model, family, category or owner does not.
-            // Subscribe through Impex to hear about those.
+            // Products where anything they show changed at or after this
+            // moment — their own data, categories, associations, assets, or
+            // what they inherit from a model, family, category, owner or
+            // channel. Filters on changed_at.
             'updated_since' => ['sometimes', 'nullable', 'date'],
             // At least `min` percent complete on a channel, in one locale or all of its locales.
             'complete' => ['sometimes', 'nullable', 'array'],

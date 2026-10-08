@@ -44,6 +44,7 @@ use JayI\Keystone\Domains\Workflow\Models\VersionModel;
  * @property array<string, array<string, array<string, mixed>>>|null $values
  * @property Carbon|null $created_at
  * @property Carbon|null $updated_at
+ * @property Carbon|null $changed_at
  * @property-read FamilyModel|null $family
  * @property-read ProductModelModel|null $parent
  * @property-read OwnerModel|null $owner
@@ -205,6 +206,7 @@ final class ProductModel extends Model
             'status' => ProductStatus::class,
             'published_version' => 'integer',
             'published_at' => 'datetime',
+            'changed_at' => 'datetime',
             'values' => 'array',
         ];
     }

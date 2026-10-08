@@ -126,7 +126,7 @@ final class DatabaseEngine implements SearchEngine
         }
 
         if ($query->updatedSince !== null) {
-            $builder->where('keystone_products.updated_at', '>=', $query->updatedSince);
+            $builder->where('keystone_products.changed_at', '>=', $query->updatedSince);
         }
 
         if ($query->complete !== null) {

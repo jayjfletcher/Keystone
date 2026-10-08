@@ -76,6 +76,11 @@ final class ProductIndex
      */
     public function sync(array $ids): void
     {
+        // Every change a product shows passes through here — its own edits
+        // and whatever it inherits — so this is where "changed since" is
+        // kept. A bare update: no events, and updated_at stays the row's own.
+        ProductModel::query()->whereKey($ids)->toBase()->update(['changed_at' => now()]);
+
         $products = $this->withContext(ProductModel::query()->whereKey($ids))->get();
 
         // Completeness first: the index carries it.

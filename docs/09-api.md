@@ -104,7 +104,8 @@ Content-Type: application/json
     "sort_order": 0,
     "options": [],
     "created_at": "2026-09-29T09:00:00+00:00",
-    "updated_at": "2026-09-29T09:00:00+00:00"
+    "updated_at": "2026-09-29T09:00:00+00:00",
+    "changed_at": "2026-09-29T09:00:00+00:00"
   }
 }
 ```
@@ -117,7 +118,7 @@ Product search is page-numbered (`page`, `per_page`, `meta.total`). Other listin
 
 Clients that poll the catalog have two helpers:
 
-- `GET /keystone/products?updated_since=2026-10-01T00:00:00Z` lists products whose own record changed at or after that moment. Any date Laravel's `date` rule accepts will do. Changes a product inherits (from its model, family, category or owner, or a linked asset) never move its own `updated_at`, and a category- or association-only update may not, so those can be missed here; see [Search](05-search.md#changed-since).
+- `GET /keystone/products?updated_since=2026-10-01T00:00:00Z` lists products where anything they show changed at or after that moment — inherited changes, refilings, associations and assets included. It filters on each product's `changed_at`, which the API returns; see [Search](05-search.md#changed-since).
 - `GET /keystone/products/{product}` carries an `ETag` of its body. Send it back as `If-None-Match` and an unchanged product answers `304 Not Modified` with no body. The tag covers the response as asked for, so the same product read with other `scope` or `locales[]` has another tag.
 
 Vendors who need every change, inherited ones included, subscribe to product webhooks instead of polling; see [Import, export and feeds](12-impex.md#product-webhooks).

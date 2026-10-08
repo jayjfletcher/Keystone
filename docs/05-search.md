@@ -24,7 +24,7 @@ GET /keystone/products?search=tee&family=shirts&enabled=1
 - `category`: products filed in this category code or any category beneath it.
 - `status`: `draft`, `in_review`, `approved` or `archived`; `published`: with or without a live version.
 - `complete`: `{scope, locale?, min}` — see [Workflow](11-workflow.md).
-- `updated_since`: products whose own record changed at or after this moment (ISO 8601, or any date Laravel's `date` rule accepts) — see [Changed since](#changed-since).
+- `updated_since`: products where anything they show changed at or after this moment (ISO 8601, or any date Laravel's `date` rule accepts) — see [Changed since](#changed-since).
 - `filters`: all must hold. Operators: `=`, `!=`, `in`, `not_in`, `>`, `>=`, `<`, `<=`, `empty`, `not_empty`. Add `locale` / `scope` for localizable / scopable attributes. Multiselect `=` means "contains". Metric filters compare the amount.
 - `facets`: attribute codes to count values of across every match (Elasticsearch only). Returned as `facets: {"color": {"red": 12, "blue": 3}}`.
 - `sort`: `identifier`, `created_at` or `updated_at`, `-` for descending.
@@ -34,11 +34,11 @@ A filter the engine cannot run answers `422` with a message.
 
 ## Changed since
 
-`updated_since` compares the product's own `updated_at`, on every engine: the database engine queries `keystone_products.updated_at`, Elasticsearch a range on the indexed `updated_at` date, and Scout passes `updated_at >= <ISO 8601 string>` to its engine (declare `updated_at` filterable, as for any Scout filter; the engine must support a range on it).
+`updated_since` compares a product's `changed_at`: when anything it shows last changed. That is its own values, family, owner, `enabled` flag and transitions, and also what `updated_at` never sees — a refiling, an association, an asset linked or replaced, and everything it inherits from its product model, family, categories, owner or channel. `changed_at` is set by `SyncProductIndex`, which every such change already queues, so it costs nothing extra on the write.
 
-Only a write to the product's own row moves that timestamp: its values, family, owner or `enabled` flag, and workflow transitions. An update that only refiles categories or changes associations need not touch the row, and a change the product inherits never does: an edit to its product model, a family, a category or owner, or an asset linked to it or replaced. Combine `updated_since` with `sort=updated_at` to page through recent changes; to hear about inherited changes too, subscribe to the product stream through Impex ([Product webhooks](12-impex.md#product-webhooks)).
+The database engine queries `keystone_products.changed_at`, Elasticsearch a range on the indexed `changed_at` date, and Scout passes `changed_at >= <ISO 8601 string>` to its engine (declare `changed_at` filterable, as for any Scout filter; the engine must support a range on it). Elasticsearch needs `changed_at` in its mapping: run `php artisan keystone:search:reindex` once after upgrading.
 
-Indexed engines answer from the index, so a product changed moments ago appears once its `SyncProductIndex` job has run.
+Because `changed_at` is stamped when the sync job runs, a change is never missed: a client that asked "since T" while the job was still queued sees the product on its next call, stamped after T. Products also carry `changed_at` in their API representation, so a client can keep the latest one it saw as its next `updated_since`.
 
 ## Keeping the index in step
 

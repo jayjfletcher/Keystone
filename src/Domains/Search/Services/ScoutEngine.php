@@ -96,7 +96,7 @@ final class ScoutEngine implements SearchEngine
         }
 
         if ($query->updatedSince !== null) {
-            $builder->where('updated_at', '>=', $query->updatedSince->toIso8601String());
+            $builder->where('changed_at', '>=', $query->updatedSince->toIso8601String());
         }
 
         $builder->orderBy($query->sort, $query->direction);

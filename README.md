@@ -197,7 +197,7 @@ With [jayi/impex](https://github.com/jayi/impex) installed, bulk imports (CSV or
 
 Switch on `keystone.impex.webhooks.enabled` and published products become an Impex stream: vendors subscribe to the categories, SKUs and topics (content, pricing, assets, resources, catalog) they want, and are pushed signed, batched changes — or pull them from a feed — instead of polling the API. Built for catalogues in the tens of millions. A feed can also leave through any Impex outbound channel (`deliver_through`), an SFTP drop for example.
 
-For clients that still poll, `GET /keystone/products?updated_since=…` lists products whose own record changed since then, and `GET /keystone/products/{identifier}` answers `304` to a matching `If-None-Match`.
+For clients that still poll, `GET /keystone/products?updated_since=…` lists products where anything they show changed since then, inherited changes included, and `GET /keystone/products/{identifier}` answers `304` to a matching `If-None-Match`.
 
 ```http
 POST /keystone/imports   file=@products.csv mode=upsert

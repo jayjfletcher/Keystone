@@ -101,7 +101,7 @@ Records are addressed by code: `group`, `attribute`, `option`, `family`, `family
 
 The catalog is `KeystoneServer::TOOLS`.
 
-`list-products-tool`'s `updated_since` (an ISO 8601 moment) keeps products whose own record changed at or after it. Changes a product inherits from its model, category or owner do not count; see [Search](05-search.md#changed-since).
+`list-products-tool`'s `updated_since` (an ISO 8601 moment) keeps products where anything they show changed at or after it, inherited changes included; see [Search](05-search.md#changed-since).
 
 ## Vendor webhooks
 

@@ -218,9 +218,10 @@ to send its file the channel's way (an SFTP drop, a signed HTTP upload); see
 ## Polling, while vendors move over
 
 `GET /keystone/products?updated_since=2026-10-01T00:00:00Z` lists products
-whose own record changed since then (changes they inherit don't move their
-timestamp — subscribe for those), and `GET /keystone/products/{identifier}`
-answers `304` to a matching `If-None-Match`.
+where anything they show changed since then, inherited changes included, and
+`GET /keystone/products/{identifier}` answers `304` to a matching
+`If-None-Match`. Polling still costs a request per page per vendor; webhooks
+cost nothing until something changes.
 
 ## From PHP
 
