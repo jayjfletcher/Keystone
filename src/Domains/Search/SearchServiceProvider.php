@@ -11,9 +11,7 @@ use JayI\Keystone\Domains\Search\Console\Commands\ReindexProductsCommand;
 use JayI\Keystone\Domains\Search\Contracts\SearchEngine;
 use JayI\Keystone\Domains\Search\Exceptions\UnsupportedSearchException;
 use JayI\Keystone\Domains\Search\Services\DatabaseEngine;
-use JayI\Keystone\Domains\Search\Services\ElasticsearchEngine;
 use JayI\Keystone\Domains\Search\Services\ScoutEngine;
-use JayI\Stretch\Stretch;
 use Laravel\Scout\EngineManager;
 
 class SearchServiceProvider extends ServiceProvider
@@ -36,17 +34,17 @@ class SearchServiceProvider extends ServiceProvider
     }
 
     /**
-     * The search engine named by `keystone.search.engine`.
+     * The search engine named by `keystone.search.engine`. Null picks Scout
+     * when laravel/scout is installed, and the database otherwise.
      */
     private function searchEngine(Application $app): SearchEngine
     {
-        $engine = $app->make('config')->get('keystone.search.engine', 'database');
+        $engine = $app->make('config')->get('keystone.search.engine')
+            ?? (class_exists(EngineManager::class) ? 'scout' : 'database');
 
         return match ($engine) {
             'database' => new DatabaseEngine,
-            'elasticsearch' => class_exists(Stretch::class)
-                ? new ElasticsearchEngine($app->make('stretch'), $app->make('config'))
-                : throw UnsupportedSearchException::missingPackage('elasticsearch', 'jayi/stretch'),
+            'elasticsearch' => throw UnsupportedSearchException::removedEngine('elasticsearch'),
             'scout' => class_exists(EngineManager::class)
                 ? new ScoutEngine($app->make(EngineManager::class))
                 : throw UnsupportedSearchException::missingPackage('scout', 'laravel/scout'),

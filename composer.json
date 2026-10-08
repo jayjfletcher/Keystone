@@ -28,7 +28,6 @@
         "jayi/impex": "dev-main",
         "jayi/keen": "dev-main",
         "jayi/pennantplus": "dev-main",
-        "jayi/stretch": "dev-main",
         "larastan/larastan": "^3.12",
         "laravel/pao": "^1.0",
         "laravel/pint": "^1.29",
@@ -44,7 +43,6 @@
         "jayi/impex": "Import, export and syndicate products as Impex flows: file imports, feeds, ERP and storefront connectors (dev-main).",
         "jayi/keen": "Record Keystone's changes in a tamper-evident audit log and show each record's history in Atrium (dev-main).",
         "jayi/pennantplus": "Switch Keystone in Atrium on and off with the KeystoneSupportFeature Pennant feature (dev-main).",
-        "jayi/stretch": "Search products with Elasticsearch through the native Keystone search engine (dev-main).",
         "laravel/scout": "Search products with any Laravel Scout engine: Meilisearch, Typesense, Algolia (^11.0)."
     },
     "autoload": {
@@ -136,10 +134,6 @@
         {
             "type": "vcs",
             "url": "https://github.com/jayjfletcher/cortex.git"
-        },
-        {
-            "type": "vcs",
-            "url": "https://github.com/jayjfletcher/Stretch.git"
         },
         {
             "type": "vcs",

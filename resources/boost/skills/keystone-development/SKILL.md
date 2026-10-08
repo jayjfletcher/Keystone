@@ -65,7 +65,7 @@ Call Actions from each domain's `Actions` namespace (`JayI\Keystone\Domains\{Dom
 
 ### 5. Choose a search engine
 
-- `keystone.search.engine`: `database` (default), `elasticsearch` (needs `jayi/stretch` + `config/stretch.php`), `scout` (needs `laravel/scout`), or a class implementing `JayI\Keystone\Domains\Search\Contracts\SearchEngine`.
+- `keystone.search.engine`: `null` (default: `scout` when `laravel/scout` is installed, `database` otherwise), `database`, `scout`, or a class implementing `JayI\Keystone\Domains\Search\Contracts\SearchEngine`.
 - Run a queue worker: index syncs (`SyncProductIndex`) and value purges are queued. Rebuild with `php artisan keystone:search:reindex`.
 
 ### 6. React to changes

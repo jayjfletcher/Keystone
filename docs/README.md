@@ -6,7 +6,7 @@
 | [Attributes](02-attributes.md) | Attribute groups, typed attributes, options |
 | [Families](03-families.md) | Attribute sets and required attributes |
 | [Products and variants](04-products.md) | Values, uniqueness, family variants, product models |
-| [Search](05-search.md) | Database, Elasticsearch and Scout engines |
+| [Search](05-search.md) | Database and Scout engines, or your own |
 | [Ownership](06-ownership.md) | Owner types, owner chains, assigning products |
 | [Taxonomy](07-taxonomy.md) | Category trees, filing products |
 | [Media](08-media.md) | Assets on any disk, linked to products, models and owners |

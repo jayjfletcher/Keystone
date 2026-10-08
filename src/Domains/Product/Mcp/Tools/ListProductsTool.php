@@ -33,7 +33,7 @@ final class ListProductsTool extends Tool
             'updated_since' => $schema->string()->description('Only products where anything they show changed at or after this ISO 8601 moment, inherited changes included (their changed_at).'),
             'complete' => $schema->object()->description('Only products at least min percent complete on a channel: {"scope": "ecommerce", "locale": "en", "min": 100}. Without locale, every locale of the channel must reach min.'),
             'filters' => $schema->array()->description('Value conditions, all of which must hold: [{"attribute": "color", "operator": "in", "value": ["red", "blue"]}, {"attribute": "weight", "operator": ">=", "value": 2}]. Operators: =, !=, in, not_in, >, >=, <, <=, empty, not_empty. Add locale/scope for localizable/scopable attributes. With the scout engine, comparisons depend on the Scout driver and empty/not_empty are unavailable. Price attributes cannot be filtered.'),
-            'facets' => $schema->array()->description('Attribute codes to count values of across all matches (elasticsearch engine only), such as ["color", "size"].'),
+            'facets' => $schema->array()->description('Attribute codes to count values of across all matches, such as ["color", "size"]. Only a custom search engine that counts facets fills them; the bundled engines return none.'),
             'sort' => $schema->string()->description('identifier, created_at or updated_at; prefix with - for descending.'),
             'page' => $schema->integer()->description('Page number, from 1.')->min(1),
             'per_page' => $schema->integer()->description('Results per page.')->min(1),

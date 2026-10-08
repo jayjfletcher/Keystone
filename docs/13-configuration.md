@@ -40,11 +40,9 @@ Publish with `php artisan vendor:publish --tag="keystone-config"`.
 | `media.temporary_urls` | `null` | Minutes a signed URL lasts; null for plain URLs |
 | `media.delete_files` | `true` | Delete the file when its asset is deleted |
 | `media.download_timeout` | `30` | Seconds allowed to fetch an asset from a URL |
-| `search.engine` | `database` | `database`, `elasticsearch`, `scout`, or a `SearchEngine` class |
+| `search.engine` | `null` | `null` (Scout when installed, else database), `database`, `scout`, or a `SearchEngine` class |
 | `search.queue.connection` | `null` | Queue connection for index syncs (null: default) |
 | `search.queue.queue` | `null` | Queue name for index syncs |
-| `search.elasticsearch.index` | `keystone_products` | Elasticsearch index name |
-| `search.elasticsearch.connection` | `null` | Connection from `config/stretch.php` |
 | `search.scout.index` | `keystone_products` | Scout index name |
 | `pagination.per_page` | `25` | Default page size for every listing |
 | `pagination.max_per_page` | `100` | Largest `per_page` a caller may ask for |

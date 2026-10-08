@@ -39,6 +39,8 @@ abstract class TestCase extends Orchestra
         $app['config']->set('cache.default', 'array');
         // Index syncs and value purges run inline, so tests see their effect.
         $app['config']->set('queue.default', 'sync');
+        // laravel/scout is a dev dependency, so the default would pick it.
+        $app['config']->set('keystone.search.engine', 'database');
     }
 
     protected function defineDatabaseMigrations(): void

@@ -307,12 +307,12 @@ return [
     |
     | Where products are searched and listed.
     |
+    | - null: "scout" when laravel/scout is installed, "database" otherwise.
     | - "database": no extra service; reads the products table. Fine for
     |   thousands of products.
-    | - "elasticsearch": native, through jayi/stretch, which holds the
-    |   connection settings (config/stretch.php). Filters, ranges and facets.
-    | - "scout": whichever Laravel Scout engine `scout.driver` names. Only
-    |   equality filters.
+    | - "scout": whichever Laravel Scout engine `scout.driver` names —
+    |   Meilisearch, Typesense, Algolia, or a community driver such as one
+    |   for Elasticsearch.
     | - or the class name of your own JayI\Keystone\Domains\Search\Contracts\SearchEngine.
     |
     | Writes are synced to the index by a queued job after each commit.
@@ -321,17 +321,11 @@ return [
     */
 
     'search' => [
-        'engine' => 'database',
+        'engine' => null,
 
         'queue' => [
             'connection' => null,
             'queue' => null,
-        ],
-
-        'elasticsearch' => [
-            'index' => 'keystone_products',
-            // A connection name from config/stretch.php, or null for its default.
-            'connection' => null,
         ],
 
         'scout' => [
