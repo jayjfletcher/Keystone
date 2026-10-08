@@ -32,6 +32,14 @@ final class UnsupportedSearchException extends KeystoneException
         ));
     }
 
+    public static function removedEngine(string $engine): self
+    {
+        return new self(sprintf(
+            'Keystone no longer ships the %s search engine. Use "scout" with a Scout driver for it, or the class name of your own SearchEngine, in keystone.search.engine.',
+            $engine,
+        ));
+    }
+
     /**
      * Unprocessable: the query is well-formed, the engine cannot answer it.
      */

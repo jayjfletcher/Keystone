@@ -5,11 +5,13 @@ declare(strict_types=1);
 namespace JayI\Keystone\Impex;
 
 use Illuminate\Contracts\Config\Repository as Config;
+use Illuminate\Contracts\Events\Dispatcher;
 use Illuminate\Contracts\Foundation\Application;
 use JayI\Impex\Domains\Flow\Services\FlowRegistry;
 use JayI\Impex\Domains\Flow\Support\Flow;
 use JayI\Impex\Domains\Run\Enums\RunTrigger;
 use JayI\Impex\Domains\Run\Models\RunModel;
+use JayI\Impex\Domains\Subscription\Services\StreamRegistry;
 use JayI\Impex\Impex;
 use JayI\Impex\ImpexServiceProvider;
 use JayI\Keystone\Domains\Transfer\Exceptions\ImpexMissingException;
@@ -17,6 +19,11 @@ use JayI\Keystone\Impex\Flows\ExportProductsFlow;
 use JayI\Keystone\Impex\Flows\FeedFlow;
 use JayI\Keystone\Impex\Flows\ImportProductsFlow;
 use JayI\Keystone\Impex\Flows\UpsertProductsFlow;
+use JayI\Keystone\Impex\Webhooks\CaptureProductChanges;
+use JayI\Keystone\Impex\Webhooks\ProductScopeMatcher;
+use JayI\Keystone\Impex\Webhooks\ProductSnapshots;
+use JayI\Keystone\Impex\Webhooks\ProductStream;
+use JayI\Keystone\Impex\Webhooks\TopicMap;
 
 /**
  * Registers Keystone's flows with Impex, when Impex is installed.
@@ -59,6 +66,46 @@ final class ImpexIntegration
         $this->app->afterResolving(FlowRegistry::class, function (FlowRegistry $flows): void {
             $flows->registerMany($this->flows());
         });
+
+        $this->registerWebhooks();
+    }
+
+    /**
+     * Whether published products are offered to subscribers as a stream.
+     * Off by default: once on, every product write is compared with what
+     * subscribers last saw, which is work worth doing only when someone
+     * subscribes.
+     */
+    public function webhooks(): bool
+    {
+        return $this->active()
+            && $this->config->get('keystone.impex.webhooks.enabled', false) === true
+            && class_exists(StreamRegistry::class);
+    }
+
+    /**
+     * Register the product stream with Impex, and report product changes to
+     * it. Every outgoing push, feed and webhook then goes through Impex and
+     * lands in its ledger.
+     */
+    private function registerWebhooks(): void
+    {
+        if (! $this->webhooks()) {
+            return;
+        }
+
+        $this->app->singleton(TopicMap::class);
+        $this->app->singleton(ProductSnapshots::class);
+        $this->app->singleton(ProductScopeMatcher::class);
+
+        $this->app->afterResolving(StreamRegistry::class, function (StreamRegistry $streams): void {
+            /** @var class-string<ProductStream> $stream */
+            $stream = $this->config->get('keystone.impex.webhooks.stream_class', ProductStream::class);
+
+            $streams->register($stream);
+        });
+
+        $this->app->make(Dispatcher::class)->subscribe(CaptureProductChanges::class);
     }
 
     /**

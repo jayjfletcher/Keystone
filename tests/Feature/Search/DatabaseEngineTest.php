@@ -2,6 +2,9 @@
 
 declare(strict_types=1);
 
+use JayI\Keystone\Domains\Search\Contracts\SearchEngine;
+use JayI\Keystone\Domains\Search\Exceptions\UnsupportedSearchException;
+use JayI\Keystone\Domains\Search\Services\ScoutEngine;
 use JayI\Keystone\Tests\Fixtures\Catalog;
 
 beforeEach(function (): void {
@@ -99,3 +102,15 @@ it('keeps no index', function (): void {
         ->expectsOutputToContain('the database engine keeps no index')
         ->assertSuccessful();
 });
+
+it('searches with Scout when no engine is named and Scout is installed', function (): void {
+    config()->set('keystone.search.engine', null);
+
+    expect(app(SearchEngine::class))->toBeInstanceOf(ScoutEngine::class);
+});
+
+it('names the replacement when the removed Elasticsearch engine is configured', function (): void {
+    config()->set('keystone.search.engine', 'elasticsearch');
+
+    app(SearchEngine::class);
+})->throws(UnsupportedSearchException::class, 'no longer ships the elasticsearch search engine');

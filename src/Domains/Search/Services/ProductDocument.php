@@ -81,6 +81,7 @@ final class ProductDocument
             'text' => implode(' ', $text),
             'created_at' => $product->created_at?->toIso8601String(),
             'updated_at' => $product->updated_at?->toIso8601String(),
+            'changed_at' => $product->changed_at?->toIso8601String(),
         ];
     }
 

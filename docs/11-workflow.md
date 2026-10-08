@@ -58,6 +58,8 @@ A transition from the wrong status answers `409` with what it needs.
 
 `publish` points `published_version` at the product's current version. The working copy stays editable: storefronts read `GET /keystone/products/{identifier}/versions/published`, which does not move until the next publish. Editing an approved product sends it back to `draft`, so changes are reviewed before they go live.
 
+The same holds for vendors subscribed to [product webhooks](12-impex.md#product-webhooks): values, family and associations reach them from the published version, so a draft edit is sent only once it is published. Categories, owner and linked assets are not versioned and follow the live product, so a published product's change there is sent straight away. Unpublishing or archiving a product reaches its subscribers as `removed`.
+
 ```php
 'workflow' => [
     'require_approval' => true,  // off: publish from any status but archived

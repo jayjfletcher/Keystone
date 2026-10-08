@@ -195,6 +195,10 @@ See [docs/11-workflow.md](docs/11-workflow.md).
 
 With [jayi/impex](https://github.com/jayi/impex) installed, bulk imports (CSV or JSONL, Akeneo columns), exports of any search, per-channel syndication feeds and ERP pushes run as Impex flows: resumable, retryable, schedulable and recorded in its ledger.
 
+Switch on `keystone.impex.webhooks.enabled` and published products become an Impex stream: vendors subscribe to the categories, SKUs and topics (content, pricing, assets, resources, catalog) they want, and are pushed signed, batched changes — or pull them from a feed — instead of polling the API. Built for catalogues in the tens of millions. A feed can also leave through any Impex outbound channel (`deliver_through`), an SFTP drop for example.
+
+For clients that still poll, `GET /keystone/products?updated_since=…` lists products where anything they show changed since then, inherited changes included, and `GET /keystone/products/{identifier}` answers `304` to a matching `If-None-Match`.
+
 ```http
 POST /keystone/imports   file=@products.csv mode=upsert
 POST /keystone/exports   {"family": "shirts", "format": "csv", "published": true}
@@ -204,15 +208,15 @@ See [docs/12-impex.md](docs/12-impex.md).
 
 ## Search
 
-Products are searched through the engine you choose: the database (default, no dependencies), **Elasticsearch** through [`jayi/stretch`](https://github.com/jayjfletcher/Stretch) (filters, ranges, facets), or any **Laravel Scout** engine. Writes are synced to the index by queued jobs; `php artisan keystone:search:reindex` rebuilds it.
+Products are searched through **Laravel Scout** when it is installed — Meilisearch, Typesense, Algolia, or a community driver such as one for Elasticsearch — and through the database otherwise, or through your own engine. Writes are synced to the index by queued jobs; `php artisan keystone:search:reindex` rebuilds it.
 
 ```php
-// config/keystone.php
-'search' => ['engine' => 'elasticsearch'],
+// config/keystone.php — null picks Scout when installed, the database otherwise
+'search' => ['engine' => 'scout'],
 ```
 
 ```http
-GET /keystone/products?search=tee&filters[0][attribute]=color&filters[0][operator]=in&filters[0][value][]=red&facets[]=size
+GET /keystone/products?search=tee&filters[0][attribute]=color&filters[0][operator]=in&filters[0][value][]=red
 ```
 
 See [docs/05-search.md](docs/05-search.md).

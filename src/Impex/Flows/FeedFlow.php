@@ -33,7 +33,7 @@ final class FeedFlow extends Flow
         $this->tag('feed', $name);
 
         // Recorded once, so a config change mid-run cannot shift the replay.
-        /** @var array{channel?: string, format?: string, url?: string|null, ledger_channel?: string} $feed */
+        /** @var array{channel?: string, format?: string, url?: string|null, ledger_channel?: string, deliver_through?: string|null} $feed */
         $feed = $this->sideEffect('feed', fn (): array => (array) config('keystone.impex.feeds.'.$name, []));
 
         $query = $this->sideEffect('query', function () use ($feed): array {
@@ -59,8 +59,11 @@ final class FeedFlow extends Flow
             'feed-'.$name.'-'.strtolower($run->id),
         )->run();
 
-        if (is_string($feed['url'] ?? null) && $feed['url'] !== '') {
-            $export['delivery'] = $this->action(DeliverFeed::class, $export['asset'], $feed['url'], $feed['ledger_channel'] ?? 'keystone-feeds', $run->id)
+        $url = is_string($feed['url'] ?? null) ? $feed['url'] : '';
+        $through = is_string($feed['deliver_through'] ?? null) ? $feed['deliver_through'] : null;
+
+        if ($url !== '' || $through !== null) {
+            $export['delivery'] = $this->action(DeliverFeed::class, $export['asset'], $url, $feed['ledger_channel'] ?? 'keystone-feeds', $run->id, $through)
                 ->tries(3)
                 ->run();
         }

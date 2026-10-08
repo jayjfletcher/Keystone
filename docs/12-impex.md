@@ -111,13 +111,22 @@ A feed is a named export of one channel's published products, with the channel's
             'channel' => 'ecommerce',
             'format' => 'jsonl',
             'url' => 'https://feeds.example.com/ingest',   // optional
-            'ledger_channel' => 'google-feed',            // optional, default: the feed name
+            'ledger_channel' => 'google-feed',            // optional, default: keystone-feeds
+        ],
+        'partner' => [
+            'channel' => 'ecommerce',
+            'format' => 'csv',
+            'deliver_through' => 'partner-sftp',          // an Impex outbound channel
         ],
     ],
 ],
 ```
 
-Each feed is the flow `keystone:feed:google`. With a `url`, the file is `POST`ed to it through `Impex::http()`, so the delivery is recorded in Impex's ledger, and retried up to three times. Schedule it with Impex:
+Each feed is the flow `keystone:feed:google`. With a `url`, the file is `POST`ed to it through `Impex::http()`, so the delivery is recorded in Impex's ledger, and retried up to three times.
+
+With `deliver_through`, the file goes out through that Impex outbound channel instead (`Impex::send()`): the channel's transport (HTTP, file, a partner's SFTP), signing, headers and body policy apply, and a `url` given alongside overrides the channel's endpoint. The delivery is in the ledger either way, and a failed send fails the step, which is retried up to three times.
+
+Schedule a feed with Impex:
 
 ```php
 // config/impex.php
@@ -146,6 +155,73 @@ An ERP pushes products by posting to an Impex inbound channel bound to `keystone
 ```
 
 `POST /impex/channels/erp` with a list of products, or `{"products": [...]}`, in the JSONL shape. The request lands in the ledger, the signature is checked, and a run upserts the records. Storefronts read the live versions directly (`GET /keystone/products/{identifier}/versions/published`) or take a feed.
+
+## Product webhooks
+
+Vendors subscribe to the products and topics they want and are pushed changes,
+instead of polling the API. Published products are offered to Impex as a
+stream (`keystone.products`); subscribers, endpoints, deliveries, the feed and
+the ledger are all Impex's.
+
+```php
+// config/keystone.php
+'impex' => ['webhooks' => ['enabled' => true]],
+```
+
+A vendor, signed in as its OAuth client on Impex's subscriber API:
+
+```http
+POST /impex/subscriber/subscriptions
+{
+  "stream": "keystone.products",
+  "topics": ["pricing", "assets"],
+  "filter": {"categories": ["power-tools"], "owners": ["acme"]},
+  "format": "slice",
+  "options": {"channel": "ecommerce", "locales": ["en"]},
+  "endpoint": {"url": "https://vendor.example.com/keystone"}
+}
+```
+
+- **What counts as a change.** Attribute values, family and associations come
+  from the published version, so draft edits never leave Keystone; categories,
+  owner and linked assets follow the live product. A product is compared topic
+  by topic with what subscribers last saw, so re-importing identical data or
+  republishing an unchanged product sends nothing.
+- **Topics** (`keystone.impex.webhooks.topics`, in a fixed order): `content`
+  (everything unclaimed), `pricing` (price attributes), `assets` (linked
+  assets, as URL and checksum), `resources` (attribute groups you name) and
+  `catalog` (family, parent model, owner, `enabled`, categories,
+  associations). Append your own.
+- **Filters**: `categories`, `owners`, `families`, `models` — codes, each key
+  narrowing, each code widening; a category or owner covers everything beneath
+  it. Or list SKUs: `"subjects": ["TEE-1", "TEE-2"]`.
+- **Formats**: `thin` (identifier, topics, `href`), `slice` (only the changed
+  topics), `full` (the whole published product); add more in
+  `keystone.impex.webhooks.formatters`. Values are narrowed to the
+  subscription's `options.channel` and `options.locales`.
+- **Removals.** Unpublishing, archiving or deleting a product, or moving it out
+  of a vendor's categories, reaches that vendor as `removed`. Moving one into
+  them sends it whole.
+- **What triggers a check.** Every product write that queues an index sync
+  (`ProductsQueuedForSync`, which covers changes inherited from models,
+  families, categories, owners and channels), product and model deletions, and
+  asset links, unlinks and file replacements. Only identifiers are recorded in
+  the write; the comparison runs later, on Impex's queue.
+- **Starting out.** `POST /impex/subscriber/subscriptions/{id}/export` writes
+  every product the subscription covers to one file and moves its cursor past
+  them, so a vendor starts from a download rather than millions of webhooks.
+
+Feeds can also leave through any Impex channel: set `deliver_through` on a feed
+to send its file the channel's way (an SFTP drop, a signed HTTP upload); see
+[Feeds](#feeds).
+
+## Polling, while vendors move over
+
+`GET /keystone/products?updated_since=2026-10-01T00:00:00Z` lists products
+where anything they show changed since then, inherited changes included, and
+`GET /keystone/products/{identifier}` answers `304` to a matching
+`If-None-Match`. Polling still costs a request per page per vendor; webhooks
+cost nothing until something changes.
 
 ## From PHP
 

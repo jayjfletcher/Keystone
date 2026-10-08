@@ -20,10 +20,18 @@ final class ShowProductRequest extends ProductRequest
         return ShowProductAction::rules();
     }
 
+    /**
+     * Tagged with an ETag of the body, so a client polling a product it
+     * already has gets an empty 304 back instead of the product again.
+     */
     public function persist(): JsonResponse
     {
         $product = app(ShowProductAction::class)->execute($this->product(), $this->validated());
 
-        return (new ProductResource($product))->response();
+        $response = (new ProductResource($product))->response();
+        $response->setEtag(hash('xxh3', (string) $response->getContent()));
+        $response->isNotModified($this);
+
+        return $response;
     }
 }

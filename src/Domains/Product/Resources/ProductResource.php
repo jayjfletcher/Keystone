@@ -61,6 +61,9 @@ final class ProductResource extends JsonResource
             'quantified_associations' => $this->when($associations !== null, fn (): array => $associations['quantified_associations'] ?? []),
             'created_at' => $this->created_at?->toIso8601String(),
             'updated_at' => $this->updated_at?->toIso8601String(),
+            // When anything the product shows last changed, inherited
+            // changes included. What `updated_since` filters on.
+            'changed_at' => $this->changed_at?->toIso8601String(),
         ];
     }
 }

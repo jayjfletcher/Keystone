@@ -45,6 +45,11 @@ final class ListProductsAction
             'category' => ['sometimes', 'nullable', 'string', 'max:100'],
             'status' => ['sometimes', 'nullable', Rule::enum(ProductStatus::class)],
             'published' => ['sometimes', 'nullable', 'boolean'],
+            // Products where anything they show changed at or after this
+            // moment — their own data, categories, associations, assets, or
+            // what they inherit from a model, family, category, owner or
+            // channel. Filters on changed_at.
+            'updated_since' => ['sometimes', 'nullable', 'date'],
             // At least `min` percent complete on a channel, in one locale or all of its locales.
             'complete' => ['sometimes', 'nullable', 'array'],
             'complete.scope' => ['required_with:complete', 'string', 'exists:keystone_channels,code'],

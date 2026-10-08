@@ -4,11 +4,16 @@
 
 ### Added
 
+- **Product webhooks** (`keystone.impex.webhooks`, off by default): published products as an Impex stream (`keystone.products`) that vendors subscribe to by category, owner, family, model or SKU, and by topic — `content`, `pricing`, `assets`, `resources`, `catalog` — in `thin`, `slice` or `full` format, narrowed to a channel and locales. Changes are pushed signed and batched, or pulled from a feed; unpublished, deleted and out-of-scope products reach vendors as removed; full exports start a new vendor off. Product changes are reported to Impex from `ProductIndex::queue()` (which now fires `JayI\Keystone\Domains\Search\Events\ProductsQueuedForSync`), deletions and asset links.
+- Feeds can deliver through any Impex outbound channel with `deliver_through`, taking the channel's transport, signing and headers.
+- `updated_since` on `GET /keystone/products`, `list-products-tool` and `ListProductsAction`, on every search engine. It filters on a new `changed_at` column (in the product resource too), set by `SyncProductIndex` whenever anything a product shows changes — inherited changes, refilings, associations and assets included — where `updated_at` moves only with the product's own row.
+- `GET /keystone/products/{identifier}` sends an `ETag` and answers `304` to a matching `If-None-Match`.
 - The package's section in Atrium's sidebar rail has its own icon (`cube`) and a fixed place in the rail.
 - An **Audit log** link in the package's sidebar group, opening its own audit log in Atrium (`/atrium/history/keystone`), shown while an audit log (jayi/keen) is installed and to those who may read the package's history.
 
 ### Breaking
 
+- The Elasticsearch engine and its `jayi/stretch` dependency are removed, with the `keystone.search.elasticsearch` config. `keystone.search.engine` now defaults to `null`: Scout when `laravel/scout` is installed, the database otherwise. An application still naming `elasticsearch` gets an error pointing at a Scout driver or its own `SearchEngine`. Facets remain in the search contract for custom engines; the bundled engines return none.
 - Keystone ships no stylesheet: `resources/css/atrium.css` and its registration with Atrium's style hook are removed. The screens use only Atrium's components and safelisted utilities (bare form controls in table cells, `description-list`, `progress`, `flash`), and `ui/partials/status.blade.php` is replaced by `<x-atrium::flash />`, which also shows the first validation error. Requires a jayi/atrium with those components. Published views that include `keystone::ui.partials.status` must switch to `<x-atrium::flash />`.
 - `JayI\Keystone\Atrium\Http\Controllers\Concerns\AuthorizesScreens` is removed; the screen controllers use Atrium's `JayI\Atrium\Http\Controllers\Concerns\AuthorizesScreens`. `ScreenAccess::allows()` now delegates to `JayI\Atrium\Support\ScreenAccess`, and `KeystonePlugin` uses the base plugin's `featuresFromConfig()`, `key()` and `label()`.
 
