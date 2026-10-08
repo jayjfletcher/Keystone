@@ -207,6 +207,28 @@ it('builds and delivers a channel feed', function (): void {
     expect(MessageModel::query()->where('channel', 'web-feed')->where('run_id', $run->id)->exists())->toBeTrue();
 });
 
+it('delivers a feed through a named Impex channel, the channel\'s way', function (): void {
+    config()->set('keystone.workflow.require_approval', false);
+    config()->set('impex.channels.partner-drop', [
+        'direction' => 'outbound',
+        'transport' => 'file',
+        'options' => ['disk' => 'drops', 'path' => 'incoming/{id}.jsonl'],
+    ]);
+    config()->set('keystone.impex.feeds', ['partner' => ['channel' => 'print', 'deliver_through' => 'partner-drop']]);
+    app()->forgetInstance(FlowRegistry::class);
+    Storage::fake('drops');
+
+    $this->postJson('/keystone/products', ['identifier' => 'LIVE'])->assertCreated();
+    $this->postJson('/keystone/products/LIVE/transitions', ['transition' => 'publish'])->assertOk();
+
+    $run = Impex::run('keystone:feed:partner');
+    $result = Impex::result(finishedRun($run->id));
+
+    Storage::disk('drops')->assertExists('incoming/'.$result['asset'].'.jsonl');
+
+    expect(MessageModel::query()->where('channel', 'partner-drop')->where('run_id', $run->id)->sole()->transport)->toBe('file');
+});
+
 it('starts imports and exports over MCP', function (): void {
     fileAsset('products-jsonl', 'products.jsonl', json_encode(['identifier' => 'MCP-1'])."\n");
 

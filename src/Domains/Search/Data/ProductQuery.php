@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace JayI\Keystone\Domains\Search\Data;
 
+use Carbon\CarbonImmutable;
+
 /**
  * A product search, independent of the engine that runs it.
  */
@@ -32,6 +34,7 @@ final readonly class ProductQuery
         public int $page = 1,
         public int $perPage = 25,
         public array $facets = [],
+        public ?CarbonImmutable $updatedSince = null,
     ) {}
 
     /**
@@ -69,6 +72,7 @@ final readonly class ProductQuery
             page: isset($input['page']) ? max(1, (int) $input['page']) : 1,
             perPage: isset($input['per_page']) ? (int) $input['per_page'] : (int) config('keystone.pagination.per_page', 25),
             facets: $facets,
+            updatedSince: is_string($input['updated_since'] ?? null) && $input['updated_since'] !== '' ? CarbonImmutable::parse($input['updated_since']) : null,
         );
     }
 

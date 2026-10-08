@@ -45,6 +45,12 @@ final class ListProductsAction
             'category' => ['sometimes', 'nullable', 'string', 'max:100'],
             'status' => ['sometimes', 'nullable', Rule::enum(ProductStatus::class)],
             'published' => ['sometimes', 'nullable', 'boolean'],
+            // Products whose own row changed at or after this moment. Only a
+            // change to the product's own columns moves its timestamp: a
+            // refiling, an association, an asset link, or anything it
+            // inherits from its model, family, category or owner does not.
+            // Subscribe through Impex to hear about those.
+            'updated_since' => ['sometimes', 'nullable', 'date'],
             // At least `min` percent complete on a channel, in one locale or all of its locales.
             'complete' => ['sometimes', 'nullable', 'array'],
             'complete.scope' => ['required_with:complete', 'string', 'exists:keystone_channels,code'],

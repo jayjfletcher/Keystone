@@ -27,7 +27,12 @@ Publish with `php artisan vendor:publish --tag="keystone-config"`.
 | `impex.tries` | `1` | Attempts per import row |
 | `impex.export_page_size` | `500` | Products per export page |
 | `impex.export_path` | `keystone/exports` | Folder export files are written under, on the media disk |
-| `impex.feeds` | `[]` | Syndication feeds: `channel`, `format`, `url`, `ledger_channel` |
+| `impex.feeds` | `[]` | Syndication feeds: `channel`, `format`, `url`, `ledger_channel`, `deliver_through` (an Impex outbound channel to send the file through instead of `POST`ing it to `url`) |
+| `impex.webhooks.enabled` | `false` | Offer published products to Impex subscribers as a stream. Needs jayi/impex with `impex.enabled` on; once on, every product write is compared with what subscribers last saw |
+| `impex.webhooks.stream` | `keystone.products` | The stream's key |
+| `impex.webhooks.stream_class` | `ProductStream::class` | The stream class registered with Impex; extend `JayI\Keystone\Impex\Webhooks\ProductStream` to change it |
+| `impex.webhooks.topics` | `content`, `pricing`, `assets`, `resources`, `catalog` | Topics subscribers choose from, in a fixed order: append, never reorder or remove. Each claims attribute values by `types` or attribute `groups`, product `fields`, or linked `assets` (`true`); the `default` topic takes the rest |
+| `impex.webhooks.formatters` | `[]` | Extra payload formats, name ⇒ Impex `Formatter` class, beside `thin`, `slice` and `full` |
 | `media.disk` | `null` | Disk for asset files (null: the app default) |
 | `media.path` | `keystone/assets` | Folder assets are written under |
 | `media.max_kilobytes` | `51200` | Largest file accepted |

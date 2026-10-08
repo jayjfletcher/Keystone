@@ -24,6 +24,7 @@ GET /keystone/products?search=tee&family=shirts&enabled=1
 - `category`: products filed in this category code or any category beneath it.
 - `status`: `draft`, `in_review`, `approved` or `archived`; `published`: with or without a live version.
 - `complete`: `{scope, locale?, min}` — see [Workflow](11-workflow.md).
+- `updated_since`: products whose own record changed at or after this moment (ISO 8601, or any date Laravel's `date` rule accepts) — see [Changed since](#changed-since).
 - `filters`: all must hold. Operators: `=`, `!=`, `in`, `not_in`, `>`, `>=`, `<`, `<=`, `empty`, `not_empty`. Add `locale` / `scope` for localizable / scopable attributes. Multiselect `=` means "contains". Metric filters compare the amount.
 - `facets`: attribute codes to count values of across every match (Elasticsearch only). Returned as `facets: {"color": {"red": 12, "blue": 3}}`.
 - `sort`: `identifier`, `created_at` or `updated_at`, `-` for descending.
@@ -31,9 +32,17 @@ GET /keystone/products?search=tee&family=shirts&enabled=1
 
 A filter the engine cannot run answers `422` with a message.
 
+## Changed since
+
+`updated_since` compares the product's own `updated_at`, on every engine: the database engine queries `keystone_products.updated_at`, Elasticsearch a range on the indexed `updated_at` date, and Scout passes `updated_at >= <ISO 8601 string>` to its engine (declare `updated_at` filterable, as for any Scout filter; the engine must support a range on it).
+
+Only a write to the product's own row moves that timestamp: its values, family, owner or `enabled` flag, and workflow transitions. An update that only refiles categories or changes associations need not touch the row, and a change the product inherits never does: an edit to its product model, a family, a category or owner, or an asset linked to it or replaced. Combine `updated_since` with `sort=updated_at` to page through recent changes; to hear about inherited changes too, subscribe to the product stream through Impex ([Product webhooks](12-impex.md#product-webhooks)).
+
+Indexed engines answer from the index, so a product changed moments ago appears once its `SyncProductIndex` job has run.
+
 ## Keeping the index in step
 
-Engines with an index (`elasticsearch`, `scout`) are fed by a queued job, `SyncProductIndex`, dispatched after each write commits. It carries product ids only. Changing a product model re-indexes its variants. Choose the queue with:
+Engines with an index (`elasticsearch`, `scout`) are fed by a queued job, `SyncProductIndex`, dispatched after each write commits. It carries product ids only. Changing a product model re-indexes its variants. Before the jobs are dispatched, `ProductIndex::queue()` fires `JayI\Keystone\Domains\Search\Events\ProductsQueuedForSync` with the product ids, inside the write's transaction, so a listener can follow every product whose presentation may have changed — its own edits, a transition, or a change it inherits from a model, family, category, owner or channel. Product webhooks are built on it. Choose the queue with:
 
 ```php
 'search' => [

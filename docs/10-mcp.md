@@ -60,7 +60,7 @@ The server lists two entry points, `search_tools` and `execute_tools`, and keeps
 | `create-product-model-tool` | Root model or sub-model |
 | `update-product-model-tool` | Values; variants follow |
 | `delete-product-model-tool` | With its sub-models and variants |
-| `list-products-tool` | Search: text, family, filters, facets, sort. Page-numbered. |
+| `list-products-tool` | Search: text, family, filters, facets, sort, `updated_since`. Page-numbered. |
 | `show-product-tool` | All values, inherited included |
 | `create-product-tool` | Simple or variant product |
 | `update-product-tool` | Family, enabled, values (patched) |
@@ -100,6 +100,12 @@ The server lists two entry points, `search_tools` and `execute_tools`, and keeps
 Records are addressed by code: `group`, `attribute`, `option`, `family`, `family_variant`, `product_model`, `owner_type`, `owner`, `category`, `asset`, `locale` and `channel` arguments take codes. `show-product-tool`, `show-product-model-tool` and `list-products-tool` take `scope` and `locales` to return one channel's values; `product` takes an identifier. Catalog rule violations come back as errors with a message an agent can act on.
 
 The catalog is `KeystoneServer::TOOLS`.
+
+`list-products-tool`'s `updated_since` (an ISO 8601 moment) keeps products whose own record changed at or after it. Changes a product inherits from its model, category or owner do not count; see [Search](05-search.md#changed-since).
+
+## Vendor webhooks
+
+Product webhooks ([Import, export and feeds](12-impex.md#product-webhooks)) have no Keystone tools: subscribers, subscriptions and deliveries belong to Impex, and are managed with the Impex MCP server's tools — `list-streams-tool` (the `keystone.products` stream and its topics), `list-subscribers-tool`, `create-subscriber-tool`, `list-subscriptions-tool`, `show-subscription-tool`, `create-subscription-tool`, `update-subscription-tool`, `delete-subscription-tool`, `update-subscription-subjects-tool`, `export-subscription-tool`, `ping-subscription-tool`, `list-subscription-events-tool` and `list-deliveries-tool` (`JayI\Impex\Mcp\ImpexServer::TOOLS`).
 
 ## Cortex
 

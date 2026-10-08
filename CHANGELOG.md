@@ -4,6 +4,10 @@
 
 ### Added
 
+- **Product webhooks** (`keystone.impex.webhooks`, off by default): published products as an Impex stream (`keystone.products`) that vendors subscribe to by category, owner, family, model or SKU, and by topic — `content`, `pricing`, `assets`, `resources`, `catalog` — in `thin`, `slice` or `full` format, narrowed to a channel and locales. Changes are pushed signed and batched, or pulled from a feed; unpublished, deleted and out-of-scope products reach vendors as removed; full exports start a new vendor off. Product changes are reported to Impex from `ProductIndex::queue()` (which now fires `JayI\Keystone\Domains\Search\Events\ProductsQueuedForSync`), deletions and asset links.
+- Feeds can deliver through any Impex outbound channel with `deliver_through`, taking the channel's transport, signing and headers.
+- `updated_since` on `GET /keystone/products` (and `ListProductsAction`), on every search engine.
+- `GET /keystone/products/{identifier}` sends an `ETag` and answers `304` to a matching `If-None-Match`.
 - The package's section in Atrium's sidebar rail has its own icon (`cube`) and a fixed place in the rail.
 - An **Audit log** link in the package's sidebar group, opening its own audit log in Atrium (`/atrium/history/keystone`), shown while an audit log (jayi/keen) is installed and to those who may read the package's history.
 

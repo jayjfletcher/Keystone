@@ -31,6 +31,7 @@ use JayI\Keystone\Domains\Product\Models\ProductModel;
 use JayI\Keystone\Domains\Product\Policies\ProductPolicy;
 use JayI\Keystone\Domains\ProductModel\Models\ProductModelModel;
 use JayI\Keystone\Domains\ProductModel\Policies\ProductModelPolicy;
+use JayI\Keystone\Impex\Webhooks\ProductStream;
 
 return [
 
@@ -223,6 +224,8 @@ return [
     |   'google' => ['channel' => 'ecommerce', 'format' => 'jsonl',
     |                'url' => 'https://…', 'ledger_channel' => 'google-feed'],
     |   Schedule one with Impex: 'schedule' => ['keystone:feed:google' => '0 3 * * *'].
+    |   Or name an outbound Impex channel with 'deliver_through' => 'google-sftp'
+    |   to send the file the channel's way: its transport, signing and headers.
     |
     */
 
@@ -234,6 +237,37 @@ return [
         'export_page_size' => 500,
         'export_path' => 'keystone/exports',
         'feeds' => [],
+
+        /*
+        | Product webhooks: published products as an Impex stream, so vendors
+        | subscribe to the products and topics they want and are pushed
+        | changes (or pull them from a feed) instead of polling the API.
+        | Subscribers, endpoints and deliveries are managed through Impex.
+        |
+        | - `enabled`: off until someone subscribes; once on, every product
+        |   write is compared with what subscribers last saw.
+        | - `stream`: the stream's key. `stream_class` swaps the stream.
+        | - `topics`: what a subscriber picks from, in a fixed order — append
+        |   new ones, never reorder or remove one. A topic claims attribute
+        |   values by `types` or attribute `groups`, product `fields`, and
+        |   linked `assets`; the `default` topic takes the rest.
+        | - `formatters`: extra payload formats, name => Formatter class,
+        |   beside thin, slice and full.
+        */
+
+        'webhooks' => [
+            'enabled' => false,
+            'stream' => 'keystone.products',
+            'stream_class' => ProductStream::class,
+            'topics' => [
+                'content' => ['default' => true],
+                'pricing' => ['types' => ['price']],
+                'assets' => ['assets' => true],
+                'resources' => ['groups' => []],
+                'catalog' => ['fields' => ['family', 'parent', 'owner', 'enabled', 'categories', 'associations', 'quantified_associations']],
+            ],
+            'formatters' => [],
+        ],
     ],
 
     /*

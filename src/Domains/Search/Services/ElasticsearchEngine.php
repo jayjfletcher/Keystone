@@ -140,6 +140,12 @@ final class ElasticsearchEngine implements SearchEngine
             $builder->filter(fn (QueryBuilderContract $q) => $q->term('published', $query->published));
         }
 
+        if ($query->updatedSince !== null) {
+            $since = $query->updatedSince->toIso8601String();
+
+            $builder->filter(fn (QueryBuilderContract $q) => $q->range('updated_at')->gte($since));
+        }
+
         if ($query->complete !== null) {
             $complete = $query->complete;
 

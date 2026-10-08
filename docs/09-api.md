@@ -66,9 +66,9 @@ Routes are registered under `keystone.routes.prefix` (default `keystone`) with `
 | `GET` | `/keystone/owners/{owner}` | `ShowOwnerAction`, with its chain and children |
 | `PATCH` | `/keystone/owners/{owner}` | `UpdateOwnerAction` — labels, or move with `parent` |
 | `DELETE` | `/keystone/owners/{owner}` | `DeleteOwnerAction` → `204` |
-| `GET` | `/keystone/products` | `ListProductsAction` — search; see [Search](05-search.md) |
+| `GET` | `/keystone/products` | `ListProductsAction` — search, `updated_since`; see [Search](05-search.md) |
 | `POST` | `/keystone/products` | `CreateProductAction` → `201` |
-| `GET` | `/keystone/products/{product}` | `ShowProductAction`, with inherited values — `scope`, `locales[]` |
+| `GET` | `/keystone/products/{product}` | `ShowProductAction`, with inherited values — `scope`, `locales[]`; `ETag`, `304` on `If-None-Match` |
 | `PATCH` | `/keystone/products/{product}` | `UpdateProductAction` |
 | `DELETE` | `/keystone/products/{product}` | `DeleteProductAction` → `204` |
 | `POST` | `/keystone/products/{product}/transitions` | `TransitionProductAction` — `transition`, `comment` |
@@ -112,6 +112,15 @@ Content-Type: application/json
 ## Pagination
 
 Product search is page-numbered (`page`, `per_page`, `meta.total`). Other listings are cursor paginated in display order (`sort_order`, then `code`). Pass `meta.next_cursor` back as `cursor`. `per_page` defaults to `keystone.pagination.per_page` and is capped at `keystone.pagination.max_per_page`.
+
+## Polling products
+
+Clients that poll the catalog have two helpers:
+
+- `GET /keystone/products?updated_since=2026-10-01T00:00:00Z` lists products whose own record changed at or after that moment. Any date Laravel's `date` rule accepts will do. Changes a product inherits (from its model, family, category or owner, or a linked asset) never move its own `updated_at`, and a category- or association-only update may not, so those can be missed here; see [Search](05-search.md#changed-since).
+- `GET /keystone/products/{product}` carries an `ETag` of its body. Send it back as `If-None-Match` and an unchanged product answers `304 Not Modified` with no body. The tag covers the response as asked for, so the same product read with other `scope` or `locales[]` has another tag.
+
+Vendors who need every change, inherited ones included, subscribe to product webhooks instead of polling; see [Import, export and feeds](12-impex.md#product-webhooks).
 
 ## Errors
 

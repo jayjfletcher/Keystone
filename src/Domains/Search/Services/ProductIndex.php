@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace JayI\Keystone\Domains\Search\Services;
 
 use Illuminate\Contracts\Config\Repository as Config;
+use Illuminate\Contracts\Events\Dispatcher as Events;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Collection;
 use JayI\Keystone\Domains\Category\Models\CategoryModel;
@@ -12,6 +13,7 @@ use JayI\Keystone\Domains\Owner\Models\OwnerModel;
 use JayI\Keystone\Domains\Product\Models\ProductModel;
 use JayI\Keystone\Domains\ProductModel\Models\ProductModelModel;
 use JayI\Keystone\Domains\Search\Contracts\SearchEngine;
+use JayI\Keystone\Domains\Search\Events\ProductsQueuedForSync;
 use JayI\Keystone\Domains\Workflow\Services\CompletenessCalculator;
 use JayI\Keystone\Jobs\SyncProductIndex;
 
@@ -25,6 +27,7 @@ final class ProductIndex
         private readonly SearchEngine $engine,
         private readonly Config $config,
         private readonly CompletenessCalculator $completeness,
+        private readonly Events $events,
     ) {}
 
     /**
@@ -39,7 +42,11 @@ final class ProductIndex
             return;
         }
 
-        foreach (array_chunk(array_values(array_unique($ids)), 500) as $chunk) {
+        $ids = array_values(array_unique($ids));
+
+        $this->events->dispatch(new ProductsQueuedForSync($ids));
+
+        foreach (array_chunk($ids, 500) as $chunk) {
             SyncProductIndex::dispatch($chunk)
                 ->onConnection($this->config->get('keystone.search.queue.connection'))
                 ->onQueue($this->config->get('keystone.search.queue.queue'))
