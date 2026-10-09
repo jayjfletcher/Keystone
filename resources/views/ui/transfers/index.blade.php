@@ -8,7 +8,7 @@
             <x-atrium::alert variant="warning">{{ __('keystone::keystone.impex_missing') }}</x-atrium::alert>
         @else
             <div class="grid gap-4 lg:grid-cols-2">
-                @keystoneCan('create', \JayI\Keystone\Domains\Product\Models\ProductModel::class)
+                @keystoneCan('create', \RefactorCircus\Keystone\Domains\Product\Models\ProductModel::class)
                 <x-atrium::card data-testid="import-card" :title="__('keystone::keystone.import')">
                     <form method="POST" action="{{ route('atrium.keystone.transfers.import') }}" enctype="multipart/form-data" class="flex flex-col gap-3">
                         @csrf
@@ -21,7 +21,7 @@
                 </x-atrium::card>
                 @endkeystoneCan
 
-                @keystoneCan('viewAny', \JayI\Keystone\Domains\Product\Models\ProductModel::class)
+                @keystoneCan('viewAny', \RefactorCircus\Keystone\Domains\Product\Models\ProductModel::class)
                 <x-atrium::card data-testid="export-card" :title="__('keystone::keystone.export')">
                     <form method="POST" action="{{ route('atrium.keystone.transfers.export') }}" class="flex flex-col gap-3">
                         @csrf
@@ -59,13 +59,13 @@
                             <x-atrium::table.row data-run="{{ $run->flow }}">
                                 <x-atrium::table.cell class="font-mono text-xs">
                                     {{-- Linked only when Impex's dashboard would let the viewer open the run. --}}
-                                    @if (Route::has('atrium.impex.runs.show') && class_exists(\JayI\Impex\Atrium\ScreenAccess::class) && \JayI\Impex\Atrium\ScreenAccess::allows('view', $run))
+                                    @if (Route::has('atrium.impex.runs.show') && class_exists(\RefactorCircus\Impex\Atrium\ScreenAccess::class) && \RefactorCircus\Impex\Atrium\ScreenAccess::allows('view', $run))
                                         <a class="underline-offset-2 hover:underline" href="{{ route('atrium.impex.runs.show', $run) }}">{{ $run->flow }}</a>
                                     @else
                                         {{ $run->flow }}
                                     @endif
                                 </x-atrium::table.cell>
-                                <x-atrium::table.cell><x-atrium::status-dot :variant="\JayI\Keystone\Atrium\Badges::forRun($run->status->value)" :label="$run->status->value" data-status="{{ $run->status->value }}" /></x-atrium::table.cell>
+                                <x-atrium::table.cell><x-atrium::status-dot :variant="\RefactorCircus\Keystone\Atrium\Badges::forRun($run->status->value)" :label="$run->status->value" data-status="{{ $run->status->value }}" /></x-atrium::table.cell>
                                 <x-atrium::table.cell class="text-xs">
                                     @if (is_array($result) && isset($result['asset']))
                                         <a class="font-mono underline-offset-2 hover:underline" href="{{ route('atrium.keystone.assets.show', $result['asset']) }}">{{ $result['asset'] }}</a>

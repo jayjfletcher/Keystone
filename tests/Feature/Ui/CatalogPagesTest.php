@@ -3,10 +3,10 @@
 declare(strict_types=1);
 
 use Illuminate\Foundation\Http\Middleware\ValidateCsrfToken;
-use JayI\Keystone\Domains\Attribute\Models\AttributeGroupModel;
-use JayI\Keystone\Domains\Attribute\Models\AttributeModel;
-use JayI\Keystone\Domains\Attribute\Models\AttributeOptionModel;
-use JayI\Keystone\Domains\Family\Models\FamilyModel;
+use RefactorCircus\Keystone\Domains\Attribute\Models\AttributeGroupModel;
+use RefactorCircus\Keystone\Domains\Attribute\Models\AttributeModel;
+use RefactorCircus\Keystone\Domains\Attribute\Models\AttributeOptionModel;
+use RefactorCircus\Keystone\Domains\Family\Models\FamilyModel;
 
 beforeEach(function (): void {
     ValidateCsrfToken::except(['*']);

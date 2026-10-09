@@ -2,12 +2,12 @@
 
 declare(strict_types=1);
 
-namespace JayI\Keystone\Domains\Owner\Actions;
+namespace RefactorCircus\Keystone\Domains\Owner\Actions;
 
 use Illuminate\Contracts\Pagination\CursorPaginator;
-use JayI\Keystone\Domains\Owner\Events\OwnerTypesListedActionEvent;
-use JayI\Keystone\Domains\Owner\Events\OwnerTypesListingActionEvent;
-use JayI\Keystone\Domains\Owner\Models\OwnerTypeModel;
+use RefactorCircus\Keystone\Domains\Owner\Events\OwnerTypesListedActionEvent;
+use RefactorCircus\Keystone\Domains\Owner\Events\OwnerTypesListingActionEvent;
+use RefactorCircus\Keystone\Domains\Owner\Models\OwnerTypeModel;
 
 final class ListOwnerTypesAction
 {

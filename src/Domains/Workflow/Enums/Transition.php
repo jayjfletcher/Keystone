@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace JayI\Keystone\Domains\Workflow\Enums;
+namespace RefactorCircus\Keystone\Domains\Workflow\Enums;
 
-use JayI\Keystone\Domains\Product\Enums\ProductStatus;
+use RefactorCircus\Keystone\Domains\Product\Enums\ProductStatus;
 
 /**
  * A step through the product workflow, and the version action it records.

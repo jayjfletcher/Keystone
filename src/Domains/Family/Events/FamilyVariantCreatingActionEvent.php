@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-namespace JayI\Keystone\Domains\Family\Events;
+namespace RefactorCircus\Keystone\Domains\Family\Events;
 
 use Illuminate\Foundation\Events\Dispatchable;
 use Illuminate\Queue\SerializesModels;
-use JayI\Foundation\Contracts\ActionStartingEvent;
+use RefactorCircus\Foundation\Contracts\ActionStartingEvent;
 
 /**
  * A family variant is about to be created.

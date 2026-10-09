@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace JayI\Keystone\Exceptions;
+namespace RefactorCircus\Keystone\Exceptions;
 
 /**
  * A catalog record other records still depend on.

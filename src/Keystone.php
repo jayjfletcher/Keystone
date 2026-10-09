@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace JayI\Keystone;
+namespace RefactorCircus\Keystone;
 
 class Keystone
 {

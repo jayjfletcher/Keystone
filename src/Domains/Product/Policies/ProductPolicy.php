@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace JayI\Keystone\Domains\Product\Policies;
+namespace RefactorCircus\Keystone\Domains\Product\Policies;
 
-use JayI\Keystone\Support\Policies\Policy;
+use RefactorCircus\Keystone\Support\Policies\Policy;
 
 class ProductPolicy extends Policy
 {

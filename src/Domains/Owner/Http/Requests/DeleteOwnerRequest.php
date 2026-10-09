@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace JayI\Keystone\Domains\Owner\Http\Requests;
+namespace RefactorCircus\Keystone\Domains\Owner\Http\Requests;
 
 use Illuminate\Http\JsonResponse;
-use JayI\Keystone\Domains\Owner\Actions\DeleteOwnerAction;
+use RefactorCircus\Keystone\Domains\Owner\Actions\DeleteOwnerAction;
 
 final class DeleteOwnerRequest extends OwnerRequest
 {

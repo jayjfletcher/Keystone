@@ -3,8 +3,8 @@
 declare(strict_types=1);
 
 use Illuminate\Foundation\Http\Middleware\ValidateCsrfToken;
-use JayI\Keystone\Domains\Category\Models\CategoryModel;
-use JayI\Keystone\Domains\Product\Models\ProductModel;
+use RefactorCircus\Keystone\Domains\Category\Models\CategoryModel;
+use RefactorCircus\Keystone\Domains\Product\Models\ProductModel;
 
 beforeEach(function (): void {
     ValidateCsrfToken::except(['*']);

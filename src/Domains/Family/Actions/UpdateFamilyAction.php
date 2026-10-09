@@ -2,16 +2,16 @@
 
 declare(strict_types=1);
 
-namespace JayI\Keystone\Domains\Family\Actions;
+namespace RefactorCircus\Keystone\Domains\Family\Actions;
 
 use Illuminate\Support\Facades\DB;
 use Illuminate\Validation\ValidationException;
-use JayI\Keystone\Domains\Family\Concerns\WritesFamilyAttributes;
-use JayI\Keystone\Domains\Family\Events\FamilyUpdatedActionEvent;
-use JayI\Keystone\Domains\Family\Events\FamilyUpdatingActionEvent;
-use JayI\Keystone\Domains\Family\Models\FamilyModel;
-use JayI\Keystone\Domains\Product\Models\ProductModel;
-use JayI\Keystone\Domains\Search\Services\ProductIndex;
+use RefactorCircus\Keystone\Domains\Family\Concerns\WritesFamilyAttributes;
+use RefactorCircus\Keystone\Domains\Family\Events\FamilyUpdatedActionEvent;
+use RefactorCircus\Keystone\Domains\Family\Events\FamilyUpdatingActionEvent;
+use RefactorCircus\Keystone\Domains\Family\Models\FamilyModel;
+use RefactorCircus\Keystone\Domains\Product\Models\ProductModel;
+use RefactorCircus\Keystone\Domains\Search\Services\ProductIndex;
 
 final class UpdateFamilyAction
 {

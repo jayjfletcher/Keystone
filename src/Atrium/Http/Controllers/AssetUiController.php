@@ -2,23 +2,23 @@
 
 declare(strict_types=1);
 
-namespace JayI\Keystone\Atrium\Http\Controllers;
+namespace RefactorCircus\Keystone\Atrium\Http\Controllers;
 
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
-use JayI\Atrium\Http\Controllers\Concerns\AuthorizesScreens;
-use JayI\Keystone\Atrium\Support\Labels;
-use JayI\Keystone\Domains\Asset\Actions\AttachAssetAction;
-use JayI\Keystone\Domains\Asset\Actions\CreateAssetAction;
-use JayI\Keystone\Domains\Asset\Actions\DeleteAssetAction;
-use JayI\Keystone\Domains\Asset\Actions\DetachAssetAction;
-use JayI\Keystone\Domains\Asset\Actions\ListAssetsAction;
-use JayI\Keystone\Domains\Asset\Actions\ShowAssetAction;
-use JayI\Keystone\Domains\Asset\Actions\UpdateAssetAction;
-use JayI\Keystone\Domains\Asset\Models\AssetModel;
-use JayI\Keystone\Domains\Asset\Services\AssetLinks;
+use RefactorCircus\Atrium\Http\Controllers\Concerns\AuthorizesScreens;
+use RefactorCircus\Keystone\Atrium\Support\Labels;
+use RefactorCircus\Keystone\Domains\Asset\Actions\AttachAssetAction;
+use RefactorCircus\Keystone\Domains\Asset\Actions\CreateAssetAction;
+use RefactorCircus\Keystone\Domains\Asset\Actions\DeleteAssetAction;
+use RefactorCircus\Keystone\Domains\Asset\Actions\DetachAssetAction;
+use RefactorCircus\Keystone\Domains\Asset\Actions\ListAssetsAction;
+use RefactorCircus\Keystone\Domains\Asset\Actions\ShowAssetAction;
+use RefactorCircus\Keystone\Domains\Asset\Actions\UpdateAssetAction;
+use RefactorCircus\Keystone\Domains\Asset\Models\AssetModel;
+use RefactorCircus\Keystone\Domains\Asset\Services\AssetLinks;
 
 final class AssetUiController
 {

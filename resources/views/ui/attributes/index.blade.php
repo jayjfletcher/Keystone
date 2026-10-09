@@ -1,4 +1,4 @@
-@use(JayI\Keystone\Domains\Attribute\Models\AttributeModel)
+@use(RefactorCircus\Keystone\Domains\Attribute\Models\AttributeModel)
 
 <x-atrium::layout :title="__('keystone::keystone.attributes')">
     <x-atrium::page-header :title="__('keystone::keystone.attributes')">

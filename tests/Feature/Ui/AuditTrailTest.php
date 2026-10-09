@@ -3,12 +3,12 @@
 declare(strict_types=1);
 
 use Carbon\CarbonImmutable;
-use JayI\Foundation\Audit\Contracts\AuditTrail;
-use JayI\Foundation\Audit\Data\AuditEntry;
-use JayI\Foundation\Audit\Data\AuditFilter;
-use JayI\Foundation\Audit\Data\AuditPage;
-use JayI\Keystone\Domains\Product\Models\ProductModel;
-use JayI\Keystone\Tests\Fixtures\Catalog;
+use RefactorCircus\Foundation\Audit\Contracts\AuditTrail;
+use RefactorCircus\Foundation\Audit\Data\AuditEntry;
+use RefactorCircus\Foundation\Audit\Data\AuditFilter;
+use RefactorCircus\Foundation\Audit\Data\AuditPage;
+use RefactorCircus\Keystone\Domains\Product\Models\ProductModel;
+use RefactorCircus\Keystone\Tests\Fixtures\Catalog;
 
 beforeEach(function (): void {
     // Atrium denies access outside local until a gate is defined.

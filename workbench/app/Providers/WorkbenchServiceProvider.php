@@ -20,7 +20,7 @@ class WorkbenchServiceProvider extends ServiceProvider
         config()->set('keystone.media.disk', 'public');
         config()->set('filesystems.disks.public.url', '/storage');
 
-        // jayi/pennantplus's layered store: users who follow a feature's
+        // refactor-circus/pennantplus's layered store: users who follow a feature's
         // global value store nothing, as in a real application.
         config()->set('pennant.default', 'pennantplus');
         config()->set('pennant.stores.pennantplus', [

@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-namespace JayI\Keystone\Domains\Attribute\Http\Requests;
+namespace RefactorCircus\Keystone\Domains\Attribute\Http\Requests;
 
 use Illuminate\Http\JsonResponse;
-use JayI\Keystone\Domains\Attribute\Actions\ShowAttributeGroupAction;
-use JayI\Keystone\Domains\Attribute\Resources\AttributeGroupResource;
+use RefactorCircus\Keystone\Domains\Attribute\Actions\ShowAttributeGroupAction;
+use RefactorCircus\Keystone\Domains\Attribute\Resources\AttributeGroupResource;
 
 final class ShowAttributeGroupRequest extends AttributeGroupRequest
 {

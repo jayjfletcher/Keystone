@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace JayI\Keystone\Exceptions;
+namespace RefactorCircus\Keystone\Exceptions;
 
-use JayI\Foundation\Exceptions\PackageException;
+use RefactorCircus\Foundation\Exceptions\PackageException;
 
 /**
  * A catalog rule the caller broke.

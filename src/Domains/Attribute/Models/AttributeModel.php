@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace JayI\Keystone\Domains\Attribute\Models;
+namespace RefactorCircus\Keystone\Domains\Attribute\Models;
 
 use Illuminate\Database\Eloquent\Concerns\HasUlids;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -10,10 +10,10 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Support\Carbon;
-use JayI\Foundation\Models\Concerns\DispatchesModelEvents;
-use JayI\Keystone\Database\Factories\AttributeFactory;
-use JayI\Keystone\Domains\Attribute\Enums\AttributeType;
-use JayI\Keystone\Support\Models\Concerns\HasLabels;
+use RefactorCircus\Foundation\Models\Concerns\DispatchesModelEvents;
+use RefactorCircus\Keystone\Database\Factories\AttributeFactory;
+use RefactorCircus\Keystone\Domains\Attribute\Enums\AttributeType;
+use RefactorCircus\Keystone\Support\Models\Concerns\HasLabels;
 
 /**
  * A typed product characteristic, defined at runtime: "color", "weight",

@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace JayI\Keystone\Impex\Webhooks;
+namespace RefactorCircus\Keystone\Impex\Webhooks;
 
 use Illuminate\Contracts\Config\Repository as Config;
 use Illuminate\Database\ConnectionInterface;

@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-namespace JayI\Keystone\Domains\Transfer\Events;
+namespace RefactorCircus\Keystone\Domains\Transfer\Events;
 
 use Illuminate\Foundation\Events\Dispatchable;
 use Illuminate\Queue\SerializesModels;
-use JayI\Foundation\Contracts\ActionStartingEvent;
+use RefactorCircus\Foundation\Contracts\ActionStartingEvent;
 
 /**
  * A product import is about to start.

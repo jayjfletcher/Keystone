@@ -1,5 +1,5 @@
-@use(JayI\Keystone\Atrium\Badges)
-@use(JayI\Keystone\Atrium\ScreenAccess)
+@use(RefactorCircus\Keystone\Atrium\Badges)
+@use(RefactorCircus\Keystone\Atrium\ScreenAccess)
 
 @php($canUpdate = ScreenAccess::allows('update', $product))
 

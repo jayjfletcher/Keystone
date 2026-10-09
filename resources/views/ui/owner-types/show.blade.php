@@ -3,7 +3,7 @@
 <x-atrium::layout :title="$type->label()">
     <x-atrium::page-header :title="$type->label()" :description="$type->code">
         <x-slot:actions>
-            @keystoneCan('viewAny', \JayI\Keystone\Domains\Owner\Models\OwnerModel::class)
+            @keystoneCan('viewAny', \RefactorCircus\Keystone\Domains\Owner\Models\OwnerModel::class)
                 <x-atrium::icon-button icon="building-storefront" :label="__('keystone::keystone.owners').' ('.$type->owners_count.')'" variant="outline" :href="route('atrium.keystone.owners.index', ['type' => $type->code])" data-testid="type-owners" />
             @endkeystoneCan
 

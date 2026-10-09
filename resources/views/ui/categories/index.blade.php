@@ -1,4 +1,4 @@
-@use(JayI\Keystone\Domains\Category\Models\CategoryModel)
+@use(RefactorCircus\Keystone\Domains\Category\Models\CategoryModel)
 @php($locale = app()->getLocale())
 
 <x-atrium::layout :title="__('keystone::keystone.categories')">

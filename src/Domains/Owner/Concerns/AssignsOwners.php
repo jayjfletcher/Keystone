@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace JayI\Keystone\Domains\Owner\Concerns;
+namespace RefactorCircus\Keystone\Domains\Owner\Concerns;
 
 use Illuminate\Validation\ValidationException;
-use JayI\Keystone\Domains\Owner\Models\OwnerModel;
+use RefactorCircus\Keystone\Domains\Owner\Models\OwnerModel;
 
 /**
  * Resolving the owner a product or root product model is assigned to.

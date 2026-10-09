@@ -1,5 +1,5 @@
-@use(JayI\Keystone\Atrium\Badges)
-@use(JayI\Keystone\Domains\Product\Enums\ProductStatus)
+@use(RefactorCircus\Keystone\Atrium\Badges)
+@use(RefactorCircus\Keystone\Domains\Product\Enums\ProductStatus)
 
 <x-atrium::card :title="__('keystone::keystone.widget_product_status')">
     <div class="flex flex-wrap gap-2">

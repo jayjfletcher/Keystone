@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-namespace JayI\Keystone\Domains\Association\Actions;
+namespace RefactorCircus\Keystone\Domains\Association\Actions;
 
-use JayI\Keystone\Domains\Association\Events\AssociationTypeShowingActionEvent;
-use JayI\Keystone\Domains\Association\Events\AssociationTypeShownActionEvent;
-use JayI\Keystone\Domains\Association\Models\AssociationTypeModel;
+use RefactorCircus\Keystone\Domains\Association\Events\AssociationTypeShowingActionEvent;
+use RefactorCircus\Keystone\Domains\Association\Events\AssociationTypeShownActionEvent;
+use RefactorCircus\Keystone\Domains\Association\Models\AssociationTypeModel;
 
 final class ShowAssociationTypeAction
 {

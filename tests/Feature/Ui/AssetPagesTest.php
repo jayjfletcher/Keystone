@@ -5,8 +5,8 @@ declare(strict_types=1);
 use Illuminate\Foundation\Http\Middleware\ValidateCsrfToken;
 use Illuminate\Http\UploadedFile;
 use Illuminate\Support\Facades\Storage;
-use JayI\Keystone\Domains\Asset\Models\AssetModel;
-use JayI\Keystone\Domains\Product\Models\ProductModel;
+use RefactorCircus\Keystone\Domains\Asset\Models\AssetModel;
+use RefactorCircus\Keystone\Domains\Product\Models\ProductModel;
 
 beforeEach(function (): void {
     ValidateCsrfToken::except(['*']);

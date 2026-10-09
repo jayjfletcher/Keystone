@@ -2,13 +2,13 @@
 
 declare(strict_types=1);
 
-namespace JayI\Keystone\Domains\Product\Mcp\Requests;
+namespace RefactorCircus\Keystone\Domains\Product\Mcp\Requests;
 
-use JayI\Foundation\Mcp\Requests\Request;
-use JayI\Keystone\Domains\Product\Actions\ListProductsAction;
-use JayI\Keystone\Domains\Product\Models\ProductModel;
-use JayI\Keystone\Domains\Product\Resources\ProductResource;
 use Laravel\Mcp\ResponseFactory;
+use RefactorCircus\Foundation\Mcp\Requests\Request;
+use RefactorCircus\Keystone\Domains\Product\Actions\ListProductsAction;
+use RefactorCircus\Keystone\Domains\Product\Models\ProductModel;
+use RefactorCircus\Keystone\Domains\Product\Resources\ProductResource;
 
 final class ListProductsMcpRequest extends Request
 {

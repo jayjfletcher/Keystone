@@ -2,26 +2,21 @@
 
 declare(strict_types=1);
 
-namespace JayI\Keystone\Domains\Association;
+namespace RefactorCircus\Keystone\Domains\Association;
 
 use Illuminate\Database\Eloquent\Model;
-use JayI\Foundation\Audit\AuditHooks;
-use JayI\Foundation\Support\ServiceProvider;
-use JayI\Keystone\Domains\Association\Models\AssociationModel;
-use JayI\Keystone\Domains\Association\Models\AssociationTypeModel;
-use JayI\Keystone\Domains\Product\Models\ProductModel;
-use JayI\Keystone\Domains\ProductModel\Models\ProductModelModel;
+use RefactorCircus\Foundation\Audit\AuditHooks;
+use RefactorCircus\Foundation\Support\ServiceProvider;
+use RefactorCircus\Keystone\Domains\Association\Models\AssociationModel;
+use RefactorCircus\Keystone\Domains\Association\Models\AssociationTypeModel;
+use RefactorCircus\Keystone\Domains\Product\Models\ProductModel;
+use RefactorCircus\Keystone\Domains\ProductModel\Models\ProductModelModel;
 
 class AssociationServiceProvider extends ServiceProvider
 {
     public function boot(): void
     {
-        $this->keepMorphAliases([
-            'JayI\Keystone\Models\Association' => AssociationModel::class,
-            'JayI\Keystone\Models\AssociationType' => AssociationTypeModel::class,
-        ]);
-
-        // How the audit log (jayi/keen) names them: a type by the current
+        // How the audit log (refactor-circus/keen) names them: a type by the current
         // locale's label, else its code; a link by its type and both ends.
         $this->app->make(AuditHooks::class)
             ->label(AssociationTypeModel::class, fn (AssociationTypeModel $type): string => $type->label())

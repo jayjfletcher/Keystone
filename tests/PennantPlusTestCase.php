@@ -2,13 +2,13 @@
 
 declare(strict_types=1);
 
-namespace JayI\Keystone\Tests;
+namespace RefactorCircus\Keystone\Tests;
 
-use JayI\PennantPlus\PennantPlusServiceProvider;
 use Laravel\Pennant\PennantServiceProvider;
+use RefactorCircus\PennantPlus\PennantPlusServiceProvider;
 
 /**
- * Keystone booted with jayi/pennantplus answering Atrium's feature checks.
+ * Keystone booted with refactor-circus/pennantplus answering Atrium's feature checks.
  */
 abstract class PennantPlusTestCase extends TestCase
 {

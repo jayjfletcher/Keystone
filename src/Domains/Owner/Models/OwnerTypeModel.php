@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace JayI\Keystone\Domains\Owner\Models;
+namespace RefactorCircus\Keystone\Domains\Owner\Models;
 
 use Illuminate\Database\Eloquent\Concerns\HasUlids;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -11,9 +11,9 @@ use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\Pivot;
 use Illuminate\Support\Carbon;
-use JayI\Foundation\Models\Concerns\DispatchesModelEvents;
-use JayI\Keystone\Database\Factories\OwnerTypeFactory;
-use JayI\Keystone\Support\Models\Concerns\HasLabels;
+use RefactorCircus\Foundation\Models\Concerns\DispatchesModelEvents;
+use RefactorCircus\Keystone\Database\Factories\OwnerTypeFactory;
+use RefactorCircus\Keystone\Support\Models\Concerns\HasLabels;
 
 /**
  * A kind of owner — manufacturer, vendor, brand, series — and the rules for

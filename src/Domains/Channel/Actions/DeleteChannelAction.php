@@ -2,12 +2,12 @@
 
 declare(strict_types=1);
 
-namespace JayI\Keystone\Domains\Channel\Actions;
+namespace RefactorCircus\Keystone\Domains\Channel\Actions;
 
-use JayI\Keystone\Domains\Channel\Events\ChannelDeletedActionEvent;
-use JayI\Keystone\Domains\Channel\Events\ChannelDeletingActionEvent;
-use JayI\Keystone\Domains\Channel\Models\ChannelModel;
-use JayI\Keystone\Jobs\PurgeValueSlots;
+use RefactorCircus\Keystone\Domains\Channel\Events\ChannelDeletedActionEvent;
+use RefactorCircus\Keystone\Domains\Channel\Events\ChannelDeletingActionEvent;
+use RefactorCircus\Keystone\Domains\Channel\Models\ChannelModel;
+use RefactorCircus\Keystone\Jobs\PurgeValueSlots;
 
 final class DeleteChannelAction
 {

@@ -2,14 +2,14 @@
 
 declare(strict_types=1);
 
-namespace JayI\Keystone\Domains\Family\Mcp\Tools;
+namespace RefactorCircus\Keystone\Domains\Family\Mcp\Tools;
 
 use Illuminate\Contracts\JsonSchema\JsonSchema;
-use JayI\Foundation\Mcp\Tool;
-use JayI\Keystone\Domains\Family\Mcp\Requests\UpdateFamilyVariantMcpRequest;
 use Laravel\Mcp\Response;
 use Laravel\Mcp\ResponseFactory;
 use Laravel\Mcp\Server\Attributes\Description;
+use RefactorCircus\Foundation\Mcp\Tool;
+use RefactorCircus\Keystone\Domains\Family\Mcp\Requests\UpdateFamilyVariantMcpRequest;
 
 #[Description('Update a family variant\'s labels, or its levels while no product model uses it. The code and family cannot change.')]
 final class UpdateFamilyVariantTool extends Tool

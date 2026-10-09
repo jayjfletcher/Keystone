@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-namespace JayI\Keystone\Domains\Family\Actions;
+namespace RefactorCircus\Keystone\Domains\Family\Actions;
 
-use JayI\Keystone\Domains\Family\Events\FamilyShowingActionEvent;
-use JayI\Keystone\Domains\Family\Events\FamilyShownActionEvent;
-use JayI\Keystone\Domains\Family\Models\FamilyModel;
+use RefactorCircus\Keystone\Domains\Family\Events\FamilyShowingActionEvent;
+use RefactorCircus\Keystone\Domains\Family\Events\FamilyShownActionEvent;
+use RefactorCircus\Keystone\Domains\Family\Models\FamilyModel;
 
 final class ShowFamilyAction
 {

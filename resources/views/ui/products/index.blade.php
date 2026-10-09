@@ -1,5 +1,5 @@
-@use(JayI\Keystone\Atrium\Badges)
-@use(JayI\Keystone\Domains\Product\Models\ProductModel)
+@use(RefactorCircus\Keystone\Atrium\Badges)
+@use(RefactorCircus\Keystone\Domains\Product\Models\ProductModel)
 
 <x-atrium::layout :title="__('keystone::keystone.products')">
     <x-atrium::page-header :title="__('keystone::keystone.products')">
@@ -33,7 +33,7 @@
                     name="status"
                     :label="__('keystone::keystone.workflow')"
                     :placeholder="__('keystone::keystone.all_statuses')"
-                    :options="collect(\JayI\Keystone\Domains\Product\Enums\ProductStatus::cases())->mapWithKeys(fn ($status) => [$status->value => __('keystone::keystone.status_'.$status->value)])"
+                    :options="collect(\RefactorCircus\Keystone\Domains\Product\Enums\ProductStatus::cases())->mapWithKeys(fn ($status) => [$status->value => __('keystone::keystone.status_'.$status->value)])"
                     :selected="$filters['status'] ?? null"
                     wrapper="w-40" />
 

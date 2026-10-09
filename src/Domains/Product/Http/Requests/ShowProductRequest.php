@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-namespace JayI\Keystone\Domains\Product\Http\Requests;
+namespace RefactorCircus\Keystone\Domains\Product\Http\Requests;
 
 use Illuminate\Http\JsonResponse;
-use JayI\Keystone\Domains\Product\Actions\ShowProductAction;
-use JayI\Keystone\Domains\Product\Resources\ProductResource;
+use RefactorCircus\Keystone\Domains\Product\Actions\ShowProductAction;
+use RefactorCircus\Keystone\Domains\Product\Resources\ProductResource;
 
 final class ShowProductRequest extends ProductRequest
 {

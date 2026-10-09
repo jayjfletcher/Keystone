@@ -2,14 +2,14 @@
 
 declare(strict_types=1);
 
-namespace JayI\Keystone\Domains\Category\Mcp\Requests;
+namespace RefactorCircus\Keystone\Domains\Category\Mcp\Requests;
 
-use JayI\Foundation\Mcp\Requests\Request;
-use JayI\Keystone\Domains\Category\Actions\CreateCategoryAction;
-use JayI\Keystone\Domains\Category\Models\CategoryModel;
-use JayI\Keystone\Domains\Category\Resources\CategoryResource;
 use Laravel\Mcp\Response;
 use Laravel\Mcp\ResponseFactory;
+use RefactorCircus\Foundation\Mcp\Requests\Request;
+use RefactorCircus\Keystone\Domains\Category\Actions\CreateCategoryAction;
+use RefactorCircus\Keystone\Domains\Category\Models\CategoryModel;
+use RefactorCircus\Keystone\Domains\Category\Resources\CategoryResource;
 
 final class CreateCategoryMcpRequest extends Request
 {

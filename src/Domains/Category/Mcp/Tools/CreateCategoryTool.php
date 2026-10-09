@@ -2,14 +2,14 @@
 
 declare(strict_types=1);
 
-namespace JayI\Keystone\Domains\Category\Mcp\Tools;
+namespace RefactorCircus\Keystone\Domains\Category\Mcp\Tools;
 
 use Illuminate\Contracts\JsonSchema\JsonSchema;
-use JayI\Foundation\Mcp\Tool;
-use JayI\Keystone\Domains\Category\Mcp\Requests\CreateCategoryMcpRequest;
 use Laravel\Mcp\Response;
 use Laravel\Mcp\ResponseFactory;
 use Laravel\Mcp\Server\Attributes\Description;
+use RefactorCircus\Foundation\Mcp\Tool;
+use RefactorCircus\Keystone\Domains\Category\Mcp\Requests\CreateCategoryMcpRequest;
 
 #[Description('Create a category under a parent, or a new category tree when no parent is given.')]
 final class CreateCategoryTool extends Tool

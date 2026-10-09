@@ -11,7 +11,7 @@ Laravel applications need a Product Information Management (PIM) system: a singl
 
 ## Solution
 
-- **Laravel-native package** following the `jayi/impex` package as the standards template: Actions shared by every surface, service-provider wiring, publishable config/migrations, Atrium dashboard, Cortex integration.
+- **Laravel-native package** following the `refactor-circus/impex` package as the standards template: Actions shared by every surface, service-provider wiring, publishable config/migrations, Atrium dashboard, Cortex integration.
 - **Full HTTP API with MCP parity** — every operation available over HTTP is available as an MCP tool, both calling the same Action.
 - **Dynamic data model** — attributes, attribute groups, and families (attribute sets) are defined at runtime, not per-product-type migrations.
 - **Full taxonomy** — hierarchical category/classification trees.

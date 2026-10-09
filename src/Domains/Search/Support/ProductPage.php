@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace JayI\Keystone\Domains\Search\Support;
+namespace RefactorCircus\Keystone\Domains\Search\Support;
 
 use Illuminate\Pagination\LengthAwarePaginator;
-use JayI\Keystone\Domains\Product\Models\ProductModel;
+use RefactorCircus\Keystone\Domains\Product\Models\ProductModel;
 
 /**
  * One page of product search results, with the facets the engine counted.

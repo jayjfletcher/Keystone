@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace JayI\Keystone\Domains\Channel\Policies;
+namespace RefactorCircus\Keystone\Domains\Channel\Policies;
 
-use JayI\Keystone\Support\Policies\Policy;
+use RefactorCircus\Keystone\Support\Policies\Policy;
 
 class ChannelPolicy extends Policy
 {

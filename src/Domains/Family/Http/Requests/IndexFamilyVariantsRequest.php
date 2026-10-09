@@ -2,13 +2,13 @@
 
 declare(strict_types=1);
 
-namespace JayI\Keystone\Domains\Family\Http\Requests;
+namespace RefactorCircus\Keystone\Domains\Family\Http\Requests;
 
 use Illuminate\Http\JsonResponse;
-use JayI\Foundation\Http\Requests\Request;
-use JayI\Keystone\Domains\Family\Actions\ListFamilyVariantsAction;
-use JayI\Keystone\Domains\Family\Models\FamilyVariantModel;
-use JayI\Keystone\Domains\Family\Resources\FamilyVariantResource;
+use RefactorCircus\Foundation\Http\Requests\Request;
+use RefactorCircus\Keystone\Domains\Family\Actions\ListFamilyVariantsAction;
+use RefactorCircus\Keystone\Domains\Family\Models\FamilyVariantModel;
+use RefactorCircus\Keystone\Domains\Family\Resources\FamilyVariantResource;
 
 final class IndexFamilyVariantsRequest extends Request
 {

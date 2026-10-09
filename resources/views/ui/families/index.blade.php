@@ -1,4 +1,4 @@
-@use(JayI\Keystone\Domains\Family\Models\FamilyModel)
+@use(RefactorCircus\Keystone\Domains\Family\Models\FamilyModel)
 @php($locale = app()->getLocale())
 
 <x-atrium::layout :title="__('keystone::keystone.families')">

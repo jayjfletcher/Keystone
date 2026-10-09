@@ -2,13 +2,13 @@
 
 declare(strict_types=1);
 
-namespace JayI\Keystone\Domains\Asset\Actions;
+namespace RefactorCircus\Keystone\Domains\Asset\Actions;
 
 use Illuminate\Contracts\Pagination\CursorPaginator;
 use Illuminate\Database\Eloquent\Builder;
-use JayI\Keystone\Domains\Asset\Events\AssetsListedActionEvent;
-use JayI\Keystone\Domains\Asset\Events\AssetsListingActionEvent;
-use JayI\Keystone\Domains\Asset\Models\AssetModel;
+use RefactorCircus\Keystone\Domains\Asset\Events\AssetsListedActionEvent;
+use RefactorCircus\Keystone\Domains\Asset\Events\AssetsListingActionEvent;
+use RefactorCircus\Keystone\Domains\Asset\Models\AssetModel;
 
 final class ListAssetsAction
 {

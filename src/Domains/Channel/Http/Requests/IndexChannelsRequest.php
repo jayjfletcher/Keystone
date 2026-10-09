@@ -2,13 +2,13 @@
 
 declare(strict_types=1);
 
-namespace JayI\Keystone\Domains\Channel\Http\Requests;
+namespace RefactorCircus\Keystone\Domains\Channel\Http\Requests;
 
 use Illuminate\Http\JsonResponse;
-use JayI\Foundation\Http\Requests\Request;
-use JayI\Keystone\Domains\Channel\Actions\ListChannelsAction;
-use JayI\Keystone\Domains\Channel\Models\ChannelModel;
-use JayI\Keystone\Domains\Channel\Resources\ChannelResource;
+use RefactorCircus\Foundation\Http\Requests\Request;
+use RefactorCircus\Keystone\Domains\Channel\Actions\ListChannelsAction;
+use RefactorCircus\Keystone\Domains\Channel\Models\ChannelModel;
+use RefactorCircus\Keystone\Domains\Channel\Resources\ChannelResource;
 
 final class IndexChannelsRequest extends Request
 {

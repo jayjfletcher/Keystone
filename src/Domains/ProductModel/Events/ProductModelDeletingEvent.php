@@ -2,13 +2,13 @@
 
 declare(strict_types=1);
 
-namespace JayI\Keystone\Domains\ProductModel\Events;
+namespace RefactorCircus\Keystone\Domains\ProductModel\Events;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Foundation\Events\Dispatchable;
 use Illuminate\Queue\SerializesModels;
-use JayI\Foundation\Contracts\ModelLifecycleEvent;
-use JayI\Keystone\Domains\ProductModel\Models\ProductModelModel;
+use RefactorCircus\Foundation\Contracts\ModelLifecycleEvent;
+use RefactorCircus\Keystone\Domains\ProductModel\Models\ProductModelModel;
 
 /**
  * The ProductModel `deleting` Eloquent event.

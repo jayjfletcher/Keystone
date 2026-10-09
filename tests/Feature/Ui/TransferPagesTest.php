@@ -5,8 +5,8 @@ declare(strict_types=1);
 use Illuminate\Foundation\Http\Middleware\ValidateCsrfToken;
 use Illuminate\Http\UploadedFile;
 use Illuminate\Support\Facades\Storage;
-use JayI\Impex\Domains\Run\Models\RunModel;
-use JayI\Keystone\Domains\Product\Models\ProductModel;
+use RefactorCircus\Impex\Domains\Run\Models\RunModel;
+use RefactorCircus\Keystone\Domains\Product\Models\ProductModel;
 use Workbench\Database\Factories\UserFactory;
 
 beforeEach(function (): void {

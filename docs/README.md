@@ -22,8 +22,8 @@
 ## One page
 
 ```php
-use JayI\Keystone\Domains\Attribute\Actions\CreateAttributeAction;
-use JayI\Keystone\Domains\Attribute\Actions\CreateAttributeGroupAction;
+use RefactorCircus\Keystone\Domains\Attribute\Actions\CreateAttributeAction;
+use RefactorCircus\Keystone\Domains\Attribute\Actions\CreateAttributeGroupAction;
 
 app(CreateAttributeGroupAction::class)->execute(['code' => 'technical', 'labels' => ['en' => 'Technical']]);
 

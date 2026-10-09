@@ -3,9 +3,9 @@
 declare(strict_types=1);
 
 use Illuminate\Foundation\Http\Middleware\ValidateCsrfToken;
-use JayI\Keystone\Domains\Owner\Models\OwnerModel;
-use JayI\Keystone\Domains\Owner\Models\OwnerTypeModel;
-use JayI\Keystone\Domains\Product\Models\ProductModel;
+use RefactorCircus\Keystone\Domains\Owner\Models\OwnerModel;
+use RefactorCircus\Keystone\Domains\Owner\Models\OwnerTypeModel;
+use RefactorCircus\Keystone\Domains\Product\Models\ProductModel;
 
 beforeEach(function (): void {
     ValidateCsrfToken::except(['*']);

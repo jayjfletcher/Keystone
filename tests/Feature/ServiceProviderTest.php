@@ -4,21 +4,21 @@ declare(strict_types=1);
 
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\ServiceProvider;
-use JayI\Keystone\Domains\Asset\AssetServiceProvider;
-use JayI\Keystone\Domains\Association\AssociationServiceProvider;
-use JayI\Keystone\Domains\Attribute\AttributeServiceProvider;
-use JayI\Keystone\Domains\Category\CategoryServiceProvider;
-use JayI\Keystone\Domains\Channel\ChannelServiceProvider;
-use JayI\Keystone\Domains\DomainServiceProvider;
-use JayI\Keystone\Domains\Family\FamilyServiceProvider;
-use JayI\Keystone\Domains\Owner\OwnerServiceProvider;
-use JayI\Keystone\Domains\Product\ProductServiceProvider;
-use JayI\Keystone\Domains\ProductModel\ProductModelServiceProvider;
-use JayI\Keystone\Domains\Search\SearchServiceProvider;
-use JayI\Keystone\Domains\Transfer\TransferServiceProvider;
-use JayI\Keystone\Domains\Workflow\WorkflowServiceProvider;
-use JayI\Keystone\Keystone;
-use JayI\Keystone\KeystoneServiceProvider;
+use RefactorCircus\Keystone\Domains\Asset\AssetServiceProvider;
+use RefactorCircus\Keystone\Domains\Association\AssociationServiceProvider;
+use RefactorCircus\Keystone\Domains\Attribute\AttributeServiceProvider;
+use RefactorCircus\Keystone\Domains\Category\CategoryServiceProvider;
+use RefactorCircus\Keystone\Domains\Channel\ChannelServiceProvider;
+use RefactorCircus\Keystone\Domains\DomainServiceProvider;
+use RefactorCircus\Keystone\Domains\Family\FamilyServiceProvider;
+use RefactorCircus\Keystone\Domains\Owner\OwnerServiceProvider;
+use RefactorCircus\Keystone\Domains\Product\ProductServiceProvider;
+use RefactorCircus\Keystone\Domains\ProductModel\ProductModelServiceProvider;
+use RefactorCircus\Keystone\Domains\Search\SearchServiceProvider;
+use RefactorCircus\Keystone\Domains\Transfer\TransferServiceProvider;
+use RefactorCircus\Keystone\Domains\Workflow\WorkflowServiceProvider;
+use RefactorCircus\Keystone\Keystone;
+use RefactorCircus\Keystone\KeystoneServiceProvider;
 
 it('resolves the Keystone singleton', function (): void {
     expect(app(Keystone::class))->toBe(app(Keystone::class));

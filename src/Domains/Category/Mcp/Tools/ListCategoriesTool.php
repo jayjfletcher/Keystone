@@ -2,14 +2,14 @@
 
 declare(strict_types=1);
 
-namespace JayI\Keystone\Domains\Category\Mcp\Tools;
+namespace RefactorCircus\Keystone\Domains\Category\Mcp\Tools;
 
 use Illuminate\Contracts\JsonSchema\JsonSchema;
-use JayI\Foundation\Mcp\Tool;
-use JayI\Keystone\Domains\Category\Mcp\Requests\ListCategoriesMcpRequest;
 use Laravel\Mcp\Response;
 use Laravel\Mcp\ResponseFactory;
 use Laravel\Mcp\Server\Attributes\Description;
+use RefactorCircus\Foundation\Mcp\Tool;
+use RefactorCircus\Keystone\Domains\Category\Mcp\Requests\ListCategoriesMcpRequest;
 
 #[Description('List categories: the trees (roots), the children of a category, or a whole branch. Cursor paginated.')]
 final class ListCategoriesTool extends Tool

@@ -2,12 +2,12 @@
 
 declare(strict_types=1);
 
-namespace JayI\Keystone\Domains\Workflow\Http\Requests;
+namespace RefactorCircus\Keystone\Domains\Workflow\Http\Requests;
 
 use Illuminate\Http\JsonResponse;
-use JayI\Keystone\Domains\Product\Http\Requests\ProductRequest;
-use JayI\Keystone\Domains\Product\Resources\ProductResource;
-use JayI\Keystone\Domains\Workflow\Actions\RevertProductAction;
+use RefactorCircus\Keystone\Domains\Product\Http\Requests\ProductRequest;
+use RefactorCircus\Keystone\Domains\Product\Resources\ProductResource;
+use RefactorCircus\Keystone\Domains\Workflow\Actions\RevertProductAction;
 
 final class RevertProductRequest extends ProductRequest
 {

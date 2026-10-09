@@ -2,12 +2,12 @@
 
 declare(strict_types=1);
 
-namespace JayI\Keystone\Impex\Actions;
+namespace RefactorCircus\Keystone\Impex\Actions;
 
 use Illuminate\Support\Facades\Validator;
-use JayI\Keystone\Domains\Product\Actions\CreateProductAction;
-use JayI\Keystone\Domains\Product\Actions\UpdateProductAction;
-use JayI\Keystone\Domains\Product\Models\ProductModel;
+use RefactorCircus\Keystone\Domains\Product\Actions\CreateProductAction;
+use RefactorCircus\Keystone\Domains\Product\Actions\UpdateProductAction;
+use RefactorCircus\Keystone\Domains\Product\Models\ProductModel;
 use RuntimeException;
 
 /**

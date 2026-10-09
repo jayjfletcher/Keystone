@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace JayI\Keystone\Domains\Owner\Mcp\Requests;
+namespace RefactorCircus\Keystone\Domains\Owner\Mcp\Requests;
 
-use JayI\Foundation\Mcp\Requests\Request;
-use JayI\Keystone\Domains\Owner\Models\OwnerModel;
+use RefactorCircus\Foundation\Mcp\Requests\Request;
+use RefactorCircus\Keystone\Domains\Owner\Models\OwnerModel;
 
 abstract class OwnerRequest extends Request
 {

@@ -2,14 +2,14 @@
 
 declare(strict_types=1);
 
-namespace JayI\Keystone\Domains\Owner\Mcp\Requests;
+namespace RefactorCircus\Keystone\Domains\Owner\Mcp\Requests;
 
-use JayI\Foundation\Mcp\Requests\Request;
-use JayI\Keystone\Domains\Owner\Actions\CreateOwnerAction;
-use JayI\Keystone\Domains\Owner\Models\OwnerModel;
-use JayI\Keystone\Domains\Owner\Resources\OwnerResource;
 use Laravel\Mcp\Response;
 use Laravel\Mcp\ResponseFactory;
+use RefactorCircus\Foundation\Mcp\Requests\Request;
+use RefactorCircus\Keystone\Domains\Owner\Actions\CreateOwnerAction;
+use RefactorCircus\Keystone\Domains\Owner\Models\OwnerModel;
+use RefactorCircus\Keystone\Domains\Owner\Resources\OwnerResource;
 
 final class CreateOwnerMcpRequest extends Request
 {

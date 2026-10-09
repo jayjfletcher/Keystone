@@ -15,7 +15,7 @@
     @endif
 
     {{-- Uploading creates an asset and links it, which updates that asset. --}}
-    @keystoneCan('create', \JayI\Keystone\Domains\Asset\Models\AssetModel::class)
+    @keystoneCan('create', \RefactorCircus\Keystone\Domains\Asset\Models\AssetModel::class)
     <div class="mt-4 flex flex-col gap-3">
         <form method="POST" action="{{ route('atrium.keystone.assets.upload') }}" enctype="multipart/form-data" class="flex flex-wrap items-start gap-3">
             @csrf

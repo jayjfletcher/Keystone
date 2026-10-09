@@ -2,17 +2,17 @@
 
 declare(strict_types=1);
 
-namespace JayI\Keystone\Domains\Workflow\Actions;
+namespace RefactorCircus\Keystone\Domains\Workflow\Actions;
 
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Validation\ValidationException;
-use JayI\Keystone\Domains\Association\Models\AssociationModel;
-use JayI\Keystone\Domains\Attribute\Services\Values;
-use JayI\Keystone\Domains\Product\Actions\UpdateProductAction;
-use JayI\Keystone\Domains\Product\Models\ProductModel;
-use JayI\Keystone\Domains\Workflow\Events\ProductRevertedActionEvent;
-use JayI\Keystone\Domains\Workflow\Events\ProductRevertingActionEvent;
-use JayI\Keystone\Domains\Workflow\Services\Versions;
+use RefactorCircus\Keystone\Domains\Association\Models\AssociationModel;
+use RefactorCircus\Keystone\Domains\Attribute\Services\Values;
+use RefactorCircus\Keystone\Domains\Product\Actions\UpdateProductAction;
+use RefactorCircus\Keystone\Domains\Product\Models\ProductModel;
+use RefactorCircus\Keystone\Domains\Workflow\Events\ProductRevertedActionEvent;
+use RefactorCircus\Keystone\Domains\Workflow\Events\ProductRevertingActionEvent;
+use RefactorCircus\Keystone\Domains\Workflow\Services\Versions;
 
 final class RevertProductAction
 {

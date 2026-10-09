@@ -2,12 +2,12 @@
 
 declare(strict_types=1);
 
-namespace JayI\Keystone\Domains\Channel\Mcp\Requests;
+namespace RefactorCircus\Keystone\Domains\Channel\Mcp\Requests;
 
-use JayI\Keystone\Domains\Channel\Actions\ShowChannelAction;
-use JayI\Keystone\Domains\Channel\Resources\ChannelResource;
 use Laravel\Mcp\Response;
 use Laravel\Mcp\ResponseFactory;
+use RefactorCircus\Keystone\Domains\Channel\Actions\ShowChannelAction;
+use RefactorCircus\Keystone\Domains\Channel\Resources\ChannelResource;
 
 final class ShowChannelMcpRequest extends ChannelRequest
 {

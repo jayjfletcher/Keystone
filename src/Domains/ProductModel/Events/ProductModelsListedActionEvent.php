@@ -2,13 +2,13 @@
 
 declare(strict_types=1);
 
-namespace JayI\Keystone\Domains\ProductModel\Events;
+namespace RefactorCircus\Keystone\Domains\ProductModel\Events;
 
 use Illuminate\Contracts\Pagination\CursorPaginator;
 use Illuminate\Foundation\Events\Dispatchable;
 use Illuminate\Queue\SerializesModels;
-use JayI\Foundation\Contracts\ActionFinishedEvent;
-use JayI\Keystone\Domains\ProductModel\Models\ProductModelModel;
+use RefactorCircus\Foundation\Contracts\ActionFinishedEvent;
+use RefactorCircus\Keystone\Domains\ProductModel\Models\ProductModelModel;
 
 /**
  * Product models were listed.

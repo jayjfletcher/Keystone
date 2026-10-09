@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace JayI\Keystone\Database\Factories;
+namespace RefactorCircus\Keystone\Database\Factories;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
-use JayI\Keystone\Domains\Channel\Models\ChannelModel;
+use RefactorCircus\Keystone\Domains\Channel\Models\ChannelModel;
 
 /**
  * A channel without locales. Build complete channels with CreateChannelAction.

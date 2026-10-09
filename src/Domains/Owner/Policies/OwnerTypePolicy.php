@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace JayI\Keystone\Domains\Owner\Policies;
+namespace RefactorCircus\Keystone\Domains\Owner\Policies;
 
-use JayI\Keystone\Support\Policies\Policy;
+use RefactorCircus\Keystone\Support\Policies\Policy;
 
 class OwnerTypePolicy extends Policy
 {

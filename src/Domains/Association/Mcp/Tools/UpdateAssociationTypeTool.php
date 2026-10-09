@@ -2,14 +2,14 @@
 
 declare(strict_types=1);
 
-namespace JayI\Keystone\Domains\Association\Mcp\Tools;
+namespace RefactorCircus\Keystone\Domains\Association\Mcp\Tools;
 
 use Illuminate\Contracts\JsonSchema\JsonSchema;
-use JayI\Foundation\Mcp\Tool;
-use JayI\Keystone\Domains\Association\Mcp\Requests\UpdateAssociationTypeMcpRequest;
 use Laravel\Mcp\Response;
 use Laravel\Mcp\ResponseFactory;
 use Laravel\Mcp\Server\Attributes\Description;
+use RefactorCircus\Foundation\Mcp\Tool;
+use RefactorCircus\Keystone\Domains\Association\Mcp\Requests\UpdateAssociationTypeMcpRequest;
 
 #[Description('Update an association type\'s labels. The code and flags cannot change.')]
 final class UpdateAssociationTypeTool extends Tool

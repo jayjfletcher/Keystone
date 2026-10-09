@@ -2,12 +2,12 @@
 
 declare(strict_types=1);
 
-namespace JayI\Keystone\Domains\Category\Mcp\Requests;
+namespace RefactorCircus\Keystone\Domains\Category\Mcp\Requests;
 
-use JayI\Keystone\Domains\Category\Actions\ShowCategoryAction;
-use JayI\Keystone\Domains\Category\Resources\CategoryResource;
 use Laravel\Mcp\Response;
 use Laravel\Mcp\ResponseFactory;
+use RefactorCircus\Keystone\Domains\Category\Actions\ShowCategoryAction;
+use RefactorCircus\Keystone\Domains\Category\Resources\CategoryResource;
 
 final class ShowCategoryMcpRequest extends CategoryRequest
 {

@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace JayI\Keystone\Domains\Owner\Models;
+namespace RefactorCircus\Keystone\Domains\Owner\Models;
 
 use Illuminate\Database\Eloquent\Concerns\HasUlids;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -10,13 +10,13 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Support\Carbon;
-use JayI\Foundation\Models\Concerns\DispatchesModelEvents;
-use JayI\Keystone\Database\Factories\OwnerFactory;
-use JayI\Keystone\Domains\Asset\Concerns\HasAssets;
-use JayI\Keystone\Domains\Product\Models\ProductModel;
-use JayI\Keystone\Domains\ProductModel\Models\ProductModelModel;
-use JayI\Keystone\Support\Models\Concerns\HasLabels;
-use JayI\Keystone\Support\Models\Concerns\HasPath;
+use RefactorCircus\Foundation\Models\Concerns\DispatchesModelEvents;
+use RefactorCircus\Keystone\Database\Factories\OwnerFactory;
+use RefactorCircus\Keystone\Domains\Asset\Concerns\HasAssets;
+use RefactorCircus\Keystone\Domains\Product\Models\ProductModel;
+use RefactorCircus\Keystone\Domains\ProductModel\Models\ProductModelModel;
+use RefactorCircus\Keystone\Support\Models\Concerns\HasLabels;
+use RefactorCircus\Keystone\Support\Models\Concerns\HasPath;
 
 /**
  * One node of an ownership chain: "Acme" the vendor, "Classic" its series.

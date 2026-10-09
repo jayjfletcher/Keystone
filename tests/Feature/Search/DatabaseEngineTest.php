@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-use JayI\Keystone\Domains\Search\Contracts\SearchEngine;
-use JayI\Keystone\Domains\Search\Exceptions\UnsupportedSearchException;
-use JayI\Keystone\Domains\Search\Services\ScoutEngine;
-use JayI\Keystone\Tests\Fixtures\Catalog;
+use RefactorCircus\Keystone\Domains\Search\Contracts\SearchEngine;
+use RefactorCircus\Keystone\Domains\Search\Exceptions\UnsupportedSearchException;
+use RefactorCircus\Keystone\Domains\Search\Services\ScoutEngine;
+use RefactorCircus\Keystone\Tests\Fixtures\Catalog;
 
 beforeEach(function (): void {
     Catalog::apparel();

@@ -2,14 +2,14 @@
 
 declare(strict_types=1);
 
-namespace JayI\Keystone\Domains\Family\Mcp\Tools;
+namespace RefactorCircus\Keystone\Domains\Family\Mcp\Tools;
 
 use Illuminate\Contracts\JsonSchema\JsonSchema;
-use JayI\Foundation\Mcp\Tool;
-use JayI\Keystone\Domains\Family\Mcp\Requests\UpdateFamilyMcpRequest;
 use Laravel\Mcp\Response;
 use Laravel\Mcp\ResponseFactory;
 use Laravel\Mcp\Server\Attributes\Description;
+use RefactorCircus\Foundation\Mcp\Tool;
+use RefactorCircus\Keystone\Domains\Family\Mcp\Requests\UpdateFamilyMcpRequest;
 
 #[Description('Update a family\'s labels, attributes, label attribute or sort order. The attribute list replaces the family\'s whole membership. The code cannot change.')]
 final class UpdateFamilyTool extends Tool

@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace JayI\Keystone\Atrium;
+namespace RefactorCircus\Keystone\Atrium;
 
-use JayI\Keystone\Domains\Product\Enums\ProductStatus;
+use RefactorCircus\Keystone\Domains\Product\Enums\ProductStatus;
 
 /**
  * The Atrium colour of every status Keystone shows, as a status dot, in one

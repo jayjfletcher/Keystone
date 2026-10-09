@@ -1,5 +1,5 @@
-@use(JayI\Keystone\Domains\Attribute\Enums\AttributeType)
-@use(JayI\Keystone\Domains\Attribute\Services\Values)
+@use(RefactorCircus\Keystone\Domains\Attribute\Enums\AttributeType)
+@use(RefactorCircus\Keystone\Domains\Attribute\Services\Values)
 
 {{-- One input per attribute, for the slot this form edits: the picked
      locale for localizable attributes and the picked channel for scopable

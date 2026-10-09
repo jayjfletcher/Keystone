@@ -2,16 +2,16 @@
 
 declare(strict_types=1);
 
-namespace JayI\Keystone\Jobs;
+namespace RefactorCircus\Keystone\Jobs;
 
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Foundation\Bus\Dispatchable;
 use Illuminate\Queue\InteractsWithQueue;
-use JayI\Keystone\Domains\Product\Models\ProductModel;
-use JayI\Keystone\Domains\ProductModel\Models\ProductModelModel;
-use JayI\Keystone\Domains\Search\Services\ProductIndex;
+use RefactorCircus\Keystone\Domains\Product\Models\ProductModel;
+use RefactorCircus\Keystone\Domains\ProductModel\Models\ProductModelModel;
+use RefactorCircus\Keystone\Domains\Search\Services\ProductIndex;
 
 /**
  * Remove a deleted attribute's values — or a deleted option's — from every

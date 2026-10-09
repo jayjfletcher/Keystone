@@ -1,11 +1,11 @@
 # Dashboard
 
-Keystone registers itself with [Atrium](https://github.com/jayjfletcher/Atrium) — discovered from `composer.json` and switched off with `keystone.ui.enabled`. Atrium owns the dashboard's path (`/atrium` by default), middleware and `viewAtrium` gate.
+Keystone registers itself with [Atrium](https://github.com/Refactor-Circus/Atrium) — discovered from `composer.json` and switched off with `keystone.ui.enabled`. Atrium owns the dashboard's path (`/atrium` by default), middleware and `viewAtrium` gate.
 
 - **Catalog → Products:** search through the configured engine, filter by family and status, create products, edit values (one input per attribute, typed), enable or disable, see inherited values.
 - **Catalog → Product models:** create root models, edit their values, add sub-models and variant products by picking their axis values.
 - **Products — workflow:** each product page shows its status and live version with buttons for the transitions open to it (and a comment), completeness per channel and locale with what is missing, and the latest history with revert. The product list shows and filters status. Family pages narrow each requirement to channels.
-- **Audit history (with [jayi/keen](https://github.com/jayjfletcher/Keen)):** product, product model, family, attribute, category, owner, asset and channel pages show that record's audit entries, and the product list shows Keystone's latest. Without Keen nothing renders. Product versions and revert stay as they are.
+- **Audit history (with [refactor-circus/keen](https://github.com/Refactor-Circus/Keen)):** product, product model, family, attribute, category, owner, asset and channel pages show that record's audit entries, and the product list shows Keystone's latest. Without Keen nothing renders. Product versions and revert stay as they are.
 - **Catalog → Association types:** create plain, two-way and quantified types. Product and product model pages list associations (inherited ones marked) and add or remove one at a time.
 - **Catalog → Channels:** add and remove locales; create channels with their locales, currencies and category tree.
 - **Values:** product and product model pages pick a locale and a channel, so every localizable and scopable value can be edited.
@@ -15,7 +15,7 @@ Keystone registers itself with [Atrium](https://github.com/jayjfletcher/Atrium) 
 - **Catalog → Families:** create families; add, remove, reorder and require attributes; pick the label attribute; create family variants and open them.
 - **Catalog → Attributes:** filter by search, type and group; create an attribute; edit its group, label, flags and settings; add and delete options on select and multiselect attributes.
 - **Catalog → Attribute groups:** create, rename, reorder and delete groups, and see the attributes in each.
-- **Catalog → Import & export:** upload a file to import, start an export, follow the latest runs (with jayi/impex). See [Import, export and feeds](12-impex.md).
+- **Catalog → Import & export:** upload a file to import, start an export, follow the latest runs (with refactor-circus/impex). See [Import, export and feeds](12-impex.md).
 - **Widgets:** offered in Atrium's widget picker, placed on no one's dashboard until they add them:
   - *Products by status* — counts per review state and live, each linking to the filtered product list;
   - *Completeness* — average score and fully complete products per channel and locale;
@@ -30,7 +30,7 @@ Publish the views with `--tag="keystone-views"` to change them.
 
 ## Look
 
-The screens follow Atrium's screen conventions. Every action - create, save, delete, filter, upload, link, a workflow transition, a back link - is an `<x-atrium::icon-button>`: an icon whose label is its tooltip and accessible name. Statuses are `<x-atrium::status-dot>`s, coloured in one place, `JayI\Keystone\Atrium\Badges`:
+The screens follow Atrium's screen conventions. Every action - create, save, delete, filter, upload, link, a workflow transition, a back link - is an `<x-atrium::icon-button>`: an icon whose label is its tooltip and accessible name. Statuses are `<x-atrium::status-dot>`s, coloured in one place, `RefactorCircus\Keystone\Atrium\Badges`:
 
 | Status | Colour |
 |---|---|
@@ -44,7 +44,7 @@ Each dot carries `data-status` with the raw value. Labels such as an attribute's
 
 ## Who sees what
 
-With `keystone.authorization` on, each screen asks the policies in `keystone.policies` exactly as the JSON API and MCP tools ask - the same ability on the same model or model class - through `JayI\Keystone\Atrium\ScreenAccess`. Controllers refuse with it (403) and views hide controls with it, so a control is shown exactly when its action is allowed:
+With `keystone.authorization` on, each screen asks the policies in `keystone.policies` exactly as the JSON API and MCP tools ask - the same ability on the same model or model class - through `RefactorCircus\Keystone\Atrium\ScreenAccess`. Controllers refuse with it (403) and views hide controls with it, so a control is shown exactly when its action is allowed:
 
 | Shown / allowed | Asks |
 |---|---|
@@ -71,10 +71,10 @@ With `keystone.authorization` off, everything is shown and allowed, and Atrium's
 
 ## Switching Keystone off
 
-With [jayi/pennantplus](https://github.com/jayjfletcher/PennantPlus) installed, `JayI\Keystone\Atrium\Features\KeystoneSupportFeature` switches Keystone in Atrium on and off as a whole: navigation, widgets, settings, search and pages (which answer 404). It is on until its global value is set, and only the global value counts - per-user access stays with the policies:
+With [refactor-circus/pennantplus](https://github.com/Refactor-Circus/PennantPlus) installed, `RefactorCircus\Keystone\Atrium\Features\KeystoneSupportFeature` switches Keystone in Atrium on and off as a whole: navigation, widgets, settings, search and pages (which answer 404). It is on until its global value is set, and only the global value counts - per-user access stays with the policies:
 
 ```php
 Feature::for(null)->deactivate(KeystoneSupportFeature::class);
 ```
 
-`keystone.atrium.features` lists the features that must all be on (default `[KeystoneSupportFeature::class]`): point it at a subclass to change the default, or at your own features. Feature classes that cannot be loaded - KeystoneSupportFeature without jayi/pennantplus - are skipped, so nothing is checked until Pennant is installed. The JSON API and MCP tools are not affected.
+`keystone.atrium.features` lists the features that must all be on (default `[KeystoneSupportFeature::class]`): point it at a subclass to change the default, or at your own features. Feature classes that cannot be loaded - KeystoneSupportFeature without refactor-circus/pennantplus - are skipped, so nothing is checked until Pennant is installed. The JSON API and MCP tools are not affected.

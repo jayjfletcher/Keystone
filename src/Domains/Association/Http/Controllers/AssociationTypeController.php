@@ -2,15 +2,15 @@
 
 declare(strict_types=1);
 
-namespace JayI\Keystone\Domains\Association\Http\Controllers;
+namespace RefactorCircus\Keystone\Domains\Association\Http\Controllers;
 
 use Illuminate\Http\JsonResponse;
-use JayI\Keystone\Domains\Association\Http\Requests\DeleteAssociationTypeRequest;
-use JayI\Keystone\Domains\Association\Http\Requests\IndexAssociationTypesRequest;
-use JayI\Keystone\Domains\Association\Http\Requests\ShowAssociationTypeRequest;
-use JayI\Keystone\Domains\Association\Http\Requests\StoreAssociationTypeRequest;
-use JayI\Keystone\Domains\Association\Http\Requests\UpdateAssociationTypeRequest;
-use JayI\Keystone\Domains\Association\Models\AssociationTypeModel;
+use RefactorCircus\Keystone\Domains\Association\Http\Requests\DeleteAssociationTypeRequest;
+use RefactorCircus\Keystone\Domains\Association\Http\Requests\IndexAssociationTypesRequest;
+use RefactorCircus\Keystone\Domains\Association\Http\Requests\ShowAssociationTypeRequest;
+use RefactorCircus\Keystone\Domains\Association\Http\Requests\StoreAssociationTypeRequest;
+use RefactorCircus\Keystone\Domains\Association\Http\Requests\UpdateAssociationTypeRequest;
+use RefactorCircus\Keystone\Domains\Association\Models\AssociationTypeModel;
 
 final class AssociationTypeController
 {

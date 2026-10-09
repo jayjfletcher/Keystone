@@ -2,13 +2,13 @@
 
 declare(strict_types=1);
 
-namespace JayI\Keystone\Domains\Attribute\Http\Requests;
+namespace RefactorCircus\Keystone\Domains\Attribute\Http\Requests;
 
 use Illuminate\Http\JsonResponse;
-use JayI\Foundation\Http\Requests\Request;
-use JayI\Keystone\Domains\Attribute\Actions\CreateAttributeAction;
-use JayI\Keystone\Domains\Attribute\Models\AttributeModel;
-use JayI\Keystone\Domains\Attribute\Resources\AttributeResource;
+use RefactorCircus\Foundation\Http\Requests\Request;
+use RefactorCircus\Keystone\Domains\Attribute\Actions\CreateAttributeAction;
+use RefactorCircus\Keystone\Domains\Attribute\Models\AttributeModel;
+use RefactorCircus\Keystone\Domains\Attribute\Resources\AttributeResource;
 
 final class StoreAttributeRequest extends Request
 {

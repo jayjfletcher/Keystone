@@ -2,16 +2,16 @@
 
 declare(strict_types=1);
 
-namespace JayI\Keystone\Domains\Channel\Actions;
+namespace RefactorCircus\Keystone\Domains\Channel\Actions;
 
 use Illuminate\Support\Facades\DB;
 use Illuminate\Validation\ValidationException;
-use JayI\Keystone\Domains\Channel\Concerns\WritesChannels;
-use JayI\Keystone\Domains\Channel\Events\ChannelCreatedActionEvent;
-use JayI\Keystone\Domains\Channel\Events\ChannelCreatingActionEvent;
-use JayI\Keystone\Domains\Channel\Models\ChannelModel;
-use JayI\Keystone\Domains\Product\Models\ProductModel;
-use JayI\Keystone\Domains\Search\Services\ProductIndex;
+use RefactorCircus\Keystone\Domains\Channel\Concerns\WritesChannels;
+use RefactorCircus\Keystone\Domains\Channel\Events\ChannelCreatedActionEvent;
+use RefactorCircus\Keystone\Domains\Channel\Events\ChannelCreatingActionEvent;
+use RefactorCircus\Keystone\Domains\Channel\Models\ChannelModel;
+use RefactorCircus\Keystone\Domains\Product\Models\ProductModel;
+use RefactorCircus\Keystone\Domains\Search\Services\ProductIndex;
 
 final class CreateChannelAction
 {

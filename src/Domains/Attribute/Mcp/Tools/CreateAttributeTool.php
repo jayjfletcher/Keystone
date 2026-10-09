@@ -2,14 +2,14 @@
 
 declare(strict_types=1);
 
-namespace JayI\Keystone\Domains\Attribute\Mcp\Tools;
+namespace RefactorCircus\Keystone\Domains\Attribute\Mcp\Tools;
 
 use Illuminate\Contracts\JsonSchema\JsonSchema;
-use JayI\Foundation\Mcp\Tool;
-use JayI\Keystone\Domains\Attribute\Mcp\Requests\CreateAttributeMcpRequest;
 use Laravel\Mcp\Response;
 use Laravel\Mcp\ResponseFactory;
 use Laravel\Mcp\Server\Attributes\Description;
+use RefactorCircus\Foundation\Mcp\Tool;
+use RefactorCircus\Keystone\Domains\Attribute\Mcp\Requests\CreateAttributeMcpRequest;
 
 #[Description('Create an attribute. Its code and type are permanent. Select and multiselect attributes take options, added with create-attribute-option-tool.')]
 final class CreateAttributeTool extends Tool

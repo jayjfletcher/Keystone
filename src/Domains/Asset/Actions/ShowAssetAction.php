@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-namespace JayI\Keystone\Domains\Asset\Actions;
+namespace RefactorCircus\Keystone\Domains\Asset\Actions;
 
-use JayI\Keystone\Domains\Asset\Events\AssetShowingActionEvent;
-use JayI\Keystone\Domains\Asset\Events\AssetShownActionEvent;
-use JayI\Keystone\Domains\Asset\Models\AssetModel;
+use RefactorCircus\Keystone\Domains\Asset\Events\AssetShowingActionEvent;
+use RefactorCircus\Keystone\Domains\Asset\Events\AssetShownActionEvent;
+use RefactorCircus\Keystone\Domains\Asset\Models\AssetModel;
 
 final class ShowAssetAction
 {

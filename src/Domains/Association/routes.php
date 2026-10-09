@@ -3,7 +3,7 @@
 declare(strict_types=1);
 
 use Illuminate\Support\Facades\Route;
-use JayI\Keystone\Domains\Association\Http\Controllers\AssociationTypeController;
+use RefactorCircus\Keystone\Domains\Association\Http\Controllers\AssociationTypeController;
 
 Route::get('association-types', [AssociationTypeController::class, 'index'])->name('association-types.index');
 Route::post('association-types', [AssociationTypeController::class, 'store'])->name('association-types.store');

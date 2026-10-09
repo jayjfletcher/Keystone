@@ -2,15 +2,15 @@
 
 declare(strict_types=1);
 
-use JayI\Foundation\Audit\AuditHooks;
-use JayI\Keystone\Domains\Association\Models\AssociationModel;
-use JayI\Keystone\Domains\Attribute\Models\AttributeModel;
-use JayI\Keystone\Domains\Family\Models\FamilyModel;
-use JayI\Keystone\Domains\Workflow\Models\VersionModel;
-use JayI\Keystone\Tests\Fixtures\Catalog;
+use RefactorCircus\Foundation\Audit\AuditHooks;
+use RefactorCircus\Keystone\Domains\Association\Models\AssociationModel;
+use RefactorCircus\Keystone\Domains\Attribute\Models\AttributeModel;
+use RefactorCircus\Keystone\Domains\Family\Models\FamilyModel;
+use RefactorCircus\Keystone\Domains\Workflow\Models\VersionModel;
+use RefactorCircus\Keystone\Tests\Fixtures\Catalog;
 
 /**
- * What the audit log (jayi/keen) calls Keystone's records, where the default
+ * What the audit log (refactor-circus/keen) calls Keystone's records, where the default
  * naming attributes would fall short.
  */
 beforeEach(function (): void {

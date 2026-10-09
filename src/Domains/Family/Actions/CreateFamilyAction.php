@@ -2,14 +2,14 @@
 
 declare(strict_types=1);
 
-namespace JayI\Keystone\Domains\Family\Actions;
+namespace RefactorCircus\Keystone\Domains\Family\Actions;
 
 use Illuminate\Support\Facades\DB;
 use Illuminate\Validation\ValidationException;
-use JayI\Keystone\Domains\Family\Concerns\WritesFamilyAttributes;
-use JayI\Keystone\Domains\Family\Events\FamilyCreatedActionEvent;
-use JayI\Keystone\Domains\Family\Events\FamilyCreatingActionEvent;
-use JayI\Keystone\Domains\Family\Models\FamilyModel;
+use RefactorCircus\Keystone\Domains\Family\Concerns\WritesFamilyAttributes;
+use RefactorCircus\Keystone\Domains\Family\Events\FamilyCreatedActionEvent;
+use RefactorCircus\Keystone\Domains\Family\Events\FamilyCreatingActionEvent;
+use RefactorCircus\Keystone\Domains\Family\Models\FamilyModel;
 
 final class CreateFamilyAction
 {

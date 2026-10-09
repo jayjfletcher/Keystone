@@ -3,7 +3,7 @@
 declare(strict_types=1);
 
 use Illuminate\Support\Facades\Route;
-use JayI\Keystone\Domains\Asset\Http\Controllers\AssetController;
+use RefactorCircus\Keystone\Domains\Asset\Http\Controllers\AssetController;
 
 Route::get('assets', [AssetController::class, 'index'])->name('assets.index');
 Route::post('assets', [AssetController::class, 'store'])->name('assets.store');

@@ -2,12 +2,12 @@
 
 declare(strict_types=1);
 
-namespace JayI\Keystone\Domains\Asset\Concerns;
+namespace RefactorCircus\Keystone\Domains\Asset\Concerns;
 
 use Illuminate\Http\UploadedFile;
 use Illuminate\Validation\ValidationException;
-use JayI\Keystone\Domains\Asset\Data\StoredFile;
-use JayI\Keystone\Domains\Asset\Services\AssetStorage;
+use RefactorCircus\Keystone\Domains\Asset\Data\StoredFile;
+use RefactorCircus\Keystone\Domains\Asset\Services\AssetStorage;
 
 /**
  * Taking a file in from an upload, a path on the disk or a URL, shared by

@@ -2,13 +2,13 @@
 
 declare(strict_types=1);
 
-namespace JayI\Keystone\Domains\Workflow\Models;
+namespace RefactorCircus\Keystone\Domains\Workflow\Models;
 
 use Illuminate\Database\Eloquent\Concerns\HasUlids;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\MorphTo;
 use Illuminate\Support\Carbon;
-use JayI\Foundation\Models\Concerns\DispatchesModelEvents;
+use RefactorCircus\Foundation\Models\Concerns\DispatchesModelEvents;
 
 /**
  * One recorded state of a product: what it held, what changed since the

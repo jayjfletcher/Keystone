@@ -1,7 +1,7 @@
 # Products, Product Models, Variants & Search — Plan
 
 1. Save spec documentation (`shape.md`, this plan).
-2. Dependencies: `jayi/stretch` (VCS) and `laravel/scout` ^11 in `require-dev` + `suggest`.
+2. Dependencies: `refactor-circus/stretch` (VCS) and `laravel/scout` ^11 in `require-dev` + `suggest`.
 3. Migration `2026_01_01_000003_create_keystone_product_tables.php`: family variants (+ attribute placement), product models, products, unique values.
 4. Models `FamilyVariant`, `ProductModel`, `Product` (+ `HasValues`, factories, model events); `Values` shape converter; `ValueValidator`; `UniqueValues`.
 5. Search: `Contracts\SearchEngine`; `ProductQuery`, `Filter`, `SearchResults`, `ProductDocument`, `ProductPage`; engines `DatabaseEngine`, `ElasticsearchEngine` (Stretch), `ScoutEngine` (+ `SearchableProduct`); `ProductIndex`, `SyncProductIndex` job, `keystone:search:reindex`; engine resolved from `keystone.search.engine`.

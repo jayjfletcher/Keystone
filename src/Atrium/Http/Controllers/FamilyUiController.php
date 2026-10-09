@@ -2,22 +2,22 @@
 
 declare(strict_types=1);
 
-namespace JayI\Keystone\Atrium\Http\Controllers;
+namespace RefactorCircus\Keystone\Atrium\Http\Controllers;
 
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
-use JayI\Atrium\Http\Controllers\Concerns\AuthorizesScreens;
-use JayI\Keystone\Atrium\Support\Labels;
-use JayI\Keystone\Domains\Attribute\Enums\AttributeType;
-use JayI\Keystone\Domains\Attribute\Models\AttributeModel;
-use JayI\Keystone\Domains\Family\Actions\CreateFamilyAction;
-use JayI\Keystone\Domains\Family\Actions\DeleteFamilyAction;
-use JayI\Keystone\Domains\Family\Actions\ListFamiliesAction;
-use JayI\Keystone\Domains\Family\Actions\ShowFamilyAction;
-use JayI\Keystone\Domains\Family\Actions\UpdateFamilyAction;
-use JayI\Keystone\Domains\Family\Models\FamilyModel;
+use RefactorCircus\Atrium\Http\Controllers\Concerns\AuthorizesScreens;
+use RefactorCircus\Keystone\Atrium\Support\Labels;
+use RefactorCircus\Keystone\Domains\Attribute\Enums\AttributeType;
+use RefactorCircus\Keystone\Domains\Attribute\Models\AttributeModel;
+use RefactorCircus\Keystone\Domains\Family\Actions\CreateFamilyAction;
+use RefactorCircus\Keystone\Domains\Family\Actions\DeleteFamilyAction;
+use RefactorCircus\Keystone\Domains\Family\Actions\ListFamiliesAction;
+use RefactorCircus\Keystone\Domains\Family\Actions\ShowFamilyAction;
+use RefactorCircus\Keystone\Domains\Family\Actions\UpdateFamilyAction;
+use RefactorCircus\Keystone\Domains\Family\Models\FamilyModel;
 
 final class FamilyUiController
 {

@@ -5,12 +5,12 @@ declare(strict_types=1);
 use Illuminate\Http\Client\Request;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Storage;
-use JayI\Impex\Domains\Subscription\Actions\CreateSubscriberAction;
-use JayI\Impex\Domains\Subscription\Actions\CreateSubscriptionAction;
-use JayI\Impex\Domains\Subscription\Models\SubscriptionModel;
-use JayI\Impex\Domains\Subscription\Services\Exporter;
-use JayI\Keystone\Impex\ImpexIntegration;
-use JayI\Keystone\Tests\Fixtures\Catalog;
+use RefactorCircus\Impex\Domains\Subscription\Actions\CreateSubscriberAction;
+use RefactorCircus\Impex\Domains\Subscription\Actions\CreateSubscriptionAction;
+use RefactorCircus\Impex\Domains\Subscription\Models\SubscriptionModel;
+use RefactorCircus\Impex\Domains\Subscription\Services\Exporter;
+use RefactorCircus\Keystone\Impex\ImpexIntegration;
+use RefactorCircus\Keystone\Tests\Fixtures\Catalog;
 
 beforeEach(function (): void {
     config()->set('keystone.impex.webhooks.enabled', true);

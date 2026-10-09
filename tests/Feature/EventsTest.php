@@ -3,18 +3,18 @@
 declare(strict_types=1);
 
 use Illuminate\Support\Facades\Event;
-use JayI\Foundation\Contracts\ActionFinishedEvent;
-use JayI\Foundation\Contracts\ActionStartingEvent;
-use JayI\Foundation\Contracts\ModelLifecycleEvent;
-use JayI\Keystone\Domains\Attribute\Actions\CreateAttributeAction;
-use JayI\Keystone\Domains\Attribute\Actions\DeleteAttributeGroupAction;
-use JayI\Keystone\Domains\Attribute\Events\AttributeCreatedActionEvent;
-use JayI\Keystone\Domains\Attribute\Events\AttributeCreatingActionEvent;
-use JayI\Keystone\Domains\Attribute\Events\AttributeGroupDeletedActionEvent;
-use JayI\Keystone\Domains\Attribute\Events\AttributeGroupDeletingActionEvent;
-use JayI\Keystone\Domains\Attribute\Exceptions\AttributeGroupNotEmptyException;
-use JayI\Keystone\Domains\Attribute\Models\AttributeGroupModel;
-use JayI\Keystone\Domains\Attribute\Models\AttributeModel;
+use RefactorCircus\Foundation\Contracts\ActionFinishedEvent;
+use RefactorCircus\Foundation\Contracts\ActionStartingEvent;
+use RefactorCircus\Foundation\Contracts\ModelLifecycleEvent;
+use RefactorCircus\Keystone\Domains\Attribute\Actions\CreateAttributeAction;
+use RefactorCircus\Keystone\Domains\Attribute\Actions\DeleteAttributeGroupAction;
+use RefactorCircus\Keystone\Domains\Attribute\Events\AttributeCreatedActionEvent;
+use RefactorCircus\Keystone\Domains\Attribute\Events\AttributeCreatingActionEvent;
+use RefactorCircus\Keystone\Domains\Attribute\Events\AttributeGroupDeletedActionEvent;
+use RefactorCircus\Keystone\Domains\Attribute\Events\AttributeGroupDeletingActionEvent;
+use RefactorCircus\Keystone\Domains\Attribute\Exceptions\AttributeGroupNotEmptyException;
+use RefactorCircus\Keystone\Domains\Attribute\Models\AttributeGroupModel;
+use RefactorCircus\Keystone\Domains\Attribute\Models\AttributeModel;
 
 /**
  * Record every event of a kind, in order.
@@ -38,7 +38,7 @@ it('maps every Eloquent hook of every model to its own event', function (): void
     $hooks = ['retrieved', 'creating', 'created', 'updating', 'updated', 'saving', 'saved', 'deleting', 'deleted', 'replicating'];
 
     $models = array_map(
-        fn (string $path): string => 'JayI\\Keystone\\Domains\\'.basename(dirname($path, 2)).'\\Models\\'.basename($path, '.php'),
+        fn (string $path): string => 'RefactorCircus\\Keystone\\Domains\\'.basename(dirname($path, 2)).'\\Models\\'.basename($path, '.php'),
         // The Scout search model only reads the products table; it fires no events of its own.
         array_filter(glob(dirname(__DIR__, 2).'/src/Domains/*/Models/*.php') ?: [], fn (string $path): bool => basename($path) !== 'SearchableProductModel.php'),
     );
@@ -64,7 +64,7 @@ it('fires one starting and one finished event for every Action', function (): vo
 
         expect($matches[1])->toHaveCount(2, basename($path).' should dispatch exactly two action events');
 
-        $namespace = 'JayI\\Keystone\\Domains\\'.basename(dirname($path, 2)).'\\Events\\';
+        $namespace = 'RefactorCircus\\Keystone\\Domains\\'.basename(dirname($path, 2)).'\\Events\\';
 
         [$starting, $finished] = array_map(fn (string $event): string => $namespace.$event, $matches[1]);
 

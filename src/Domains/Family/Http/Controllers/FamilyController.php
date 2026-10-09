@@ -2,15 +2,15 @@
 
 declare(strict_types=1);
 
-namespace JayI\Keystone\Domains\Family\Http\Controllers;
+namespace RefactorCircus\Keystone\Domains\Family\Http\Controllers;
 
 use Illuminate\Http\JsonResponse;
-use JayI\Keystone\Domains\Family\Http\Requests\DeleteFamilyRequest;
-use JayI\Keystone\Domains\Family\Http\Requests\IndexFamiliesRequest;
-use JayI\Keystone\Domains\Family\Http\Requests\ShowFamilyRequest;
-use JayI\Keystone\Domains\Family\Http\Requests\StoreFamilyRequest;
-use JayI\Keystone\Domains\Family\Http\Requests\UpdateFamilyRequest;
-use JayI\Keystone\Domains\Family\Models\FamilyModel;
+use RefactorCircus\Keystone\Domains\Family\Http\Requests\DeleteFamilyRequest;
+use RefactorCircus\Keystone\Domains\Family\Http\Requests\IndexFamiliesRequest;
+use RefactorCircus\Keystone\Domains\Family\Http\Requests\ShowFamilyRequest;
+use RefactorCircus\Keystone\Domains\Family\Http\Requests\StoreFamilyRequest;
+use RefactorCircus\Keystone\Domains\Family\Http\Requests\UpdateFamilyRequest;
+use RefactorCircus\Keystone\Domains\Family\Models\FamilyModel;
 
 final class FamilyController
 {

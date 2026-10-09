@@ -2,12 +2,12 @@
 
 declare(strict_types=1);
 
-namespace JayI\Keystone\Domains\Attribute\Actions;
+namespace RefactorCircus\Keystone\Domains\Attribute\Actions;
 
 use Illuminate\Contracts\Pagination\CursorPaginator;
-use JayI\Keystone\Domains\Attribute\Events\AttributeGroupsListedActionEvent;
-use JayI\Keystone\Domains\Attribute\Events\AttributeGroupsListingActionEvent;
-use JayI\Keystone\Domains\Attribute\Models\AttributeGroupModel;
+use RefactorCircus\Keystone\Domains\Attribute\Events\AttributeGroupsListedActionEvent;
+use RefactorCircus\Keystone\Domains\Attribute\Events\AttributeGroupsListingActionEvent;
+use RefactorCircus\Keystone\Domains\Attribute\Models\AttributeGroupModel;
 
 final class ListAttributeGroupsAction
 {

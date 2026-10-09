@@ -2,12 +2,12 @@
 
 declare(strict_types=1);
 
-namespace JayI\Keystone\Domains\Transfer\Events;
+namespace RefactorCircus\Keystone\Domains\Transfer\Events;
 
 use Illuminate\Foundation\Events\Dispatchable;
 use Illuminate\Queue\SerializesModels;
-use JayI\Foundation\Contracts\ActionFinishedEvent;
-use JayI\Impex\Domains\Run\Models\RunModel;
+use RefactorCircus\Foundation\Contracts\ActionFinishedEvent;
+use RefactorCircus\Impex\Domains\Run\Models\RunModel;
 
 /**
  * A product export started.

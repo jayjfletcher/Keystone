@@ -1,4 +1,4 @@
-@use(JayI\Keystone\Domains\Product\Models\ProductModel)
+@use(RefactorCircus\Keystone\Domains\Product\Models\ProductModel)
 
 <x-atrium::card :title="__('keystone::keystone.widget_recent_changes')">
     @if ($versions->isEmpty())

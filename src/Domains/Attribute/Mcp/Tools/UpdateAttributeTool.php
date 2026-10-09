@@ -2,14 +2,14 @@
 
 declare(strict_types=1);
 
-namespace JayI\Keystone\Domains\Attribute\Mcp\Tools;
+namespace RefactorCircus\Keystone\Domains\Attribute\Mcp\Tools;
 
 use Illuminate\Contracts\JsonSchema\JsonSchema;
-use JayI\Foundation\Mcp\Tool;
-use JayI\Keystone\Domains\Attribute\Mcp\Requests\UpdateAttributeMcpRequest;
 use Laravel\Mcp\Response;
 use Laravel\Mcp\ResponseFactory;
 use Laravel\Mcp\Server\Attributes\Description;
+use RefactorCircus\Foundation\Mcp\Tool;
+use RefactorCircus\Keystone\Domains\Attribute\Mcp\Requests\UpdateAttributeMcpRequest;
 
 #[Description('Update an attribute\'s group, labels, flags, settings or sort order. The code and type cannot change.')]
 final class UpdateAttributeTool extends Tool

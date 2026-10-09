@@ -2,13 +2,13 @@
 
 declare(strict_types=1);
 
-namespace JayI\Keystone\Domains\Workflow\Events;
+namespace RefactorCircus\Keystone\Domains\Workflow\Events;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Foundation\Events\Dispatchable;
 use Illuminate\Queue\SerializesModels;
-use JayI\Foundation\Contracts\ModelLifecycleEvent;
-use JayI\Keystone\Domains\Workflow\Models\CompletenessModel;
+use RefactorCircus\Foundation\Contracts\ModelLifecycleEvent;
+use RefactorCircus\Keystone\Domains\Workflow\Models\CompletenessModel;
 
 /**
  * The Completeness `creating` Eloquent event.

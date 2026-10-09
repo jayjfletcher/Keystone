@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace JayI\Keystone\Domains\Product\Http\Requests;
+namespace RefactorCircus\Keystone\Domains\Product\Http\Requests;
 
 use Illuminate\Http\JsonResponse;
-use JayI\Keystone\Domains\Product\Actions\DeleteProductAction;
+use RefactorCircus\Keystone\Domains\Product\Actions\DeleteProductAction;
 
 final class DeleteProductRequest extends ProductRequest
 {

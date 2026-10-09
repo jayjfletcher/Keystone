@@ -47,7 +47,7 @@
             @endkeystoneCan
 
             <x-atrium::card :title="__('keystone::keystone.links')">
-                @php($canLink = \JayI\Keystone\Atrium\ScreenAccess::allows('update', $asset))
+                @php($canLink = \RefactorCircus\Keystone\Atrium\ScreenAccess::allows('update', $asset))
                 @php($links = [
                     'product' => $asset->products,
                     'product_model' => $asset->productModels,

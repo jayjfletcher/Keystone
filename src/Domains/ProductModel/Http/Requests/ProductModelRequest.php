@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace JayI\Keystone\Domains\ProductModel\Http\Requests;
+namespace RefactorCircus\Keystone\Domains\ProductModel\Http\Requests;
 
-use JayI\Foundation\Http\Requests\Request;
-use JayI\Keystone\Domains\ProductModel\Models\ProductModelModel;
+use RefactorCircus\Foundation\Http\Requests\Request;
+use RefactorCircus\Keystone\Domains\ProductModel\Models\ProductModelModel;
 
 abstract class ProductModelRequest extends Request
 {

@@ -1,4 +1,4 @@
-@use(JayI\Keystone\Domains\Attribute\Models\AttributeGroupModel)
+@use(RefactorCircus\Keystone\Domains\Attribute\Models\AttributeGroupModel)
 @php($locale = app()->getLocale())
 
 <x-atrium::layout :title="__('keystone::keystone.attribute_groups')">

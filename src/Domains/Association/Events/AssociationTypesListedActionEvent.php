@@ -2,13 +2,13 @@
 
 declare(strict_types=1);
 
-namespace JayI\Keystone\Domains\Association\Events;
+namespace RefactorCircus\Keystone\Domains\Association\Events;
 
 use Illuminate\Contracts\Pagination\CursorPaginator;
 use Illuminate\Foundation\Events\Dispatchable;
 use Illuminate\Queue\SerializesModels;
-use JayI\Foundation\Contracts\ActionFinishedEvent;
-use JayI\Keystone\Domains\Association\Models\AssociationTypeModel;
+use RefactorCircus\Foundation\Contracts\ActionFinishedEvent;
+use RefactorCircus\Keystone\Domains\Association\Models\AssociationTypeModel;
 
 /**
  * Association types were listed.

@@ -3,12 +3,12 @@
 declare(strict_types=1);
 
 use Illuminate\Support\Collection;
-use JayI\Keystone\Mcp\KeystoneServer;
 use Laravel\Mcp\Request;
 use Laravel\Mcp\Response;
 use Laravel\Mcp\Server\Content\Text;
 use Laravel\Mcp\Server\Tool;
 use Laravel\Mcp\Server\Transport\FakeTransporter;
+use RefactorCircus\Keystone\Mcp\KeystoneServer;
 
 /**
  * @return Collection<int, Tool>

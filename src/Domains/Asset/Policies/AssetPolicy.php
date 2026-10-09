@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace JayI\Keystone\Domains\Asset\Policies;
+namespace RefactorCircus\Keystone\Domains\Asset\Policies;
 
-use JayI\Keystone\Support\Policies\Policy;
+use RefactorCircus\Keystone\Support\Policies\Policy;
 
 class AssetPolicy extends Policy
 {

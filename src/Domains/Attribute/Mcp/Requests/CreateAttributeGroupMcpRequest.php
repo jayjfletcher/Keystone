@@ -2,14 +2,14 @@
 
 declare(strict_types=1);
 
-namespace JayI\Keystone\Domains\Attribute\Mcp\Requests;
+namespace RefactorCircus\Keystone\Domains\Attribute\Mcp\Requests;
 
-use JayI\Foundation\Mcp\Requests\Request;
-use JayI\Keystone\Domains\Attribute\Actions\CreateAttributeGroupAction;
-use JayI\Keystone\Domains\Attribute\Models\AttributeGroupModel;
-use JayI\Keystone\Domains\Attribute\Resources\AttributeGroupResource;
 use Laravel\Mcp\Response;
 use Laravel\Mcp\ResponseFactory;
+use RefactorCircus\Foundation\Mcp\Requests\Request;
+use RefactorCircus\Keystone\Domains\Attribute\Actions\CreateAttributeGroupAction;
+use RefactorCircus\Keystone\Domains\Attribute\Models\AttributeGroupModel;
+use RefactorCircus\Keystone\Domains\Attribute\Resources\AttributeGroupResource;
 
 final class CreateAttributeGroupMcpRequest extends Request
 {

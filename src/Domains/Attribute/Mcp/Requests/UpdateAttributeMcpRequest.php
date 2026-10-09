@@ -2,12 +2,12 @@
 
 declare(strict_types=1);
 
-namespace JayI\Keystone\Domains\Attribute\Mcp\Requests;
+namespace RefactorCircus\Keystone\Domains\Attribute\Mcp\Requests;
 
-use JayI\Keystone\Domains\Attribute\Actions\UpdateAttributeAction;
-use JayI\Keystone\Domains\Attribute\Resources\AttributeResource;
 use Laravel\Mcp\Response;
 use Laravel\Mcp\ResponseFactory;
+use RefactorCircus\Keystone\Domains\Attribute\Actions\UpdateAttributeAction;
+use RefactorCircus\Keystone\Domains\Attribute\Resources\AttributeResource;
 
 final class UpdateAttributeMcpRequest extends AttributeRequest
 {

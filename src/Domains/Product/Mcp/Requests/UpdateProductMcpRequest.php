@@ -2,12 +2,12 @@
 
 declare(strict_types=1);
 
-namespace JayI\Keystone\Domains\Product\Mcp\Requests;
+namespace RefactorCircus\Keystone\Domains\Product\Mcp\Requests;
 
-use JayI\Keystone\Domains\Product\Actions\UpdateProductAction;
-use JayI\Keystone\Domains\Product\Resources\ProductResource;
 use Laravel\Mcp\Response;
 use Laravel\Mcp\ResponseFactory;
+use RefactorCircus\Keystone\Domains\Product\Actions\UpdateProductAction;
+use RefactorCircus\Keystone\Domains\Product\Resources\ProductResource;
 
 final class UpdateProductMcpRequest extends ProductRequest
 {

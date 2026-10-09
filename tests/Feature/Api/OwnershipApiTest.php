@@ -2,8 +2,8 @@
 
 declare(strict_types=1);
 
-use JayI\Keystone\Domains\Owner\Models\OwnerModel;
-use JayI\Keystone\Tests\Fixtures\Catalog;
+use RefactorCircus\Keystone\Domains\Owner\Models\OwnerModel;
+use RefactorCircus\Keystone\Tests\Fixtures\Catalog;
 
 beforeEach(function (): void {
     // manufacturer → vendor → vendor → series; vendors may also stand alone.

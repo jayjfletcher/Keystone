@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace JayI\Keystone\Domains\Category\Http\Requests;
+namespace RefactorCircus\Keystone\Domains\Category\Http\Requests;
 
-use JayI\Foundation\Http\Requests\Request;
-use JayI\Keystone\Domains\Category\Models\CategoryModel;
+use RefactorCircus\Foundation\Http\Requests\Request;
+use RefactorCircus\Keystone\Domains\Category\Models\CategoryModel;
 
 abstract class CategoryRequest extends Request
 {

@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-namespace JayI\Keystone\Domains\Association\Resources;
+namespace RefactorCircus\Keystone\Domains\Association\Resources;
 
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
-use JayI\Keystone\Domains\Association\Models\AssociationTypeModel;
+use RefactorCircus\Keystone\Domains\Association\Models\AssociationTypeModel;
 
 /**
  * @mixin AssociationTypeModel

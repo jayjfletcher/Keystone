@@ -2,20 +2,20 @@
 
 declare(strict_types=1);
 
-namespace JayI\Keystone\Domains\Workflow\Actions;
+namespace RefactorCircus\Keystone\Domains\Workflow\Actions;
 
 use Illuminate\Support\Facades\DB;
 use Illuminate\Validation\Rule;
-use JayI\Keystone\Domains\Channel\Models\ChannelModel;
-use JayI\Keystone\Domains\Channel\Models\LocaleModel;
-use JayI\Keystone\Domains\Product\Models\ProductModel;
-use JayI\Keystone\Domains\Search\Services\ProductIndex;
-use JayI\Keystone\Domains\Workflow\Enums\Transition;
-use JayI\Keystone\Domains\Workflow\Events\ProductTransitionedActionEvent;
-use JayI\Keystone\Domains\Workflow\Events\ProductTransitioningActionEvent;
-use JayI\Keystone\Domains\Workflow\Exceptions\InvalidTransitionException;
-use JayI\Keystone\Domains\Workflow\Services\CompletenessCalculator;
-use JayI\Keystone\Domains\Workflow\Services\Versions;
+use RefactorCircus\Keystone\Domains\Channel\Models\ChannelModel;
+use RefactorCircus\Keystone\Domains\Channel\Models\LocaleModel;
+use RefactorCircus\Keystone\Domains\Product\Models\ProductModel;
+use RefactorCircus\Keystone\Domains\Search\Services\ProductIndex;
+use RefactorCircus\Keystone\Domains\Workflow\Enums\Transition;
+use RefactorCircus\Keystone\Domains\Workflow\Events\ProductTransitionedActionEvent;
+use RefactorCircus\Keystone\Domains\Workflow\Events\ProductTransitioningActionEvent;
+use RefactorCircus\Keystone\Domains\Workflow\Exceptions\InvalidTransitionException;
+use RefactorCircus\Keystone\Domains\Workflow\Services\CompletenessCalculator;
+use RefactorCircus\Keystone\Domains\Workflow\Services\Versions;
 
 final class TransitionProductAction
 {

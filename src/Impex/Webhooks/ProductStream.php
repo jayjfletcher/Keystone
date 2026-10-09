@@ -2,18 +2,18 @@
 
 declare(strict_types=1);
 
-namespace JayI\Keystone\Impex\Webhooks;
+namespace RefactorCircus\Keystone\Impex\Webhooks;
 
 use Illuminate\Contracts\Config\Repository as Config;
 use Illuminate\Contracts\Container\Container;
 use Illuminate\Database\ConnectionInterface;
 use Illuminate\Database\Eloquent\Collection;
-use JayI\Impex\Domains\Subscription\Contracts\Formatter;
-use JayI\Impex\Domains\Subscription\Contracts\SubscriptionMatcher;
-use JayI\Impex\Domains\Subscription\Enums\Selection;
-use JayI\Impex\Domains\Subscription\Models\SubscriptionModel;
-use JayI\Impex\Domains\Subscription\Support\AbstractStream;
-use JayI\Keystone\Domains\Product\Models\ProductModel;
+use RefactorCircus\Impex\Domains\Subscription\Contracts\Formatter;
+use RefactorCircus\Impex\Domains\Subscription\Contracts\SubscriptionMatcher;
+use RefactorCircus\Impex\Domains\Subscription\Enums\Selection;
+use RefactorCircus\Impex\Domains\Subscription\Models\SubscriptionModel;
+use RefactorCircus\Impex\Domains\Subscription\Support\AbstractStream;
+use RefactorCircus\Keystone\Domains\Product\Models\ProductModel;
 
 /**
  * Keystone's published products, as a stream vendors subscribe to.

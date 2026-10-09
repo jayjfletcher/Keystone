@@ -2,20 +2,20 @@
 
 declare(strict_types=1);
 
-namespace JayI\Keystone\Atrium\Http\Controllers;
+namespace RefactorCircus\Keystone\Atrium\Http\Controllers;
 
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
-use JayI\Atrium\Http\Controllers\Concerns\AuthorizesScreens;
-use JayI\Keystone\Atrium\Support\Labels;
-use JayI\Keystone\Domains\Attribute\Actions\CreateAttributeGroupAction;
-use JayI\Keystone\Domains\Attribute\Actions\DeleteAttributeGroupAction;
-use JayI\Keystone\Domains\Attribute\Actions\ListAttributeGroupsAction;
-use JayI\Keystone\Domains\Attribute\Actions\ShowAttributeGroupAction;
-use JayI\Keystone\Domains\Attribute\Actions\UpdateAttributeGroupAction;
-use JayI\Keystone\Domains\Attribute\Models\AttributeGroupModel;
-use JayI\Keystone\Exceptions\KeystoneException;
+use RefactorCircus\Atrium\Http\Controllers\Concerns\AuthorizesScreens;
+use RefactorCircus\Keystone\Atrium\Support\Labels;
+use RefactorCircus\Keystone\Domains\Attribute\Actions\CreateAttributeGroupAction;
+use RefactorCircus\Keystone\Domains\Attribute\Actions\DeleteAttributeGroupAction;
+use RefactorCircus\Keystone\Domains\Attribute\Actions\ListAttributeGroupsAction;
+use RefactorCircus\Keystone\Domains\Attribute\Actions\ShowAttributeGroupAction;
+use RefactorCircus\Keystone\Domains\Attribute\Actions\UpdateAttributeGroupAction;
+use RefactorCircus\Keystone\Domains\Attribute\Models\AttributeGroupModel;
+use RefactorCircus\Keystone\Exceptions\KeystoneException;
 
 final class AttributeGroupUiController
 {

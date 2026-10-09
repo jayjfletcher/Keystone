@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-namespace JayI\Keystone\Domains\Asset\Mcp\Requests;
+namespace RefactorCircus\Keystone\Domains\Asset\Mcp\Requests;
 
-use JayI\Keystone\Domains\Asset\Actions\DeleteAssetAction;
 use Laravel\Mcp\Response;
 use Laravel\Mcp\ResponseFactory;
+use RefactorCircus\Keystone\Domains\Asset\Actions\DeleteAssetAction;
 
 final class DeleteAssetMcpRequest extends AssetRequest
 {

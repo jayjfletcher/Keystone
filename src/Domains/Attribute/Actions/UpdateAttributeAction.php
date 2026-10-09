@@ -2,13 +2,13 @@
 
 declare(strict_types=1);
 
-namespace JayI\Keystone\Domains\Attribute\Actions;
+namespace RefactorCircus\Keystone\Domains\Attribute\Actions;
 
 use Illuminate\Validation\ValidationException;
-use JayI\Keystone\Domains\Attribute\Events\AttributeUpdatedActionEvent;
-use JayI\Keystone\Domains\Attribute\Events\AttributeUpdatingActionEvent;
-use JayI\Keystone\Domains\Attribute\Models\AttributeGroupModel;
-use JayI\Keystone\Domains\Attribute\Models\AttributeModel;
+use RefactorCircus\Keystone\Domains\Attribute\Events\AttributeUpdatedActionEvent;
+use RefactorCircus\Keystone\Domains\Attribute\Events\AttributeUpdatingActionEvent;
+use RefactorCircus\Keystone\Domains\Attribute\Models\AttributeGroupModel;
+use RefactorCircus\Keystone\Domains\Attribute\Models\AttributeModel;
 
 final class UpdateAttributeAction
 {

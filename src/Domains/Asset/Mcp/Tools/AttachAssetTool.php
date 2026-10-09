@@ -2,14 +2,14 @@
 
 declare(strict_types=1);
 
-namespace JayI\Keystone\Domains\Asset\Mcp\Tools;
+namespace RefactorCircus\Keystone\Domains\Asset\Mcp\Tools;
 
 use Illuminate\Contracts\JsonSchema\JsonSchema;
-use JayI\Foundation\Mcp\Tool;
-use JayI\Keystone\Domains\Asset\Mcp\Requests\AttachAssetMcpRequest;
 use Laravel\Mcp\Response;
 use Laravel\Mcp\ResponseFactory;
 use Laravel\Mcp\Server\Attributes\Description;
+use RefactorCircus\Foundation\Mcp\Tool;
+use RefactorCircus\Keystone\Domains\Asset\Mcp\Requests\AttachAssetMcpRequest;
 
 #[Description('Link an asset to a product, product model or owner under a role (image, manual, logo, ...). Variant products also show their models\' assets.')]
 final class AttachAssetTool extends Tool

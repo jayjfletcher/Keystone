@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace JayI\Keystone\Domains\Product\Enums;
+namespace RefactorCircus\Keystone\Domains\Product\Enums;
 
-use JayI\Keystone\Atrium\Badges;
+use RefactorCircus\Keystone\Atrium\Badges;
 
 /**
  * Where a product's working copy stands in review. Publishing is separate:

@@ -2,12 +2,12 @@
 
 declare(strict_types=1);
 
-namespace JayI\Keystone\Domains\Attribute\Http\Requests;
+namespace RefactorCircus\Keystone\Domains\Attribute\Http\Requests;
 
 use Illuminate\Http\JsonResponse;
-use JayI\Keystone\Domains\Attribute\Actions\ListAttributeOptionsAction;
-use JayI\Keystone\Domains\Attribute\Models\AttributeOptionModel;
-use JayI\Keystone\Domains\Attribute\Resources\AttributeOptionResource;
+use RefactorCircus\Keystone\Domains\Attribute\Actions\ListAttributeOptionsAction;
+use RefactorCircus\Keystone\Domains\Attribute\Models\AttributeOptionModel;
+use RefactorCircus\Keystone\Domains\Attribute\Resources\AttributeOptionResource;
 
 final class IndexAttributeOptionsRequest extends AttributeRequest
 {

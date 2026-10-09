@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace JayI\Keystone\Mcp\Tools;
+namespace RefactorCircus\Keystone\Mcp\Tools;
 
-use JayI\Foundation\Mcp\Tools\ListHistoryTool;
+use RefactorCircus\Foundation\Mcp\Tools\ListHistoryTool;
 
 /**
  * Keystone's audit history, newest first: `list-keystone-history-tool`.

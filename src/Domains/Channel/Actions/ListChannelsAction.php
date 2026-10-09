@@ -2,12 +2,12 @@
 
 declare(strict_types=1);
 
-namespace JayI\Keystone\Domains\Channel\Actions;
+namespace RefactorCircus\Keystone\Domains\Channel\Actions;
 
 use Illuminate\Contracts\Pagination\CursorPaginator;
-use JayI\Keystone\Domains\Channel\Events\ChannelsListedActionEvent;
-use JayI\Keystone\Domains\Channel\Events\ChannelsListingActionEvent;
-use JayI\Keystone\Domains\Channel\Models\ChannelModel;
+use RefactorCircus\Keystone\Domains\Channel\Events\ChannelsListedActionEvent;
+use RefactorCircus\Keystone\Domains\Channel\Events\ChannelsListingActionEvent;
+use RefactorCircus\Keystone\Domains\Channel\Models\ChannelModel;
 
 final class ListChannelsAction
 {

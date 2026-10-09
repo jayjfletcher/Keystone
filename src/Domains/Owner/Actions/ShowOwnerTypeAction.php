@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-namespace JayI\Keystone\Domains\Owner\Actions;
+namespace RefactorCircus\Keystone\Domains\Owner\Actions;
 
-use JayI\Keystone\Domains\Owner\Events\OwnerTypeShowingActionEvent;
-use JayI\Keystone\Domains\Owner\Events\OwnerTypeShownActionEvent;
-use JayI\Keystone\Domains\Owner\Models\OwnerTypeModel;
+use RefactorCircus\Keystone\Domains\Owner\Events\OwnerTypeShowingActionEvent;
+use RefactorCircus\Keystone\Domains\Owner\Events\OwnerTypeShownActionEvent;
+use RefactorCircus\Keystone\Domains\Owner\Models\OwnerTypeModel;
 
 final class ShowOwnerTypeAction
 {

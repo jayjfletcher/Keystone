@@ -2,13 +2,13 @@
 
 declare(strict_types=1);
 
-namespace JayI\Keystone\Domains\Family\Events;
+namespace RefactorCircus\Keystone\Domains\Family\Events;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Foundation\Events\Dispatchable;
 use Illuminate\Queue\SerializesModels;
-use JayI\Foundation\Contracts\ModelLifecycleEvent;
-use JayI\Keystone\Domains\Family\Models\FamilyVariantModel;
+use RefactorCircus\Foundation\Contracts\ModelLifecycleEvent;
+use RefactorCircus\Keystone\Domains\Family\Models\FamilyVariantModel;
 
 /**
  * The FamilyVariant `saving` Eloquent event.

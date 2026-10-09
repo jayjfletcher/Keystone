@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-namespace JayI\Keystone\Domains\Workflow\Resources;
+namespace RefactorCircus\Keystone\Domains\Workflow\Resources;
 
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
-use JayI\Keystone\Domains\Workflow\Models\VersionModel;
+use RefactorCircus\Keystone\Domains\Workflow\Models\VersionModel;
 
 /**
  * One entry of a product's history: what happened, who did it, what changed.

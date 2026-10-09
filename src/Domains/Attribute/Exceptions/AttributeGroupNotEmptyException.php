@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace JayI\Keystone\Domains\Attribute\Exceptions;
+namespace RefactorCircus\Keystone\Domains\Attribute\Exceptions;
 
-use JayI\Keystone\Domains\Attribute\Models\AttributeGroupModel;
-use JayI\Keystone\Exceptions\KeystoneException;
+use RefactorCircus\Keystone\Domains\Attribute\Models\AttributeGroupModel;
+use RefactorCircus\Keystone\Exceptions\KeystoneException;
 
 final class AttributeGroupNotEmptyException extends KeystoneException
 {

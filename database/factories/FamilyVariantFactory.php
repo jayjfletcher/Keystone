@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-namespace JayI\Keystone\Database\Factories;
+namespace RefactorCircus\Keystone\Database\Factories;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
-use JayI\Keystone\Domains\Family\Models\FamilyModel;
-use JayI\Keystone\Domains\Family\Models\FamilyVariantModel;
+use RefactorCircus\Keystone\Domains\Family\Models\FamilyModel;
+use RefactorCircus\Keystone\Domains\Family\Models\FamilyVariantModel;
 
 /**
  * @extends Factory<FamilyVariantModel>

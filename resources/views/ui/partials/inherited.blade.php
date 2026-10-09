@@ -1,4 +1,4 @@
-@use(JayI\Keystone\Domains\Attribute\Services\Values)
+@use(RefactorCircus\Keystone\Domains\Attribute\Services\Values)
 
 @if ($inherited !== [])
     <x-atrium::card :title="__('keystone::keystone.inherited_values')">

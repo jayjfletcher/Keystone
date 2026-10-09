@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-use JayI\Keystone\Domains\Attribute\Enums\AttributeType;
-use JayI\Keystone\Domains\Attribute\Models\AttributeGroupModel;
-use JayI\Keystone\Domains\Attribute\Models\AttributeModel;
-use JayI\Keystone\Domains\Attribute\Models\AttributeOptionModel;
+use RefactorCircus\Keystone\Domains\Attribute\Enums\AttributeType;
+use RefactorCircus\Keystone\Domains\Attribute\Models\AttributeGroupModel;
+use RefactorCircus\Keystone\Domains\Attribute\Models\AttributeModel;
+use RefactorCircus\Keystone\Domains\Attribute\Models\AttributeOptionModel;
 
 it('creates an attribute in a group', function (): void {
     AttributeGroupModel::factory()->create(['code' => 'technical']);

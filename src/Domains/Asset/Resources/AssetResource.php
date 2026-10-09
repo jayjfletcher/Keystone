@@ -2,13 +2,13 @@
 
 declare(strict_types=1);
 
-namespace JayI\Keystone\Domains\Asset\Resources;
+namespace RefactorCircus\Keystone\Domains\Asset\Resources;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
-use JayI\Keystone\Domains\Asset\Models\AssetModel;
-use JayI\Keystone\Domains\Product\Models\ProductModel;
+use RefactorCircus\Keystone\Domains\Asset\Models\AssetModel;
+use RefactorCircus\Keystone\Domains\Product\Models\ProductModel;
 
 /**
  * @mixin AssetModel

@@ -2,7 +2,7 @@
 
 ## Context
 
-Keystone (`jayi/keystone`) is a Laravel-native PIM. Product docs (`agent-os/product/`) define the mission and roadmap, but the package is still a skeleton: placeholder config, route, migration, view, command and example tests. This spec starts roadmap Phase 1 / Milestone 1 (Catalog core) with:
+Keystone (`refactor-circus/keystone`) is a Laravel-native PIM. Product docs (`agent-os/product/`) define the mission and roadmap, but the package is still a skeleton: placeholder config, route, migration, view, command and example tests. This spec starts roadmap Phase 1 / Milestone 1 (Catalog core) with:
 
 1. **Foundation** — replace placeholders with the architecture mirrored from `../impex` (standards template): Actions shared by HTTP + MCP, Authorizer/policies, MCP server behind ToolSearch, optional Cortex integration, Atrium plugin, action/model events, config, test harness with parity arch test.
 2. **First vertical slice: attributes** — attribute groups, typed attributes, attribute options, each shipped through Actions + HTTP API + MCP tools + Atrium pages + tests.
@@ -40,7 +40,7 @@ Delete: `config` `placeholder` key, `routes/keystone.php` placeholder comment, `
 
 ## Task 4: Foundation — shared plumbing
 
-Mirror impex classes, `JayI\Keystone` namespace, `declare(strict_types=1)`, `final` where impex is final:
+Mirror impex classes, `RefactorCircus\Keystone` namespace, `declare(strict_types=1)`, `final` where impex is final:
 - `src/Access/Authorizer.php` — `enabled/authenticated/actor/can` (Gate-backed, open when authorization off)
 - `src/Policies/Policy.php` — abstract base
 - `src/Contracts/{ActionStartingEvent,ActionFinishedEvent(ShouldDispatchAfterCommit),ModelLifecycleEvent}.php`

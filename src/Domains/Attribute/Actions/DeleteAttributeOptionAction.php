@@ -2,12 +2,12 @@
 
 declare(strict_types=1);
 
-namespace JayI\Keystone\Domains\Attribute\Actions;
+namespace RefactorCircus\Keystone\Domains\Attribute\Actions;
 
-use JayI\Keystone\Domains\Attribute\Events\AttributeOptionDeletedActionEvent;
-use JayI\Keystone\Domains\Attribute\Events\AttributeOptionDeletingActionEvent;
-use JayI\Keystone\Domains\Attribute\Models\AttributeOptionModel;
-use JayI\Keystone\Jobs\PurgeAttributeValues;
+use RefactorCircus\Keystone\Domains\Attribute\Events\AttributeOptionDeletedActionEvent;
+use RefactorCircus\Keystone\Domains\Attribute\Events\AttributeOptionDeletingActionEvent;
+use RefactorCircus\Keystone\Domains\Attribute\Models\AttributeOptionModel;
+use RefactorCircus\Keystone\Jobs\PurgeAttributeValues;
 
 final class DeleteAttributeOptionAction
 {

@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-namespace JayI\Keystone\Domains\Search\Console\Commands;
+namespace RefactorCircus\Keystone\Domains\Search\Console\Commands;
 
 use Illuminate\Console\Command;
-use JayI\Keystone\Domains\Search\Contracts\SearchEngine;
-use JayI\Keystone\Domains\Search\Services\ProductIndex;
+use RefactorCircus\Keystone\Domains\Search\Contracts\SearchEngine;
+use RefactorCircus\Keystone\Domains\Search\Services\ProductIndex;
 
 final class ReindexProductsCommand extends Command
 {

@@ -1,7 +1,7 @@
 ---
 name: keystone-development
 description: >
-  Install and use the Keystone PIM package (jayi/keystone) in Laravel applications: define attribute groups, typed
+  Install and use the Keystone PIM package (refactor-circus/keystone) in Laravel applications: define attribute groups, typed
   attributes, options, families, family variants, product models, products, owners, categories, assets, locales, channels and associations through Actions; run the review and publishing workflow and read version history, import, export and syndicate products through Impex flows, the JSON API under /keystone, or MCP tools; configure authorization,
   policies, MCP transports, Cortex and the Atrium dashboard (pages, widgets, search).
 license: MIT
@@ -15,14 +15,14 @@ Use this skill when a Laravel application needs product information management (
 
 ## Primary Goal
 
-- apply `jayi/keystone`'s public API — Actions, HTTP routes, MCP tools, config and events — in the smallest correct way
+- apply `refactor-circus/keystone`'s public API — Actions, HTTP routes, MCP tools, config and events — in the smallest correct way
 
 ## Workflow
 
 ### 1. Install and migrate
 
 ```bash
-composer require jayi/keystone
+composer require refactor-circus/keystone
 php artisan vendor:publish --tag="keystone-migrations"
 php artisan migrate
 php artisan vendor:publish --tag="keystone-config"   # when changing config
@@ -33,15 +33,15 @@ php artisan vendor:publish --tag="keystone-config"   # when changing config
 - `keystone.routes.middleware` defaults to `['api']`: add authentication (for example `auth:sanctum`).
 - `keystone.authorization` is `true` by default: API and MCP calls need an authenticated user and pass the policies in `keystone.policies`. The bundled policies allow any authenticated user; map a model to an app policy to restrict it.
 - MCP transports ship disabled (`keystone.mcp.web.enabled`, `keystone.mcp.local.enabled`); add auth middleware before enabling the web transport.
-- The Atrium screens ask the same policies the same way (`JayI\Keystone\Atrium\ScreenAccess`): navigation items, pages and every button, form and card appear only when the action is allowed, and are refused (403) otherwise. In published or custom views use `@keystoneCan('update', $product) ... @endkeystoneCan`. With authorization on, a guest sees no Keystone screens.
-- With jayi/pennantplus, `Feature::for(null)->deactivate(JayI\Keystone\Atrium\Features\KeystoneSupportFeature::class)` hides Keystone in Atrium (pages 404); only its global value counts. `keystone.atrium.features` names the features checked; classes that are not installed are skipped.
-- Keystone ships no stylesheet: screens use `x-atrium::*` components and Atrium's safelisted utilities only (checked with `JayI\Atrium\Testing\AtriumStyles`). In published views, keep to the same: bare form controls in table cells, `<x-atrium::flash />` for status and errors, `x-atrium::description-list` for details.
-- With jayi/keen, show pages render the record's history (`<x-atrium::audit-trail source="keystone" :subject="$product" />`) and the product list Keystone's; product versions and revert stay.
-- Screens follow Atrium's conventions: actions are `<x-atrium::icon-button icon="…" :label="…">`, statuses `<x-atrium::status-dot>` coloured by `JayI\Keystone\Atrium\Badges` (`info` only for in review / pending runs).
+- The Atrium screens ask the same policies the same way (`RefactorCircus\Keystone\Atrium\ScreenAccess`): navigation items, pages and every button, form and card appear only when the action is allowed, and are refused (403) otherwise. In published or custom views use `@keystoneCan('update', $product) ... @endkeystoneCan`. With authorization on, a guest sees no Keystone screens.
+- With refactor-circus/pennantplus, `Feature::for(null)->deactivate(RefactorCircus\Keystone\Atrium\Features\KeystoneSupportFeature::class)` hides Keystone in Atrium (pages 404); only its global value counts. `keystone.atrium.features` names the features checked; classes that are not installed are skipped.
+- Keystone ships no stylesheet: screens use `x-atrium::*` components and Atrium's safelisted utilities only (checked with `RefactorCircus\Atrium\Testing\AtriumStyles`). In published views, keep to the same: bare form controls in table cells, `<x-atrium::flash />` for status and errors, `x-atrium::description-list` for details.
+- With refactor-circus/keen, show pages render the record's history (`<x-atrium::audit-trail source="keystone" :subject="$product" />`) and the product list Keystone's; product versions and revert stay.
+- Screens follow Atrium's conventions: actions are `<x-atrium::icon-button icon="…" :label="…">`, statuses `<x-atrium::status-dot>` coloured by `RefactorCircus\Keystone\Atrium\Badges` (`info` only for in review / pending runs).
 
 ### 3. Manage the catalog through Actions
 
-Call Actions from each domain's `Actions` namespace (`JayI\Keystone\Domains\{Domain}\Actions`, such as `JayI\Keystone\Domains\Attribute\Actions\CreateAttributeAction`) with `app(...)->execute(...)`. Each has a static `rules()` that is its input contract; validate user input against it.
+Call Actions from each domain's `Actions` namespace (`RefactorCircus\Keystone\Domains\{Domain}\Actions`, such as `RefactorCircus\Keystone\Domains\Attribute\Actions\CreateAttributeAction`) with `app(...)->execute(...)`. Each has a static `rules()` that is its input contract; validate user input against it.
 
 - Groups: `List/Show/Create/Update/DeleteAttributeGroupAction`
 - Attributes: `List/Show/Create/Update/DeleteAttributeAction`
@@ -55,24 +55,24 @@ Call Actions from each domain's `Actions` namespace (`JayI\Keystone\Domains\{Dom
 - Channels: `List/Show/Create/Update/DeleteLocaleAction`, `List/Show/Create/Update/DeleteChannelAction`
 - Associations: `List/Show/Create/Update/DeleteAssociationTypeAction`; associations go through the product and product model Actions
 - Workflow: `TransitionProductAction`, `ListProductVersionsAction`, `ShowProductVersionAction`, `RevertProductAction`
-- Import/export (needs `jayi/impex`): `StartImportAction`, `StartExportAction` — both return the Impex `Run`
+- Import/export (needs `refactor-circus/impex`): `StartImportAction`, `StartExportAction` — both return the Impex `Run`
 
 ### 4. Or use the HTTP API / MCP tools
 
 - HTTP: `/keystone/attribute-groups`, `/keystone/attributes`, `/keystone/attributes/{code}/options`, `/keystone/families`, `/keystone/family-variants`, `/keystone/product-models`, `/keystone/products`, `/keystone/owner-types`, `/keystone/owners`, `/keystone/categories`, `/keystone/assets`, `/keystone/locales`, `/keystone/channels`, `/keystone/association-types`, `POST /keystone/imports`, `POST /keystone/exports` — records addressed by code, cursor pagination (`cursor`, `per_page`).
-- MCP: tools such as `create-attribute-tool` behind `search_tools` / `execute_tools`; catalog in `JayI\Keystone\Mcp\KeystoneServer::TOOLS`.
-- History (needs `jayi/keen`): `GET /keystone/history` (route `keystone.history.index`) and `list-keystone-history-tool`; both answer "not installed" without it.
+- MCP: tools such as `create-attribute-tool` behind `search_tools` / `execute_tools`; catalog in `RefactorCircus\Keystone\Mcp\KeystoneServer::TOOLS`.
+- History (needs `refactor-circus/keen`): `GET /keystone/history` (route `keystone.history.index`) and `list-keystone-history-tool`; both answer "not installed" without it.
 
 ### 5. Choose a search engine
 
-- `keystone.search.engine`: `null` (default: `scout` when `laravel/scout` is installed, `database` otherwise), `database`, `scout`, or a class implementing `JayI\Keystone\Domains\Search\Contracts\SearchEngine`.
+- `keystone.search.engine`: `null` (default: `scout` when `laravel/scout` is installed, `database` otherwise), `database`, `scout`, or a class implementing `RefactorCircus\Keystone\Domains\Search\Contracts\SearchEngine`.
 - Run a queue worker: index syncs (`SyncProductIndex`) and value purges are queued. Rebuild with `php artisan keystone:search:reindex`.
 
 ### 6. React to changes
 
-Listen to action events (`JayI\Keystone\Domains\Attribute\Events\AttributeCreatedActionEvent`, or the `JayI\Foundation\Contracts\ActionFinishedEvent` family) or model events (`JayI\Foundation\Contracts\ModelLifecycleEvent`).
+Listen to action events (`RefactorCircus\Keystone\Domains\Attribute\Events\AttributeCreatedActionEvent`, or the `RefactorCircus\Foundation\Contracts\ActionFinishedEvent` family) or model events (`RefactorCircus\Foundation\Contracts\ModelLifecycleEvent`).
 
-To follow every product whose presentation may have changed (own edits, transitions, and changes inherited from models, families, categories, owners or channels), listen to `JayI\Keystone\Domains\Search\Events\ProductsQueuedForSync` (`$event->ids`, product ids). It fires inside the write's transaction, before the index sync is queued; product webhooks are built on it.
+To follow every product whose presentation may have changed (own edits, transitions, and changes inherited from models, families, categories, owners or channels), listen to `RefactorCircus\Keystone\Domains\Search\Events\ProductsQueuedForSync` (`$event->ids`, product ids). It fires inside the write's transaction, before the index sync is queued; product webhooks are built on it.
 
 ## Rules, References, and Templates
 
@@ -90,8 +90,8 @@ To follow every product whose presentation may have changed (own edits, transiti
 - Create locales and channels before writing localizable/scopable values: localizable values need an existing `locale`, scopable an existing channel as `scope`, both together one of that channel's locales; scoped prices use the channel's currencies. Read one channel with `scope` + `locales[]`.
 - Associations: `associations` for plain types (`{type: {products: [...], product_models: [...]}}`), `quantified_associations` for quantified ones (`{identifier, quantity}` items); each type sent replaces its targets; two-way types mirror themselves.
 - Workflow: transitions `submit`, `approve`, `reject`, `publish` (needs `approved` unless `keystone.workflow.require_approval` is off), `unpublish`, `archive`, `restore`; storefronts read `/versions/published`; editing an approved product returns it to draft. Completeness comes from family requirements (`required_channels` narrows them); search with `complete[scope]`/`complete[min]`.
-- Import/export (`jayi/impex`, optional; without it the start endpoints answer 501): flows `keystone:import-products` (a `.csv`/`.jsonl` given as `file`, `url` or `asset`; `mode` `upsert`/`create`/`update`), `keystone:upsert-products` (bind an Impex inbound channel's `flow` to it for ERP pushes), `keystone:export-products` (any search filters, `format`, `published`; result names the file asset), `keystone:feed:{name}` per `keystone.impex.feeds` entry (a channel's published products, optional `url` delivery; schedule via `impex.schedule`). CSV uses Akeneo columns: `code`, `code-locale`, `code-scope`, `code-locale-scope`, `price-USD`, `weight` + `weight-unit`. Rows may all fail by default; set `keystone.impex.allow_failures` (a share) to fail the run. A feed can deliver through an Impex outbound channel with `deliver_through`.
-- Product webhooks (`keystone.impex.webhooks.enabled`, off by default, needs `jayi/impex`): published products are the Impex stream `keystone.products`; vendors subscribe on Impex's subscriber API (`POST /impex/subscriber/subscriptions` with `stream`, `topics` from `content`/`pricing`/`assets`/`resources`/`catalog`, `filter` of `categories`/`owners`/`families`/`models` codes or `subjects` SKUs, `format` `thin`/`slice`/`full`, `options.channel`/`options.locales`, and `endpoint.url` or none for the feed). Never send product data to vendors any other way. Topics are append-only.
+- Import/export (`refactor-circus/impex`, optional; without it the start endpoints answer 501): flows `keystone:import-products` (a `.csv`/`.jsonl` given as `file`, `url` or `asset`; `mode` `upsert`/`create`/`update`), `keystone:upsert-products` (bind an Impex inbound channel's `flow` to it for ERP pushes), `keystone:export-products` (any search filters, `format`, `published`; result names the file asset), `keystone:feed:{name}` per `keystone.impex.feeds` entry (a channel's published products, optional `url` delivery; schedule via `impex.schedule`). CSV uses Akeneo columns: `code`, `code-locale`, `code-scope`, `code-locale-scope`, `price-USD`, `weight` + `weight-unit`. Rows may all fail by default; set `keystone.impex.allow_failures` (a share) to fail the run. A feed can deliver through an Impex outbound channel with `deliver_through`.
+- Product webhooks (`keystone.impex.webhooks.enabled`, off by default, needs `refactor-circus/impex`): published products are the Impex stream `keystone.products`; vendors subscribe on Impex's subscriber API (`POST /impex/subscriber/subscriptions` with `stream`, `topics` from `content`/`pricing`/`assets`/`resources`/`catalog`, `filter` of `categories`/`owners`/`families`/`models` codes or `subjects` SKUs, `format` `thin`/`slice`/`full`, `options.channel`/`options.locales`, and `endpoint.url` or none for the feed). Never send product data to vendors any other way. Topics are append-only.
 - Polling helpers: `updated_since` on the product list and `list-products-tool` (filters on `changed_at`, which every change a product shows moves, inherited ones included); ETag/`If-None-Match` → `304` on product show. Vendor subscriptions are managed with Impex's MCP tools (`list-streams-tool`, `create-subscription-tool`, …).
 - Labels are a locale map: `['en' => 'Color']`; `$model->label()` resolves the current locale.
 - Config keys: `authorization`, `policies`, `routes.*`, `mcp.*`, `cortex.*`, `ui.enabled`, `atrium.features`, `workflow.*`, `impex.*`, `media.*`, `search.*`, `pagination.*`.
@@ -99,9 +99,9 @@ To follow every product whose presentation may have changed (own edits, transiti
 ## Examples
 
 ```php
-use JayI\Keystone\Domains\Attribute\Actions\CreateAttributeAction;
-use JayI\Keystone\Domains\Attribute\Actions\CreateAttributeGroupAction;
-use JayI\Keystone\Domains\Attribute\Actions\CreateAttributeOptionAction;
+use RefactorCircus\Keystone\Domains\Attribute\Actions\CreateAttributeAction;
+use RefactorCircus\Keystone\Domains\Attribute\Actions\CreateAttributeGroupAction;
+use RefactorCircus\Keystone\Domains\Attribute\Actions\CreateAttributeOptionAction;
 
 app(CreateAttributeGroupAction::class)->execute(['code' => 'marketing', 'labels' => ['en' => 'Marketing']]);
 
@@ -114,18 +114,18 @@ $color = app(CreateAttributeAction::class)->execute([
 
 app(CreateAttributeOptionAction::class)->execute($color, ['code' => 'red', 'labels' => ['en' => 'Red']]);
 
-app(\JayI\Keystone\Domains\Family\Actions\CreateFamilyAction::class)->execute([
+app(\RefactorCircus\Keystone\Domains\Family\Actions\CreateFamilyAction::class)->execute([
     'code' => 'shirts',
     'attributes' => [['attribute' => 'color', 'is_required' => true]],
 ]);
 
-app(\JayI\Keystone\Domains\Product\Actions\CreateProductAction::class)->execute([
+app(\RefactorCircus\Keystone\Domains\Product\Actions\CreateProductAction::class)->execute([
     'identifier' => 'SHIRT-RED',
     'family' => 'shirts',
     'values' => ['color' => [['locale' => null, 'scope' => null, 'data' => 'red']]],
 ]);
 
-$page = app(\JayI\Keystone\Domains\Product\Actions\ListProductsAction::class)->execute([
+$page = app(\RefactorCircus\Keystone\Domains\Product\Actions\ListProductsAction::class)->execute([
     'filters' => [['attribute' => 'color', 'operator' => '=', 'value' => 'red']],
 ]);
 ```
@@ -138,7 +138,7 @@ app(CreateAttributeAction::class)->execute($data);
 
 ## Anti-patterns
 
-- creating or updating the models (`JayI\Keystone\Domains\*\Models\*Model`, such as `ProductModel` for products and `ProductModelModel` for product models) directly instead of through Actions, which skips validation, catalog rules and events
+- creating or updating the models (`RefactorCircus\Keystone\Domains\*\Models\*Model`, such as `ProductModel` for products and `ProductModelModel` for product models) directly instead of through Actions, which skips validation, catalog rules and events
 - renaming a code or changing a type — create a new attribute instead
 - sending a partial `attributes` list to `UpdateFamilyAction` expecting it to append; it replaces the membership
 - querying product `values` JSON directly for listings instead of `ListProductsAction`, which goes through the configured search engine

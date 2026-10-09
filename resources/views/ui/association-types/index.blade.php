@@ -1,4 +1,4 @@
-@use(JayI\Keystone\Domains\Association\Models\AssociationTypeModel)
+@use(RefactorCircus\Keystone\Domains\Association\Models\AssociationTypeModel)
 @php($locale = app()->getLocale())
 
 <x-atrium::layout :title="__('keystone::keystone.association_types')">

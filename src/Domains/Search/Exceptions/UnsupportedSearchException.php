@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace JayI\Keystone\Domains\Search\Exceptions;
+namespace RefactorCircus\Keystone\Domains\Search\Exceptions;
 
-use JayI\Keystone\Exceptions\KeystoneException;
+use RefactorCircus\Keystone\Exceptions\KeystoneException;
 use Symfony\Component\HttpFoundation\Response;
 
 /**

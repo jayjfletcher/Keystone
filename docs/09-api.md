@@ -138,7 +138,7 @@ With `keystone.authorization` on, every request needs an authenticated user and 
 
 ```php
 'policies' => [
-    \JayI\Keystone\Domains\Attribute\Models\AttributeModel::class => \App\Policies\CatalogAttributePolicy::class,
+    \RefactorCircus\Keystone\Domains\Attribute\Models\AttributeModel::class => \App\Policies\CatalogAttributePolicy::class,
     // ...
 ],
 ```

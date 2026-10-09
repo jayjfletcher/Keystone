@@ -2,14 +2,14 @@
 
 declare(strict_types=1);
 
-namespace JayI\Keystone\Impex\Sources;
+namespace RefactorCircus\Keystone\Impex\Sources;
 
 use Illuminate\Support\Facades\Storage;
-use JayI\Impex\Domains\Batch\Contracts\BatchSource;
-use JayI\Impex\Domains\Batch\Data\BatchChunk;
-use JayI\Impex\Domains\Batch\Data\BatchChunkItem;
-use JayI\Keystone\Domains\Asset\Models\AssetModel;
-use JayI\Keystone\Impex\ProductRows;
+use RefactorCircus\Impex\Domains\Batch\Contracts\BatchSource;
+use RefactorCircus\Impex\Domains\Batch\Data\BatchChunk;
+use RefactorCircus\Impex\Domains\Batch\Data\BatchChunkItem;
+use RefactorCircus\Keystone\Domains\Asset\Models\AssetModel;
+use RefactorCircus\Keystone\Impex\ProductRows;
 use RuntimeException;
 
 /**

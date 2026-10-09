@@ -2,13 +2,12 @@
 
 declare(strict_types=1);
 
-namespace JayI\Keystone\Domains\Workflow;
+namespace RefactorCircus\Keystone\Domains\Workflow;
 
-use JayI\Foundation\Audit\AuditHooks;
-use JayI\Foundation\Support\ServiceProvider;
-use JayI\Keystone\Domains\Workflow\Models\CompletenessModel;
-use JayI\Keystone\Domains\Workflow\Models\VersionModel;
-use JayI\Keystone\Domains\Workflow\Services\Versions;
+use RefactorCircus\Foundation\Audit\AuditHooks;
+use RefactorCircus\Foundation\Support\ServiceProvider;
+use RefactorCircus\Keystone\Domains\Workflow\Models\VersionModel;
+use RefactorCircus\Keystone\Domains\Workflow\Services\Versions;
 
 class WorkflowServiceProvider extends ServiceProvider
 {
@@ -21,12 +20,7 @@ class WorkflowServiceProvider extends ServiceProvider
 
     public function boot(): void
     {
-        $this->keepMorphAliases([
-            'JayI\Keystone\Models\Completeness' => CompletenessModel::class,
-            'JayI\Keystone\Models\Version' => VersionModel::class,
-        ]);
-
-        // How the audit log (jayi/keen) names a version: what it versions, and its number.
+        // How the audit log (refactor-circus/keen) names a version: what it versions, and its number.
         $this->app->make(AuditHooks::class)
             ->label(VersionModel::class, fn (VersionModel $version): string => $version->versionable_type.' v'.$version->version);
 

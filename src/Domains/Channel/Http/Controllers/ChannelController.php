@@ -2,15 +2,15 @@
 
 declare(strict_types=1);
 
-namespace JayI\Keystone\Domains\Channel\Http\Controllers;
+namespace RefactorCircus\Keystone\Domains\Channel\Http\Controllers;
 
 use Illuminate\Http\JsonResponse;
-use JayI\Keystone\Domains\Channel\Http\Requests\DeleteChannelRequest;
-use JayI\Keystone\Domains\Channel\Http\Requests\IndexChannelsRequest;
-use JayI\Keystone\Domains\Channel\Http\Requests\ShowChannelRequest;
-use JayI\Keystone\Domains\Channel\Http\Requests\StoreChannelRequest;
-use JayI\Keystone\Domains\Channel\Http\Requests\UpdateChannelRequest;
-use JayI\Keystone\Domains\Channel\Models\ChannelModel;
+use RefactorCircus\Keystone\Domains\Channel\Http\Requests\DeleteChannelRequest;
+use RefactorCircus\Keystone\Domains\Channel\Http\Requests\IndexChannelsRequest;
+use RefactorCircus\Keystone\Domains\Channel\Http\Requests\ShowChannelRequest;
+use RefactorCircus\Keystone\Domains\Channel\Http\Requests\StoreChannelRequest;
+use RefactorCircus\Keystone\Domains\Channel\Http\Requests\UpdateChannelRequest;
+use RefactorCircus\Keystone\Domains\Channel\Models\ChannelModel;
 
 final class ChannelController
 {

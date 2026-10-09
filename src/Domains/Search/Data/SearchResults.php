@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace JayI\Keystone\Domains\Search\Data;
+namespace RefactorCircus\Keystone\Domains\Search\Data;
 
 /**
  * What an engine found: one page of product ids, the total, and any facets.

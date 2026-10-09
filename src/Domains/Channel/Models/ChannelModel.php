@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace JayI\Keystone\Domains\Channel\Models;
+namespace RefactorCircus\Keystone\Domains\Channel\Models;
 
 use Illuminate\Database\Eloquent\Concerns\HasUlids;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -10,10 +10,10 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Support\Carbon;
-use JayI\Foundation\Models\Concerns\DispatchesModelEvents;
-use JayI\Keystone\Database\Factories\ChannelFactory;
-use JayI\Keystone\Domains\Category\Models\CategoryModel;
-use JayI\Keystone\Support\Models\Concerns\HasLabels;
+use RefactorCircus\Foundation\Models\Concerns\DispatchesModelEvents;
+use RefactorCircus\Keystone\Database\Factories\ChannelFactory;
+use RefactorCircus\Keystone\Domains\Category\Models\CategoryModel;
+use RefactorCircus\Keystone\Support\Models\Concerns\HasLabels;
 
 /**
  * Somewhere products are published — a storefront, a print catalog, a

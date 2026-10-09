@@ -2,18 +2,18 @@
 
 declare(strict_types=1);
 
-namespace JayI\Keystone\Domains\Product\Actions;
+namespace RefactorCircus\Keystone\Domains\Product\Actions;
 
 use Illuminate\Validation\Rule;
-use JayI\Keystone\Domains\Attribute\Data\ValueFilter;
-use JayI\Keystone\Domains\Product\Enums\ProductStatus;
-use JayI\Keystone\Domains\Product\Events\ProductsListedActionEvent;
-use JayI\Keystone\Domains\Product\Events\ProductsListingActionEvent;
-use JayI\Keystone\Domains\Product\Models\ProductModel;
-use JayI\Keystone\Domains\Search\Contracts\SearchEngine;
-use JayI\Keystone\Domains\Search\Data\Filter;
-use JayI\Keystone\Domains\Search\Data\ProductQuery;
-use JayI\Keystone\Domains\Search\Support\ProductPage;
+use RefactorCircus\Keystone\Domains\Attribute\Data\ValueFilter;
+use RefactorCircus\Keystone\Domains\Product\Enums\ProductStatus;
+use RefactorCircus\Keystone\Domains\Product\Events\ProductsListedActionEvent;
+use RefactorCircus\Keystone\Domains\Product\Events\ProductsListingActionEvent;
+use RefactorCircus\Keystone\Domains\Product\Models\ProductModel;
+use RefactorCircus\Keystone\Domains\Search\Contracts\SearchEngine;
+use RefactorCircus\Keystone\Domains\Search\Data\Filter;
+use RefactorCircus\Keystone\Domains\Search\Data\ProductQuery;
+use RefactorCircus\Keystone\Domains\Search\Support\ProductPage;
 
 /**
  * Lists and searches products through the configured search engine.

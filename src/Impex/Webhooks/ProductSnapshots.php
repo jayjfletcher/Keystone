@@ -2,14 +2,14 @@
 
 declare(strict_types=1);
 
-namespace JayI\Keystone\Impex\Webhooks;
+namespace RefactorCircus\Keystone\Impex\Webhooks;
 
 use Illuminate\Database\ConnectionInterface;
 use Illuminate\Database\Query\Builder;
 use Illuminate\Database\Query\JoinClause;
-use JayI\Keystone\Domains\Attribute\Services\Values;
-use JayI\Keystone\Domains\Product\Models\ProductModel;
-use JayI\Keystone\Domains\ProductModel\Models\ProductModelModel;
+use RefactorCircus\Keystone\Domains\Attribute\Services\Values;
+use RefactorCircus\Keystone\Domains\Product\Models\ProductModel;
+use RefactorCircus\Keystone\Domains\ProductModel\Models\ProductModelModel;
 use stdClass;
 
 /**

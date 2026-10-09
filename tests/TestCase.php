@@ -2,13 +2,13 @@
 
 declare(strict_types=1);
 
-namespace JayI\Keystone\Tests;
+namespace RefactorCircus\Keystone\Tests;
 
-use JayI\Atrium\AtriumServiceProvider;
-use JayI\Impex\ImpexServiceProvider;
-use JayI\Keystone\KeystoneServiceProvider;
 use Laravel\Mcp\Server\McpServiceProvider;
 use Orchestra\Testbench\TestCase as Orchestra;
+use RefactorCircus\Atrium\AtriumServiceProvider;
+use RefactorCircus\Impex\ImpexServiceProvider;
+use RefactorCircus\Keystone\KeystoneServiceProvider;
 
 abstract class TestCase extends Orchestra
 {
@@ -27,7 +27,7 @@ abstract class TestCase extends Orchestra
 
     protected function defineEnvironment($app): void
     {
-        // jayi/cortex is a dev dependency, so Atrium discovers its plugin here
+        // refactor-circus/cortex is a dev dependency, so Atrium discovers its plugin here
         // without its migrations; its navigation would query missing tables.
         $app['config']->set('atrium.disabled', ['cortex']);
 
@@ -49,6 +49,6 @@ abstract class TestCase extends Orchestra
         $this->loadLaravelMigrations();
 
         $this->loadMigrationsFrom(dirname(__DIR__).'/database/migrations');
-        $this->loadMigrationsFrom(dirname(__DIR__).'/vendor/jayi/impex/database/migrations');
+        $this->loadMigrationsFrom(dirname(__DIR__).'/vendor/refactor-circus/impex/database/migrations');
     }
 }

@@ -1,4 +1,4 @@
-@use(JayI\Keystone\Domains\Asset\Models\AssetModel)
+@use(RefactorCircus\Keystone\Domains\Asset\Models\AssetModel)
 @php($locale = app()->getLocale())
 
 <x-atrium::layout :title="__('keystone::keystone.assets')">

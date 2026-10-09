@@ -2,14 +2,14 @@
 
 declare(strict_types=1);
 
-namespace JayI\Keystone\Domains\Asset\Mcp\Tools;
+namespace RefactorCircus\Keystone\Domains\Asset\Mcp\Tools;
 
 use Illuminate\Contracts\JsonSchema\JsonSchema;
-use JayI\Foundation\Mcp\Tool;
-use JayI\Keystone\Domains\Asset\Mcp\Requests\DeleteAssetMcpRequest;
 use Laravel\Mcp\Response;
 use Laravel\Mcp\ResponseFactory;
 use Laravel\Mcp\Server\Attributes\Description;
+use RefactorCircus\Foundation\Mcp\Tool;
+use RefactorCircus\Keystone\Domains\Asset\Mcp\Requests\DeleteAssetMcpRequest;
 
 #[Description('Delete an asset, its links and its file.')]
 final class DeleteAssetTool extends Tool

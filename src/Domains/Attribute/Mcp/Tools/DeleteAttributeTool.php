@@ -2,14 +2,14 @@
 
 declare(strict_types=1);
 
-namespace JayI\Keystone\Domains\Attribute\Mcp\Tools;
+namespace RefactorCircus\Keystone\Domains\Attribute\Mcp\Tools;
 
 use Illuminate\Contracts\JsonSchema\JsonSchema;
-use JayI\Foundation\Mcp\Tool;
-use JayI\Keystone\Domains\Attribute\Mcp\Requests\DeleteAttributeMcpRequest;
 use Laravel\Mcp\Response;
 use Laravel\Mcp\ResponseFactory;
 use Laravel\Mcp\Server\Attributes\Description;
+use RefactorCircus\Foundation\Mcp\Tool;
+use RefactorCircus\Keystone\Domains\Attribute\Mcp\Requests\DeleteAttributeMcpRequest;
 
 #[Description('Delete an attribute and its options.')]
 final class DeleteAttributeTool extends Tool

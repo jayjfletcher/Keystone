@@ -2,20 +2,20 @@
 
 declare(strict_types=1);
 
-namespace JayI\Keystone\Domains\Asset\Models;
+namespace RefactorCircus\Keystone\Domains\Asset\Models;
 
 use Illuminate\Database\Eloquent\Concerns\HasUlids;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\MorphToMany;
 use Illuminate\Support\Carbon;
-use JayI\Foundation\Models\Concerns\DispatchesModelEvents;
-use JayI\Keystone\Database\Factories\AssetFactory;
-use JayI\Keystone\Domains\Asset\Services\AssetStorage;
-use JayI\Keystone\Domains\Owner\Models\OwnerModel;
-use JayI\Keystone\Domains\Product\Models\ProductModel;
-use JayI\Keystone\Domains\ProductModel\Models\ProductModelModel;
-use JayI\Keystone\Support\Models\Concerns\HasLabels;
+use RefactorCircus\Foundation\Models\Concerns\DispatchesModelEvents;
+use RefactorCircus\Keystone\Database\Factories\AssetFactory;
+use RefactorCircus\Keystone\Domains\Asset\Services\AssetStorage;
+use RefactorCircus\Keystone\Domains\Owner\Models\OwnerModel;
+use RefactorCircus\Keystone\Domains\Product\Models\ProductModel;
+use RefactorCircus\Keystone\Domains\ProductModel\Models\ProductModelModel;
+use RefactorCircus\Keystone\Support\Models\Concerns\HasLabels;
 
 /**
  * A file on the configured disk — an image, a manual, a logo — that can be

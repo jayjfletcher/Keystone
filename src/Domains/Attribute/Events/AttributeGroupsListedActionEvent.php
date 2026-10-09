@@ -2,13 +2,13 @@
 
 declare(strict_types=1);
 
-namespace JayI\Keystone\Domains\Attribute\Events;
+namespace RefactorCircus\Keystone\Domains\Attribute\Events;
 
 use Illuminate\Contracts\Pagination\CursorPaginator;
 use Illuminate\Foundation\Events\Dispatchable;
 use Illuminate\Queue\SerializesModels;
-use JayI\Foundation\Contracts\ActionFinishedEvent;
-use JayI\Keystone\Domains\Attribute\Models\AttributeGroupModel;
+use RefactorCircus\Foundation\Contracts\ActionFinishedEvent;
+use RefactorCircus\Keystone\Domains\Attribute\Models\AttributeGroupModel;
 
 /**
  * Attribute groups were listed.

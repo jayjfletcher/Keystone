@@ -2,13 +2,13 @@
 
 declare(strict_types=1);
 
-namespace JayI\Keystone\Domains\Attribute\Http\Requests;
+namespace RefactorCircus\Keystone\Domains\Attribute\Http\Requests;
 
 use Illuminate\Http\JsonResponse;
-use JayI\Foundation\Http\Requests\Request;
-use JayI\Keystone\Domains\Attribute\Actions\ListAttributeGroupsAction;
-use JayI\Keystone\Domains\Attribute\Models\AttributeGroupModel;
-use JayI\Keystone\Domains\Attribute\Resources\AttributeGroupResource;
+use RefactorCircus\Foundation\Http\Requests\Request;
+use RefactorCircus\Keystone\Domains\Attribute\Actions\ListAttributeGroupsAction;
+use RefactorCircus\Keystone\Domains\Attribute\Models\AttributeGroupModel;
+use RefactorCircus\Keystone\Domains\Attribute\Resources\AttributeGroupResource;
 
 final class IndexAttributeGroupsRequest extends Request
 {

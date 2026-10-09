@@ -2,18 +2,18 @@
 
 declare(strict_types=1);
 
-namespace JayI\Keystone\Domains\ProductModel\Actions;
+namespace RefactorCircus\Keystone\Domains\ProductModel\Actions;
 
 use Illuminate\Support\Facades\DB;
 use Illuminate\Validation\ValidationException;
-use JayI\Keystone\Domains\Association\Services\Associations;
-use JayI\Keystone\Domains\Attribute\Concerns\WritesValues;
-use JayI\Keystone\Domains\Category\Concerns\AssignsCategories;
-use JayI\Keystone\Domains\Family\Models\FamilyVariantModel;
-use JayI\Keystone\Domains\Owner\Concerns\AssignsOwners;
-use JayI\Keystone\Domains\ProductModel\Events\ProductModelCreatedActionEvent;
-use JayI\Keystone\Domains\ProductModel\Events\ProductModelCreatingActionEvent;
-use JayI\Keystone\Domains\ProductModel\Models\ProductModelModel;
+use RefactorCircus\Keystone\Domains\Association\Services\Associations;
+use RefactorCircus\Keystone\Domains\Attribute\Concerns\WritesValues;
+use RefactorCircus\Keystone\Domains\Category\Concerns\AssignsCategories;
+use RefactorCircus\Keystone\Domains\Family\Models\FamilyVariantModel;
+use RefactorCircus\Keystone\Domains\Owner\Concerns\AssignsOwners;
+use RefactorCircus\Keystone\Domains\ProductModel\Events\ProductModelCreatedActionEvent;
+use RefactorCircus\Keystone\Domains\ProductModel\Events\ProductModelCreatingActionEvent;
+use RefactorCircus\Keystone\Domains\ProductModel\Models\ProductModelModel;
 
 final class CreateProductModelAction
 {

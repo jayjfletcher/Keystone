@@ -2,23 +2,23 @@
 
 declare(strict_types=1);
 
-namespace JayI\Keystone\Domains\Search\Services;
+namespace RefactorCircus\Keystone\Domains\Search\Services;
 
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Query\Builder as QueryBuilder;
 use Illuminate\Database\Query\Grammars\Grammar;
-use JayI\Keystone\Domains\Attribute\Enums\AttributeType;
-use JayI\Keystone\Domains\Attribute\Models\AttributeModel;
-use JayI\Keystone\Domains\Attribute\Services\Values;
-use JayI\Keystone\Domains\Category\Models\CategoryModel;
-use JayI\Keystone\Domains\Owner\Models\OwnerModel;
-use JayI\Keystone\Domains\Product\Models\ProductModel;
-use JayI\Keystone\Domains\Search\Contracts\SearchEngine;
-use JayI\Keystone\Domains\Search\Data\Filter;
-use JayI\Keystone\Domains\Search\Data\ProductQuery;
-use JayI\Keystone\Domains\Search\Data\SearchResults;
-use JayI\Keystone\Domains\Search\Exceptions\UnsupportedSearchException;
-use JayI\Keystone\Domains\Search\Support\SqlFragment;
+use RefactorCircus\Keystone\Domains\Attribute\Enums\AttributeType;
+use RefactorCircus\Keystone\Domains\Attribute\Models\AttributeModel;
+use RefactorCircus\Keystone\Domains\Attribute\Services\Values;
+use RefactorCircus\Keystone\Domains\Category\Models\CategoryModel;
+use RefactorCircus\Keystone\Domains\Owner\Models\OwnerModel;
+use RefactorCircus\Keystone\Domains\Product\Models\ProductModel;
+use RefactorCircus\Keystone\Domains\Search\Contracts\SearchEngine;
+use RefactorCircus\Keystone\Domains\Search\Data\Filter;
+use RefactorCircus\Keystone\Domains\Search\Data\ProductQuery;
+use RefactorCircus\Keystone\Domains\Search\Data\SearchResults;
+use RefactorCircus\Keystone\Domains\Search\Exceptions\UnsupportedSearchException;
+use RefactorCircus\Keystone\Domains\Search\Support\SqlFragment;
 
 /**
  * Searches the products table directly, with no index to keep.

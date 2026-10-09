@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace JayI\Keystone\Domains\Asset\Services;
+namespace RefactorCircus\Keystone\Domains\Asset\Services;
 
 use Illuminate\Contracts\Config\Repository as Config;
 use Illuminate\Contracts\Filesystem\Factory as Filesystems;
@@ -12,8 +12,8 @@ use Illuminate\Http\Client\Factory as Http;
 use Illuminate\Http\UploadedFile;
 use Illuminate\Support\Str;
 use Illuminate\Validation\ValidationException;
-use JayI\Keystone\Domains\Asset\Data\StoredFile;
-use JayI\Keystone\Domains\Asset\Models\AssetModel;
+use RefactorCircus\Keystone\Domains\Asset\Data\StoredFile;
+use RefactorCircus\Keystone\Domains\Asset\Models\AssetModel;
 
 /**
  * Reads and writes asset files on the configured disk.

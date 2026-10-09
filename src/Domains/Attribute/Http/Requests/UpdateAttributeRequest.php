@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-namespace JayI\Keystone\Domains\Attribute\Http\Requests;
+namespace RefactorCircus\Keystone\Domains\Attribute\Http\Requests;
 
 use Illuminate\Http\JsonResponse;
-use JayI\Keystone\Domains\Attribute\Actions\UpdateAttributeAction;
-use JayI\Keystone\Domains\Attribute\Resources\AttributeResource;
+use RefactorCircus\Keystone\Domains\Attribute\Actions\UpdateAttributeAction;
+use RefactorCircus\Keystone\Domains\Attribute\Resources\AttributeResource;
 
 final class UpdateAttributeRequest extends AttributeRequest
 {

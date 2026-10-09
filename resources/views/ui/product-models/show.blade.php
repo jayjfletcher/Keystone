@@ -1,6 +1,6 @@
-@use(JayI\Keystone\Atrium\ScreenAccess)
-@use(JayI\Keystone\Domains\Product\Models\ProductModel)
-@use(JayI\Keystone\Domains\ProductModel\Models\ProductModelModel)
+@use(RefactorCircus\Keystone\Atrium\ScreenAccess)
+@use(RefactorCircus\Keystone\Domains\Product\Models\ProductModel)
+@use(RefactorCircus\Keystone\Domains\ProductModel\Models\ProductModelModel)
 
 @php($canUpdate = ScreenAccess::allows('update', $model))
 

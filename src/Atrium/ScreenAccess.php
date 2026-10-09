@@ -2,12 +2,12 @@
 
 declare(strict_types=1);
 
-namespace JayI\Keystone\Atrium;
+namespace RefactorCircus\Keystone\Atrium;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\Request;
-use JayI\Atrium\Support\ScreenAccess as AtriumScreenAccess;
-use JayI\Keystone\Domains\Product\Models\ProductModel;
+use RefactorCircus\Atrium\Support\ScreenAccess as AtriumScreenAccess;
+use RefactorCircus\Keystone\Domains\Product\Models\ProductModel;
 
 /**
  * Keystone's side of Atrium's ScreenAccess: whether the signed-in user may

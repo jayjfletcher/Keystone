@@ -2,8 +2,8 @@
 
 declare(strict_types=1);
 
-use JayI\Keystone\Domains\Attribute\Models\AttributeGroupModel;
-use JayI\Keystone\Domains\Attribute\Models\AttributeModel;
+use RefactorCircus\Keystone\Domains\Attribute\Models\AttributeGroupModel;
+use RefactorCircus\Keystone\Domains\Attribute\Models\AttributeModel;
 
 it('creates an attribute group', function (): void {
     $this->postJson('/keystone/attribute-groups', [

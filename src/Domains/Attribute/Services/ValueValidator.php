@@ -2,17 +2,17 @@
 
 declare(strict_types=1);
 
-namespace JayI\Keystone\Domains\Attribute\Services;
+namespace RefactorCircus\Keystone\Domains\Attribute\Services;
 
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Validation\Rule;
 use Illuminate\Validation\ValidationException;
-use JayI\Keystone\Domains\Attribute\Enums\AttributeType;
-use JayI\Keystone\Domains\Attribute\Models\AttributeModel;
-use JayI\Keystone\Domains\Attribute\Models\AttributeOptionModel;
-use JayI\Keystone\Domains\Channel\Models\ChannelModel;
-use JayI\Keystone\Domains\Channel\Models\LocaleModel;
+use RefactorCircus\Keystone\Domains\Attribute\Enums\AttributeType;
+use RefactorCircus\Keystone\Domains\Attribute\Models\AttributeModel;
+use RefactorCircus\Keystone\Domains\Attribute\Models\AttributeOptionModel;
+use RefactorCircus\Keystone\Domains\Channel\Models\ChannelModel;
+use RefactorCircus\Keystone\Domains\Channel\Models\LocaleModel;
 
 /**
  * Validates values in standard shape against their attributes and returns

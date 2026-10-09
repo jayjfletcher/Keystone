@@ -2,8 +2,8 @@
 
 declare(strict_types=1);
 
-use JayI\Atrium\Support\Icons;
-use JayI\Keystone\Atrium\KeystonePlugin;
+use RefactorCircus\Atrium\Support\Icons;
+use RefactorCircus\Keystone\Atrium\KeystonePlugin;
 
 it('gives its sidebar section its own icon', function (): void {
     [$group] = app(KeystonePlugin::class)->navigationGroups();

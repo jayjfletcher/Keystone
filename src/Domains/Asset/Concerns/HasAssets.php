@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace JayI\Keystone\Domains\Asset\Concerns;
+namespace RefactorCircus\Keystone\Domains\Asset\Concerns;
 
 use Illuminate\Database\Eloquent\Relations\MorphToMany;
-use JayI\Keystone\Domains\Asset\Models\AssetModel;
+use RefactorCircus\Keystone\Domains\Asset\Models\AssetModel;
 
 /**
  * Assets linked to this record, each under a role, in display order.

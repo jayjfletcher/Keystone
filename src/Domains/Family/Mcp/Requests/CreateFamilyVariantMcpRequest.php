@@ -2,14 +2,14 @@
 
 declare(strict_types=1);
 
-namespace JayI\Keystone\Domains\Family\Mcp\Requests;
+namespace RefactorCircus\Keystone\Domains\Family\Mcp\Requests;
 
-use JayI\Foundation\Mcp\Requests\Request;
-use JayI\Keystone\Domains\Family\Actions\CreateFamilyVariantAction;
-use JayI\Keystone\Domains\Family\Models\FamilyVariantModel;
-use JayI\Keystone\Domains\Family\Resources\FamilyVariantResource;
 use Laravel\Mcp\Response;
 use Laravel\Mcp\ResponseFactory;
+use RefactorCircus\Foundation\Mcp\Requests\Request;
+use RefactorCircus\Keystone\Domains\Family\Actions\CreateFamilyVariantAction;
+use RefactorCircus\Keystone\Domains\Family\Models\FamilyVariantModel;
+use RefactorCircus\Keystone\Domains\Family\Resources\FamilyVariantResource;
 
 final class CreateFamilyVariantMcpRequest extends Request
 {

@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace JayI\Keystone\Domains\Attribute\Mcp\Requests;
+namespace RefactorCircus\Keystone\Domains\Attribute\Mcp\Requests;
 
-use JayI\Foundation\Mcp\Requests\Request;
-use JayI\Keystone\Domains\Attribute\Models\AttributeGroupModel;
+use RefactorCircus\Foundation\Mcp\Requests\Request;
+use RefactorCircus\Keystone\Domains\Attribute\Models\AttributeGroupModel;
 
 abstract class AttributeGroupRequest extends Request
 {

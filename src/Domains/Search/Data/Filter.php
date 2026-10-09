@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace JayI\Keystone\Domains\Search\Data;
+namespace RefactorCircus\Keystone\Domains\Search\Data;
 
 /**
  * One condition on an attribute value.

@@ -2,21 +2,21 @@
 
 declare(strict_types=1);
 
-namespace JayI\Keystone\Domains\Search\Services;
+namespace RefactorCircus\Keystone\Domains\Search\Services;
 
 use Illuminate\Database\Eloquent\Collection;
-use JayI\Keystone\Domains\Attribute\Enums\AttributeType;
-use JayI\Keystone\Domains\Attribute\Models\AttributeModel;
-use JayI\Keystone\Domains\Attribute\Services\Values;
-use JayI\Keystone\Domains\Search\Contracts\SearchEngine;
-use JayI\Keystone\Domains\Search\Data\Filter;
-use JayI\Keystone\Domains\Search\Data\ProductQuery;
-use JayI\Keystone\Domains\Search\Data\SearchResults;
-use JayI\Keystone\Domains\Search\Exceptions\UnsupportedSearchException;
-use JayI\Keystone\Domains\Search\Models\SearchableProductModel;
 use Laravel\Scout\Builder;
 use Laravel\Scout\EngineManager;
 use Laravel\Scout\Engines\Engine;
+use RefactorCircus\Keystone\Domains\Attribute\Enums\AttributeType;
+use RefactorCircus\Keystone\Domains\Attribute\Models\AttributeModel;
+use RefactorCircus\Keystone\Domains\Attribute\Services\Values;
+use RefactorCircus\Keystone\Domains\Search\Contracts\SearchEngine;
+use RefactorCircus\Keystone\Domains\Search\Data\Filter;
+use RefactorCircus\Keystone\Domains\Search\Data\ProductQuery;
+use RefactorCircus\Keystone\Domains\Search\Data\SearchResults;
+use RefactorCircus\Keystone\Domains\Search\Exceptions\UnsupportedSearchException;
+use RefactorCircus\Keystone\Domains\Search\Models\SearchableProductModel;
 
 /**
  * Searches through whichever Laravel Scout engine the application configures

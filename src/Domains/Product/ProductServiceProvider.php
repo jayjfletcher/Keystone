@@ -2,18 +2,18 @@
 
 declare(strict_types=1);
 
-namespace JayI\Keystone\Domains\Product;
+namespace RefactorCircus\Keystone\Domains\Product;
 
-use JayI\Foundation\Support\ServiceProvider;
-use JayI\Keystone\Domains\Product\Models\ProductModel;
+use RefactorCircus\Foundation\Support\ServiceProvider;
+use RefactorCircus\Keystone\Domains\Product\Models\ProductModel;
 
 class ProductServiceProvider extends ServiceProvider
 {
     public function boot(): void
     {
+        // Polymorphic columns store this short name, not the class name.
         $this->keepMorphAliases([
             'keystone_product' => ProductModel::class,
-            'JayI\Keystone\Models\Product' => ProductModel::class,
         ]);
 
         $this->loadApiRoutesFrom(__DIR__.'/routes.php');

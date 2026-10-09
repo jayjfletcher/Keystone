@@ -2,15 +2,15 @@
 
 declare(strict_types=1);
 
-namespace JayI\Keystone\Impex\Actions;
+namespace RefactorCircus\Keystone\Impex\Actions;
 
 use Illuminate\Support\Facades\Storage;
-use JayI\Impex\Domains\Flow\Support\ResumableAction;
-use JayI\Impex\Domains\Run\Data\Resume;
-use JayI\Keystone\Domains\Asset\Services\AssetStorage;
-use JayI\Keystone\Domains\Attribute\Data\ValueFilter;
-use JayI\Keystone\Domains\Product\Actions\ListProductsAction;
-use JayI\Keystone\Impex\ExportRecord;
+use RefactorCircus\Impex\Domains\Flow\Support\ResumableAction;
+use RefactorCircus\Impex\Domains\Run\Data\Resume;
+use RefactorCircus\Keystone\Domains\Asset\Services\AssetStorage;
+use RefactorCircus\Keystone\Domains\Attribute\Data\ValueFilter;
+use RefactorCircus\Keystone\Domains\Product\Actions\ListProductsAction;
+use RefactorCircus\Keystone\Impex\ExportRecord;
 
 /**
  * Writes the products a search matches as JSONL part files, a page each.

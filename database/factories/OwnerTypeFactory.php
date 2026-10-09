@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace JayI\Keystone\Database\Factories;
+namespace RefactorCircus\Keystone\Database\Factories;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
-use JayI\Keystone\Domains\Owner\Models\OwnerTypeModel;
+use RefactorCircus\Keystone\Domains\Owner\Models\OwnerTypeModel;
 
 /**
  * @extends Factory<OwnerTypeModel>

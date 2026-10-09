@@ -2,12 +2,12 @@
 
 declare(strict_types=1);
 
-namespace JayI\Keystone\Domains\Workflow\Events;
+namespace RefactorCircus\Keystone\Domains\Workflow\Events;
 
 use Illuminate\Foundation\Events\Dispatchable;
 use Illuminate\Queue\SerializesModels;
-use JayI\Foundation\Contracts\ActionStartingEvent;
-use JayI\Keystone\Domains\Product\Models\ProductModel;
+use RefactorCircus\Foundation\Contracts\ActionStartingEvent;
+use RefactorCircus\Keystone\Domains\Product\Models\ProductModel;
 
 /**
  * A product's versions are about to be listed.

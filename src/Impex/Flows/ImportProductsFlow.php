@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-namespace JayI\Keystone\Impex\Flows;
+namespace RefactorCircus\Keystone\Impex\Flows;
 
-use JayI\Impex\Domains\Flow\Support\Flow;
-use JayI\Keystone\Impex\Actions\ImportProductRow;
-use JayI\Keystone\Impex\Sources\FileProductSource;
+use RefactorCircus\Impex\Domains\Flow\Support\Flow;
+use RefactorCircus\Keystone\Impex\Actions\ImportProductRow;
+use RefactorCircus\Keystone\Impex\Sources\FileProductSource;
 
 /**
  * `keystone:import-products` — a `.csv` or `.jsonl` asset into products.

@@ -2,14 +2,14 @@
 
 declare(strict_types=1);
 
-namespace JayI\Keystone\Domains\Asset\Actions;
+namespace RefactorCircus\Keystone\Domains\Asset\Actions;
 
 use Illuminate\Validation\Rule;
 use Illuminate\Validation\ValidationException;
-use JayI\Keystone\Domains\Asset\Events\AssetDetachedActionEvent;
-use JayI\Keystone\Domains\Asset\Events\AssetDetachingActionEvent;
-use JayI\Keystone\Domains\Asset\Models\AssetModel;
-use JayI\Keystone\Domains\Asset\Services\AssetLinks;
+use RefactorCircus\Keystone\Domains\Asset\Events\AssetDetachedActionEvent;
+use RefactorCircus\Keystone\Domains\Asset\Events\AssetDetachingActionEvent;
+use RefactorCircus\Keystone\Domains\Asset\Models\AssetModel;
+use RefactorCircus\Keystone\Domains\Asset\Services\AssetLinks;
 
 final class DetachAssetAction
 {

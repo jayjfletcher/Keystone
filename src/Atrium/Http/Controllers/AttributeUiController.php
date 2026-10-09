@@ -2,26 +2,26 @@
 
 declare(strict_types=1);
 
-namespace JayI\Keystone\Atrium\Http\Controllers;
+namespace RefactorCircus\Keystone\Atrium\Http\Controllers;
 
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Validation\ValidationException;
-use JayI\Atrium\Http\Controllers\Concerns\AuthorizesScreens;
-use JayI\Keystone\Atrium\Support\Labels;
-use JayI\Keystone\Domains\Attribute\Actions\CreateAttributeAction;
-use JayI\Keystone\Domains\Attribute\Actions\CreateAttributeOptionAction;
-use JayI\Keystone\Domains\Attribute\Actions\DeleteAttributeAction;
-use JayI\Keystone\Domains\Attribute\Actions\DeleteAttributeOptionAction;
-use JayI\Keystone\Domains\Attribute\Actions\ListAttributesAction;
-use JayI\Keystone\Domains\Attribute\Actions\ShowAttributeAction;
-use JayI\Keystone\Domains\Attribute\Actions\UpdateAttributeAction;
-use JayI\Keystone\Domains\Attribute\Enums\AttributeType;
-use JayI\Keystone\Domains\Attribute\Models\AttributeGroupModel;
-use JayI\Keystone\Domains\Attribute\Models\AttributeModel;
-use JayI\Keystone\Domains\Attribute\Models\AttributeOptionModel;
-use JayI\Keystone\Exceptions\KeystoneException;
+use RefactorCircus\Atrium\Http\Controllers\Concerns\AuthorizesScreens;
+use RefactorCircus\Keystone\Atrium\Support\Labels;
+use RefactorCircus\Keystone\Domains\Attribute\Actions\CreateAttributeAction;
+use RefactorCircus\Keystone\Domains\Attribute\Actions\CreateAttributeOptionAction;
+use RefactorCircus\Keystone\Domains\Attribute\Actions\DeleteAttributeAction;
+use RefactorCircus\Keystone\Domains\Attribute\Actions\DeleteAttributeOptionAction;
+use RefactorCircus\Keystone\Domains\Attribute\Actions\ListAttributesAction;
+use RefactorCircus\Keystone\Domains\Attribute\Actions\ShowAttributeAction;
+use RefactorCircus\Keystone\Domains\Attribute\Actions\UpdateAttributeAction;
+use RefactorCircus\Keystone\Domains\Attribute\Enums\AttributeType;
+use RefactorCircus\Keystone\Domains\Attribute\Models\AttributeGroupModel;
+use RefactorCircus\Keystone\Domains\Attribute\Models\AttributeModel;
+use RefactorCircus\Keystone\Domains\Attribute\Models\AttributeOptionModel;
+use RefactorCircus\Keystone\Exceptions\KeystoneException;
 
 final class AttributeUiController
 {

@@ -2,14 +2,14 @@
 
 declare(strict_types=1);
 
-namespace JayI\Keystone\Domains\Family\Actions;
+namespace RefactorCircus\Keystone\Domains\Family\Actions;
 
 use Illuminate\Database\Eloquent\Builder;
-use JayI\Keystone\Domains\Family\Events\FamilyDeletedActionEvent;
-use JayI\Keystone\Domains\Family\Events\FamilyDeletingActionEvent;
-use JayI\Keystone\Domains\Family\Models\FamilyModel;
-use JayI\Keystone\Domains\ProductModel\Models\ProductModelModel;
-use JayI\Keystone\Exceptions\ModelInUseException;
+use RefactorCircus\Keystone\Domains\Family\Events\FamilyDeletedActionEvent;
+use RefactorCircus\Keystone\Domains\Family\Events\FamilyDeletingActionEvent;
+use RefactorCircus\Keystone\Domains\Family\Models\FamilyModel;
+use RefactorCircus\Keystone\Domains\ProductModel\Models\ProductModelModel;
+use RefactorCircus\Keystone\Exceptions\ModelInUseException;
 
 final class DeleteFamilyAction
 {

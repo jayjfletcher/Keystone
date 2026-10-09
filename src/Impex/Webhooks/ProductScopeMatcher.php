@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-namespace JayI\Keystone\Impex\Webhooks;
+namespace RefactorCircus\Keystone\Impex\Webhooks;
 
 use Illuminate\Database\ConnectionInterface;
-use JayI\Impex\Domains\Subscription\Contracts\SubscriptionMatcher;
-use JayI\Impex\Domains\Subscription\Models\SubscriptionModel;
+use RefactorCircus\Impex\Domains\Subscription\Contracts\SubscriptionMatcher;
+use RefactorCircus\Impex\Domains\Subscription\Models\SubscriptionModel;
 
 /**
  * Matches products to filtered subscriptions.

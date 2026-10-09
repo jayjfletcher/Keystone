@@ -2,14 +2,14 @@
 
 declare(strict_types=1);
 
-namespace JayI\Keystone\Domains\Channel\Mcp\Tools;
+namespace RefactorCircus\Keystone\Domains\Channel\Mcp\Tools;
 
 use Illuminate\Contracts\JsonSchema\JsonSchema;
-use JayI\Foundation\Mcp\Tool;
-use JayI\Keystone\Domains\Channel\Mcp\Requests\UpdateChannelMcpRequest;
 use Laravel\Mcp\Response;
 use Laravel\Mcp\ResponseFactory;
 use Laravel\Mcp\Server\Attributes\Description;
+use RefactorCircus\Foundation\Mcp\Tool;
+use RefactorCircus\Keystone\Domains\Channel\Mcp\Requests\UpdateChannelMcpRequest;
 
 #[Description('Update a channel\'s labels, locales, currencies or category tree. The code cannot change.')]
 final class UpdateChannelTool extends Tool

@@ -2,14 +2,14 @@
 
 declare(strict_types=1);
 
-namespace JayI\Keystone\Domains\Owner\Mcp\Tools;
+namespace RefactorCircus\Keystone\Domains\Owner\Mcp\Tools;
 
 use Illuminate\Contracts\JsonSchema\JsonSchema;
-use JayI\Foundation\Mcp\Tool;
-use JayI\Keystone\Domains\Owner\Mcp\Requests\ListOwnerTypesMcpRequest;
 use Laravel\Mcp\Response;
 use Laravel\Mcp\ResponseFactory;
 use Laravel\Mcp\Server\Attributes\Description;
+use RefactorCircus\Foundation\Mcp\Tool;
+use RefactorCircus\Keystone\Domains\Owner\Mcp\Requests\ListOwnerTypesMcpRequest;
 
 #[Description('List owner types (manufacturer, vendor, brand, series, ...) and their chain rules. Cursor paginated.')]
 final class ListOwnerTypesTool extends Tool

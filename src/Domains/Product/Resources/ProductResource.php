@@ -2,15 +2,15 @@
 
 declare(strict_types=1);
 
-namespace JayI\Keystone\Domains\Product\Resources;
+namespace RefactorCircus\Keystone\Domains\Product\Resources;
 
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
-use JayI\Keystone\Domains\Asset\Resources\LinkedAssets;
-use JayI\Keystone\Domains\Association\Services\Associations;
-use JayI\Keystone\Domains\Attribute\Services\Values;
-use JayI\Keystone\Domains\Product\Models\ProductModel;
-use JayI\Keystone\Domains\Workflow\Models\CompletenessModel;
+use RefactorCircus\Keystone\Domains\Asset\Resources\LinkedAssets;
+use RefactorCircus\Keystone\Domains\Association\Services\Associations;
+use RefactorCircus\Keystone\Domains\Attribute\Services\Values;
+use RefactorCircus\Keystone\Domains\Product\Models\ProductModel;
+use RefactorCircus\Keystone\Domains\Workflow\Models\CompletenessModel;
 
 /**
  * @mixin ProductModel

@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace JayI\Keystone\Domains\Transfer\Exceptions;
+namespace RefactorCircus\Keystone\Domains\Transfer\Exceptions;
 
-use JayI\Keystone\Exceptions\KeystoneException;
+use RefactorCircus\Keystone\Exceptions\KeystoneException;
 use Symfony\Component\HttpFoundation\Response;
 
 /**
@@ -15,7 +15,7 @@ final class ImpexMissingException extends KeystoneException
 {
     public static function make(): self
     {
-        return new self('Imports, exports and feeds need jayi/impex. Run: composer require jayi/impex — and keep keystone.impex.enabled on.');
+        return new self('Imports, exports and feeds need refactor-circus/impex. Run: composer require refactor-circus/impex — and keep keystone.impex.enabled on.');
     }
 
     /**

@@ -2,12 +2,12 @@
 
 declare(strict_types=1);
 
-namespace JayI\Keystone\Domains\Channel\Actions;
+namespace RefactorCircus\Keystone\Domains\Channel\Actions;
 
 use Illuminate\Contracts\Pagination\CursorPaginator;
-use JayI\Keystone\Domains\Channel\Events\LocalesListedActionEvent;
-use JayI\Keystone\Domains\Channel\Events\LocalesListingActionEvent;
-use JayI\Keystone\Domains\Channel\Models\LocaleModel;
+use RefactorCircus\Keystone\Domains\Channel\Events\LocalesListedActionEvent;
+use RefactorCircus\Keystone\Domains\Channel\Events\LocalesListingActionEvent;
+use RefactorCircus\Keystone\Domains\Channel\Models\LocaleModel;
 
 final class ListLocalesAction
 {

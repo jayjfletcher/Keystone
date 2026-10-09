@@ -2,24 +2,24 @@
 
 declare(strict_types=1);
 
-namespace JayI\Keystone\Atrium\Http\Controllers;
+namespace RefactorCircus\Keystone\Atrium\Http\Controllers;
 
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Validation\Rule;
-use JayI\Atrium\Http\Controllers\Concerns\AuthorizesScreens;
-use JayI\Keystone\Atrium\Support\Labels;
-use JayI\Keystone\Domains\Association\Actions\CreateAssociationTypeAction;
-use JayI\Keystone\Domains\Association\Actions\DeleteAssociationTypeAction;
-use JayI\Keystone\Domains\Association\Actions\ListAssociationTypesAction;
-use JayI\Keystone\Domains\Association\Models\AssociationTypeModel;
-use JayI\Keystone\Domains\Product\Actions\UpdateProductAction;
-use JayI\Keystone\Domains\Product\Models\ProductModel;
-use JayI\Keystone\Domains\ProductModel\Actions\UpdateProductModelAction;
-use JayI\Keystone\Domains\ProductModel\Models\ProductModelModel;
-use JayI\Keystone\Exceptions\KeystoneException;
+use RefactorCircus\Atrium\Http\Controllers\Concerns\AuthorizesScreens;
+use RefactorCircus\Keystone\Atrium\Support\Labels;
+use RefactorCircus\Keystone\Domains\Association\Actions\CreateAssociationTypeAction;
+use RefactorCircus\Keystone\Domains\Association\Actions\DeleteAssociationTypeAction;
+use RefactorCircus\Keystone\Domains\Association\Actions\ListAssociationTypesAction;
+use RefactorCircus\Keystone\Domains\Association\Models\AssociationTypeModel;
+use RefactorCircus\Keystone\Domains\Product\Actions\UpdateProductAction;
+use RefactorCircus\Keystone\Domains\Product\Models\ProductModel;
+use RefactorCircus\Keystone\Domains\ProductModel\Actions\UpdateProductModelAction;
+use RefactorCircus\Keystone\Domains\ProductModel\Models\ProductModelModel;
+use RefactorCircus\Keystone\Exceptions\KeystoneException;
 
 /**
  * Association types, and adding or removing one association at a time from

@@ -2,27 +2,27 @@
 
 declare(strict_types=1);
 
-namespace JayI\Keystone;
+namespace RefactorCircus\Keystone;
 
 use Illuminate\Support\Facades\Blade;
-use JayI\Foundation\Packages\Package;
-use JayI\Foundation\Support\PackageServiceProvider;
-use JayI\Keystone\Atrium\KeystonePlugin;
-use JayI\Keystone\Atrium\ScreenAccess;
-use JayI\Keystone\Domains\DomainServiceProvider;
-use JayI\Keystone\Impex\ImpexIntegration;
-use JayI\Keystone\Mcp\KeystoneServer;
+use RefactorCircus\Foundation\Packages\Package;
+use RefactorCircus\Foundation\Support\PackageServiceProvider;
+use RefactorCircus\Keystone\Atrium\KeystonePlugin;
+use RefactorCircus\Keystone\Atrium\ScreenAccess;
+use RefactorCircus\Keystone\Domains\DomainServiceProvider;
+use RefactorCircus\Keystone\Impex\ImpexIntegration;
+use RefactorCircus\Keystone\Mcp\KeystoneServer;
 
 class KeystoneServiceProvider extends PackageServiceProvider
 {
     /**
-     * Describe Keystone to the shared jayi/foundation runtime. Every base
+     * Describe Keystone to the shared refactor-circus/foundation runtime. Every base
      * class finds the package through it, and the helpers below read the
      * `keystone.*` config keys it names.
      */
     protected function definition(): Package
     {
-        return Package::make('keystone', 'JayI\\Keystone')
+        return Package::make('keystone', 'RefactorCircus\\Keystone')
             ->label('Keystone')
             ->server(KeystoneServer::class)
             ->authorization();
@@ -59,7 +59,7 @@ class KeystoneServiceProvider extends PackageServiceProvider
 
         $this->registerMcpServer();
 
-        // GET {prefix}/history: Keystone's audit entries, with jayi/keen.
+        // GET {prefix}/history: Keystone's audit entries, with refactor-circus/keen.
         $this->loadHistoryRoutes();
 
         $this->loadViewsFrom(__DIR__.'/../resources/views', 'keystone');

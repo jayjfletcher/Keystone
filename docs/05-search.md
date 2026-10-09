@@ -7,7 +7,7 @@ Products are listed and searched through a search engine you choose with `keysto
 | `database` | nothing | all operators on every type but price | thousands of products |
 | `scout` | `laravel/scout` + a Scout engine | `=`, `!=`, ranges, `in`, `not_in` — as far as the Scout engine supports them | engine-dependent |
 
-Left unset (`null`, the default), the engine is `scout` when laravel/scout is installed and `database` otherwise. You can also bind your own class implementing `JayI\Keystone\Domains\Search\Contracts\SearchEngine`, and name it in the config. Keystone no longer ships an Elasticsearch engine: use a Scout driver for Elasticsearch, or your own engine.
+Left unset (`null`, the default), the engine is `scout` when laravel/scout is installed and `database` otherwise. You can also bind your own class implementing `RefactorCircus\Keystone\Domains\Search\Contracts\SearchEngine`, and name it in the config. Keystone no longer ships an Elasticsearch engine: use a Scout driver for Elasticsearch, or your own engine.
 
 ## Querying
 
@@ -41,7 +41,7 @@ Because `changed_at` is stamped when the sync job runs, a change is never missed
 
 ## Keeping the index in step
 
-Engines with an index (`scout`, or your own) are fed by a queued job, `SyncProductIndex`, dispatched after each write commits. It carries product ids only. Changing a product model re-indexes its variants. Before the jobs are dispatched, `ProductIndex::queue()` fires `JayI\Keystone\Domains\Search\Events\ProductsQueuedForSync` with the product ids, inside the write's transaction, so a listener can follow every product whose presentation may have changed — its own edits, a transition, or a change it inherits from a model, family, category, owner or channel. Product webhooks are built on it. Choose the queue with:
+Engines with an index (`scout`, or your own) are fed by a queued job, `SyncProductIndex`, dispatched after each write commits. It carries product ids only. Changing a product model re-indexes its variants. Before the jobs are dispatched, `ProductIndex::queue()` fires `RefactorCircus\Keystone\Domains\Search\Events\ProductsQueuedForSync` with the product ids, inside the write's transaction, so a listener can follow every product whose presentation may have changed — its own edits, a transition, or a change it inherits from a model, family, category, owner or channel. Product webhooks are built on it. Choose the queue with:
 
 ```php
 'search' => [

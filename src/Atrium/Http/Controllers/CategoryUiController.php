@@ -2,20 +2,20 @@
 
 declare(strict_types=1);
 
-namespace JayI\Keystone\Atrium\Http\Controllers;
+namespace RefactorCircus\Keystone\Atrium\Http\Controllers;
 
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
-use JayI\Atrium\Http\Controllers\Concerns\AuthorizesScreens;
-use JayI\Keystone\Atrium\Support\Labels;
-use JayI\Keystone\Domains\Category\Actions\CreateCategoryAction;
-use JayI\Keystone\Domains\Category\Actions\DeleteCategoryAction;
-use JayI\Keystone\Domains\Category\Actions\ListCategoriesAction;
-use JayI\Keystone\Domains\Category\Actions\ShowCategoryAction;
-use JayI\Keystone\Domains\Category\Actions\UpdateCategoryAction;
-use JayI\Keystone\Domains\Category\Models\CategoryModel;
-use JayI\Keystone\Exceptions\KeystoneException;
+use RefactorCircus\Atrium\Http\Controllers\Concerns\AuthorizesScreens;
+use RefactorCircus\Keystone\Atrium\Support\Labels;
+use RefactorCircus\Keystone\Domains\Category\Actions\CreateCategoryAction;
+use RefactorCircus\Keystone\Domains\Category\Actions\DeleteCategoryAction;
+use RefactorCircus\Keystone\Domains\Category\Actions\ListCategoriesAction;
+use RefactorCircus\Keystone\Domains\Category\Actions\ShowCategoryAction;
+use RefactorCircus\Keystone\Domains\Category\Actions\UpdateCategoryAction;
+use RefactorCircus\Keystone\Domains\Category\Models\CategoryModel;
+use RefactorCircus\Keystone\Exceptions\KeystoneException;
 
 final class CategoryUiController
 {

@@ -4,16 +4,16 @@ declare(strict_types=1);
 
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Storage;
-use JayI\Impex\Domains\Flow\Services\FlowRegistry;
-use JayI\Impex\Domains\Message\Models\MessageModel;
-use JayI\Impex\Domains\Run\Enums\RunStatus;
-use JayI\Impex\Domains\Run\Models\RunModel;
-use JayI\Impex\Facades\Impex;
-use JayI\Keystone\Domains\Asset\Models\AssetModel;
-use JayI\Keystone\Domains\Product\Models\ProductModel;
-use JayI\Keystone\Domains\Transfer\Mcp\Tools\StartExportTool;
-use JayI\Keystone\Domains\Transfer\Mcp\Tools\StartImportTool;
-use JayI\Keystone\Tests\Fixtures\Catalog;
+use RefactorCircus\Impex\Domains\Flow\Services\FlowRegistry;
+use RefactorCircus\Impex\Domains\Message\Models\MessageModel;
+use RefactorCircus\Impex\Domains\Run\Enums\RunStatus;
+use RefactorCircus\Impex\Domains\Run\Models\RunModel;
+use RefactorCircus\Impex\Facades\Impex;
+use RefactorCircus\Keystone\Domains\Asset\Models\AssetModel;
+use RefactorCircus\Keystone\Domains\Product\Models\ProductModel;
+use RefactorCircus\Keystone\Domains\Transfer\Mcp\Tools\StartExportTool;
+use RefactorCircus\Keystone\Domains\Transfer\Mcp\Tools\StartImportTool;
+use RefactorCircus\Keystone\Tests\Fixtures\Catalog;
 
 beforeEach(function (): void {
     config()->set('keystone.media.disk', 'assets');
@@ -243,7 +243,7 @@ it('says so when Impex is switched off', function (): void {
 
     $this->postJson('/keystone/exports', [])
         ->assertStatus(501)
-        ->assertJsonPath('message', fn (string $message): bool => str_contains($message, 'composer require jayi/impex'));
+        ->assertJsonPath('message', fn (string $message): bool => str_contains($message, 'composer require refactor-circus/impex'));
 });
 
 it('fails the run when more rows fail than tolerated', function (): void {

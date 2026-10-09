@@ -2,15 +2,15 @@
 
 declare(strict_types=1);
 
-namespace JayI\Keystone\Domains\Owner\Actions;
+namespace RefactorCircus\Keystone\Domains\Owner\Actions;
 
 use Illuminate\Support\Facades\DB;
 use Illuminate\Validation\ValidationException;
-use JayI\Keystone\Domains\Owner\Concerns\PlacesOwners;
-use JayI\Keystone\Domains\Owner\Events\OwnerUpdatedActionEvent;
-use JayI\Keystone\Domains\Owner\Events\OwnerUpdatingActionEvent;
-use JayI\Keystone\Domains\Owner\Models\OwnerModel;
-use JayI\Keystone\Domains\Search\Services\ProductIndex;
+use RefactorCircus\Keystone\Domains\Owner\Concerns\PlacesOwners;
+use RefactorCircus\Keystone\Domains\Owner\Events\OwnerUpdatedActionEvent;
+use RefactorCircus\Keystone\Domains\Owner\Events\OwnerUpdatingActionEvent;
+use RefactorCircus\Keystone\Domains\Owner\Models\OwnerModel;
+use RefactorCircus\Keystone\Domains\Search\Services\ProductIndex;
 
 final class UpdateOwnerAction
 {

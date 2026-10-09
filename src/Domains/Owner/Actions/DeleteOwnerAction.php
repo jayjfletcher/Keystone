@@ -2,13 +2,13 @@
 
 declare(strict_types=1);
 
-namespace JayI\Keystone\Domains\Owner\Actions;
+namespace RefactorCircus\Keystone\Domains\Owner\Actions;
 
-use JayI\Keystone\Domains\Asset\Services\AssetLinks;
-use JayI\Keystone\Domains\Owner\Events\OwnerDeletedActionEvent;
-use JayI\Keystone\Domains\Owner\Events\OwnerDeletingActionEvent;
-use JayI\Keystone\Domains\Owner\Models\OwnerModel;
-use JayI\Keystone\Exceptions\ModelInUseException;
+use RefactorCircus\Keystone\Domains\Asset\Services\AssetLinks;
+use RefactorCircus\Keystone\Domains\Owner\Events\OwnerDeletedActionEvent;
+use RefactorCircus\Keystone\Domains\Owner\Events\OwnerDeletingActionEvent;
+use RefactorCircus\Keystone\Domains\Owner\Models\OwnerModel;
+use RefactorCircus\Keystone\Exceptions\ModelInUseException;
 
 final class DeleteOwnerAction
 {

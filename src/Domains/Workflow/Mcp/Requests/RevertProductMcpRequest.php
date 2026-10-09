@@ -2,13 +2,13 @@
 
 declare(strict_types=1);
 
-namespace JayI\Keystone\Domains\Workflow\Mcp\Requests;
+namespace RefactorCircus\Keystone\Domains\Workflow\Mcp\Requests;
 
-use JayI\Keystone\Domains\Product\Mcp\Requests\ProductRequest;
-use JayI\Keystone\Domains\Product\Resources\ProductResource;
-use JayI\Keystone\Domains\Workflow\Actions\RevertProductAction;
 use Laravel\Mcp\Response;
 use Laravel\Mcp\ResponseFactory;
+use RefactorCircus\Keystone\Domains\Product\Mcp\Requests\ProductRequest;
+use RefactorCircus\Keystone\Domains\Product\Resources\ProductResource;
+use RefactorCircus\Keystone\Domains\Workflow\Actions\RevertProductAction;
 
 final class RevertProductMcpRequest extends ProductRequest
 {

@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-namespace JayI\Keystone\Domains\Workflow\Exceptions;
+namespace RefactorCircus\Keystone\Domains\Workflow\Exceptions;
 
-use JayI\Keystone\Domains\Product\Enums\ProductStatus;
-use JayI\Keystone\Domains\Workflow\Enums\Transition;
-use JayI\Keystone\Exceptions\KeystoneException;
+use RefactorCircus\Keystone\Domains\Product\Enums\ProductStatus;
+use RefactorCircus\Keystone\Domains\Workflow\Enums\Transition;
+use RefactorCircus\Keystone\Exceptions\KeystoneException;
 
 final class InvalidTransitionException extends KeystoneException
 {

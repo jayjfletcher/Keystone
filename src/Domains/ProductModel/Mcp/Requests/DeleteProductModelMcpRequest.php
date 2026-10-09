@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-namespace JayI\Keystone\Domains\ProductModel\Mcp\Requests;
+namespace RefactorCircus\Keystone\Domains\ProductModel\Mcp\Requests;
 
-use JayI\Keystone\Domains\ProductModel\Actions\DeleteProductModelAction;
 use Laravel\Mcp\Response;
 use Laravel\Mcp\ResponseFactory;
+use RefactorCircus\Keystone\Domains\ProductModel\Actions\DeleteProductModelAction;
 
 final class DeleteProductModelMcpRequest extends ProductModelRequest
 {

@@ -1,4 +1,4 @@
-@use(JayI\Keystone\Domains\Owner\Models\OwnerTypeModel)
+@use(RefactorCircus\Keystone\Domains\Owner\Models\OwnerTypeModel)
 @php($locale = app()->getLocale())
 
 <x-atrium::layout :title="__('keystone::keystone.owner_types')">

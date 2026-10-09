@@ -2,14 +2,14 @@
 
 declare(strict_types=1);
 
-namespace JayI\Keystone\Domains\Family\Mcp\Tools;
+namespace RefactorCircus\Keystone\Domains\Family\Mcp\Tools;
 
 use Illuminate\Contracts\JsonSchema\JsonSchema;
-use JayI\Foundation\Mcp\Tool;
-use JayI\Keystone\Domains\Family\Mcp\Requests\DeleteFamilyMcpRequest;
 use Laravel\Mcp\Response;
 use Laravel\Mcp\ResponseFactory;
 use Laravel\Mcp\Server\Attributes\Description;
+use RefactorCircus\Foundation\Mcp\Tool;
+use RefactorCircus\Keystone\Domains\Family\Mcp\Requests\DeleteFamilyMcpRequest;
 
 #[Description('Delete a family. Its attributes are not deleted.')]
 final class DeleteFamilyTool extends Tool

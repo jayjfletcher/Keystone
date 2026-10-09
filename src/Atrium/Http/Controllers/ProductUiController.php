@@ -2,30 +2,30 @@
 
 declare(strict_types=1);
 
-namespace JayI\Keystone\Atrium\Http\Controllers;
+namespace RefactorCircus\Keystone\Atrium\Http\Controllers;
 
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Validator;
-use JayI\Atrium\Http\Controllers\Concerns\AuthorizesScreens;
-use JayI\Keystone\Atrium\Support\CategoryCodes;
-use JayI\Keystone\Atrium\Support\EditingSlot;
-use JayI\Keystone\Atrium\Support\ValueForm;
-use JayI\Keystone\Domains\Attribute\Models\AttributeModel;
-use JayI\Keystone\Domains\Family\Models\FamilyModel;
-use JayI\Keystone\Domains\Product\Actions\CreateProductAction;
-use JayI\Keystone\Domains\Product\Actions\DeleteProductAction;
-use JayI\Keystone\Domains\Product\Actions\ListProductsAction;
-use JayI\Keystone\Domains\Product\Actions\ShowProductAction;
-use JayI\Keystone\Domains\Product\Actions\UpdateProductAction;
-use JayI\Keystone\Domains\Product\Models\ProductModel;
-use JayI\Keystone\Domains\Workflow\Actions\ListProductVersionsAction;
-use JayI\Keystone\Domains\Workflow\Actions\RevertProductAction;
-use JayI\Keystone\Domains\Workflow\Actions\TransitionProductAction;
-use JayI\Keystone\Domains\Workflow\Enums\Transition;
-use JayI\Keystone\Exceptions\KeystoneException;
+use RefactorCircus\Atrium\Http\Controllers\Concerns\AuthorizesScreens;
+use RefactorCircus\Keystone\Atrium\Support\CategoryCodes;
+use RefactorCircus\Keystone\Atrium\Support\EditingSlot;
+use RefactorCircus\Keystone\Atrium\Support\ValueForm;
+use RefactorCircus\Keystone\Domains\Attribute\Models\AttributeModel;
+use RefactorCircus\Keystone\Domains\Family\Models\FamilyModel;
+use RefactorCircus\Keystone\Domains\Product\Actions\CreateProductAction;
+use RefactorCircus\Keystone\Domains\Product\Actions\DeleteProductAction;
+use RefactorCircus\Keystone\Domains\Product\Actions\ListProductsAction;
+use RefactorCircus\Keystone\Domains\Product\Actions\ShowProductAction;
+use RefactorCircus\Keystone\Domains\Product\Actions\UpdateProductAction;
+use RefactorCircus\Keystone\Domains\Product\Models\ProductModel;
+use RefactorCircus\Keystone\Domains\Workflow\Actions\ListProductVersionsAction;
+use RefactorCircus\Keystone\Domains\Workflow\Actions\RevertProductAction;
+use RefactorCircus\Keystone\Domains\Workflow\Actions\TransitionProductAction;
+use RefactorCircus\Keystone\Domains\Workflow\Enums\Transition;
+use RefactorCircus\Keystone\Exceptions\KeystoneException;
 
 final class ProductUiController
 {

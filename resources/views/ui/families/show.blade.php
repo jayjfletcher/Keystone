@@ -1,5 +1,5 @@
-@use(JayI\Keystone\Atrium\ScreenAccess)
-@use(JayI\Keystone\Domains\Family\Models\FamilyVariantModel)
+@use(RefactorCircus\Keystone\Atrium\ScreenAccess)
+@use(RefactorCircus\Keystone\Domains\Family\Models\FamilyVariantModel)
 @php($locale = app()->getLocale())
 @php($canUpdate = ScreenAccess::allows('update', $family))
 

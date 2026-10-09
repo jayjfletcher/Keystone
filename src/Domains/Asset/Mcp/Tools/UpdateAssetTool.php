@@ -2,14 +2,14 @@
 
 declare(strict_types=1);
 
-namespace JayI\Keystone\Domains\Asset\Mcp\Tools;
+namespace RefactorCircus\Keystone\Domains\Asset\Mcp\Tools;
 
 use Illuminate\Contracts\JsonSchema\JsonSchema;
-use JayI\Foundation\Mcp\Tool;
-use JayI\Keystone\Domains\Asset\Mcp\Requests\UpdateAssetMcpRequest;
 use Laravel\Mcp\Response;
 use Laravel\Mcp\ResponseFactory;
 use Laravel\Mcp\Server\Attributes\Description;
+use RefactorCircus\Foundation\Mcp\Tool;
+use RefactorCircus\Keystone\Domains\Asset\Mcp\Requests\UpdateAssetMcpRequest;
 
 #[Description('Update an asset\'s labels, or replace its file from a URL or a disk path. The code and links stay.')]
 final class UpdateAssetTool extends Tool

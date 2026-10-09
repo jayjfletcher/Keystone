@@ -2,18 +2,18 @@
 
 declare(strict_types=1);
 
-namespace JayI\Keystone\Impex\Webhooks;
+namespace RefactorCircus\Keystone\Impex\Webhooks;
 
 use Illuminate\Support\Facades\Route;
-use JayI\Impex\Domains\Subscription\Contracts\Formatter;
-use JayI\Impex\Domains\Subscription\Contracts\Stream;
-use JayI\Impex\Domains\Subscription\Data\StreamEvent;
-use JayI\Impex\Domains\Subscription\Enums\EventKind;
-use JayI\Impex\Domains\Subscription\Models\SubscriptionModel;
-use JayI\Impex\Domains\Subscription\Support\TopicMask;
-use JayI\Keystone\Domains\Asset\Models\AssetModel;
-use JayI\Keystone\Domains\Attribute\Data\ValueFilter;
-use JayI\Keystone\Domains\Attribute\Services\Values;
+use RefactorCircus\Impex\Domains\Subscription\Contracts\Formatter;
+use RefactorCircus\Impex\Domains\Subscription\Contracts\Stream;
+use RefactorCircus\Impex\Domains\Subscription\Data\StreamEvent;
+use RefactorCircus\Impex\Domains\Subscription\Enums\EventKind;
+use RefactorCircus\Impex\Domains\Subscription\Models\SubscriptionModel;
+use RefactorCircus\Impex\Domains\Subscription\Support\TopicMask;
+use RefactorCircus\Keystone\Domains\Asset\Models\AssetModel;
+use RefactorCircus\Keystone\Domains\Attribute\Data\ValueFilter;
+use RefactorCircus\Keystone\Domains\Attribute\Services\Values;
 
 /**
  * Products as a subscriber receives them.

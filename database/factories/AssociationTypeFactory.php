@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace JayI\Keystone\Database\Factories;
+namespace RefactorCircus\Keystone\Database\Factories;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
-use JayI\Keystone\Domains\Association\Models\AssociationTypeModel;
+use RefactorCircus\Keystone\Domains\Association\Models\AssociationTypeModel;
 
 /**
  * @extends Factory<AssociationTypeModel>

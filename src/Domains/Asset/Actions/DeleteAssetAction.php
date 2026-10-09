@@ -2,12 +2,12 @@
 
 declare(strict_types=1);
 
-namespace JayI\Keystone\Domains\Asset\Actions;
+namespace RefactorCircus\Keystone\Domains\Asset\Actions;
 
-use JayI\Keystone\Domains\Asset\Events\AssetDeletedActionEvent;
-use JayI\Keystone\Domains\Asset\Events\AssetDeletingActionEvent;
-use JayI\Keystone\Domains\Asset\Models\AssetModel;
-use JayI\Keystone\Domains\Asset\Services\AssetStorage;
+use RefactorCircus\Keystone\Domains\Asset\Events\AssetDeletedActionEvent;
+use RefactorCircus\Keystone\Domains\Asset\Events\AssetDeletingActionEvent;
+use RefactorCircus\Keystone\Domains\Asset\Models\AssetModel;
+use RefactorCircus\Keystone\Domains\Asset\Services\AssetStorage;
 
 final class DeleteAssetAction
 {

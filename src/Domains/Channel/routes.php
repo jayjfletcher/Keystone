@@ -3,8 +3,8 @@
 declare(strict_types=1);
 
 use Illuminate\Support\Facades\Route;
-use JayI\Keystone\Domains\Channel\Http\Controllers\ChannelController;
-use JayI\Keystone\Domains\Channel\Http\Controllers\LocaleController;
+use RefactorCircus\Keystone\Domains\Channel\Http\Controllers\ChannelController;
+use RefactorCircus\Keystone\Domains\Channel\Http\Controllers\LocaleController;
 
 Route::get('locales', [LocaleController::class, 'index'])->name('locales.index');
 Route::post('locales', [LocaleController::class, 'store'])->name('locales.store');

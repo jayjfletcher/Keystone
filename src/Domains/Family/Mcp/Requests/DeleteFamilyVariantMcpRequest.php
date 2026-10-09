@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-namespace JayI\Keystone\Domains\Family\Mcp\Requests;
+namespace RefactorCircus\Keystone\Domains\Family\Mcp\Requests;
 
-use JayI\Keystone\Domains\Family\Actions\DeleteFamilyVariantAction;
 use Laravel\Mcp\Response;
 use Laravel\Mcp\ResponseFactory;
+use RefactorCircus\Keystone\Domains\Family\Actions\DeleteFamilyVariantAction;
 
 final class DeleteFamilyVariantMcpRequest extends FamilyVariantRequest
 {

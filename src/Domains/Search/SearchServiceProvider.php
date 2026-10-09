@@ -2,17 +2,17 @@
 
 declare(strict_types=1);
 
-namespace JayI\Keystone\Domains\Search;
+namespace RefactorCircus\Keystone\Domains\Search;
 
 use Illuminate\Contracts\Foundation\Application;
 use InvalidArgumentException;
-use JayI\Foundation\Support\ServiceProvider;
-use JayI\Keystone\Domains\Search\Console\Commands\ReindexProductsCommand;
-use JayI\Keystone\Domains\Search\Contracts\SearchEngine;
-use JayI\Keystone\Domains\Search\Exceptions\UnsupportedSearchException;
-use JayI\Keystone\Domains\Search\Services\DatabaseEngine;
-use JayI\Keystone\Domains\Search\Services\ScoutEngine;
 use Laravel\Scout\EngineManager;
+use RefactorCircus\Foundation\Support\ServiceProvider;
+use RefactorCircus\Keystone\Domains\Search\Console\Commands\ReindexProductsCommand;
+use RefactorCircus\Keystone\Domains\Search\Contracts\SearchEngine;
+use RefactorCircus\Keystone\Domains\Search\Exceptions\UnsupportedSearchException;
+use RefactorCircus\Keystone\Domains\Search\Services\DatabaseEngine;
+use RefactorCircus\Keystone\Domains\Search\Services\ScoutEngine;
 
 class SearchServiceProvider extends ServiceProvider
 {

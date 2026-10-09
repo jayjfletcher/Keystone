@@ -2,23 +2,23 @@
 
 declare(strict_types=1);
 
-namespace JayI\Keystone\Atrium\Http\Controllers;
+namespace RefactorCircus\Keystone\Atrium\Http\Controllers;
 
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
-use JayI\Atrium\Http\Controllers\Concerns\AuthorizesScreens;
-use JayI\Keystone\Atrium\Support\CategoryCodes;
-use JayI\Keystone\Atrium\Support\EditingSlot;
-use JayI\Keystone\Atrium\Support\ValueForm;
-use JayI\Keystone\Domains\Family\Models\FamilyVariantModel;
-use JayI\Keystone\Domains\ProductModel\Actions\CreateProductModelAction;
-use JayI\Keystone\Domains\ProductModel\Actions\DeleteProductModelAction;
-use JayI\Keystone\Domains\ProductModel\Actions\ListProductModelsAction;
-use JayI\Keystone\Domains\ProductModel\Actions\ShowProductModelAction;
-use JayI\Keystone\Domains\ProductModel\Actions\UpdateProductModelAction;
-use JayI\Keystone\Domains\ProductModel\Models\ProductModelModel;
+use RefactorCircus\Atrium\Http\Controllers\Concerns\AuthorizesScreens;
+use RefactorCircus\Keystone\Atrium\Support\CategoryCodes;
+use RefactorCircus\Keystone\Atrium\Support\EditingSlot;
+use RefactorCircus\Keystone\Atrium\Support\ValueForm;
+use RefactorCircus\Keystone\Domains\Family\Models\FamilyVariantModel;
+use RefactorCircus\Keystone\Domains\ProductModel\Actions\CreateProductModelAction;
+use RefactorCircus\Keystone\Domains\ProductModel\Actions\DeleteProductModelAction;
+use RefactorCircus\Keystone\Domains\ProductModel\Actions\ListProductModelsAction;
+use RefactorCircus\Keystone\Domains\ProductModel\Actions\ShowProductModelAction;
+use RefactorCircus\Keystone\Domains\ProductModel\Actions\UpdateProductModelAction;
+use RefactorCircus\Keystone\Domains\ProductModel\Models\ProductModelModel;
 
 final class ProductModelUiController
 {

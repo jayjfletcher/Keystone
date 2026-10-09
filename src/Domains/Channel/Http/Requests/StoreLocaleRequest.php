@@ -2,13 +2,13 @@
 
 declare(strict_types=1);
 
-namespace JayI\Keystone\Domains\Channel\Http\Requests;
+namespace RefactorCircus\Keystone\Domains\Channel\Http\Requests;
 
 use Illuminate\Http\JsonResponse;
-use JayI\Foundation\Http\Requests\Request;
-use JayI\Keystone\Domains\Channel\Actions\CreateLocaleAction;
-use JayI\Keystone\Domains\Channel\Models\LocaleModel;
-use JayI\Keystone\Domains\Channel\Resources\LocaleResource;
+use RefactorCircus\Foundation\Http\Requests\Request;
+use RefactorCircus\Keystone\Domains\Channel\Actions\CreateLocaleAction;
+use RefactorCircus\Keystone\Domains\Channel\Models\LocaleModel;
+use RefactorCircus\Keystone\Domains\Channel\Resources\LocaleResource;
 
 final class StoreLocaleRequest extends Request
 {

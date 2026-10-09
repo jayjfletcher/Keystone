@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace JayI\Keystone\Tests\Fixtures;
+namespace RefactorCircus\Keystone\Tests\Fixtures;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Collection;

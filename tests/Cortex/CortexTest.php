@@ -2,17 +2,17 @@
 
 declare(strict_types=1);
 
-use JayI\Cortex\Domains\McpServer\Actions\CreateMcpInstructionVersionAction;
-use JayI\Cortex\Domains\McpServer\Services\McpServerRegistry;
-use JayI\Cortex\Domains\Tool\Actions\CreateToolDescriptionVersionAction;
-use JayI\Cortex\Domains\Tool\Services\ToolRegistry;
-use JayI\Foundation\Cortex\CortexIntegration;
-use JayI\Foundation\Packages\PackageRegistry;
-use JayI\Keystone\Domains\Attribute\Mcp\Tools\ListAttributesTool;
-use JayI\Keystone\Mcp\KeystoneServer;
 use Laravel\Ai\Contracts\Tool as AgentTool;
 use Laravel\Ai\Tools\Request;
 use Laravel\Mcp\Server\Transport\FakeTransporter;
+use RefactorCircus\Cortex\Domains\McpServer\Actions\CreateMcpInstructionVersionAction;
+use RefactorCircus\Cortex\Domains\McpServer\Services\McpServerRegistry;
+use RefactorCircus\Cortex\Domains\Tool\Actions\CreateToolDescriptionVersionAction;
+use RefactorCircus\Cortex\Domains\Tool\Services\ToolRegistry;
+use RefactorCircus\Foundation\Cortex\CortexIntegration;
+use RefactorCircus\Foundation\Packages\PackageRegistry;
+use RefactorCircus\Keystone\Domains\Attribute\Mcp\Tools\ListAttributesTool;
+use RefactorCircus\Keystone\Mcp\KeystoneServer;
 
 it('registers the MCP server with Cortex', function (): void {
     $servers = app(McpServerRegistry::class);

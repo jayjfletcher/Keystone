@@ -2,15 +2,15 @@
 
 declare(strict_types=1);
 
-namespace JayI\Keystone\Domains\Attribute\Http\Controllers;
+namespace RefactorCircus\Keystone\Domains\Attribute\Http\Controllers;
 
 use Illuminate\Http\JsonResponse;
-use JayI\Keystone\Domains\Attribute\Http\Requests\DeleteAttributeGroupRequest;
-use JayI\Keystone\Domains\Attribute\Http\Requests\IndexAttributeGroupsRequest;
-use JayI\Keystone\Domains\Attribute\Http\Requests\ShowAttributeGroupRequest;
-use JayI\Keystone\Domains\Attribute\Http\Requests\StoreAttributeGroupRequest;
-use JayI\Keystone\Domains\Attribute\Http\Requests\UpdateAttributeGroupRequest;
-use JayI\Keystone\Domains\Attribute\Models\AttributeGroupModel;
+use RefactorCircus\Keystone\Domains\Attribute\Http\Requests\DeleteAttributeGroupRequest;
+use RefactorCircus\Keystone\Domains\Attribute\Http\Requests\IndexAttributeGroupsRequest;
+use RefactorCircus\Keystone\Domains\Attribute\Http\Requests\ShowAttributeGroupRequest;
+use RefactorCircus\Keystone\Domains\Attribute\Http\Requests\StoreAttributeGroupRequest;
+use RefactorCircus\Keystone\Domains\Attribute\Http\Requests\UpdateAttributeGroupRequest;
+use RefactorCircus\Keystone\Domains\Attribute\Models\AttributeGroupModel;
 
 final class AttributeGroupController
 {

@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-namespace JayI\Keystone\Impex\Flows;
+namespace RefactorCircus\Keystone\Impex\Flows;
 
-use JayI\Impex\Domains\Flow\Support\Flow;
-use JayI\Keystone\Impex\Actions\ImportProductRow;
-use JayI\Keystone\Impex\Sources\InlineProductSource;
+use RefactorCircus\Impex\Domains\Flow\Support\Flow;
+use RefactorCircus\Keystone\Impex\Actions\ImportProductRow;
+use RefactorCircus\Keystone\Impex\Sources\InlineProductSource;
 
 /**
  * `keystone:upsert-products` — product records passed in with the run: an

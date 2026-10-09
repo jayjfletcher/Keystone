@@ -2,14 +2,14 @@
 
 declare(strict_types=1);
 
-namespace JayI\Keystone\Domains\Attribute\Actions;
+namespace RefactorCircus\Keystone\Domains\Attribute\Actions;
 
 use Illuminate\Validation\ValidationException;
-use JayI\Keystone\Domains\Attribute\Events\AttributeOptionCreatedActionEvent;
-use JayI\Keystone\Domains\Attribute\Events\AttributeOptionCreatingActionEvent;
-use JayI\Keystone\Domains\Attribute\Exceptions\AttributeHasNoOptionsException;
-use JayI\Keystone\Domains\Attribute\Models\AttributeModel;
-use JayI\Keystone\Domains\Attribute\Models\AttributeOptionModel;
+use RefactorCircus\Keystone\Domains\Attribute\Events\AttributeOptionCreatedActionEvent;
+use RefactorCircus\Keystone\Domains\Attribute\Events\AttributeOptionCreatingActionEvent;
+use RefactorCircus\Keystone\Domains\Attribute\Exceptions\AttributeHasNoOptionsException;
+use RefactorCircus\Keystone\Domains\Attribute\Models\AttributeModel;
+use RefactorCircus\Keystone\Domains\Attribute\Models\AttributeOptionModel;
 
 final class CreateAttributeOptionAction
 {

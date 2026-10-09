@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace JayI\Keystone\Domains\Owner\Http\Requests;
+namespace RefactorCircus\Keystone\Domains\Owner\Http\Requests;
 
-use JayI\Foundation\Http\Requests\Request;
-use JayI\Keystone\Domains\Owner\Models\OwnerTypeModel;
+use RefactorCircus\Foundation\Http\Requests\Request;
+use RefactorCircus\Keystone\Domains\Owner\Models\OwnerTypeModel;
 
 abstract class OwnerTypeRequest extends Request
 {

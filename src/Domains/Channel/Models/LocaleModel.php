@@ -2,16 +2,16 @@
 
 declare(strict_types=1);
 
-namespace JayI\Keystone\Domains\Channel\Models;
+namespace RefactorCircus\Keystone\Domains\Channel\Models;
 
 use Illuminate\Database\Eloquent\Concerns\HasUlids;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Support\Carbon;
-use JayI\Foundation\Models\Concerns\DispatchesModelEvents;
-use JayI\Keystone\Database\Factories\LocaleFactory;
-use JayI\Keystone\Support\Models\Concerns\HasLabels;
+use RefactorCircus\Foundation\Models\Concerns\DispatchesModelEvents;
+use RefactorCircus\Keystone\Database\Factories\LocaleFactory;
+use RefactorCircus\Keystone\Support\Models\Concerns\HasLabels;
 
 /**
  * A language the catalog holds content in: `en`, `fr_CA`. Localizable values

@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-namespace JayI\Keystone\Database\Factories;
+namespace RefactorCircus\Keystone\Database\Factories;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
-use JayI\Keystone\Domains\Owner\Models\OwnerModel;
-use JayI\Keystone\Domains\Owner\Models\OwnerTypeModel;
+use RefactorCircus\Keystone\Domains\Owner\Models\OwnerModel;
+use RefactorCircus\Keystone\Domains\Owner\Models\OwnerTypeModel;
 
 /**
  * A root owner. Build chains through CreateOwnerAction, which keeps paths.

@@ -2,19 +2,19 @@
 
 declare(strict_types=1);
 
-namespace JayI\Keystone\Atrium\Http\Controllers;
+namespace RefactorCircus\Keystone\Atrium\Http\Controllers;
 
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
-use JayI\Atrium\Http\Controllers\Concerns\AuthorizesScreens;
-use JayI\Keystone\Atrium\Support\Labels;
-use JayI\Keystone\Domains\Family\Actions\CreateFamilyVariantAction;
-use JayI\Keystone\Domains\Family\Actions\DeleteFamilyVariantAction;
-use JayI\Keystone\Domains\Family\Actions\ShowFamilyVariantAction;
-use JayI\Keystone\Domains\Family\Models\FamilyVariantModel;
-use JayI\Keystone\Exceptions\KeystoneException;
+use RefactorCircus\Atrium\Http\Controllers\Concerns\AuthorizesScreens;
+use RefactorCircus\Keystone\Atrium\Support\Labels;
+use RefactorCircus\Keystone\Domains\Family\Actions\CreateFamilyVariantAction;
+use RefactorCircus\Keystone\Domains\Family\Actions\DeleteFamilyVariantAction;
+use RefactorCircus\Keystone\Domains\Family\Actions\ShowFamilyVariantAction;
+use RefactorCircus\Keystone\Domains\Family\Models\FamilyVariantModel;
+use RefactorCircus\Keystone\Exceptions\KeystoneException;
 
 final class FamilyVariantUiController
 {

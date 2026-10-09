@@ -2,12 +2,12 @@
 
 declare(strict_types=1);
 
-namespace JayI\Keystone\Domains\Asset\Events;
+namespace RefactorCircus\Keystone\Domains\Asset\Events;
 
 use Illuminate\Foundation\Events\Dispatchable;
 use Illuminate\Queue\SerializesModels;
-use JayI\Foundation\Contracts\ActionStartingEvent;
-use JayI\Keystone\Domains\Asset\Models\AssetModel;
+use RefactorCircus\Foundation\Contracts\ActionStartingEvent;
+use RefactorCircus\Keystone\Domains\Asset\Models\AssetModel;
 
 /**
  * An asset is about to be linked to a record.

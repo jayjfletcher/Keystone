@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-namespace JayI\Keystone\Domains\Channel\Actions;
+namespace RefactorCircus\Keystone\Domains\Channel\Actions;
 
-use JayI\Keystone\Domains\Channel\Events\ChannelShowingActionEvent;
-use JayI\Keystone\Domains\Channel\Events\ChannelShownActionEvent;
-use JayI\Keystone\Domains\Channel\Models\ChannelModel;
+use RefactorCircus\Keystone\Domains\Channel\Events\ChannelShowingActionEvent;
+use RefactorCircus\Keystone\Domains\Channel\Events\ChannelShownActionEvent;
+use RefactorCircus\Keystone\Domains\Channel\Models\ChannelModel;
 
 final class ShowChannelAction
 {

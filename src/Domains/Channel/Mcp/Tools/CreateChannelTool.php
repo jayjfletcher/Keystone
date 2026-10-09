@@ -2,14 +2,14 @@
 
 declare(strict_types=1);
 
-namespace JayI\Keystone\Domains\Channel\Mcp\Tools;
+namespace RefactorCircus\Keystone\Domains\Channel\Mcp\Tools;
 
 use Illuminate\Contracts\JsonSchema\JsonSchema;
-use JayI\Foundation\Mcp\Tool;
-use JayI\Keystone\Domains\Channel\Mcp\Requests\CreateChannelMcpRequest;
 use Laravel\Mcp\Response;
 use Laravel\Mcp\ResponseFactory;
 use Laravel\Mcp\Server\Attributes\Description;
+use RefactorCircus\Foundation\Mcp\Tool;
+use RefactorCircus\Keystone\Domains\Channel\Mcp\Requests\CreateChannelMcpRequest;
 
 #[Description('Create a channel: where products are published, in which locales and currencies, from which category tree.')]
 final class CreateChannelTool extends Tool

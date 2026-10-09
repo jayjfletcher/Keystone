@@ -2,16 +2,16 @@
 
 declare(strict_types=1);
 
-namespace JayI\Keystone\Domains\Attribute\Models;
+namespace RefactorCircus\Keystone\Domains\Attribute\Models;
 
 use Illuminate\Database\Eloquent\Concerns\HasUlids;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Support\Carbon;
-use JayI\Foundation\Models\Concerns\DispatchesModelEvents;
-use JayI\Keystone\Database\Factories\AttributeGroupFactory;
-use JayI\Keystone\Support\Models\Concerns\HasLabels;
+use RefactorCircus\Foundation\Models\Concerns\DispatchesModelEvents;
+use RefactorCircus\Keystone\Database\Factories\AttributeGroupFactory;
+use RefactorCircus\Keystone\Support\Models\Concerns\HasLabels;
 
 /**
  * A named section attributes are organised into, such as "Marketing" or

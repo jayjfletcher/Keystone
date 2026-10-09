@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-use JayI\Keystone\Tests\Fixtures\Catalog;
+use RefactorCircus\Keystone\Tests\Fixtures\Catalog;
 
 beforeEach(function (): void {
     Catalog::apparel();

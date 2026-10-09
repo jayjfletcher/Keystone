@@ -2,12 +2,12 @@
 
 declare(strict_types=1);
 
-namespace JayI\Keystone\Domains\Owner\Resources;
+namespace RefactorCircus\Keystone\Domains\Owner\Resources;
 
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
-use JayI\Keystone\Domains\Asset\Resources\LinkedAssets;
-use JayI\Keystone\Domains\Owner\Models\OwnerModel;
+use RefactorCircus\Keystone\Domains\Asset\Resources\LinkedAssets;
+use RefactorCircus\Keystone\Domains\Owner\Models\OwnerModel;
 
 /**
  * @mixin OwnerModel

@@ -2,26 +2,26 @@
 
 declare(strict_types=1);
 
-namespace JayI\Keystone\Atrium\Http\Controllers;
+namespace RefactorCircus\Keystone\Atrium\Http\Controllers;
 
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
-use JayI\Atrium\Http\Controllers\Concerns\AuthorizesScreens;
-use JayI\Keystone\Atrium\Support\Labels;
-use JayI\Keystone\Domains\Category\Models\CategoryModel;
-use JayI\Keystone\Domains\Channel\Actions\CreateChannelAction;
-use JayI\Keystone\Domains\Channel\Actions\CreateLocaleAction;
-use JayI\Keystone\Domains\Channel\Actions\DeleteChannelAction;
-use JayI\Keystone\Domains\Channel\Actions\DeleteLocaleAction;
-use JayI\Keystone\Domains\Channel\Actions\ListChannelsAction;
-use JayI\Keystone\Domains\Channel\Actions\ListLocalesAction;
-use JayI\Keystone\Domains\Channel\Actions\ShowChannelAction;
-use JayI\Keystone\Domains\Channel\Actions\UpdateChannelAction;
-use JayI\Keystone\Domains\Channel\Models\ChannelModel;
-use JayI\Keystone\Domains\Channel\Models\LocaleModel;
-use JayI\Keystone\Exceptions\KeystoneException;
+use RefactorCircus\Atrium\Http\Controllers\Concerns\AuthorizesScreens;
+use RefactorCircus\Keystone\Atrium\Support\Labels;
+use RefactorCircus\Keystone\Domains\Category\Models\CategoryModel;
+use RefactorCircus\Keystone\Domains\Channel\Actions\CreateChannelAction;
+use RefactorCircus\Keystone\Domains\Channel\Actions\CreateLocaleAction;
+use RefactorCircus\Keystone\Domains\Channel\Actions\DeleteChannelAction;
+use RefactorCircus\Keystone\Domains\Channel\Actions\DeleteLocaleAction;
+use RefactorCircus\Keystone\Domains\Channel\Actions\ListChannelsAction;
+use RefactorCircus\Keystone\Domains\Channel\Actions\ListLocalesAction;
+use RefactorCircus\Keystone\Domains\Channel\Actions\ShowChannelAction;
+use RefactorCircus\Keystone\Domains\Channel\Actions\UpdateChannelAction;
+use RefactorCircus\Keystone\Domains\Channel\Models\ChannelModel;
+use RefactorCircus\Keystone\Domains\Channel\Models\LocaleModel;
+use RefactorCircus\Keystone\Exceptions\KeystoneException;
 
 /**
  * Channels and the locales they publish in, managed on one page.

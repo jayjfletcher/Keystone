@@ -2,14 +2,14 @@
 
 declare(strict_types=1);
 
-namespace JayI\Keystone\Domains\Workflow\Http\Controllers;
+namespace RefactorCircus\Keystone\Domains\Workflow\Http\Controllers;
 
 use Illuminate\Http\JsonResponse;
-use JayI\Keystone\Domains\Product\Models\ProductModel;
-use JayI\Keystone\Domains\Workflow\Http\Requests\IndexProductVersionsRequest;
-use JayI\Keystone\Domains\Workflow\Http\Requests\RevertProductRequest;
-use JayI\Keystone\Domains\Workflow\Http\Requests\ShowProductVersionRequest;
-use JayI\Keystone\Domains\Workflow\Http\Requests\TransitionProductRequest;
+use RefactorCircus\Keystone\Domains\Product\Models\ProductModel;
+use RefactorCircus\Keystone\Domains\Workflow\Http\Requests\IndexProductVersionsRequest;
+use RefactorCircus\Keystone\Domains\Workflow\Http\Requests\RevertProductRequest;
+use RefactorCircus\Keystone\Domains\Workflow\Http\Requests\ShowProductVersionRequest;
+use RefactorCircus\Keystone\Domains\Workflow\Http\Requests\TransitionProductRequest;
 
 final class ProductWorkflowController
 {

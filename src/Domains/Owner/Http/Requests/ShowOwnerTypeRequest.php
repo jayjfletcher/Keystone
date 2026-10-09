@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-namespace JayI\Keystone\Domains\Owner\Http\Requests;
+namespace RefactorCircus\Keystone\Domains\Owner\Http\Requests;
 
 use Illuminate\Http\JsonResponse;
-use JayI\Keystone\Domains\Owner\Actions\ShowOwnerTypeAction;
-use JayI\Keystone\Domains\Owner\Resources\OwnerTypeResource;
+use RefactorCircus\Keystone\Domains\Owner\Actions\ShowOwnerTypeAction;
+use RefactorCircus\Keystone\Domains\Owner\Resources\OwnerTypeResource;
 
 final class ShowOwnerTypeRequest extends OwnerTypeRequest
 {

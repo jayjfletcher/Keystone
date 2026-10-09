@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-namespace JayI\Keystone\Impex\Sources;
+namespace RefactorCircus\Keystone\Impex\Sources;
 
-use JayI\Impex\Domains\Batch\Contracts\BatchSource;
-use JayI\Impex\Domains\Batch\Data\BatchChunk;
-use JayI\Impex\Domains\Batch\Data\BatchChunkItem;
+use RefactorCircus\Impex\Domains\Batch\Contracts\BatchSource;
+use RefactorCircus\Impex\Domains\Batch\Data\BatchChunk;
+use RefactorCircus\Impex\Domains\Batch\Data\BatchChunkItem;
 
 /**
  * Product records passed in with the run — an ERP push, an inbound webhook.

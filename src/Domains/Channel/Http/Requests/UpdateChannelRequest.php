@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-namespace JayI\Keystone\Domains\Channel\Http\Requests;
+namespace RefactorCircus\Keystone\Domains\Channel\Http\Requests;
 
 use Illuminate\Http\JsonResponse;
-use JayI\Keystone\Domains\Channel\Actions\UpdateChannelAction;
-use JayI\Keystone\Domains\Channel\Resources\ChannelResource;
+use RefactorCircus\Keystone\Domains\Channel\Actions\UpdateChannelAction;
+use RefactorCircus\Keystone\Domains\Channel\Resources\ChannelResource;
 
 final class UpdateChannelRequest extends ChannelRequest
 {

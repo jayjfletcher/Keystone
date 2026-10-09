@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-namespace JayI\Keystone\Domains\Search\Contracts;
+namespace RefactorCircus\Keystone\Domains\Search\Contracts;
 
-use JayI\Keystone\Domains\Product\Models\ProductModel;
-use JayI\Keystone\Domains\Search\Data\ProductQuery;
-use JayI\Keystone\Domains\Search\Data\SearchResults;
+use RefactorCircus\Keystone\Domains\Product\Models\ProductModel;
+use RefactorCircus\Keystone\Domains\Search\Data\ProductQuery;
+use RefactorCircus\Keystone\Domains\Search\Data\SearchResults;
 
 /**
  * Where products are searched. Chosen with `keystone.search.engine`, or bind

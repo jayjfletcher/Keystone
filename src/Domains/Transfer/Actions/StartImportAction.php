@@ -2,18 +2,18 @@
 
 declare(strict_types=1);
 
-namespace JayI\Keystone\Domains\Transfer\Actions;
+namespace RefactorCircus\Keystone\Domains\Transfer\Actions;
 
 use Illuminate\Http\UploadedFile;
 use Illuminate\Validation\Rule;
 use Illuminate\Validation\ValidationException;
-use JayI\Impex\Domains\Run\Models\RunModel;
-use JayI\Keystone\Domains\Asset\Actions\CreateAssetAction;
-use JayI\Keystone\Domains\Asset\Models\AssetModel;
-use JayI\Keystone\Domains\Transfer\Events\ImportStartedActionEvent;
-use JayI\Keystone\Domains\Transfer\Events\ImportStartingActionEvent;
-use JayI\Keystone\Domains\Transfer\Exceptions\ImpexMissingException;
-use JayI\Keystone\Impex\ImpexIntegration;
+use RefactorCircus\Impex\Domains\Run\Models\RunModel;
+use RefactorCircus\Keystone\Domains\Asset\Actions\CreateAssetAction;
+use RefactorCircus\Keystone\Domains\Asset\Models\AssetModel;
+use RefactorCircus\Keystone\Domains\Transfer\Events\ImportStartedActionEvent;
+use RefactorCircus\Keystone\Domains\Transfer\Events\ImportStartingActionEvent;
+use RefactorCircus\Keystone\Domains\Transfer\Exceptions\ImpexMissingException;
+use RefactorCircus\Keystone\Impex\ImpexIntegration;
 
 final class StartImportAction
 {

@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-namespace JayI\Keystone\Domains\Channel\Actions;
+namespace RefactorCircus\Keystone\Domains\Channel\Actions;
 
-use JayI\Keystone\Domains\Channel\Events\LocaleUpdatedActionEvent;
-use JayI\Keystone\Domains\Channel\Events\LocaleUpdatingActionEvent;
-use JayI\Keystone\Domains\Channel\Models\LocaleModel;
+use RefactorCircus\Keystone\Domains\Channel\Events\LocaleUpdatedActionEvent;
+use RefactorCircus\Keystone\Domains\Channel\Events\LocaleUpdatingActionEvent;
+use RefactorCircus\Keystone\Domains\Channel\Models\LocaleModel;
 
 final class UpdateLocaleAction
 {

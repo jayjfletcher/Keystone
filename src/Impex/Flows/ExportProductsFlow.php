@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-namespace JayI\Keystone\Impex\Flows;
+namespace RefactorCircus\Keystone\Impex\Flows;
 
-use JayI\Impex\Domains\Flow\Support\Flow;
-use JayI\Keystone\Impex\Actions\ExportProductPages;
-use JayI\Keystone\Impex\Actions\JoinProductExport;
+use RefactorCircus\Impex\Domains\Flow\Support\Flow;
+use RefactorCircus\Keystone\Impex\Actions\ExportProductPages;
+use RefactorCircus\Keystone\Impex\Actions\JoinProductExport;
 
 /**
  * `keystone:export-products` — the products a search matches, to a `.jsonl`

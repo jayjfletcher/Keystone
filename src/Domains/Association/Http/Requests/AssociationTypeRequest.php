@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace JayI\Keystone\Domains\Association\Http\Requests;
+namespace RefactorCircus\Keystone\Domains\Association\Http\Requests;
 
-use JayI\Foundation\Http\Requests\Request;
-use JayI\Keystone\Domains\Association\Models\AssociationTypeModel;
+use RefactorCircus\Foundation\Http\Requests\Request;
+use RefactorCircus\Keystone\Domains\Association\Models\AssociationTypeModel;
 
 abstract class AssociationTypeRequest extends Request
 {

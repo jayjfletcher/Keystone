@@ -1,4 +1,4 @@
-@use(JayI\Keystone\Domains\ProductModel\Models\ProductModelModel)
+@use(RefactorCircus\Keystone\Domains\ProductModel\Models\ProductModelModel)
 
 <x-atrium::layout :title="__('keystone::keystone.product_models')">
     <x-atrium::page-header :title="__('keystone::keystone.product_models')" />

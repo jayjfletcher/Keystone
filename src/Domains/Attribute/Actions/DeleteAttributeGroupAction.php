@@ -2,13 +2,13 @@
 
 declare(strict_types=1);
 
-namespace JayI\Keystone\Domains\Attribute\Actions;
+namespace RefactorCircus\Keystone\Domains\Attribute\Actions;
 
 use Illuminate\Support\Facades\DB;
-use JayI\Keystone\Domains\Attribute\Events\AttributeGroupDeletedActionEvent;
-use JayI\Keystone\Domains\Attribute\Events\AttributeGroupDeletingActionEvent;
-use JayI\Keystone\Domains\Attribute\Exceptions\AttributeGroupNotEmptyException;
-use JayI\Keystone\Domains\Attribute\Models\AttributeGroupModel;
+use RefactorCircus\Keystone\Domains\Attribute\Events\AttributeGroupDeletedActionEvent;
+use RefactorCircus\Keystone\Domains\Attribute\Events\AttributeGroupDeletingActionEvent;
+use RefactorCircus\Keystone\Domains\Attribute\Exceptions\AttributeGroupNotEmptyException;
+use RefactorCircus\Keystone\Domains\Attribute\Models\AttributeGroupModel;
 
 final class DeleteAttributeGroupAction
 {

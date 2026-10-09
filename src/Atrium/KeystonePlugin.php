@@ -2,48 +2,48 @@
 
 declare(strict_types=1);
 
-namespace JayI\Keystone\Atrium;
+namespace RefactorCircus\Keystone\Atrium;
 
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
-use JayI\Atrium\Domains\Navigation\Data\NavGroup;
-use JayI\Atrium\Domains\Navigation\Data\NavItem;
-use JayI\Atrium\Domains\Plugins\Support\Plugin;
-use JayI\Atrium\Domains\Search\Data\SearchResult;
-use JayI\Atrium\Domains\Search\Data\SearchSource;
-use JayI\Atrium\Domains\Settings\Data\SettingsPanel;
-use JayI\Atrium\Domains\Widgets\Data\WidgetDefinition;
-use JayI\Atrium\Support\Icons;
-use JayI\Foundation\Auth\Authorizer;
-use JayI\Foundation\Packages\PackageRegistry;
-use JayI\Keystone\Atrium\Http\Controllers\AssetUiController;
-use JayI\Keystone\Atrium\Http\Controllers\AssociationUiController;
-use JayI\Keystone\Atrium\Http\Controllers\AttributeGroupUiController;
-use JayI\Keystone\Atrium\Http\Controllers\AttributeUiController;
-use JayI\Keystone\Atrium\Http\Controllers\CategoryUiController;
-use JayI\Keystone\Atrium\Http\Controllers\ChannelUiController;
-use JayI\Keystone\Atrium\Http\Controllers\FamilyUiController;
-use JayI\Keystone\Atrium\Http\Controllers\FamilyVariantUiController;
-use JayI\Keystone\Atrium\Http\Controllers\OwnerTypeUiController;
-use JayI\Keystone\Atrium\Http\Controllers\OwnerUiController;
-use JayI\Keystone\Atrium\Http\Controllers\ProductModelUiController;
-use JayI\Keystone\Atrium\Http\Controllers\ProductUiController;
-use JayI\Keystone\Atrium\Http\Controllers\TransferUiController;
-use JayI\Keystone\Domains\Asset\Models\AssetModel;
-use JayI\Keystone\Domains\Association\Models\AssociationTypeModel;
-use JayI\Keystone\Domains\Attribute\Models\AttributeGroupModel;
-use JayI\Keystone\Domains\Attribute\Models\AttributeModel;
-use JayI\Keystone\Domains\Category\Models\CategoryModel;
-use JayI\Keystone\Domains\Channel\Models\ChannelModel;
-use JayI\Keystone\Domains\Family\Models\FamilyModel;
-use JayI\Keystone\Domains\Owner\Models\OwnerModel;
-use JayI\Keystone\Domains\Product\Enums\ProductStatus;
-use JayI\Keystone\Domains\Product\Models\ProductModel;
-use JayI\Keystone\Domains\ProductModel\Models\ProductModelModel;
-use JayI\Keystone\Domains\Workflow\Models\CompletenessModel;
-use JayI\Keystone\Domains\Workflow\Models\VersionModel;
+use RefactorCircus\Atrium\Domains\Navigation\Data\NavGroup;
+use RefactorCircus\Atrium\Domains\Navigation\Data\NavItem;
+use RefactorCircus\Atrium\Domains\Plugins\Support\Plugin;
+use RefactorCircus\Atrium\Domains\Search\Data\SearchResult;
+use RefactorCircus\Atrium\Domains\Search\Data\SearchSource;
+use RefactorCircus\Atrium\Domains\Settings\Data\SettingsPanel;
+use RefactorCircus\Atrium\Domains\Widgets\Data\WidgetDefinition;
+use RefactorCircus\Atrium\Support\Icons;
+use RefactorCircus\Foundation\Auth\Authorizer;
+use RefactorCircus\Foundation\Packages\PackageRegistry;
+use RefactorCircus\Keystone\Atrium\Http\Controllers\AssetUiController;
+use RefactorCircus\Keystone\Atrium\Http\Controllers\AssociationUiController;
+use RefactorCircus\Keystone\Atrium\Http\Controllers\AttributeGroupUiController;
+use RefactorCircus\Keystone\Atrium\Http\Controllers\AttributeUiController;
+use RefactorCircus\Keystone\Atrium\Http\Controllers\CategoryUiController;
+use RefactorCircus\Keystone\Atrium\Http\Controllers\ChannelUiController;
+use RefactorCircus\Keystone\Atrium\Http\Controllers\FamilyUiController;
+use RefactorCircus\Keystone\Atrium\Http\Controllers\FamilyVariantUiController;
+use RefactorCircus\Keystone\Atrium\Http\Controllers\OwnerTypeUiController;
+use RefactorCircus\Keystone\Atrium\Http\Controllers\OwnerUiController;
+use RefactorCircus\Keystone\Atrium\Http\Controllers\ProductModelUiController;
+use RefactorCircus\Keystone\Atrium\Http\Controllers\ProductUiController;
+use RefactorCircus\Keystone\Atrium\Http\Controllers\TransferUiController;
+use RefactorCircus\Keystone\Domains\Asset\Models\AssetModel;
+use RefactorCircus\Keystone\Domains\Association\Models\AssociationTypeModel;
+use RefactorCircus\Keystone\Domains\Attribute\Models\AttributeGroupModel;
+use RefactorCircus\Keystone\Domains\Attribute\Models\AttributeModel;
+use RefactorCircus\Keystone\Domains\Category\Models\CategoryModel;
+use RefactorCircus\Keystone\Domains\Channel\Models\ChannelModel;
+use RefactorCircus\Keystone\Domains\Family\Models\FamilyModel;
+use RefactorCircus\Keystone\Domains\Owner\Models\OwnerModel;
+use RefactorCircus\Keystone\Domains\Product\Enums\ProductStatus;
+use RefactorCircus\Keystone\Domains\Product\Models\ProductModel;
+use RefactorCircus\Keystone\Domains\ProductModel\Models\ProductModelModel;
+use RefactorCircus\Keystone\Domains\Workflow\Models\CompletenessModel;
+use RefactorCircus\Keystone\Domains\Workflow\Models\VersionModel;
 
 /**
  * Registers Keystone inside the Atrium dashboard.
@@ -60,7 +60,7 @@ class KeystonePlugin extends Plugin
     /**
      * Features from `keystone.atrium.features` that switch Keystone in Atrium
      * on and off as a whole. A feature class that is not installed, such as
-     * KeystoneSupportFeature without jayi/pennantplus, is skipped.
+     * KeystoneSupportFeature without refactor-circus/pennantplus, is skipped.
      *
      * @return array<int, string>
      */

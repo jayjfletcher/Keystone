@@ -1,11 +1,11 @@
 {{-- A record's associations (own and inherited), with one-at-a-time add and
      remove. Inherited ones are shown but removed on the model they come from. --}}
 @php
-    $presented = app(\JayI\Keystone\Domains\Association\Services\Associations::class)->present($record);
-    $types = \JayI\Keystone\Domains\Association\Models\AssociationTypeModel::query()->orderBy('code')->get();
+    $presented = app(\RefactorCircus\Keystone\Domains\Association\Services\Associations::class)->present($record);
+    $types = \RefactorCircus\Keystone\Domains\Association\Models\AssociationTypeModel::query()->orderBy('code')->get();
     $own = $record->associations->groupBy(fn ($association) => $association->type->code);
     // Adding or removing one is saved as an update of the record.
-    $canUpdate = \JayI\Keystone\Atrium\ScreenAccess::allows('update', $record);
+    $canUpdate = \RefactorCircus\Keystone\Atrium\ScreenAccess::allows('update', $record);
 @endphp
 
 <x-atrium::card :title="__('keystone::keystone.associations')">

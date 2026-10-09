@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace JayI\Keystone\Domains\Asset\Mcp\Requests;
+namespace RefactorCircus\Keystone\Domains\Asset\Mcp\Requests;
 
-use JayI\Foundation\Mcp\Requests\Request;
-use JayI\Keystone\Domains\Asset\Models\AssetModel;
+use RefactorCircus\Foundation\Mcp\Requests\Request;
+use RefactorCircus\Keystone\Domains\Asset\Models\AssetModel;
 
 abstract class AssetRequest extends Request
 {

@@ -2,15 +2,15 @@
 
 declare(strict_types=1);
 
-namespace JayI\Keystone\Domains\Category\Http\Controllers;
+namespace RefactorCircus\Keystone\Domains\Category\Http\Controllers;
 
 use Illuminate\Http\JsonResponse;
-use JayI\Keystone\Domains\Category\Http\Requests\DeleteCategoryRequest;
-use JayI\Keystone\Domains\Category\Http\Requests\IndexCategoriesRequest;
-use JayI\Keystone\Domains\Category\Http\Requests\ShowCategoryRequest;
-use JayI\Keystone\Domains\Category\Http\Requests\StoreCategoryRequest;
-use JayI\Keystone\Domains\Category\Http\Requests\UpdateCategoryRequest;
-use JayI\Keystone\Domains\Category\Models\CategoryModel;
+use RefactorCircus\Keystone\Domains\Category\Http\Requests\DeleteCategoryRequest;
+use RefactorCircus\Keystone\Domains\Category\Http\Requests\IndexCategoriesRequest;
+use RefactorCircus\Keystone\Domains\Category\Http\Requests\ShowCategoryRequest;
+use RefactorCircus\Keystone\Domains\Category\Http\Requests\StoreCategoryRequest;
+use RefactorCircus\Keystone\Domains\Category\Http\Requests\UpdateCategoryRequest;
+use RefactorCircus\Keystone\Domains\Category\Models\CategoryModel;
 
 final class CategoryController
 {

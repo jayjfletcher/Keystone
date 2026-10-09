@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-namespace JayI\Keystone\Domains\Asset\Http\Requests;
+namespace RefactorCircus\Keystone\Domains\Asset\Http\Requests;
 
 use Illuminate\Http\JsonResponse;
-use JayI\Keystone\Domains\Asset\Actions\AttachAssetAction;
-use JayI\Keystone\Domains\Asset\Resources\AssetResource;
+use RefactorCircus\Keystone\Domains\Asset\Actions\AttachAssetAction;
+use RefactorCircus\Keystone\Domains\Asset\Resources\AssetResource;
 
 final class AttachAssetRequest extends AssetRequest
 {

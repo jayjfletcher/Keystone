@@ -3,7 +3,7 @@
 declare(strict_types=1);
 
 use Illuminate\Support\Facades\Route;
-use JayI\Keystone\Domains\Workflow\Http\Controllers\ProductWorkflowController;
+use RefactorCircus\Keystone\Domains\Workflow\Http\Controllers\ProductWorkflowController;
 
 Route::post('products/{product:identifier}/transitions', [ProductWorkflowController::class, 'transition'])->name('products.transitions.store');
 Route::get('products/{product:identifier}/versions', [ProductWorkflowController::class, 'versions'])->name('products.versions.index');

@@ -2,18 +2,18 @@
 
 declare(strict_types=1);
 
-namespace JayI\Keystone\Domains\ProductModel\Actions;
+namespace RefactorCircus\Keystone\Domains\ProductModel\Actions;
 
 use Illuminate\Support\Facades\DB;
 use Illuminate\Validation\ValidationException;
-use JayI\Keystone\Domains\Association\Services\Associations;
-use JayI\Keystone\Domains\Attribute\Concerns\WritesValues;
-use JayI\Keystone\Domains\Category\Concerns\AssignsCategories;
-use JayI\Keystone\Domains\Owner\Concerns\AssignsOwners;
-use JayI\Keystone\Domains\ProductModel\Events\ProductModelUpdatedActionEvent;
-use JayI\Keystone\Domains\ProductModel\Events\ProductModelUpdatingActionEvent;
-use JayI\Keystone\Domains\ProductModel\Models\ProductModelModel;
-use JayI\Keystone\Domains\Search\Services\ProductIndex;
+use RefactorCircus\Keystone\Domains\Association\Services\Associations;
+use RefactorCircus\Keystone\Domains\Attribute\Concerns\WritesValues;
+use RefactorCircus\Keystone\Domains\Category\Concerns\AssignsCategories;
+use RefactorCircus\Keystone\Domains\Owner\Concerns\AssignsOwners;
+use RefactorCircus\Keystone\Domains\ProductModel\Events\ProductModelUpdatedActionEvent;
+use RefactorCircus\Keystone\Domains\ProductModel\Events\ProductModelUpdatingActionEvent;
+use RefactorCircus\Keystone\Domains\ProductModel\Models\ProductModelModel;
+use RefactorCircus\Keystone\Domains\Search\Services\ProductIndex;
 
 final class UpdateProductModelAction
 {

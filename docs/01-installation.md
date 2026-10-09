@@ -1,13 +1,13 @@
 # Installation
 
 ```bash
-composer require jayi/keystone
+composer require refactor-circus/keystone
 
 php artisan vendor:publish --tag="keystone-migrations"
 php artisan migrate
 ```
 
-Keystone requires PHP 8.4 and Laravel 13. It depends on `jayi/atrium` for the dashboard and `laravel/mcp` for the MCP server. For product search beyond the database, add `laravel/scout` with a Scout engine (picked automatically once installed) — see [Search](05-search.md). For bulk imports, exports and feeds, add `jayi/impex` — see [Import, export and feeds](12-impex.md).
+Keystone requires PHP 8.4 and Laravel 13. It depends on `refactor-circus/atrium` for the dashboard and `laravel/mcp` for the MCP server. For product search beyond the database, add `laravel/scout` with a Scout engine (picked automatically once installed) — see [Search](05-search.md). For bulk imports, exports and feeds, add `refactor-circus/impex` — see [Import, export and feeds](12-impex.md).
 
 Asset files go to `keystone.media.disk` — use S3 or another object store on Vapor and Lambda. See [Media](08-media.md).
 

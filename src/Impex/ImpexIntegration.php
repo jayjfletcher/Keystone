@@ -2,28 +2,28 @@
 
 declare(strict_types=1);
 
-namespace JayI\Keystone\Impex;
+namespace RefactorCircus\Keystone\Impex;
 
 use Illuminate\Contracts\Config\Repository as Config;
 use Illuminate\Contracts\Events\Dispatcher;
 use Illuminate\Contracts\Foundation\Application;
-use JayI\Impex\Domains\Flow\Services\FlowRegistry;
-use JayI\Impex\Domains\Flow\Support\Flow;
-use JayI\Impex\Domains\Run\Enums\RunTrigger;
-use JayI\Impex\Domains\Run\Models\RunModel;
-use JayI\Impex\Domains\Subscription\Services\StreamRegistry;
-use JayI\Impex\Impex;
-use JayI\Impex\ImpexServiceProvider;
-use JayI\Keystone\Domains\Transfer\Exceptions\ImpexMissingException;
-use JayI\Keystone\Impex\Flows\ExportProductsFlow;
-use JayI\Keystone\Impex\Flows\FeedFlow;
-use JayI\Keystone\Impex\Flows\ImportProductsFlow;
-use JayI\Keystone\Impex\Flows\UpsertProductsFlow;
-use JayI\Keystone\Impex\Webhooks\CaptureProductChanges;
-use JayI\Keystone\Impex\Webhooks\ProductScopeMatcher;
-use JayI\Keystone\Impex\Webhooks\ProductSnapshots;
-use JayI\Keystone\Impex\Webhooks\ProductStream;
-use JayI\Keystone\Impex\Webhooks\TopicMap;
+use RefactorCircus\Impex\Domains\Flow\Services\FlowRegistry;
+use RefactorCircus\Impex\Domains\Flow\Support\Flow;
+use RefactorCircus\Impex\Domains\Run\Enums\RunTrigger;
+use RefactorCircus\Impex\Domains\Run\Models\RunModel;
+use RefactorCircus\Impex\Domains\Subscription\Services\StreamRegistry;
+use RefactorCircus\Impex\Impex;
+use RefactorCircus\Impex\ImpexServiceProvider;
+use RefactorCircus\Keystone\Domains\Transfer\Exceptions\ImpexMissingException;
+use RefactorCircus\Keystone\Impex\Flows\ExportProductsFlow;
+use RefactorCircus\Keystone\Impex\Flows\FeedFlow;
+use RefactorCircus\Keystone\Impex\Flows\ImportProductsFlow;
+use RefactorCircus\Keystone\Impex\Flows\UpsertProductsFlow;
+use RefactorCircus\Keystone\Impex\Webhooks\CaptureProductChanges;
+use RefactorCircus\Keystone\Impex\Webhooks\ProductScopeMatcher;
+use RefactorCircus\Keystone\Impex\Webhooks\ProductSnapshots;
+use RefactorCircus\Keystone\Impex\Webhooks\ProductStream;
+use RefactorCircus\Keystone\Impex\Webhooks\TopicMap;
 
 /**
  * Registers Keystone's flows with Impex, when Impex is installed.

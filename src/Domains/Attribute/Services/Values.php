@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace JayI\Keystone\Domains\Attribute\Services;
+namespace RefactorCircus\Keystone\Domains\Attribute\Services;
 
 /**
  * Converts attribute values between the two shapes Keystone uses.

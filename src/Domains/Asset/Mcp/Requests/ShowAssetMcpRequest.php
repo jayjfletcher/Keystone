@@ -2,12 +2,12 @@
 
 declare(strict_types=1);
 
-namespace JayI\Keystone\Domains\Asset\Mcp\Requests;
+namespace RefactorCircus\Keystone\Domains\Asset\Mcp\Requests;
 
-use JayI\Keystone\Domains\Asset\Actions\ShowAssetAction;
-use JayI\Keystone\Domains\Asset\Resources\AssetResource;
 use Laravel\Mcp\Response;
 use Laravel\Mcp\ResponseFactory;
+use RefactorCircus\Keystone\Domains\Asset\Actions\ShowAssetAction;
+use RefactorCircus\Keystone\Domains\Asset\Resources\AssetResource;
 
 final class ShowAssetMcpRequest extends AssetRequest
 {

@@ -2,7 +2,7 @@
 
 ## Scope
 
-Start roadmap Phase 1 / Milestone 1 (Catalog core). Replace the package skeleton with the architecture mirrored from `jayi/impex`, then ship the first vertical slice: attribute groups, typed attributes and attribute options, each through Actions, HTTP API, MCP tools, Atrium pages and tests.
+Start roadmap Phase 1 / Milestone 1 (Catalog core). Replace the package skeleton with the architecture mirrored from `refactor-circus/impex`, then ship the first vertical slice: attribute groups, typed attributes and attribute options, each through Actions, HTTP API, MCP tools, Atrium pages and tests.
 
 Families, products/product models/variants and dynamic ownership are out of scope and follow in later specs on this foundation.
 

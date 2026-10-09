@@ -2,14 +2,14 @@
 
 declare(strict_types=1);
 
-namespace JayI\Keystone\Domains\Product\Mcp\Tools;
+namespace RefactorCircus\Keystone\Domains\Product\Mcp\Tools;
 
 use Illuminate\Contracts\JsonSchema\JsonSchema;
-use JayI\Foundation\Mcp\Tool;
-use JayI\Keystone\Domains\Product\Mcp\Requests\ListProductsMcpRequest;
 use Laravel\Mcp\Response;
 use Laravel\Mcp\ResponseFactory;
 use Laravel\Mcp\Server\Attributes\Description;
+use RefactorCircus\Foundation\Mcp\Tool;
+use RefactorCircus\Keystone\Domains\Product\Mcp\Requests\ListProductsMcpRequest;
 
 #[Description('Search products: full text, family, enabled, parent model, value filters, facets and sorting. Page-numbered; returns total and facets.')]
 final class ListProductsTool extends Tool

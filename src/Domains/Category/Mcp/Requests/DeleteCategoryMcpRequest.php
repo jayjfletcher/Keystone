@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-namespace JayI\Keystone\Domains\Category\Mcp\Requests;
+namespace RefactorCircus\Keystone\Domains\Category\Mcp\Requests;
 
-use JayI\Keystone\Domains\Category\Actions\DeleteCategoryAction;
 use Laravel\Mcp\Response;
 use Laravel\Mcp\ResponseFactory;
+use RefactorCircus\Keystone\Domains\Category\Actions\DeleteCategoryAction;
 
 final class DeleteCategoryMcpRequest extends CategoryRequest
 {

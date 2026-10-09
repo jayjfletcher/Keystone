@@ -2,14 +2,14 @@
 
 declare(strict_types=1);
 
-namespace JayI\Keystone\Domains\Association\Mcp\Tools;
+namespace RefactorCircus\Keystone\Domains\Association\Mcp\Tools;
 
 use Illuminate\Contracts\JsonSchema\JsonSchema;
-use JayI\Foundation\Mcp\Tool;
-use JayI\Keystone\Domains\Association\Mcp\Requests\ShowAssociationTypeMcpRequest;
 use Laravel\Mcp\Response;
 use Laravel\Mcp\ResponseFactory;
 use Laravel\Mcp\Server\Attributes\Description;
+use RefactorCircus\Foundation\Mcp\Tool;
+use RefactorCircus\Keystone\Domains\Association\Mcp\Requests\ShowAssociationTypeMcpRequest;
 
 #[Description('Show an association type and how many associations use it.')]
 final class ShowAssociationTypeTool extends Tool

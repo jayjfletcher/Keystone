@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace JayI\Keystone\Domains\Transfer;
+namespace RefactorCircus\Keystone\Domains\Transfer;
 
-use JayI\Foundation\Support\ServiceProvider;
+use RefactorCircus\Foundation\Support\ServiceProvider;
 
 class TransferServiceProvider extends ServiceProvider
 {

@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace JayI\Keystone\Domains\Attribute\Data;
+namespace RefactorCircus\Keystone\Domains\Attribute\Data;
 
-use JayI\Keystone\Domains\Attribute\Services\Values;
+use RefactorCircus\Keystone\Domains\Attribute\Services\Values;
 
 /**
  * Narrows the values a read returns to one channel and some locales, as an

@@ -2,15 +2,15 @@
 
 declare(strict_types=1);
 
-namespace JayI\Keystone\Domains\Owner\Http\Controllers;
+namespace RefactorCircus\Keystone\Domains\Owner\Http\Controllers;
 
 use Illuminate\Http\JsonResponse;
-use JayI\Keystone\Domains\Owner\Http\Requests\DeleteOwnerTypeRequest;
-use JayI\Keystone\Domains\Owner\Http\Requests\IndexOwnerTypesRequest;
-use JayI\Keystone\Domains\Owner\Http\Requests\ShowOwnerTypeRequest;
-use JayI\Keystone\Domains\Owner\Http\Requests\StoreOwnerTypeRequest;
-use JayI\Keystone\Domains\Owner\Http\Requests\UpdateOwnerTypeRequest;
-use JayI\Keystone\Domains\Owner\Models\OwnerTypeModel;
+use RefactorCircus\Keystone\Domains\Owner\Http\Requests\DeleteOwnerTypeRequest;
+use RefactorCircus\Keystone\Domains\Owner\Http\Requests\IndexOwnerTypesRequest;
+use RefactorCircus\Keystone\Domains\Owner\Http\Requests\ShowOwnerTypeRequest;
+use RefactorCircus\Keystone\Domains\Owner\Http\Requests\StoreOwnerTypeRequest;
+use RefactorCircus\Keystone\Domains\Owner\Http\Requests\UpdateOwnerTypeRequest;
+use RefactorCircus\Keystone\Domains\Owner\Models\OwnerTypeModel;
 
 final class OwnerTypeController
 {

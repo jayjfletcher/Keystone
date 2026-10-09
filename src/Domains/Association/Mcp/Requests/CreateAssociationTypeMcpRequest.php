@@ -2,14 +2,14 @@
 
 declare(strict_types=1);
 
-namespace JayI\Keystone\Domains\Association\Mcp\Requests;
+namespace RefactorCircus\Keystone\Domains\Association\Mcp\Requests;
 
-use JayI\Foundation\Mcp\Requests\Request;
-use JayI\Keystone\Domains\Association\Actions\CreateAssociationTypeAction;
-use JayI\Keystone\Domains\Association\Models\AssociationTypeModel;
-use JayI\Keystone\Domains\Association\Resources\AssociationTypeResource;
 use Laravel\Mcp\Response;
 use Laravel\Mcp\ResponseFactory;
+use RefactorCircus\Foundation\Mcp\Requests\Request;
+use RefactorCircus\Keystone\Domains\Association\Actions\CreateAssociationTypeAction;
+use RefactorCircus\Keystone\Domains\Association\Models\AssociationTypeModel;
+use RefactorCircus\Keystone\Domains\Association\Resources\AssociationTypeResource;
 
 final class CreateAssociationTypeMcpRequest extends Request
 {

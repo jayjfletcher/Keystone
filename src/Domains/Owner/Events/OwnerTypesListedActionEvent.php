@@ -2,13 +2,13 @@
 
 declare(strict_types=1);
 
-namespace JayI\Keystone\Domains\Owner\Events;
+namespace RefactorCircus\Keystone\Domains\Owner\Events;
 
 use Illuminate\Contracts\Pagination\CursorPaginator;
 use Illuminate\Foundation\Events\Dispatchable;
 use Illuminate\Queue\SerializesModels;
-use JayI\Foundation\Contracts\ActionFinishedEvent;
-use JayI\Keystone\Domains\Owner\Models\OwnerTypeModel;
+use RefactorCircus\Foundation\Contracts\ActionFinishedEvent;
+use RefactorCircus\Keystone\Domains\Owner\Models\OwnerTypeModel;
 
 /**
  * Owner types were listed.

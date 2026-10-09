@@ -1,9 +1,9 @@
 # Import, export and feeds
 
-Bulk imports, exports and syndication feeds run as [Impex](https://github.com/jayi/impex) flows. Impex is optional:
+Bulk imports, exports and syndication feeds run as [Impex](https://github.com/refactor-circus/impex) flows. Impex is optional:
 
 ```bash
-composer require jayi/impex
+composer require refactor-circus/impex
 php artisan migrate
 ```
 
@@ -226,8 +226,8 @@ cost nothing until something changes.
 ## From PHP
 
 ```php
-use JayI\Keystone\Domains\Transfer\Actions\StartExportAction;
-use JayI\Keystone\Domains\Transfer\Actions\StartImportAction;
+use RefactorCircus\Keystone\Domains\Transfer\Actions\StartExportAction;
+use RefactorCircus\Keystone\Domains\Transfer\Actions\StartImportAction;
 
 $run = app(StartImportAction::class)->execute(['asset' => 'supplier-2026-09', 'mode' => 'update']);
 

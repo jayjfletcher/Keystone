@@ -2,12 +2,12 @@
 
 declare(strict_types=1);
 
-namespace JayI\Keystone\Domains\Workflow\Http\Requests;
+namespace RefactorCircus\Keystone\Domains\Workflow\Http\Requests;
 
 use Illuminate\Http\JsonResponse;
-use JayI\Keystone\Domains\Product\Http\Requests\ProductRequest;
-use JayI\Keystone\Domains\Workflow\Actions\ListProductVersionsAction;
-use JayI\Keystone\Domains\Workflow\Resources\VersionSummaryResource;
+use RefactorCircus\Keystone\Domains\Product\Http\Requests\ProductRequest;
+use RefactorCircus\Keystone\Domains\Workflow\Actions\ListProductVersionsAction;
+use RefactorCircus\Keystone\Domains\Workflow\Resources\VersionSummaryResource;
 
 final class IndexProductVersionsRequest extends ProductRequest
 {

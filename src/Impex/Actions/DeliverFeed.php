@@ -2,12 +2,12 @@
 
 declare(strict_types=1);
 
-namespace JayI\Keystone\Impex\Actions;
+namespace RefactorCircus\Keystone\Impex\Actions;
 
 use Illuminate\Support\Facades\Storage;
-use JayI\Impex\Domains\Channel\Data\OutboundMessage;
-use JayI\Impex\Impex;
-use JayI\Keystone\Domains\Asset\Models\AssetModel;
+use RefactorCircus\Impex\Domains\Channel\Data\OutboundMessage;
+use RefactorCircus\Impex\Impex;
+use RefactorCircus\Keystone\Domains\Asset\Models\AssetModel;
 use RuntimeException;
 
 /**

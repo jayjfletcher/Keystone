@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace JayI\Keystone\Domains\Family\Mcp\Requests;
+namespace RefactorCircus\Keystone\Domains\Family\Mcp\Requests;
 
-use JayI\Foundation\Mcp\Requests\Request;
-use JayI\Keystone\Domains\Family\Models\FamilyModel;
+use RefactorCircus\Foundation\Mcp\Requests\Request;
+use RefactorCircus\Keystone\Domains\Family\Models\FamilyModel;
 
 abstract class FamilyRequest extends Request
 {

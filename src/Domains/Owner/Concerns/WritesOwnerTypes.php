@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace JayI\Keystone\Domains\Owner\Concerns;
+namespace RefactorCircus\Keystone\Domains\Owner\Concerns;
 
-use JayI\Keystone\Domains\Owner\Models\OwnerTypeModel;
+use RefactorCircus\Keystone\Domains\Owner\Models\OwnerTypeModel;
 
 /**
  * Parent-type rules shared by creating and updating an owner type.

@@ -1,5 +1,5 @@
-@use(JayI\Keystone\Atrium\ScreenAccess)
-@use(JayI\Keystone\Domains\Attribute\Models\AttributeOptionModel)
+@use(RefactorCircus\Keystone\Atrium\ScreenAccess)
+@use(RefactorCircus\Keystone\Domains\Attribute\Models\AttributeOptionModel)
 @php($locale = app()->getLocale())
 @php($canUpdate = ScreenAccess::allows('update', $attribute))
 

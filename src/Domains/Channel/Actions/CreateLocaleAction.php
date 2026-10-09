@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-namespace JayI\Keystone\Domains\Channel\Actions;
+namespace RefactorCircus\Keystone\Domains\Channel\Actions;
 
-use JayI\Keystone\Domains\Channel\Events\LocaleCreatedActionEvent;
-use JayI\Keystone\Domains\Channel\Events\LocaleCreatingActionEvent;
-use JayI\Keystone\Domains\Channel\Models\LocaleModel;
+use RefactorCircus\Keystone\Domains\Channel\Events\LocaleCreatedActionEvent;
+use RefactorCircus\Keystone\Domains\Channel\Events\LocaleCreatingActionEvent;
+use RefactorCircus\Keystone\Domains\Channel\Models\LocaleModel;
 
 final class CreateLocaleAction
 {

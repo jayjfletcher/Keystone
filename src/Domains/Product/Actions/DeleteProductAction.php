@@ -2,15 +2,15 @@
 
 declare(strict_types=1);
 
-namespace JayI\Keystone\Domains\Product\Actions;
+namespace RefactorCircus\Keystone\Domains\Product\Actions;
 
-use JayI\Keystone\Domains\Asset\Services\AssetLinks;
-use JayI\Keystone\Domains\Association\Services\Associations;
-use JayI\Keystone\Domains\Product\Events\ProductDeletedActionEvent;
-use JayI\Keystone\Domains\Product\Events\ProductDeletingActionEvent;
-use JayI\Keystone\Domains\Product\Models\ProductModel;
-use JayI\Keystone\Domains\Search\Services\ProductIndex;
-use JayI\Keystone\Domains\Workflow\Services\Versions;
+use RefactorCircus\Keystone\Domains\Asset\Services\AssetLinks;
+use RefactorCircus\Keystone\Domains\Association\Services\Associations;
+use RefactorCircus\Keystone\Domains\Product\Events\ProductDeletedActionEvent;
+use RefactorCircus\Keystone\Domains\Product\Events\ProductDeletingActionEvent;
+use RefactorCircus\Keystone\Domains\Product\Models\ProductModel;
+use RefactorCircus\Keystone\Domains\Search\Services\ProductIndex;
+use RefactorCircus\Keystone\Domains\Workflow\Services\Versions;
 
 final class DeleteProductAction
 {

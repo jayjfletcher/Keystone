@@ -2,14 +2,14 @@
 
 declare(strict_types=1);
 
-namespace JayI\Keystone\Domains\Owner\Mcp\Tools;
+namespace RefactorCircus\Keystone\Domains\Owner\Mcp\Tools;
 
 use Illuminate\Contracts\JsonSchema\JsonSchema;
-use JayI\Foundation\Mcp\Tool;
-use JayI\Keystone\Domains\Owner\Mcp\Requests\DeleteOwnerMcpRequest;
 use Laravel\Mcp\Response;
 use Laravel\Mcp\ResponseFactory;
 use Laravel\Mcp\Server\Attributes\Description;
+use RefactorCircus\Foundation\Mcp\Tool;
+use RefactorCircus\Keystone\Domains\Owner\Mcp\Requests\DeleteOwnerMcpRequest;
 
 #[Description('Delete an owner with no child owners, products or product models.')]
 final class DeleteOwnerTool extends Tool

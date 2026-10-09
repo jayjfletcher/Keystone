@@ -3,7 +3,7 @@
 <x-atrium::layout :title="$owner->label()">
     <x-atrium::page-header :title="$owner->label()" :description="$owner->code.' · '.$owner->type->code">
         <x-slot:actions>
-            @keystoneCan('viewAny', \JayI\Keystone\Domains\Product\Models\ProductModel::class)
+            @keystoneCan('viewAny', \RefactorCircus\Keystone\Domains\Product\Models\ProductModel::class)
                 <x-atrium::icon-button icon="cube" :label="__('keystone::keystone.products')" variant="outline" :href="route('atrium.keystone.products.index', ['owner' => $owner->code])" data-testid="owner-products" />
             @endkeystoneCan
 
@@ -58,7 +58,7 @@
                 </ul>
             @endif
 
-            @keystoneCan('create', \JayI\Keystone\Domains\Owner\Models\OwnerModel::class)
+            @keystoneCan('create', \RefactorCircus\Keystone\Domains\Owner\Models\OwnerModel::class)
             <form method="POST" action="{{ route('atrium.keystone.owners.store') }}" class="flex flex-wrap items-start gap-3">
                 @csrf
                 <input type="hidden" name="parent" value="{{ $owner->code }}">

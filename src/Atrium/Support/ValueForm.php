@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-namespace JayI\Keystone\Atrium\Support;
+namespace RefactorCircus\Keystone\Atrium\Support;
 
 use Illuminate\Support\Collection;
-use JayI\Keystone\Domains\Attribute\Enums\AttributeType;
-use JayI\Keystone\Domains\Attribute\Models\AttributeModel;
+use RefactorCircus\Keystone\Domains\Attribute\Enums\AttributeType;
+use RefactorCircus\Keystone\Domains\Attribute\Models\AttributeModel;
 
 /**
  * Turns the dashboard's value inputs into the standard values shape.

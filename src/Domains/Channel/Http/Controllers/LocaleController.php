@@ -2,15 +2,15 @@
 
 declare(strict_types=1);
 
-namespace JayI\Keystone\Domains\Channel\Http\Controllers;
+namespace RefactorCircus\Keystone\Domains\Channel\Http\Controllers;
 
 use Illuminate\Http\JsonResponse;
-use JayI\Keystone\Domains\Channel\Http\Requests\DeleteLocaleRequest;
-use JayI\Keystone\Domains\Channel\Http\Requests\IndexLocalesRequest;
-use JayI\Keystone\Domains\Channel\Http\Requests\ShowLocaleRequest;
-use JayI\Keystone\Domains\Channel\Http\Requests\StoreLocaleRequest;
-use JayI\Keystone\Domains\Channel\Http\Requests\UpdateLocaleRequest;
-use JayI\Keystone\Domains\Channel\Models\LocaleModel;
+use RefactorCircus\Keystone\Domains\Channel\Http\Requests\DeleteLocaleRequest;
+use RefactorCircus\Keystone\Domains\Channel\Http\Requests\IndexLocalesRequest;
+use RefactorCircus\Keystone\Domains\Channel\Http\Requests\ShowLocaleRequest;
+use RefactorCircus\Keystone\Domains\Channel\Http\Requests\StoreLocaleRequest;
+use RefactorCircus\Keystone\Domains\Channel\Http\Requests\UpdateLocaleRequest;
+use RefactorCircus\Keystone\Domains\Channel\Models\LocaleModel;
 
 final class LocaleController
 {

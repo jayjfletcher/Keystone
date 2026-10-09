@@ -2,15 +2,15 @@
 
 declare(strict_types=1);
 
-namespace JayI\Keystone\Domains\Asset\Actions;
+namespace RefactorCircus\Keystone\Domains\Asset\Actions;
 
 use Illuminate\Support\Str;
 use Illuminate\Validation\ValidationException;
-use JayI\Keystone\Domains\Asset\Concerns\StoresAssetFiles;
-use JayI\Keystone\Domains\Asset\Events\AssetCreatedActionEvent;
-use JayI\Keystone\Domains\Asset\Events\AssetCreatingActionEvent;
-use JayI\Keystone\Domains\Asset\Models\AssetModel;
-use JayI\Keystone\Domains\Asset\Services\AssetStorage;
+use RefactorCircus\Keystone\Domains\Asset\Concerns\StoresAssetFiles;
+use RefactorCircus\Keystone\Domains\Asset\Events\AssetCreatedActionEvent;
+use RefactorCircus\Keystone\Domains\Asset\Events\AssetCreatingActionEvent;
+use RefactorCircus\Keystone\Domains\Asset\Models\AssetModel;
+use RefactorCircus\Keystone\Domains\Asset\Services\AssetStorage;
 use Throwable;
 
 final class CreateAssetAction

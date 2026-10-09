@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-namespace JayI\Keystone\Atrium\Support;
+namespace RefactorCircus\Keystone\Atrium\Support;
 
 use Illuminate\Http\Request;
-use JayI\Keystone\Domains\Channel\Models\ChannelModel;
-use JayI\Keystone\Domains\Channel\Models\LocaleModel;
+use RefactorCircus\Keystone\Domains\Channel\Models\ChannelModel;
+use RefactorCircus\Keystone\Domains\Channel\Models\LocaleModel;
 
 /**
  * Which locale and channel a dashboard value form edits, picked with

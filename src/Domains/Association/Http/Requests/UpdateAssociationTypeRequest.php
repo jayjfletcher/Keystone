@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-namespace JayI\Keystone\Domains\Association\Http\Requests;
+namespace RefactorCircus\Keystone\Domains\Association\Http\Requests;
 
 use Illuminate\Http\JsonResponse;
-use JayI\Keystone\Domains\Association\Actions\UpdateAssociationTypeAction;
-use JayI\Keystone\Domains\Association\Resources\AssociationTypeResource;
+use RefactorCircus\Keystone\Domains\Association\Actions\UpdateAssociationTypeAction;
+use RefactorCircus\Keystone\Domains\Association\Resources\AssociationTypeResource;
 
 final class UpdateAssociationTypeRequest extends AssociationTypeRequest
 {

@@ -2,13 +2,13 @@
 
 declare(strict_types=1);
 
-namespace JayI\Keystone\Domains\Workflow\Actions;
+namespace RefactorCircus\Keystone\Domains\Workflow\Actions;
 
 use Illuminate\Contracts\Pagination\CursorPaginator;
-use JayI\Keystone\Domains\Product\Models\ProductModel;
-use JayI\Keystone\Domains\Workflow\Events\ProductVersionsListedActionEvent;
-use JayI\Keystone\Domains\Workflow\Events\ProductVersionsListingActionEvent;
-use JayI\Keystone\Domains\Workflow\Models\VersionModel;
+use RefactorCircus\Keystone\Domains\Product\Models\ProductModel;
+use RefactorCircus\Keystone\Domains\Workflow\Events\ProductVersionsListedActionEvent;
+use RefactorCircus\Keystone\Domains\Workflow\Events\ProductVersionsListingActionEvent;
+use RefactorCircus\Keystone\Domains\Workflow\Models\VersionModel;
 
 final class ListProductVersionsAction
 {

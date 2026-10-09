@@ -2,22 +2,22 @@
 
 declare(strict_types=1);
 
-namespace JayI\Keystone\Domains\Product\Actions;
+namespace RefactorCircus\Keystone\Domains\Product\Actions;
 
 use Illuminate\Support\Facades\DB;
 use Illuminate\Validation\ValidationException;
-use JayI\Keystone\Domains\Association\Services\Associations;
-use JayI\Keystone\Domains\Attribute\Services\UniqueValues;
-use JayI\Keystone\Domains\Category\Concerns\AssignsCategories;
-use JayI\Keystone\Domains\Family\Models\FamilyModel;
-use JayI\Keystone\Domains\Owner\Concerns\AssignsOwners;
-use JayI\Keystone\Domains\Product\Concerns\WritesProducts;
-use JayI\Keystone\Domains\Product\Events\ProductCreatedActionEvent;
-use JayI\Keystone\Domains\Product\Events\ProductCreatingActionEvent;
-use JayI\Keystone\Domains\Product\Models\ProductModel;
-use JayI\Keystone\Domains\ProductModel\Models\ProductModelModel;
-use JayI\Keystone\Domains\Search\Services\ProductIndex;
-use JayI\Keystone\Domains\Workflow\Services\Versions;
+use RefactorCircus\Keystone\Domains\Association\Services\Associations;
+use RefactorCircus\Keystone\Domains\Attribute\Services\UniqueValues;
+use RefactorCircus\Keystone\Domains\Category\Concerns\AssignsCategories;
+use RefactorCircus\Keystone\Domains\Family\Models\FamilyModel;
+use RefactorCircus\Keystone\Domains\Owner\Concerns\AssignsOwners;
+use RefactorCircus\Keystone\Domains\Product\Concerns\WritesProducts;
+use RefactorCircus\Keystone\Domains\Product\Events\ProductCreatedActionEvent;
+use RefactorCircus\Keystone\Domains\Product\Events\ProductCreatingActionEvent;
+use RefactorCircus\Keystone\Domains\Product\Models\ProductModel;
+use RefactorCircus\Keystone\Domains\ProductModel\Models\ProductModelModel;
+use RefactorCircus\Keystone\Domains\Search\Services\ProductIndex;
+use RefactorCircus\Keystone\Domains\Workflow\Services\Versions;
 
 final class CreateProductAction
 {

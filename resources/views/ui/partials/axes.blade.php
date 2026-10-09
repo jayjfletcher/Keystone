@@ -1,4 +1,4 @@
-@use(JayI\Keystone\Domains\Attribute\Enums\AttributeType)
+@use(RefactorCircus\Keystone\Domains\Attribute\Enums\AttributeType)
 
 {{-- The axis values a new variant or sub-model needs, posted as values. --}}
 @foreach ($axes as $axis)

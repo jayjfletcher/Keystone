@@ -2,12 +2,12 @@
 
 declare(strict_types=1);
 
-namespace JayI\Keystone\Domains\Attribute\Events;
+namespace RefactorCircus\Keystone\Domains\Attribute\Events;
 
 use Illuminate\Foundation\Events\Dispatchable;
 use Illuminate\Queue\SerializesModels;
-use JayI\Foundation\Contracts\ActionStartingEvent;
-use JayI\Keystone\Domains\Attribute\Models\AttributeModel;
+use RefactorCircus\Foundation\Contracts\ActionStartingEvent;
+use RefactorCircus\Keystone\Domains\Attribute\Models\AttributeModel;
 
 /**
  * An attribute is about to be deleted.

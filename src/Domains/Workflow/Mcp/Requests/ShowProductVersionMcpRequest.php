@@ -2,13 +2,13 @@
 
 declare(strict_types=1);
 
-namespace JayI\Keystone\Domains\Workflow\Mcp\Requests;
+namespace RefactorCircus\Keystone\Domains\Workflow\Mcp\Requests;
 
-use JayI\Keystone\Domains\Product\Mcp\Requests\ProductRequest;
-use JayI\Keystone\Domains\Workflow\Actions\ShowProductVersionAction;
-use JayI\Keystone\Domains\Workflow\Resources\VersionResource;
 use Laravel\Mcp\Response;
 use Laravel\Mcp\ResponseFactory;
+use RefactorCircus\Keystone\Domains\Product\Mcp\Requests\ProductRequest;
+use RefactorCircus\Keystone\Domains\Workflow\Actions\ShowProductVersionAction;
+use RefactorCircus\Keystone\Domains\Workflow\Resources\VersionResource;
 
 final class ShowProductVersionMcpRequest extends ProductRequest
 {

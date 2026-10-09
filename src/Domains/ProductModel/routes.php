@@ -3,7 +3,7 @@
 declare(strict_types=1);
 
 use Illuminate\Support\Facades\Route;
-use JayI\Keystone\Domains\ProductModel\Http\Controllers\ProductModelController;
+use RefactorCircus\Keystone\Domains\ProductModel\Http\Controllers\ProductModelController;
 
 Route::get('product-models', [ProductModelController::class, 'index'])->name('product-models.index');
 Route::post('product-models', [ProductModelController::class, 'store'])->name('product-models.store');

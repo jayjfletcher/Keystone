@@ -1,10 +1,10 @@
-@use(JayI\Keystone\Domains\Owner\Models\OwnerModel)
+@use(RefactorCircus\Keystone\Domains\Owner\Models\OwnerModel)
 @php($locale = app()->getLocale())
 
 <x-atrium::layout :title="__('keystone::keystone.owners')">
     <x-atrium::page-header :title="__('keystone::keystone.owners')">
         <x-slot:actions>
-            @keystoneCan('viewAny', \JayI\Keystone\Domains\Owner\Models\OwnerTypeModel::class)
+            @keystoneCan('viewAny', \RefactorCircus\Keystone\Domains\Owner\Models\OwnerTypeModel::class)
                 <x-atrium::icon-button icon="identification" :label="__('keystone::keystone.owner_types')" variant="outline" :href="route('atrium.keystone.owner-types.index')" data-testid="owner-types" />
             @endkeystoneCan
         </x-slot:actions>

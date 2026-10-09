@@ -15,13 +15,13 @@ Roadmap Milestone 1, final slice: products with runtime attribute values, produc
 - **Products:** `identifier` (immutable), optional family, optional parent product model (variant product), `enabled`, own values. Variant products take the family of their family variant, set only last-level attributes, must fill every axis, and differ from their siblings on the axes. API returns own + inherited values.
 - **Search (user's choice of engine):** Keystone `SearchEngine` contract with three drivers, selected by `keystone.search.engine`:
   - `database` — default, no dependencies, JSON-path filters.
-  - `elasticsearch` — native, built on `jayi/stretch` (suggested dependency): mappings, bulk indexing, bool filters, facets.
+  - `elasticsearch` — native, built on `refactor-circus/stretch` (suggested dependency): mappings, bulk indexing, bool filters, facets.
   - `scout` — any Laravel Scout engine (suggested dependency); comparisons and `in`/`not_in` pass through Scout's builder, `empty`/`not_empty` refused with a clear error.
 - Indexing on every product write (queued when `keystone.search.queue` is set), cascaded to variants when a product model changes; `keystone:search:reindex` rebuilds.
 - Products list/search is page-based (engines count totals), unlike the cursor listings elsewhere.
 - Deleting an attribute or option purges stored values in a queued job; attributes used as variant axes cannot be deleted.
 - Completeness (required attributes) is not enforced on save — products may be incomplete; completeness lands in milestone 6.
-- Dependencies: `jayi/stretch` (VCS, dev-main) and `laravel/scout` ^11 in `require-dev` + `suggest`, guarded by `class_exists`.
+- Dependencies: `refactor-circus/stretch` (VCS, dev-main) and `laravel/scout` ^11 in `require-dev` + `suggest`, guarded by `class_exists`.
 
 ## Context
 

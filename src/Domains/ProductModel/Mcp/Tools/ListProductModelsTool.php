@@ -2,14 +2,14 @@
 
 declare(strict_types=1);
 
-namespace JayI\Keystone\Domains\ProductModel\Mcp\Tools;
+namespace RefactorCircus\Keystone\Domains\ProductModel\Mcp\Tools;
 
 use Illuminate\Contracts\JsonSchema\JsonSchema;
-use JayI\Foundation\Mcp\Tool;
-use JayI\Keystone\Domains\ProductModel\Mcp\Requests\ListProductModelsMcpRequest;
 use Laravel\Mcp\Response;
 use Laravel\Mcp\ResponseFactory;
 use Laravel\Mcp\Server\Attributes\Description;
+use RefactorCircus\Foundation\Mcp\Tool;
+use RefactorCircus\Keystone\Domains\ProductModel\Mcp\Requests\ListProductModelsMcpRequest;
 
 #[Description('List product models (the shared parts of variant products), by family variant or parent. Cursor paginated.')]
 final class ListProductModelsTool extends Tool

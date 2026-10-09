@@ -2,14 +2,14 @@
 
 declare(strict_types=1);
 
-namespace JayI\Keystone\Domains\Workflow\Mcp\Tools;
+namespace RefactorCircus\Keystone\Domains\Workflow\Mcp\Tools;
 
 use Illuminate\Contracts\JsonSchema\JsonSchema;
-use JayI\Foundation\Mcp\Tool;
-use JayI\Keystone\Domains\Workflow\Mcp\Requests\RevertProductMcpRequest;
 use Laravel\Mcp\Response;
 use Laravel\Mcp\ResponseFactory;
 use Laravel\Mcp\Server\Attributes\Description;
+use RefactorCircus\Foundation\Mcp\Tool;
+use RefactorCircus\Keystone\Domains\Workflow\Mcp\Requests\RevertProductMcpRequest;
 
 #[Description('Restore a product\'s values, categories, associations, family, owner and enabled flag from an earlier version, recorded as a new version.')]
 final class RevertProductTool extends Tool

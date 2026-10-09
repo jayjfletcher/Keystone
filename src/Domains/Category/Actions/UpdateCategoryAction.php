@@ -2,15 +2,15 @@
 
 declare(strict_types=1);
 
-namespace JayI\Keystone\Domains\Category\Actions;
+namespace RefactorCircus\Keystone\Domains\Category\Actions;
 
 use Illuminate\Support\Facades\DB;
 use Illuminate\Validation\ValidationException;
-use JayI\Keystone\Domains\Category\Events\CategoryUpdatedActionEvent;
-use JayI\Keystone\Domains\Category\Events\CategoryUpdatingActionEvent;
-use JayI\Keystone\Domains\Category\Models\CategoryModel;
-use JayI\Keystone\Domains\Search\Services\ProductIndex;
-use JayI\Keystone\Support\Concerns\MovesInTree;
+use RefactorCircus\Keystone\Domains\Category\Events\CategoryUpdatedActionEvent;
+use RefactorCircus\Keystone\Domains\Category\Events\CategoryUpdatingActionEvent;
+use RefactorCircus\Keystone\Domains\Category\Models\CategoryModel;
+use RefactorCircus\Keystone\Domains\Search\Services\ProductIndex;
+use RefactorCircus\Keystone\Support\Concerns\MovesInTree;
 
 final class UpdateCategoryAction
 {

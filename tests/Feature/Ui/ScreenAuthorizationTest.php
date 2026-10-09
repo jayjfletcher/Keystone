@@ -10,23 +10,23 @@ use Illuminate\Http\UploadedFile;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
-use JayI\Atrium\Domains\Navigation\Data\NavItem;
-use JayI\Atrium\Domains\Navigation\Services\NavigationRegistry;
-use JayI\Atrium\Domains\Widgets\Services\WidgetRegistry;
-use JayI\Keystone\Atrium\KeystonePlugin;
-use JayI\Keystone\Domains\Asset\Models\AssetModel;
-use JayI\Keystone\Domains\Association\Models\AssociationTypeModel;
-use JayI\Keystone\Domains\Attribute\Models\AttributeGroupModel;
-use JayI\Keystone\Domains\Attribute\Models\AttributeModel;
-use JayI\Keystone\Domains\Category\Models\CategoryModel;
-use JayI\Keystone\Domains\Channel\Models\ChannelModel;
-use JayI\Keystone\Domains\Channel\Models\LocaleModel;
-use JayI\Keystone\Domains\Family\Models\FamilyModel;
-use JayI\Keystone\Domains\Owner\Models\OwnerModel;
-use JayI\Keystone\Domains\Owner\Models\OwnerTypeModel;
-use JayI\Keystone\Domains\Product\Models\ProductModel;
-use JayI\Keystone\Domains\ProductModel\Models\ProductModelModel;
-use JayI\Keystone\Tests\Fixtures\Catalog;
+use RefactorCircus\Atrium\Domains\Navigation\Data\NavItem;
+use RefactorCircus\Atrium\Domains\Navigation\Services\NavigationRegistry;
+use RefactorCircus\Atrium\Domains\Widgets\Services\WidgetRegistry;
+use RefactorCircus\Keystone\Atrium\KeystonePlugin;
+use RefactorCircus\Keystone\Domains\Asset\Models\AssetModel;
+use RefactorCircus\Keystone\Domains\Association\Models\AssociationTypeModel;
+use RefactorCircus\Keystone\Domains\Attribute\Models\AttributeGroupModel;
+use RefactorCircus\Keystone\Domains\Attribute\Models\AttributeModel;
+use RefactorCircus\Keystone\Domains\Category\Models\CategoryModel;
+use RefactorCircus\Keystone\Domains\Channel\Models\ChannelModel;
+use RefactorCircus\Keystone\Domains\Channel\Models\LocaleModel;
+use RefactorCircus\Keystone\Domains\Family\Models\FamilyModel;
+use RefactorCircus\Keystone\Domains\Owner\Models\OwnerModel;
+use RefactorCircus\Keystone\Domains\Owner\Models\OwnerTypeModel;
+use RefactorCircus\Keystone\Domains\Product\Models\ProductModel;
+use RefactorCircus\Keystone\Domains\ProductModel\Models\ProductModelModel;
+use RefactorCircus\Keystone\Tests\Fixtures\Catalog;
 use Workbench\App\Models\User;
 
 /*
@@ -51,7 +51,7 @@ beforeEach(function (): void {
         $subject = $arguments[0] ?? null;
         $class = $subject instanceof Model ? $subject::class : $subject;
 
-        if (! is_string($class) || ! str_starts_with($class, 'JayI\\Keystone\\Domains\\') || ! str_contains($class, '\\Models\\')) {
+        if (! is_string($class) || ! str_starts_with($class, 'RefactorCircus\\Keystone\\Domains\\') || ! str_contains($class, '\\Models\\')) {
             return null;
         }
 

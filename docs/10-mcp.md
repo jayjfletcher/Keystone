@@ -94,8 +94,8 @@ The server lists two entry points, `search_tools` and `execute_tools`, and keeps
 | `create-owner-tool` | Create an owner under a parent |
 | `update-owner-tool` | Labels, or move with everything beneath |
 | `delete-owner-tool` | Delete an owner nothing depends on |
-| `start-import-tool` | Import products from an asset or URL (with jayi/impex) |
-| `start-export-tool` | Export products matching a search to a file asset (with jayi/impex) |
+| `start-import-tool` | Import products from an asset or URL (with refactor-circus/impex) |
+| `start-export-tool` | Export products matching a search to a file asset (with refactor-circus/impex) |
 
 Records are addressed by code: `group`, `attribute`, `option`, `family`, `family_variant`, `product_model`, `owner_type`, `owner`, `category`, `asset`, `locale` and `channel` arguments take codes. `show-product-tool`, `show-product-model-tool` and `list-products-tool` take `scope` and `locales` to return one channel's values; `product` takes an identifier. Catalog rule violations come back as errors with a message an agent can act on.
 
@@ -105,11 +105,11 @@ The catalog is `KeystoneServer::TOOLS`.
 
 ## Vendor webhooks
 
-Product webhooks ([Import, export and feeds](12-impex.md#product-webhooks)) have no Keystone tools: subscribers, subscriptions and deliveries belong to Impex, and are managed with the Impex MCP server's tools — `list-streams-tool` (the `keystone.products` stream and its topics), `list-subscribers-tool`, `create-subscriber-tool`, `list-subscriptions-tool`, `show-subscription-tool`, `create-subscription-tool`, `update-subscription-tool`, `delete-subscription-tool`, `update-subscription-subjects-tool`, `export-subscription-tool`, `ping-subscription-tool`, `list-subscription-events-tool` and `list-deliveries-tool` (`JayI\Impex\Mcp\ImpexServer::TOOLS`).
+Product webhooks ([Import, export and feeds](12-impex.md#product-webhooks)) have no Keystone tools: subscribers, subscriptions and deliveries belong to Impex, and are managed with the Impex MCP server's tools — `list-streams-tool` (the `keystone.products` stream and its topics), `list-subscribers-tool`, `create-subscriber-tool`, `list-subscriptions-tool`, `show-subscription-tool`, `create-subscription-tool`, `update-subscription-tool`, `delete-subscription-tool`, `update-subscription-subjects-tool`, `export-subscription-tool`, `ping-subscription-tool`, `list-subscription-events-tool` and `list-deliveries-tool` (`RefactorCircus\Impex\Mcp\ImpexServer::TOOLS`).
 
 ## Cortex
 
-When `jayi/cortex` is installed and loaded, the server is registered with Cortex under `keystone.cortex.server` and every tool joins its tool registry, tagged with the server name. Cortex can then serve published overrides of the server instructions and of each tool's description.
+When `refactor-circus/cortex` is installed and loaded, the server is registered with Cortex under `keystone.cortex.server` and every tool joins its tool registry, tagged with the server name. Cortex can then serve published overrides of the server instructions and of each tool's description.
 
 ```php
 'cortex' => [

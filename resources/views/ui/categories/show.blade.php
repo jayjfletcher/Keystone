@@ -3,7 +3,7 @@
 <x-atrium::layout :title="$category->label()">
     <x-atrium::page-header :title="$category->label()" :description="$category->code">
         <x-slot:actions>
-            @keystoneCan('viewAny', \JayI\Keystone\Domains\Product\Models\ProductModel::class)
+            @keystoneCan('viewAny', \RefactorCircus\Keystone\Domains\Product\Models\ProductModel::class)
                 <x-atrium::icon-button icon="cube" :label="__('keystone::keystone.products')" variant="outline" :href="route('atrium.keystone.products.index', ['category' => $category->code])" data-testid="category-products" />
             @endkeystoneCan
 
@@ -39,7 +39,7 @@
                 @include('keystone::ui.categories.branch', ['parentId' => $category->id, 'nested' => false])
             @endif
 
-            @keystoneCan('create', \JayI\Keystone\Domains\Category\Models\CategoryModel::class)
+            @keystoneCan('create', \RefactorCircus\Keystone\Domains\Category\Models\CategoryModel::class)
             <form method="POST" action="{{ route('atrium.keystone.categories.store') }}" class="mt-4 flex flex-wrap items-start gap-3">
                 @csrf
                 <input type="hidden" name="parent" value="{{ $category->code }}">

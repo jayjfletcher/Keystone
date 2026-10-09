@@ -2,13 +2,13 @@
 
 declare(strict_types=1);
 
-namespace JayI\Keystone\Domains\Channel\Actions;
+namespace RefactorCircus\Keystone\Domains\Channel\Actions;
 
-use JayI\Keystone\Domains\Channel\Events\LocaleDeletedActionEvent;
-use JayI\Keystone\Domains\Channel\Events\LocaleDeletingActionEvent;
-use JayI\Keystone\Domains\Channel\Models\LocaleModel;
-use JayI\Keystone\Exceptions\ModelInUseException;
-use JayI\Keystone\Jobs\PurgeValueSlots;
+use RefactorCircus\Keystone\Domains\Channel\Events\LocaleDeletedActionEvent;
+use RefactorCircus\Keystone\Domains\Channel\Events\LocaleDeletingActionEvent;
+use RefactorCircus\Keystone\Domains\Channel\Models\LocaleModel;
+use RefactorCircus\Keystone\Exceptions\ModelInUseException;
+use RefactorCircus\Keystone\Jobs\PurgeValueSlots;
 
 final class DeleteLocaleAction
 {

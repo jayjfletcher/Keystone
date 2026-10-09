@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-namespace JayI\Keystone\Domains\Attribute\Actions;
+namespace RefactorCircus\Keystone\Domains\Attribute\Actions;
 
-use JayI\Keystone\Domains\Attribute\Events\AttributeShowingActionEvent;
-use JayI\Keystone\Domains\Attribute\Events\AttributeShownActionEvent;
-use JayI\Keystone\Domains\Attribute\Models\AttributeModel;
+use RefactorCircus\Keystone\Domains\Attribute\Events\AttributeShowingActionEvent;
+use RefactorCircus\Keystone\Domains\Attribute\Events\AttributeShownActionEvent;
+use RefactorCircus\Keystone\Domains\Attribute\Models\AttributeModel;
 
 final class ShowAttributeAction
 {

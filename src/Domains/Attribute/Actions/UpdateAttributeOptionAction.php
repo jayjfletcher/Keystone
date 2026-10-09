@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-namespace JayI\Keystone\Domains\Attribute\Actions;
+namespace RefactorCircus\Keystone\Domains\Attribute\Actions;
 
-use JayI\Keystone\Domains\Attribute\Events\AttributeOptionUpdatedActionEvent;
-use JayI\Keystone\Domains\Attribute\Events\AttributeOptionUpdatingActionEvent;
-use JayI\Keystone\Domains\Attribute\Models\AttributeOptionModel;
+use RefactorCircus\Keystone\Domains\Attribute\Events\AttributeOptionUpdatedActionEvent;
+use RefactorCircus\Keystone\Domains\Attribute\Events\AttributeOptionUpdatingActionEvent;
+use RefactorCircus\Keystone\Domains\Attribute\Models\AttributeOptionModel;
 
 final class UpdateAttributeOptionAction
 {

@@ -2,36 +2,36 @@
 
 declare(strict_types=1);
 
-use JayI\Keystone\Atrium\Features\KeystoneSupportFeature;
-use JayI\Keystone\Domains\Asset\Models\AssetModel;
-use JayI\Keystone\Domains\Asset\Policies\AssetPolicy;
-use JayI\Keystone\Domains\Association\Models\AssociationTypeModel;
-use JayI\Keystone\Domains\Association\Policies\AssociationTypePolicy;
-use JayI\Keystone\Domains\Attribute\Models\AttributeGroupModel;
-use JayI\Keystone\Domains\Attribute\Models\AttributeModel;
-use JayI\Keystone\Domains\Attribute\Models\AttributeOptionModel;
-use JayI\Keystone\Domains\Attribute\Policies\AttributeGroupPolicy;
-use JayI\Keystone\Domains\Attribute\Policies\AttributeOptionPolicy;
-use JayI\Keystone\Domains\Attribute\Policies\AttributePolicy;
-use JayI\Keystone\Domains\Category\Models\CategoryModel;
-use JayI\Keystone\Domains\Category\Policies\CategoryPolicy;
-use JayI\Keystone\Domains\Channel\Models\ChannelModel;
-use JayI\Keystone\Domains\Channel\Models\LocaleModel;
-use JayI\Keystone\Domains\Channel\Policies\ChannelPolicy;
-use JayI\Keystone\Domains\Channel\Policies\LocalePolicy;
-use JayI\Keystone\Domains\Family\Models\FamilyModel;
-use JayI\Keystone\Domains\Family\Models\FamilyVariantModel;
-use JayI\Keystone\Domains\Family\Policies\FamilyPolicy;
-use JayI\Keystone\Domains\Family\Policies\FamilyVariantPolicy;
-use JayI\Keystone\Domains\Owner\Models\OwnerModel;
-use JayI\Keystone\Domains\Owner\Models\OwnerTypeModel;
-use JayI\Keystone\Domains\Owner\Policies\OwnerPolicy;
-use JayI\Keystone\Domains\Owner\Policies\OwnerTypePolicy;
-use JayI\Keystone\Domains\Product\Models\ProductModel;
-use JayI\Keystone\Domains\Product\Policies\ProductPolicy;
-use JayI\Keystone\Domains\ProductModel\Models\ProductModelModel;
-use JayI\Keystone\Domains\ProductModel\Policies\ProductModelPolicy;
-use JayI\Keystone\Impex\Webhooks\ProductStream;
+use RefactorCircus\Keystone\Atrium\Features\KeystoneSupportFeature;
+use RefactorCircus\Keystone\Domains\Asset\Models\AssetModel;
+use RefactorCircus\Keystone\Domains\Asset\Policies\AssetPolicy;
+use RefactorCircus\Keystone\Domains\Association\Models\AssociationTypeModel;
+use RefactorCircus\Keystone\Domains\Association\Policies\AssociationTypePolicy;
+use RefactorCircus\Keystone\Domains\Attribute\Models\AttributeGroupModel;
+use RefactorCircus\Keystone\Domains\Attribute\Models\AttributeModel;
+use RefactorCircus\Keystone\Domains\Attribute\Models\AttributeOptionModel;
+use RefactorCircus\Keystone\Domains\Attribute\Policies\AttributeGroupPolicy;
+use RefactorCircus\Keystone\Domains\Attribute\Policies\AttributeOptionPolicy;
+use RefactorCircus\Keystone\Domains\Attribute\Policies\AttributePolicy;
+use RefactorCircus\Keystone\Domains\Category\Models\CategoryModel;
+use RefactorCircus\Keystone\Domains\Category\Policies\CategoryPolicy;
+use RefactorCircus\Keystone\Domains\Channel\Models\ChannelModel;
+use RefactorCircus\Keystone\Domains\Channel\Models\LocaleModel;
+use RefactorCircus\Keystone\Domains\Channel\Policies\ChannelPolicy;
+use RefactorCircus\Keystone\Domains\Channel\Policies\LocalePolicy;
+use RefactorCircus\Keystone\Domains\Family\Models\FamilyModel;
+use RefactorCircus\Keystone\Domains\Family\Models\FamilyVariantModel;
+use RefactorCircus\Keystone\Domains\Family\Policies\FamilyPolicy;
+use RefactorCircus\Keystone\Domains\Family\Policies\FamilyVariantPolicy;
+use RefactorCircus\Keystone\Domains\Owner\Models\OwnerModel;
+use RefactorCircus\Keystone\Domains\Owner\Models\OwnerTypeModel;
+use RefactorCircus\Keystone\Domains\Owner\Policies\OwnerPolicy;
+use RefactorCircus\Keystone\Domains\Owner\Policies\OwnerTypePolicy;
+use RefactorCircus\Keystone\Domains\Product\Models\ProductModel;
+use RefactorCircus\Keystone\Domains\Product\Policies\ProductPolicy;
+use RefactorCircus\Keystone\Domains\ProductModel\Models\ProductModelModel;
+use RefactorCircus\Keystone\Domains\ProductModel\Policies\ProductModelPolicy;
+use RefactorCircus\Keystone\Impex\Webhooks\ProductStream;
 
 return [
 
@@ -123,7 +123,7 @@ return [
     | Cortex
     |--------------------------------------------------------------------------
     |
-    | When jayi/cortex is installed, the MCP server is registered with it, so
+    | When refactor-circus/cortex is installed, the MCP server is registered with it, so
     | its instructions can be overridden, and the tools join its registry,
     | so Cortex agents can manage the catalog. Set `tools` to a list of tool
     | names, such as ['list-attributes-tool', 'show-attribute-tool'], to
@@ -165,13 +165,13 @@ return [
     | features: Features that must all be on for Keystone to appear in
     |           Atrium at all - its navigation, widgets, settings, search and
     |           pages (which answer 404 otherwise). Atrium asks its feature
-    |           resolver, so Pennant (through jayi/pennantplus) or any other
+    |           resolver, so Pennant (through refactor-circus/pennantplus) or any other
     |           flag system decides.
     |
     |           KeystoneSupportFeature is on until its global value is set,
     |           and only its global value counts. Swap in a subclass to change
     |           that, or your own feature names. Feature classes that do not
-    |           exist (without jayi/pennantplus) are skipped, so nothing is
+    |           exist (without refactor-circus/pennantplus) are skipped, so nothing is
     |           checked until Pennant is installed. Empty always shows
     |           Keystone.
     |
@@ -210,7 +210,7 @@ return [
     | Import, Export and Feeds (Impex)
     |--------------------------------------------------------------------------
     |
-    | With jayi/impex installed, Keystone registers its flows:
+    | With refactor-circus/impex installed, Keystone registers its flows:
     | `keystone:import-products`, `keystone:upsert-products`,
     | `keystone:export-products`, and `keystone:feed:{name}` for each feed.
     |
@@ -313,7 +313,7 @@ return [
     | - "scout": whichever Laravel Scout engine `scout.driver` names —
     |   Meilisearch, Typesense, Algolia, or a community driver such as one
     |   for Elasticsearch.
-    | - or the class name of your own JayI\Keystone\Domains\Search\Contracts\SearchEngine.
+    | - or the class name of your own RefactorCircus\Keystone\Domains\Search\Contracts\SearchEngine.
     |
     | Writes are synced to the index by a queued job after each commit.
     | Rebuild it with `php artisan keystone:search:reindex`.

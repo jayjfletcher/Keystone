@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-namespace JayI\Keystone\Domains\Channel\Http\Requests;
+namespace RefactorCircus\Keystone\Domains\Channel\Http\Requests;
 
 use Illuminate\Http\JsonResponse;
-use JayI\Keystone\Domains\Channel\Actions\UpdateLocaleAction;
-use JayI\Keystone\Domains\Channel\Resources\LocaleResource;
+use RefactorCircus\Keystone\Domains\Channel\Actions\UpdateLocaleAction;
+use RefactorCircus\Keystone\Domains\Channel\Resources\LocaleResource;
 
 final class UpdateLocaleRequest extends LocaleRequest
 {

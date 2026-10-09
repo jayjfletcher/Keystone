@@ -2,15 +2,15 @@
 
 declare(strict_types=1);
 
-namespace JayI\Keystone\Domains\Attribute\Actions;
+namespace RefactorCircus\Keystone\Domains\Attribute\Actions;
 
 use Illuminate\Contracts\Pagination\CursorPaginator;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Validation\Rule;
-use JayI\Keystone\Domains\Attribute\Enums\AttributeType;
-use JayI\Keystone\Domains\Attribute\Events\AttributesListedActionEvent;
-use JayI\Keystone\Domains\Attribute\Events\AttributesListingActionEvent;
-use JayI\Keystone\Domains\Attribute\Models\AttributeModel;
+use RefactorCircus\Keystone\Domains\Attribute\Enums\AttributeType;
+use RefactorCircus\Keystone\Domains\Attribute\Events\AttributesListedActionEvent;
+use RefactorCircus\Keystone\Domains\Attribute\Events\AttributesListingActionEvent;
+use RefactorCircus\Keystone\Domains\Attribute\Models\AttributeModel;
 
 final class ListAttributesAction
 {

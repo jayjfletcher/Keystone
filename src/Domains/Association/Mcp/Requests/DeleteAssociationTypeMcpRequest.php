@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-namespace JayI\Keystone\Domains\Association\Mcp\Requests;
+namespace RefactorCircus\Keystone\Domains\Association\Mcp\Requests;
 
-use JayI\Keystone\Domains\Association\Actions\DeleteAssociationTypeAction;
 use Laravel\Mcp\Response;
 use Laravel\Mcp\ResponseFactory;
+use RefactorCircus\Keystone\Domains\Association\Actions\DeleteAssociationTypeAction;
 
 final class DeleteAssociationTypeMcpRequest extends AssociationTypeRequest
 {

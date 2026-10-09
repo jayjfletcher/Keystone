@@ -2,13 +2,13 @@
 
 declare(strict_types=1);
 
-namespace JayI\Keystone\Domains\Family\Actions;
+namespace RefactorCircus\Keystone\Domains\Family\Actions;
 
 use Illuminate\Contracts\Pagination\CursorPaginator;
 use Illuminate\Database\Eloquent\Builder;
-use JayI\Keystone\Domains\Family\Events\FamilyVariantsListedActionEvent;
-use JayI\Keystone\Domains\Family\Events\FamilyVariantsListingActionEvent;
-use JayI\Keystone\Domains\Family\Models\FamilyVariantModel;
+use RefactorCircus\Keystone\Domains\Family\Events\FamilyVariantsListedActionEvent;
+use RefactorCircus\Keystone\Domains\Family\Events\FamilyVariantsListingActionEvent;
+use RefactorCircus\Keystone\Domains\Family\Models\FamilyVariantModel;
 
 final class ListFamilyVariantsAction
 {

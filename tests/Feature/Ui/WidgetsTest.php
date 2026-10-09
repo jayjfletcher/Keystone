@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-use JayI\Atrium\Domains\Widgets\Data\WidgetDefinition;
-use JayI\Atrium\Domains\Widgets\Services\WidgetRegistry;
-use JayI\Keystone\Atrium\KeystonePlugin;
-use JayI\Keystone\Tests\Fixtures\Catalog;
+use RefactorCircus\Atrium\Domains\Widgets\Data\WidgetDefinition;
+use RefactorCircus\Atrium\Domains\Widgets\Services\WidgetRegistry;
+use RefactorCircus\Keystone\Atrium\KeystonePlugin;
+use RefactorCircus\Keystone\Tests\Fixtures\Catalog;
 
 function renderWidget(string $key): string
 {

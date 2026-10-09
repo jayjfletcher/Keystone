@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace JayI\Keystone\Domains\Channel\Mcp\Requests;
+namespace RefactorCircus\Keystone\Domains\Channel\Mcp\Requests;
 
-use JayI\Foundation\Mcp\Requests\Request;
-use JayI\Keystone\Domains\Channel\Models\LocaleModel;
+use RefactorCircus\Foundation\Mcp\Requests\Request;
+use RefactorCircus\Keystone\Domains\Channel\Models\LocaleModel;
 
 abstract class LocaleRequest extends Request
 {

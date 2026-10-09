@@ -2,8 +2,8 @@
 
 declare(strict_types=1);
 
-use JayI\Keystone\Domains\Category\Models\CategoryModel;
-use JayI\Keystone\Tests\Fixtures\Catalog;
+use RefactorCircus\Keystone\Domains\Category\Models\CategoryModel;
+use RefactorCircus\Keystone\Tests\Fixtures\Catalog;
 
 function category(string $code, ?string $parent = null, int $sort = 0): void
 {

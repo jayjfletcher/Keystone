@@ -315,7 +315,7 @@ return [
     // Import and export
     'transfers' => 'Import & export',
     'transfers_description' => 'Bulk imports and exports run as Impex flows; follow them here or on the Impex runs page.',
-    'impex_missing' => 'Imports and exports need jayi/impex. Run composer require jayi/impex.',
+    'impex_missing' => 'Imports and exports need refactor-circus/impex. Run composer require refactor-circus/impex.',
     'import' => 'Import',
     'export' => 'Export',
     'import_file' => 'File',

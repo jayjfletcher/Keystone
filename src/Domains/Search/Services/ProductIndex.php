@@ -2,20 +2,20 @@
 
 declare(strict_types=1);
 
-namespace JayI\Keystone\Domains\Search\Services;
+namespace RefactorCircus\Keystone\Domains\Search\Services;
 
 use Illuminate\Contracts\Config\Repository as Config;
 use Illuminate\Contracts\Events\Dispatcher as Events;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Collection;
-use JayI\Keystone\Domains\Category\Models\CategoryModel;
-use JayI\Keystone\Domains\Owner\Models\OwnerModel;
-use JayI\Keystone\Domains\Product\Models\ProductModel;
-use JayI\Keystone\Domains\ProductModel\Models\ProductModelModel;
-use JayI\Keystone\Domains\Search\Contracts\SearchEngine;
-use JayI\Keystone\Domains\Search\Events\ProductsQueuedForSync;
-use JayI\Keystone\Domains\Workflow\Services\CompletenessCalculator;
-use JayI\Keystone\Jobs\SyncProductIndex;
+use RefactorCircus\Keystone\Domains\Category\Models\CategoryModel;
+use RefactorCircus\Keystone\Domains\Owner\Models\OwnerModel;
+use RefactorCircus\Keystone\Domains\Product\Models\ProductModel;
+use RefactorCircus\Keystone\Domains\ProductModel\Models\ProductModelModel;
+use RefactorCircus\Keystone\Domains\Search\Contracts\SearchEngine;
+use RefactorCircus\Keystone\Domains\Search\Events\ProductsQueuedForSync;
+use RefactorCircus\Keystone\Domains\Workflow\Services\CompletenessCalculator;
+use RefactorCircus\Keystone\Jobs\SyncProductIndex;
 
 /**
  * Keeps what is derived from products — completeness scores and the search

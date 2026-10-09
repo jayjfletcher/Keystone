@@ -2,24 +2,24 @@
 
 declare(strict_types=1);
 
-namespace JayI\Keystone\Impex\Webhooks;
+namespace RefactorCircus\Keystone\Impex\Webhooks;
 
 use Illuminate\Contracts\Config\Repository as Config;
 use Illuminate\Contracts\Events\Dispatcher as Events;
 use Illuminate\Database\ConnectionInterface;
-use JayI\Impex\Impex;
-use JayI\Keystone\Domains\Asset\Events\AssetAttachedActionEvent;
-use JayI\Keystone\Domains\Asset\Events\AssetDeletingActionEvent;
-use JayI\Keystone\Domains\Asset\Events\AssetDetachedActionEvent;
-use JayI\Keystone\Domains\Asset\Events\AssetUpdatedActionEvent;
-use JayI\Keystone\Domains\Asset\Models\AssetModel;
-use JayI\Keystone\Domains\Asset\Services\AssetLinks;
-use JayI\Keystone\Domains\Product\Events\ProductDeletedActionEvent;
-use JayI\Keystone\Domains\Product\Models\ProductModel;
-use JayI\Keystone\Domains\ProductModel\Events\ProductModelDeletedActionEvent;
-use JayI\Keystone\Domains\ProductModel\Events\ProductModelDeletingActionEvent;
-use JayI\Keystone\Domains\ProductModel\Models\ProductModelModel;
-use JayI\Keystone\Domains\Search\Events\ProductsQueuedForSync;
+use RefactorCircus\Impex\Impex;
+use RefactorCircus\Keystone\Domains\Asset\Events\AssetAttachedActionEvent;
+use RefactorCircus\Keystone\Domains\Asset\Events\AssetDeletingActionEvent;
+use RefactorCircus\Keystone\Domains\Asset\Events\AssetDetachedActionEvent;
+use RefactorCircus\Keystone\Domains\Asset\Events\AssetUpdatedActionEvent;
+use RefactorCircus\Keystone\Domains\Asset\Models\AssetModel;
+use RefactorCircus\Keystone\Domains\Asset\Services\AssetLinks;
+use RefactorCircus\Keystone\Domains\Product\Events\ProductDeletedActionEvent;
+use RefactorCircus\Keystone\Domains\Product\Models\ProductModel;
+use RefactorCircus\Keystone\Domains\ProductModel\Events\ProductModelDeletedActionEvent;
+use RefactorCircus\Keystone\Domains\ProductModel\Events\ProductModelDeletingActionEvent;
+use RefactorCircus\Keystone\Domains\ProductModel\Models\ProductModelModel;
+use RefactorCircus\Keystone\Domains\Search\Events\ProductsQueuedForSync;
 use stdClass;
 
 /**

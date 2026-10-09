@@ -2,12 +2,12 @@
 
 declare(strict_types=1);
 
-namespace JayI\Keystone\Domains\Channel\Mcp\Requests;
+namespace RefactorCircus\Keystone\Domains\Channel\Mcp\Requests;
 
-use JayI\Keystone\Domains\Channel\Actions\UpdateLocaleAction;
-use JayI\Keystone\Domains\Channel\Resources\LocaleResource;
 use Laravel\Mcp\Response;
 use Laravel\Mcp\ResponseFactory;
+use RefactorCircus\Keystone\Domains\Channel\Actions\UpdateLocaleAction;
+use RefactorCircus\Keystone\Domains\Channel\Resources\LocaleResource;
 
 final class UpdateLocaleMcpRequest extends LocaleRequest
 {

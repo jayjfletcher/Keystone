@@ -2,12 +2,12 @@
 
 declare(strict_types=1);
 
-namespace JayI\Keystone\Domains\Association\Actions;
+namespace RefactorCircus\Keystone\Domains\Association\Actions;
 
-use JayI\Keystone\Domains\Association\Events\AssociationTypeDeletedActionEvent;
-use JayI\Keystone\Domains\Association\Events\AssociationTypeDeletingActionEvent;
-use JayI\Keystone\Domains\Association\Models\AssociationTypeModel;
-use JayI\Keystone\Exceptions\ModelInUseException;
+use RefactorCircus\Keystone\Domains\Association\Events\AssociationTypeDeletedActionEvent;
+use RefactorCircus\Keystone\Domains\Association\Events\AssociationTypeDeletingActionEvent;
+use RefactorCircus\Keystone\Domains\Association\Models\AssociationTypeModel;
+use RefactorCircus\Keystone\Exceptions\ModelInUseException;
 
 final class DeleteAssociationTypeAction
 {

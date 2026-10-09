@@ -2,13 +2,13 @@
 
 declare(strict_types=1);
 
-namespace JayI\Keystone\Domains\Category\Actions;
+namespace RefactorCircus\Keystone\Domains\Category\Actions;
 
 use Illuminate\Contracts\Pagination\CursorPaginator;
 use Illuminate\Database\Eloquent\Builder;
-use JayI\Keystone\Domains\Category\Events\CategoriesListedActionEvent;
-use JayI\Keystone\Domains\Category\Events\CategoriesListingActionEvent;
-use JayI\Keystone\Domains\Category\Models\CategoryModel;
+use RefactorCircus\Keystone\Domains\Category\Events\CategoriesListedActionEvent;
+use RefactorCircus\Keystone\Domains\Category\Events\CategoriesListingActionEvent;
+use RefactorCircus\Keystone\Domains\Category\Models\CategoryModel;
 
 final class ListCategoriesAction
 {

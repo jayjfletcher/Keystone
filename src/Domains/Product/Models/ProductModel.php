@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace JayI\Keystone\Domains\Product\Models;
+namespace RefactorCircus\Keystone\Domains\Product\Models;
 
 use Illuminate\Database\Eloquent\Collection as EloquentCollection;
 use Illuminate\Database\Eloquent\Concerns\HasUlids;
@@ -13,20 +13,20 @@ use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\MorphMany;
 use Illuminate\Support\Carbon;
-use JayI\Foundation\Models\Concerns\DispatchesModelEvents;
-use JayI\Keystone\Database\Factories\ProductFactory;
-use JayI\Keystone\Domains\Asset\Concerns\HasAssets;
-use JayI\Keystone\Domains\Asset\Models\AssetModel;
-use JayI\Keystone\Domains\Association\Concerns\HasAssociations;
-use JayI\Keystone\Domains\Attribute\Concerns\HasValues;
-use JayI\Keystone\Domains\Attribute\Models\AttributeModel;
-use JayI\Keystone\Domains\Category\Models\CategoryModel;
-use JayI\Keystone\Domains\Family\Models\FamilyModel;
-use JayI\Keystone\Domains\Owner\Models\OwnerModel;
-use JayI\Keystone\Domains\Product\Enums\ProductStatus;
-use JayI\Keystone\Domains\ProductModel\Models\ProductModelModel;
-use JayI\Keystone\Domains\Workflow\Models\CompletenessModel;
-use JayI\Keystone\Domains\Workflow\Models\VersionModel;
+use RefactorCircus\Foundation\Models\Concerns\DispatchesModelEvents;
+use RefactorCircus\Keystone\Database\Factories\ProductFactory;
+use RefactorCircus\Keystone\Domains\Asset\Concerns\HasAssets;
+use RefactorCircus\Keystone\Domains\Asset\Models\AssetModel;
+use RefactorCircus\Keystone\Domains\Association\Concerns\HasAssociations;
+use RefactorCircus\Keystone\Domains\Attribute\Concerns\HasValues;
+use RefactorCircus\Keystone\Domains\Attribute\Models\AttributeModel;
+use RefactorCircus\Keystone\Domains\Category\Models\CategoryModel;
+use RefactorCircus\Keystone\Domains\Family\Models\FamilyModel;
+use RefactorCircus\Keystone\Domains\Owner\Models\OwnerModel;
+use RefactorCircus\Keystone\Domains\Product\Enums\ProductStatus;
+use RefactorCircus\Keystone\Domains\ProductModel\Models\ProductModelModel;
+use RefactorCircus\Keystone\Domains\Workflow\Models\CompletenessModel;
+use RefactorCircus\Keystone\Domains\Workflow\Models\VersionModel;
 
 /**
  * A sellable item, identified by its identifier (SKU). A simple product has

@@ -1,7 +1,7 @@
 {{-- Status and live version, the transitions open from here, completeness per
      channel and locale, and the latest history with revert. --}}
-@use(JayI\Keystone\Atrium\Badges)
-@use(JayI\Keystone\Atrium\ScreenAccess)
+@use(RefactorCircus\Keystone\Atrium\Badges)
+@use(RefactorCircus\Keystone\Atrium\ScreenAccess)
 
 @php
     $transitionIcons = [

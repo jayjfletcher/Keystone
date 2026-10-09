@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace JayI\Keystone\Support\Policies;
+namespace RefactorCircus\Keystone\Support\Policies;
 
 use Illuminate\Database\Eloquent\Model;
-use JayI\Foundation\Policies\Policy as BasePolicy;
+use RefactorCircus\Foundation\Policies\Policy as BasePolicy;
 
 /**
  * The bundled catalog policy: any authenticated user may read and manage.

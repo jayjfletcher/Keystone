@@ -2,14 +2,14 @@
 
 declare(strict_types=1);
 
-namespace JayI\Keystone\Domains\Workflow\Mcp\Tools;
+namespace RefactorCircus\Keystone\Domains\Workflow\Mcp\Tools;
 
 use Illuminate\Contracts\JsonSchema\JsonSchema;
-use JayI\Foundation\Mcp\Tool;
-use JayI\Keystone\Domains\Workflow\Mcp\Requests\ShowProductVersionMcpRequest;
 use Laravel\Mcp\Response;
 use Laravel\Mcp\ResponseFactory;
 use Laravel\Mcp\Server\Attributes\Description;
+use RefactorCircus\Foundation\Mcp\Tool;
+use RefactorCircus\Keystone\Domains\Workflow\Mcp\Requests\ShowProductVersionMcpRequest;
 
 #[Description('Show one version of a product with its full snapshot: a version number, latest, or published for the content storefronts read.')]
 final class ShowProductVersionTool extends Tool

@@ -1,4 +1,4 @@
-@use(JayI\Keystone\Domains\Channel\Models\ChannelModel)
+@use(RefactorCircus\Keystone\Domains\Channel\Models\ChannelModel)
 @php($uiLocale = app()->getLocale())
 
 <x-atrium::layout :title="__('keystone::keystone.channels')">
@@ -7,7 +7,7 @@
     <div class="mt-5 flex flex-col gap-4">
         <x-atrium::flash />
 
-        @keystoneCan('viewAny', \JayI\Keystone\Domains\Channel\Models\LocaleModel::class)
+        @keystoneCan('viewAny', \RefactorCircus\Keystone\Domains\Channel\Models\LocaleModel::class)
         <x-atrium::card :title="__('keystone::keystone.locales')" data-testid="locales-card">
             @if ($locales->isNotEmpty())
                 <ul class="mb-4 flex flex-wrap gap-3">
@@ -27,7 +27,7 @@
                 </ul>
             @endif
 
-            @keystoneCan('create', \JayI\Keystone\Domains\Channel\Models\LocaleModel::class)
+            @keystoneCan('create', \RefactorCircus\Keystone\Domains\Channel\Models\LocaleModel::class)
             <form method="POST" action="{{ route('atrium.keystone.locales.store') }}" class="flex flex-wrap items-start gap-3">
                 @csrf
                 <x-atrium::form.input name="code" :label="__('keystone::keystone.code')" :hint="__('keystone::keystone.locale_code_hint')" required wrapper="w-44" />

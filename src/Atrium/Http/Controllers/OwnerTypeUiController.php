@@ -2,21 +2,21 @@
 
 declare(strict_types=1);
 
-namespace JayI\Keystone\Atrium\Http\Controllers;
+namespace RefactorCircus\Keystone\Atrium\Http\Controllers;
 
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
-use JayI\Atrium\Http\Controllers\Concerns\AuthorizesScreens;
-use JayI\Keystone\Atrium\Support\Labels;
-use JayI\Keystone\Domains\Owner\Actions\CreateOwnerTypeAction;
-use JayI\Keystone\Domains\Owner\Actions\DeleteOwnerTypeAction;
-use JayI\Keystone\Domains\Owner\Actions\ListOwnerTypesAction;
-use JayI\Keystone\Domains\Owner\Actions\ShowOwnerTypeAction;
-use JayI\Keystone\Domains\Owner\Actions\UpdateOwnerTypeAction;
-use JayI\Keystone\Domains\Owner\Models\OwnerTypeModel;
-use JayI\Keystone\Exceptions\KeystoneException;
+use RefactorCircus\Atrium\Http\Controllers\Concerns\AuthorizesScreens;
+use RefactorCircus\Keystone\Atrium\Support\Labels;
+use RefactorCircus\Keystone\Domains\Owner\Actions\CreateOwnerTypeAction;
+use RefactorCircus\Keystone\Domains\Owner\Actions\DeleteOwnerTypeAction;
+use RefactorCircus\Keystone\Domains\Owner\Actions\ListOwnerTypesAction;
+use RefactorCircus\Keystone\Domains\Owner\Actions\ShowOwnerTypeAction;
+use RefactorCircus\Keystone\Domains\Owner\Actions\UpdateOwnerTypeAction;
+use RefactorCircus\Keystone\Domains\Owner\Models\OwnerTypeModel;
+use RefactorCircus\Keystone\Exceptions\KeystoneException;
 
 final class OwnerTypeUiController
 {

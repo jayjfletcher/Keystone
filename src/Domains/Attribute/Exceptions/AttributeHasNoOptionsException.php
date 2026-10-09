@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace JayI\Keystone\Domains\Attribute\Exceptions;
+namespace RefactorCircus\Keystone\Domains\Attribute\Exceptions;
 
-use JayI\Keystone\Domains\Attribute\Models\AttributeModel;
-use JayI\Keystone\Exceptions\KeystoneException;
+use RefactorCircus\Keystone\Domains\Attribute\Models\AttributeModel;
+use RefactorCircus\Keystone\Exceptions\KeystoneException;
 
 final class AttributeHasNoOptionsException extends KeystoneException
 {

@@ -2,14 +2,14 @@
 
 declare(strict_types=1);
 
-namespace JayI\Keystone\Domains\Product\Mcp\Tools;
+namespace RefactorCircus\Keystone\Domains\Product\Mcp\Tools;
 
 use Illuminate\Contracts\JsonSchema\JsonSchema;
-use JayI\Foundation\Mcp\Tool;
-use JayI\Keystone\Domains\Product\Mcp\Requests\DeleteProductMcpRequest;
 use Laravel\Mcp\Response;
 use Laravel\Mcp\ResponseFactory;
 use Laravel\Mcp\Server\Attributes\Description;
+use RefactorCircus\Foundation\Mcp\Tool;
+use RefactorCircus\Keystone\Domains\Product\Mcp\Requests\DeleteProductMcpRequest;
 
 #[Description('Delete a product.')]
 final class DeleteProductTool extends Tool

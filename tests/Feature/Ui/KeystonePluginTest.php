@@ -3,14 +3,14 @@
 declare(strict_types=1);
 
 use Illuminate\Support\Facades\Route;
-use JayI\Atrium\Domains\Navigation\Data\NavItem;
-use JayI\Atrium\Domains\Plugins\Services\PluginRegistry;
-use JayI\Atrium\Domains\Search\Data\SearchResult;
-use JayI\Keystone\Atrium\Features\KeystoneSupportFeature;
-use JayI\Keystone\Atrium\KeystonePlugin;
-use JayI\Keystone\Domains\Attribute\Models\AttributeGroupModel;
-use JayI\Keystone\Domains\Attribute\Models\AttributeModel;
-use JayI\Keystone\Tests\Fixtures\OrphanSupportFeature;
+use RefactorCircus\Atrium\Domains\Navigation\Data\NavItem;
+use RefactorCircus\Atrium\Domains\Plugins\Services\PluginRegistry;
+use RefactorCircus\Atrium\Domains\Search\Data\SearchResult;
+use RefactorCircus\Keystone\Atrium\Features\KeystoneSupportFeature;
+use RefactorCircus\Keystone\Atrium\KeystonePlugin;
+use RefactorCircus\Keystone\Domains\Attribute\Models\AttributeGroupModel;
+use RefactorCircus\Keystone\Domains\Attribute\Models\AttributeModel;
+use RefactorCircus\Keystone\Tests\Fixtures\OrphanSupportFeature;
 
 it('registers itself with atrium', function (): void {
     expect(app(PluginRegistry::class)->has('keystone'))->toBeTrue();
@@ -52,9 +52,9 @@ it('finds attributes and groups by code or label', function (): void {
 
 it('skips feature classes that are not installed', function (): void {
     config()->set('keystone.atrium.features', [
-        'JayI\\Keystone\\Tests\\Fixtures\\NoSuchFeature',
+        'RefactorCircus\\Keystone\\Tests\\Fixtures\\NoSuchFeature',
         // Its parent class is missing, as KeystoneSupportFeature's is without
-        // jayi/pennantplus, so loading it throws rather than answering false.
+        // refactor-circus/pennantplus, so loading it throws rather than answering false.
         OrphanSupportFeature::class,
         'catalog-enabled',
         KeystoneSupportFeature::class,

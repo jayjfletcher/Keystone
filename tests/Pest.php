@@ -2,15 +2,15 @@
 
 declare(strict_types=1);
 
-use JayI\Keystone\Mcp\KeystoneServer;
-use JayI\Keystone\Tests\CortexTestCase;
-use JayI\Keystone\Tests\PennantPlusTestCase;
-use JayI\Keystone\Tests\TestCase;
 use Laravel\Mcp\Request;
 use Laravel\Mcp\Server\Testing\TestResponse;
 use Laravel\Mcp\Server\Tool;
 use Laravel\Mcp\Server\Transport\FakeTransporter;
 use Laravel\Mcp\Transport\JsonRpcResponse;
+use RefactorCircus\Keystone\Mcp\KeystoneServer;
+use RefactorCircus\Keystone\Tests\CortexTestCase;
+use RefactorCircus\Keystone\Tests\PennantPlusTestCase;
+use RefactorCircus\Keystone\Tests\TestCase;
 
 uses(TestCase::class)->in('Feature', 'Unit');
 uses(CortexTestCase::class)->in('Cortex');

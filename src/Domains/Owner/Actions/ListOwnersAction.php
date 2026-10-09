@@ -2,13 +2,13 @@
 
 declare(strict_types=1);
 
-namespace JayI\Keystone\Domains\Owner\Actions;
+namespace RefactorCircus\Keystone\Domains\Owner\Actions;
 
 use Illuminate\Contracts\Pagination\CursorPaginator;
 use Illuminate\Database\Eloquent\Builder;
-use JayI\Keystone\Domains\Owner\Events\OwnersListedActionEvent;
-use JayI\Keystone\Domains\Owner\Events\OwnersListingActionEvent;
-use JayI\Keystone\Domains\Owner\Models\OwnerModel;
+use RefactorCircus\Keystone\Domains\Owner\Events\OwnersListedActionEvent;
+use RefactorCircus\Keystone\Domains\Owner\Events\OwnersListingActionEvent;
+use RefactorCircus\Keystone\Domains\Owner\Models\OwnerModel;
 
 final class ListOwnersAction
 {

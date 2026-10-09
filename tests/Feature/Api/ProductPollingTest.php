@@ -3,8 +3,8 @@
 declare(strict_types=1);
 
 use Illuminate\Support\Facades\DB;
-use JayI\Keystone\Domains\Product\Mcp\Tools\ListProductsTool;
-use JayI\Keystone\Tests\Fixtures\Catalog;
+use RefactorCircus\Keystone\Domains\Product\Mcp\Tools\ListProductsTool;
+use RefactorCircus\Keystone\Tests\Fixtures\Catalog;
 
 beforeEach(function (): void {
     Catalog::apparel();

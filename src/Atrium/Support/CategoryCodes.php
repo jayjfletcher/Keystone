@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace JayI\Keystone\Atrium\Support;
+namespace RefactorCircus\Keystone\Atrium\Support;
 
 /**
  * The dashboard takes category codes as one comma-separated field.

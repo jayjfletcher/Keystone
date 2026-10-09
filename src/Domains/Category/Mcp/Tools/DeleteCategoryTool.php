@@ -2,14 +2,14 @@
 
 declare(strict_types=1);
 
-namespace JayI\Keystone\Domains\Category\Mcp\Tools;
+namespace RefactorCircus\Keystone\Domains\Category\Mcp\Tools;
 
 use Illuminate\Contracts\JsonSchema\JsonSchema;
-use JayI\Foundation\Mcp\Tool;
-use JayI\Keystone\Domains\Category\Mcp\Requests\DeleteCategoryMcpRequest;
 use Laravel\Mcp\Response;
 use Laravel\Mcp\ResponseFactory;
 use Laravel\Mcp\Server\Attributes\Description;
+use RefactorCircus\Foundation\Mcp\Tool;
+use RefactorCircus\Keystone\Domains\Category\Mcp\Requests\DeleteCategoryMcpRequest;
 
 #[Description('Delete a category that has no children. Products filed in it are unassigned from it.')]
 final class DeleteCategoryTool extends Tool

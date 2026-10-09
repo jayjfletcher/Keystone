@@ -4,11 +4,11 @@ declare(strict_types=1);
 
 use Illuminate\Contracts\Auth\Authenticatable;
 use Illuminate\Http\Request;
-use JayI\Atrium\Domains\Navigation\Data\NavItem;
-use JayI\Atrium\Domains\Navigation\Services\NavigationRegistry;
-use JayI\Keystone\Atrium\Features\KeystoneSupportFeature;
-use JayI\Keystone\Atrium\KeystonePlugin;
 use Laravel\Pennant\Feature;
+use RefactorCircus\Atrium\Domains\Navigation\Data\NavItem;
+use RefactorCircus\Atrium\Domains\Navigation\Services\NavigationRegistry;
+use RefactorCircus\Keystone\Atrium\Features\KeystoneSupportFeature;
+use RefactorCircus\Keystone\Atrium\KeystonePlugin;
 use Workbench\App\Models\User;
 
 // Pennant's array store keeps values in its cache: Feature::flushCache()
@@ -83,16 +83,4 @@ it('uses a subclass named in the config instead', function (): void {
     Feature::for(null)->activate(OffKeystoneSupportFeature::class);
 
     expect(catalogNavigationFor(catalogUser()))->toContain('Products');
-});
-
-it('keeps the stored name it had before it moved', function (): void {
-    // Values stored before the class moved from JayI\Keystone\Features.
-    Feature::for(null)->deactivate('JayI\\Keystone\\Features\\KeystoneSupportFeature');
-
-    expect(Feature::for(null)->active(KeystoneSupportFeature::class))->toBeFalse()
-        ->and(catalogNavigationFor(catalogUser()))->not->toContain('Products');
-
-    Feature::define(OffKeystoneSupportFeature::class);
-
-    expect(Feature::defined())->toContain('JayI\\Keystone\\Features\\KeystoneSupportFeature', OffKeystoneSupportFeature::class);
 });

@@ -3,7 +3,7 @@
 declare(strict_types=1);
 
 use Illuminate\Support\Facades\Route;
-use JayI\Keystone\Domains\Category\Http\Controllers\CategoryController;
+use RefactorCircus\Keystone\Domains\Category\Http\Controllers\CategoryController;
 
 Route::get('categories', [CategoryController::class, 'index'])->name('categories.index');
 Route::post('categories', [CategoryController::class, 'store'])->name('categories.store');

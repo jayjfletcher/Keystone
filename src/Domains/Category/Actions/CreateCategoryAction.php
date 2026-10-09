@@ -2,13 +2,13 @@
 
 declare(strict_types=1);
 
-namespace JayI\Keystone\Domains\Category\Actions;
+namespace RefactorCircus\Keystone\Domains\Category\Actions;
 
 use Illuminate\Support\Facades\DB;
-use JayI\Keystone\Domains\Category\Events\CategoryCreatedActionEvent;
-use JayI\Keystone\Domains\Category\Events\CategoryCreatingActionEvent;
-use JayI\Keystone\Domains\Category\Models\CategoryModel;
-use JayI\Keystone\Support\Concerns\MovesInTree;
+use RefactorCircus\Keystone\Domains\Category\Events\CategoryCreatedActionEvent;
+use RefactorCircus\Keystone\Domains\Category\Events\CategoryCreatingActionEvent;
+use RefactorCircus\Keystone\Domains\Category\Models\CategoryModel;
+use RefactorCircus\Keystone\Support\Concerns\MovesInTree;
 
 final class CreateCategoryAction
 {

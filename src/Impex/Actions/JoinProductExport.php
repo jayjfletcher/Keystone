@@ -2,15 +2,15 @@
 
 declare(strict_types=1);
 
-namespace JayI\Keystone\Impex\Actions;
+namespace RefactorCircus\Keystone\Impex\Actions;
 
 use Generator;
 use Illuminate\Contracts\Filesystem\Filesystem;
 use Illuminate\Support\Facades\Storage;
-use JayI\Keystone\Domains\Asset\Actions\CreateAssetAction;
-use JayI\Keystone\Domains\Asset\Models\AssetModel;
-use JayI\Keystone\Domains\Asset\Services\AssetStorage;
-use JayI\Keystone\Impex\ProductRows;
+use RefactorCircus\Keystone\Domains\Asset\Actions\CreateAssetAction;
+use RefactorCircus\Keystone\Domains\Asset\Models\AssetModel;
+use RefactorCircus\Keystone\Domains\Asset\Services\AssetStorage;
+use RefactorCircus\Keystone\Impex\ProductRows;
 use RuntimeException;
 
 /**
