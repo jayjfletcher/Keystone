@@ -2,13 +2,13 @@
 
 declare(strict_types=1);
 
-namespace RefactorCircus\Keystone\Domains\Owner\Actions;
+namespace RefactorCircus\Showroom\Domains\Owner\Actions;
 
 use Illuminate\Support\Facades\DB;
-use RefactorCircus\Keystone\Domains\Owner\Concerns\WritesOwnerTypes;
-use RefactorCircus\Keystone\Domains\Owner\Events\OwnerTypeUpdatedActionEvent;
-use RefactorCircus\Keystone\Domains\Owner\Events\OwnerTypeUpdatingActionEvent;
-use RefactorCircus\Keystone\Domains\Owner\Models\OwnerTypeModel;
+use RefactorCircus\Showroom\Domains\Owner\Concerns\WritesOwnerTypes;
+use RefactorCircus\Showroom\Domains\Owner\Events\OwnerTypeUpdatedActionEvent;
+use RefactorCircus\Showroom\Domains\Owner\Events\OwnerTypeUpdatingActionEvent;
+use RefactorCircus\Showroom\Domains\Owner\Models\OwnerTypeModel;
 
 final class UpdateOwnerTypeAction
 {

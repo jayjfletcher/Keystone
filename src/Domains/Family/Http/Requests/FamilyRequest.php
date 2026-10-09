@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace RefactorCircus\Keystone\Domains\Family\Http\Requests;
+namespace RefactorCircus\Showroom\Domains\Family\Http\Requests;
 
 use RefactorCircus\Foundation\Http\Requests\Request;
-use RefactorCircus\Keystone\Domains\Family\Models\FamilyModel;
+use RefactorCircus\Showroom\Domains\Family\Models\FamilyModel;
 
 abstract class FamilyRequest extends Request
 {

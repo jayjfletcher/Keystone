@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace RefactorCircus\Keystone\Domains\Channel\Events;
+namespace RefactorCircus\Showroom\Domains\Channel\Events;
 
 use Illuminate\Foundation\Events\Dispatchable;
 use Illuminate\Queue\SerializesModels;

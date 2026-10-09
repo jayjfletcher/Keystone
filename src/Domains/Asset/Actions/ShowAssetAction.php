@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-namespace RefactorCircus\Keystone\Domains\Asset\Actions;
+namespace RefactorCircus\Showroom\Domains\Asset\Actions;
 
-use RefactorCircus\Keystone\Domains\Asset\Events\AssetShowingActionEvent;
-use RefactorCircus\Keystone\Domains\Asset\Events\AssetShownActionEvent;
-use RefactorCircus\Keystone\Domains\Asset\Models\AssetModel;
+use RefactorCircus\Showroom\Domains\Asset\Events\AssetShowingActionEvent;
+use RefactorCircus\Showroom\Domains\Asset\Events\AssetShownActionEvent;
+use RefactorCircus\Showroom\Domains\Asset\Models\AssetModel;
 
 final class ShowAssetAction
 {

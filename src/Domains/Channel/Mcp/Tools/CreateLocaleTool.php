@@ -2,14 +2,14 @@
 
 declare(strict_types=1);
 
-namespace RefactorCircus\Keystone\Domains\Channel\Mcp\Tools;
+namespace RefactorCircus\Showroom\Domains\Channel\Mcp\Tools;
 
 use Illuminate\Contracts\JsonSchema\JsonSchema;
 use Laravel\Mcp\Response;
 use Laravel\Mcp\ResponseFactory;
 use Laravel\Mcp\Server\Attributes\Description;
 use RefactorCircus\Foundation\Mcp\Tool;
-use RefactorCircus\Keystone\Domains\Channel\Mcp\Requests\CreateLocaleMcpRequest;
+use RefactorCircus\Showroom\Domains\Channel\Mcp\Requests\CreateLocaleMcpRequest;
 
 #[Description('Add a locale, so localizable values can be written in it.')]
 final class CreateLocaleTool extends Tool

@@ -2,14 +2,14 @@
 
 declare(strict_types=1);
 
-namespace RefactorCircus\Keystone\Domains\Attribute\Mcp\Tools;
+namespace RefactorCircus\Showroom\Domains\Attribute\Mcp\Tools;
 
 use Illuminate\Contracts\JsonSchema\JsonSchema;
 use Laravel\Mcp\Response;
 use Laravel\Mcp\ResponseFactory;
 use Laravel\Mcp\Server\Attributes\Description;
 use RefactorCircus\Foundation\Mcp\Tool;
-use RefactorCircus\Keystone\Domains\Attribute\Mcp\Requests\ListAttributeGroupsMcpRequest;
+use RefactorCircus\Showroom\Domains\Attribute\Mcp\Requests\ListAttributeGroupsMcpRequest;
 
 #[Description('List attribute groups, the sections attributes are organised into, in display order. Cursor paginated.')]
 final class ListAttributeGroupsTool extends Tool

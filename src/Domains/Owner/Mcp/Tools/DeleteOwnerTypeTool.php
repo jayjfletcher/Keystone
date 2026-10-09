@@ -2,14 +2,14 @@
 
 declare(strict_types=1);
 
-namespace RefactorCircus\Keystone\Domains\Owner\Mcp\Tools;
+namespace RefactorCircus\Showroom\Domains\Owner\Mcp\Tools;
 
 use Illuminate\Contracts\JsonSchema\JsonSchema;
 use Laravel\Mcp\Response;
 use Laravel\Mcp\ResponseFactory;
 use Laravel\Mcp\Server\Attributes\Description;
 use RefactorCircus\Foundation\Mcp\Tool;
-use RefactorCircus\Keystone\Domains\Owner\Mcp\Requests\DeleteOwnerTypeMcpRequest;
+use RefactorCircus\Showroom\Domains\Owner\Mcp\Requests\DeleteOwnerTypeMcpRequest;
 
 #[Description('Delete an owner type that has no owners.')]
 final class DeleteOwnerTypeTool extends Tool

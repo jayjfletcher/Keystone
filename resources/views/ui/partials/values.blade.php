@@ -1,5 +1,5 @@
-@use(RefactorCircus\Keystone\Domains\Attribute\Enums\AttributeType)
-@use(RefactorCircus\Keystone\Domains\Attribute\Services\Values)
+@use(RefactorCircus\Showroom\Domains\Attribute\Enums\AttributeType)
+@use(RefactorCircus\Showroom\Domains\Attribute\Services\Values)
 
 {{-- One input per attribute, for the slot this form edits: the picked
      locale for localizable attributes and the picked channel for scopable
@@ -12,7 +12,7 @@
 <input type="hidden" name="channel" value="{{ $slot->channel }}">
 
 @if ($attributes->isEmpty())
-    <x-atrium::empty-state :title="__('keystone::keystone.no_settable_attributes')" />
+    <x-atrium::empty-state :title="__('showroom::showroom.no_settable_attributes')" />
 @else
     <div class="grid gap-4 sm:grid-cols-2">
         @foreach ($attributes as $attribute)
@@ -30,7 +30,7 @@
                 </label>
 
                 @if (($attribute->is_localizable && $slot->locale === null) || ($attribute->is_scopable && $slot->channel === null))
-                    <p class="text-xs text-on-surface/80 dark:text-on-surface-dark/80">{{ __('keystone::keystone.slot_unavailable') }}</p>
+                    <p class="text-xs text-on-surface/80 dark:text-on-surface-dark/80">{{ __('showroom::showroom.slot_unavailable') }}</p>
                 @else
                     @switch($attribute->type)
                         @case(AttributeType::Textarea)
@@ -48,14 +48,14 @@
 
                         @case(AttributeType::Boolean)
                             <x-atrium::form.select bare :name="$name"
-                                :placeholder="__('keystone::keystone.none')"
-                                :options="['1' => __('keystone::keystone.yes'), '0' => __('keystone::keystone.no')]"
+                                :placeholder="__('showroom::showroom.none')"
+                                :options="['1' => __('showroom::showroom.yes'), '0' => __('showroom::showroom.no')]"
                                 :selected="match ($data) { true => '1', false => '0', default => '' }" />
                             @break
 
                         @case(AttributeType::Select)
                             <x-atrium::form.select bare :name="$name"
-                                :placeholder="__('keystone::keystone.none')"
+                                :placeholder="__('showroom::showroom.none')"
                                 :options="$attribute->options->mapWithKeys(fn ($option) => [$option->code => $option->label()])->all()"
                                 :selected="is_string($data) ? $data : ''" />
                             @break

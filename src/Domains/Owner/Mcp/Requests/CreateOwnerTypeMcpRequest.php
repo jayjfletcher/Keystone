@@ -2,14 +2,14 @@
 
 declare(strict_types=1);
 
-namespace RefactorCircus\Keystone\Domains\Owner\Mcp\Requests;
+namespace RefactorCircus\Showroom\Domains\Owner\Mcp\Requests;
 
 use Laravel\Mcp\Response;
 use Laravel\Mcp\ResponseFactory;
 use RefactorCircus\Foundation\Mcp\Requests\Request;
-use RefactorCircus\Keystone\Domains\Owner\Actions\CreateOwnerTypeAction;
-use RefactorCircus\Keystone\Domains\Owner\Models\OwnerTypeModel;
-use RefactorCircus\Keystone\Domains\Owner\Resources\OwnerTypeResource;
+use RefactorCircus\Showroom\Domains\Owner\Actions\CreateOwnerTypeAction;
+use RefactorCircus\Showroom\Domains\Owner\Models\OwnerTypeModel;
+use RefactorCircus\Showroom\Domains\Owner\Resources\OwnerTypeResource;
 
 final class CreateOwnerTypeMcpRequest extends Request
 {

@@ -2,24 +2,24 @@
 
 declare(strict_types=1);
 
-namespace RefactorCircus\Keystone\Impex\Webhooks;
+namespace RefactorCircus\Showroom\Impex\Webhooks;
 
 use Illuminate\Contracts\Config\Repository as Config;
 use Illuminate\Contracts\Events\Dispatcher as Events;
 use Illuminate\Database\ConnectionInterface;
 use RefactorCircus\Impex\Impex;
-use RefactorCircus\Keystone\Domains\Asset\Events\AssetAttachedActionEvent;
-use RefactorCircus\Keystone\Domains\Asset\Events\AssetDeletingActionEvent;
-use RefactorCircus\Keystone\Domains\Asset\Events\AssetDetachedActionEvent;
-use RefactorCircus\Keystone\Domains\Asset\Events\AssetUpdatedActionEvent;
-use RefactorCircus\Keystone\Domains\Asset\Models\AssetModel;
-use RefactorCircus\Keystone\Domains\Asset\Services\AssetLinks;
-use RefactorCircus\Keystone\Domains\Product\Events\ProductDeletedActionEvent;
-use RefactorCircus\Keystone\Domains\Product\Models\ProductModel;
-use RefactorCircus\Keystone\Domains\ProductModel\Events\ProductModelDeletedActionEvent;
-use RefactorCircus\Keystone\Domains\ProductModel\Events\ProductModelDeletingActionEvent;
-use RefactorCircus\Keystone\Domains\ProductModel\Models\ProductModelModel;
-use RefactorCircus\Keystone\Domains\Search\Events\ProductsQueuedForSync;
+use RefactorCircus\Showroom\Domains\Asset\Events\AssetAttachedActionEvent;
+use RefactorCircus\Showroom\Domains\Asset\Events\AssetDeletingActionEvent;
+use RefactorCircus\Showroom\Domains\Asset\Events\AssetDetachedActionEvent;
+use RefactorCircus\Showroom\Domains\Asset\Events\AssetUpdatedActionEvent;
+use RefactorCircus\Showroom\Domains\Asset\Models\AssetModel;
+use RefactorCircus\Showroom\Domains\Asset\Services\AssetLinks;
+use RefactorCircus\Showroom\Domains\Product\Events\ProductDeletedActionEvent;
+use RefactorCircus\Showroom\Domains\Product\Models\ProductModel;
+use RefactorCircus\Showroom\Domains\ProductModel\Events\ProductModelDeletedActionEvent;
+use RefactorCircus\Showroom\Domains\ProductModel\Events\ProductModelDeletingActionEvent;
+use RefactorCircus\Showroom\Domains\ProductModel\Models\ProductModelModel;
+use RefactorCircus\Showroom\Domains\Search\Events\ProductsQueuedForSync;
 use stdClass;
 
 /**
@@ -87,7 +87,7 @@ final class CaptureProductChanges
         $identifiers = [];
 
         foreach (array_chunk(array_values(array_unique($ids)), 1000) as $chunk) {
-            foreach ($this->db->table('keystone_products')->whereIn('id', $chunk)->pluck('identifier') as $identifier) {
+            foreach ($this->db->table('showroom_products')->whereIn('id', $chunk)->pluck('identifier') as $identifier) {
                 $identifiers[] = (string) $identifier;
             }
         }
@@ -159,15 +159,15 @@ final class CaptureProductChanges
      */
     private function underModel(string $modelId): array
     {
-        $models = [$modelId, ...$this->db->table('keystone_product_models')->where('parent_id', $modelId)->pluck('id')->map(fn (mixed $id): string => (string) $id)->all()];
+        $models = [$modelId, ...$this->db->table('showroom_product_models')->where('parent_id', $modelId)->pluck('id')->map(fn (mixed $id): string => (string) $id)->all()];
 
-        return $this->db->table('keystone_products')->whereIn('parent_id', $models)->pluck('id')->map(fn (mixed $id): string => (string) $id)->all();
+        return $this->db->table('showroom_products')->whereIn('parent_id', $models)->pluck('id')->map(fn (mixed $id): string => (string) $id)->all();
     }
 
     private function stream(): string
     {
-        $stream = $this->config->get('keystone.impex.webhooks.stream', 'keystone.products');
+        $stream = $this->config->get('showroom.impex.webhooks.stream', 'showroom.products');
 
-        return is_string($stream) ? $stream : 'keystone.products';
+        return is_string($stream) ? $stream : 'showroom.products';
     }
 }

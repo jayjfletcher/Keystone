@@ -4,42 +4,42 @@ declare(strict_types=1);
 
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\ServiceProvider;
-use RefactorCircus\Keystone\Domains\Asset\AssetServiceProvider;
-use RefactorCircus\Keystone\Domains\Association\AssociationServiceProvider;
-use RefactorCircus\Keystone\Domains\Attribute\AttributeServiceProvider;
-use RefactorCircus\Keystone\Domains\Category\CategoryServiceProvider;
-use RefactorCircus\Keystone\Domains\Channel\ChannelServiceProvider;
-use RefactorCircus\Keystone\Domains\DomainServiceProvider;
-use RefactorCircus\Keystone\Domains\Family\FamilyServiceProvider;
-use RefactorCircus\Keystone\Domains\Owner\OwnerServiceProvider;
-use RefactorCircus\Keystone\Domains\Product\ProductServiceProvider;
-use RefactorCircus\Keystone\Domains\ProductModel\ProductModelServiceProvider;
-use RefactorCircus\Keystone\Domains\Search\SearchServiceProvider;
-use RefactorCircus\Keystone\Domains\Transfer\TransferServiceProvider;
-use RefactorCircus\Keystone\Domains\Workflow\WorkflowServiceProvider;
-use RefactorCircus\Keystone\Keystone;
-use RefactorCircus\Keystone\KeystoneServiceProvider;
+use RefactorCircus\Showroom\Domains\Asset\AssetServiceProvider;
+use RefactorCircus\Showroom\Domains\Association\AssociationServiceProvider;
+use RefactorCircus\Showroom\Domains\Attribute\AttributeServiceProvider;
+use RefactorCircus\Showroom\Domains\Category\CategoryServiceProvider;
+use RefactorCircus\Showroom\Domains\Channel\ChannelServiceProvider;
+use RefactorCircus\Showroom\Domains\DomainServiceProvider;
+use RefactorCircus\Showroom\Domains\Family\FamilyServiceProvider;
+use RefactorCircus\Showroom\Domains\Owner\OwnerServiceProvider;
+use RefactorCircus\Showroom\Domains\Product\ProductServiceProvider;
+use RefactorCircus\Showroom\Domains\ProductModel\ProductModelServiceProvider;
+use RefactorCircus\Showroom\Domains\Search\SearchServiceProvider;
+use RefactorCircus\Showroom\Domains\Transfer\TransferServiceProvider;
+use RefactorCircus\Showroom\Domains\Workflow\WorkflowServiceProvider;
+use RefactorCircus\Showroom\Showroom;
+use RefactorCircus\Showroom\ShowroomServiceProvider;
 
-it('resolves the Keystone singleton', function (): void {
-    expect(app(Keystone::class))->toBe(app(Keystone::class));
+it('resolves the Showroom singleton', function (): void {
+    expect(app(Showroom::class))->toBe(app(Showroom::class));
 });
 
 it('merges the package config', function (): void {
-    expect(config('keystone.routes.prefix'))->toBe('keystone')
-        ->and(config('keystone.mcp.web.enabled'))->toBeFalse()
-        ->and(config('keystone.pagination.per_page'))->toBe(25);
+    expect(config('showroom.routes.prefix'))->toBe('showroom')
+        ->and(config('showroom.mcp.web.enabled'))->toBeFalse()
+        ->and(config('showroom.pagination.per_page'))->toBe(25);
 });
 
 it('registers the API routes', function (): void {
-    expect(Route::has('keystone.attributes.index'))->toBeTrue()
-        ->and(route('keystone.attributes.index'))->toEndWith('/keystone/attributes');
+    expect(Route::has('showroom.attributes.index'))->toBeTrue()
+        ->and(route('showroom.attributes.index'))->toEndWith('/showroom/attributes');
 });
 
 it('serves its audit history, answering 404 while no audit log is installed', function (): void {
-    expect(Route::has('keystone.history.index'))->toBeTrue()
-        ->and(route('keystone.history.index'))->toEndWith('/keystone/history');
+    expect(Route::has('showroom.history.index'))->toBeTrue()
+        ->and(route('showroom.history.index'))->toEndWith('/showroom/history');
 
-    $this->getJson(route('keystone.history.index'))
+    $this->getJson(route('showroom.history.index'))
         ->assertNotFound()
         ->assertJsonPath('message', fn (string $message): bool => str_contains($message, 'No audit log is installed'));
 });
@@ -144,14 +144,14 @@ it('keeps every API route name now each domain loads its own routes', function (
     ];
 
     foreach ($names as $name) {
-        expect(Route::has('keystone.'.$name))->toBeTrue('keystone.'.$name);
+        expect(Route::has('showroom.'.$name))->toBeTrue('showroom.'.$name);
     }
 });
 
 it('loads the package translations', function (): void {
-    expect(__('keystone::keystone.attributes'))->toBe('Attributes');
+    expect(__('showroom::showroom.attributes'))->toBe('Attributes');
 });
 
 it('publishes every resource group under its own tag', function (string $tag): void {
-    expect(ServiceProvider::pathsToPublish(KeystoneServiceProvider::class, $tag))->not->toBeEmpty();
-})->with(['keystone', 'keystone-config', 'keystone-views', 'keystone-lang', 'keystone-migrations']);
+    expect(ServiceProvider::pathsToPublish(ShowroomServiceProvider::class, $tag))->not->toBeEmpty();
+})->with(['showroom', 'showroom-config', 'showroom-views', 'showroom-lang', 'showroom-migrations']);

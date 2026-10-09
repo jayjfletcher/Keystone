@@ -2,14 +2,14 @@
 
 declare(strict_types=1);
 
-namespace RefactorCircus\Keystone\Domains\ProductModel\Mcp\Tools;
+namespace RefactorCircus\Showroom\Domains\ProductModel\Mcp\Tools;
 
 use Illuminate\Contracts\JsonSchema\JsonSchema;
 use Laravel\Mcp\Response;
 use Laravel\Mcp\ResponseFactory;
 use Laravel\Mcp\Server\Attributes\Description;
 use RefactorCircus\Foundation\Mcp\Tool;
-use RefactorCircus\Keystone\Domains\ProductModel\Mcp\Requests\CreateProductModelMcpRequest;
+use RefactorCircus\Showroom\Domains\ProductModel\Mcp\Requests\CreateProductModelMcpRequest;
 
 #[Description('Create a product model. A root model names its family variant and sets the common attributes; a sub-model names its parent and sets level-1 attributes, including every level-1 axis.')]
 final class CreateProductModelTool extends Tool

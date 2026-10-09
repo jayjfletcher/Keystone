@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace RefactorCircus\Keystone\Domains\Attribute\Data;
+namespace RefactorCircus\Showroom\Domains\Attribute\Data;
 
-use RefactorCircus\Keystone\Domains\Attribute\Services\Values;
+use RefactorCircus\Showroom\Domains\Attribute\Services\Values;
 
 /**
  * Narrows the values a read returns to one channel and some locales, as an
@@ -29,9 +29,9 @@ final readonly class ValueFilter
     public static function rules(): array
     {
         return [
-            'scope' => ['sometimes', 'nullable', 'string', 'exists:keystone_channels,code'],
+            'scope' => ['sometimes', 'nullable', 'string', 'exists:showroom_channels,code'],
             'locales' => ['sometimes', 'nullable', 'array', 'list'],
-            'locales.*' => ['string', 'exists:keystone_locales,code'],
+            'locales.*' => ['string', 'exists:showroom_locales,code'],
         ];
     }
 

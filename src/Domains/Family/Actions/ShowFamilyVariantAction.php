@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-namespace RefactorCircus\Keystone\Domains\Family\Actions;
+namespace RefactorCircus\Showroom\Domains\Family\Actions;
 
-use RefactorCircus\Keystone\Domains\Family\Events\FamilyVariantShowingActionEvent;
-use RefactorCircus\Keystone\Domains\Family\Events\FamilyVariantShownActionEvent;
-use RefactorCircus\Keystone\Domains\Family\Models\FamilyVariantModel;
+use RefactorCircus\Showroom\Domains\Family\Events\FamilyVariantShowingActionEvent;
+use RefactorCircus\Showroom\Domains\Family\Events\FamilyVariantShownActionEvent;
+use RefactorCircus\Showroom\Domains\Family\Models\FamilyVariantModel;
 
 final class ShowFamilyVariantAction
 {

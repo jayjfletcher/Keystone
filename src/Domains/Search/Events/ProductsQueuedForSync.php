@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace RefactorCircus\Keystone\Domains\Search\Events;
+namespace RefactorCircus\Showroom\Domains\Search\Events;
 
 /**
  * Products whose presentation may have changed, queued for the index: their

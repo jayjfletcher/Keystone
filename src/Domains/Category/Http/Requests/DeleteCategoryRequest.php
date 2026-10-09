@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace RefactorCircus\Keystone\Domains\Category\Http\Requests;
+namespace RefactorCircus\Showroom\Domains\Category\Http\Requests;
 
 use Illuminate\Http\JsonResponse;
-use RefactorCircus\Keystone\Domains\Category\Actions\DeleteCategoryAction;
+use RefactorCircus\Showroom\Domains\Category\Actions\DeleteCategoryAction;
 
 final class DeleteCategoryRequest extends CategoryRequest
 {

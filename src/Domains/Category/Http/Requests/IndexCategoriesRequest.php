@@ -2,13 +2,13 @@
 
 declare(strict_types=1);
 
-namespace RefactorCircus\Keystone\Domains\Category\Http\Requests;
+namespace RefactorCircus\Showroom\Domains\Category\Http\Requests;
 
 use Illuminate\Http\JsonResponse;
 use RefactorCircus\Foundation\Http\Requests\Request;
-use RefactorCircus\Keystone\Domains\Category\Actions\ListCategoriesAction;
-use RefactorCircus\Keystone\Domains\Category\Models\CategoryModel;
-use RefactorCircus\Keystone\Domains\Category\Resources\CategoryResource;
+use RefactorCircus\Showroom\Domains\Category\Actions\ListCategoriesAction;
+use RefactorCircus\Showroom\Domains\Category\Models\CategoryModel;
+use RefactorCircus\Showroom\Domains\Category\Resources\CategoryResource;
 
 final class IndexCategoriesRequest extends Request
 {

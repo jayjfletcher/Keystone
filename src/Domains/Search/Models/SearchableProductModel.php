@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace RefactorCircus\Keystone\Domains\Search\Models;
+namespace RefactorCircus\Showroom\Domains\Search\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Laravel\Scout\Searchable;
@@ -10,7 +10,7 @@ use Laravel\Scout\Searchable;
 /**
  * The shape a Scout engine indexes a product in.
  *
- * Not the Product model: Scout's trait would tie every Keystone install to
+ * Not the Product model: Scout's trait would tie every Showroom install to
  * Scout. This stand-in reads the same table and carries the prepared
  * document, and is only loaded when the `scout` search engine is chosen.
  *
@@ -22,7 +22,7 @@ final class SearchableProductModel extends Model
 
     public $incrementing = false;
 
-    protected $table = 'keystone_products';
+    protected $table = 'showroom_products';
 
     protected $keyType = 'string';
 
@@ -45,7 +45,7 @@ final class SearchableProductModel extends Model
 
     public function searchableAs(): string
     {
-        return (string) config('keystone.search.scout.index', 'keystone_products');
+        return (string) config('showroom.search.scout.index', 'showroom_products');
     }
 
     /**

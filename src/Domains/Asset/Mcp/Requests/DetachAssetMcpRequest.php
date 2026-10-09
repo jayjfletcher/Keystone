@@ -2,12 +2,12 @@
 
 declare(strict_types=1);
 
-namespace RefactorCircus\Keystone\Domains\Asset\Mcp\Requests;
+namespace RefactorCircus\Showroom\Domains\Asset\Mcp\Requests;
 
 use Laravel\Mcp\Response;
 use Laravel\Mcp\ResponseFactory;
-use RefactorCircus\Keystone\Domains\Asset\Actions\DetachAssetAction;
-use RefactorCircus\Keystone\Domains\Asset\Resources\AssetResource;
+use RefactorCircus\Showroom\Domains\Asset\Actions\DetachAssetAction;
+use RefactorCircus\Showroom\Domains\Asset\Resources\AssetResource;
 
 final class DetachAssetMcpRequest extends AssetRequest
 {

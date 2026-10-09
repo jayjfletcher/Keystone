@@ -3,8 +3,8 @@
 declare(strict_types=1);
 
 use Illuminate\Support\Facades\Route;
-use RefactorCircus\Keystone\Domains\Owner\Http\Controllers\OwnerController;
-use RefactorCircus\Keystone\Domains\Owner\Http\Controllers\OwnerTypeController;
+use RefactorCircus\Showroom\Domains\Owner\Http\Controllers\OwnerController;
+use RefactorCircus\Showroom\Domains\Owner\Http\Controllers\OwnerTypeController;
 
 Route::get('owner-types', [OwnerTypeController::class, 'index'])->name('owner-types.index');
 Route::post('owner-types', [OwnerTypeController::class, 'store'])->name('owner-types.store');

@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace RefactorCircus\Keystone\Domains\Owner\Http\Requests;
+namespace RefactorCircus\Showroom\Domains\Owner\Http\Requests;
 
 use Illuminate\Http\JsonResponse;
-use RefactorCircus\Keystone\Domains\Owner\Actions\DeleteOwnerTypeAction;
+use RefactorCircus\Showroom\Domains\Owner\Actions\DeleteOwnerTypeAction;
 
 final class DeleteOwnerTypeRequest extends OwnerTypeRequest
 {

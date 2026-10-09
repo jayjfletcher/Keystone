@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace RefactorCircus\Keystone\Domains\Channel\Http\Requests;
+namespace RefactorCircus\Showroom\Domains\Channel\Http\Requests;
 
 use Illuminate\Http\JsonResponse;
-use RefactorCircus\Keystone\Domains\Channel\Actions\DeleteChannelAction;
+use RefactorCircus\Showroom\Domains\Channel\Actions\DeleteChannelAction;
 
 final class DeleteChannelRequest extends ChannelRequest
 {

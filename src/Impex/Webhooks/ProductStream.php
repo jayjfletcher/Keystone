@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace RefactorCircus\Keystone\Impex\Webhooks;
+namespace RefactorCircus\Showroom\Impex\Webhooks;
 
 use Illuminate\Contracts\Config\Repository as Config;
 use Illuminate\Contracts\Container\Container;
@@ -13,10 +13,10 @@ use RefactorCircus\Impex\Domains\Subscription\Contracts\SubscriptionMatcher;
 use RefactorCircus\Impex\Domains\Subscription\Enums\Selection;
 use RefactorCircus\Impex\Domains\Subscription\Models\SubscriptionModel;
 use RefactorCircus\Impex\Domains\Subscription\Support\AbstractStream;
-use RefactorCircus\Keystone\Domains\Product\Models\ProductModel;
+use RefactorCircus\Showroom\Domains\Product\Models\ProductModel;
 
 /**
- * Keystone's published products, as a stream vendors subscribe to.
+ * Showroom's published products, as a stream vendors subscribe to.
  *
  * The subject key is the product identifier — the SKU vendors already know,
  * and the one they list when subscribing to particular products. A product
@@ -36,9 +36,9 @@ class ProductStream extends AbstractStream
 
     public function key(): string
     {
-        $key = $this->config->get('keystone.impex.webhooks.stream', 'keystone.products');
+        $key = $this->config->get('showroom.impex.webhooks.stream', 'showroom.products');
 
-        return is_string($key) ? $key : 'keystone.products';
+        return is_string($key) ? $key : 'showroom.products';
     }
 
     public function topics(): array
@@ -65,13 +65,13 @@ class ProductStream extends AbstractStream
     {
         return [
             'filter.categories' => ['sometimes', 'array', 'max:500'],
-            'filter.categories.*' => ['string', 'exists:keystone_categories,code'],
+            'filter.categories.*' => ['string', 'exists:showroom_categories,code'],
             'filter.owners' => ['sometimes', 'array', 'max:500'],
-            'filter.owners.*' => ['string', 'exists:keystone_owners,code'],
+            'filter.owners.*' => ['string', 'exists:showroom_owners,code'],
             'filter.families' => ['sometimes', 'array', 'max:500'],
-            'filter.families.*' => ['string', 'exists:keystone_families,code'],
+            'filter.families.*' => ['string', 'exists:showroom_families,code'],
             'filter.models' => ['sometimes', 'array', 'max:500'],
-            'filter.models.*' => ['string', 'exists:keystone_product_models,code'],
+            'filter.models.*' => ['string', 'exists:showroom_product_models,code'],
         ];
     }
 
@@ -84,7 +84,7 @@ class ProductStream extends AbstractStream
         ];
 
         /** @var array<string, class-string<Formatter>> $custom */
-        $custom = $this->config->get('keystone.impex.webhooks.formatters', []);
+        $custom = $this->config->get('showroom.impex.webhooks.formatters', []);
 
         foreach ($custom as $name => $class) {
             $formatter = $this->container->make($class);

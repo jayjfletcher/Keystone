@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace RefactorCircus\Keystone\Domains\Attribute\Policies;
+namespace RefactorCircus\Showroom\Domains\Attribute\Policies;
 
-use RefactorCircus\Keystone\Support\Policies\Policy;
+use RefactorCircus\Showroom\Support\Policies\Policy;
 
 class AttributePolicy extends Policy
 {

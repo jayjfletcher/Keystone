@@ -2,13 +2,13 @@
 
 declare(strict_types=1);
 
-namespace RefactorCircus\Keystone\Domains\ProductModel\Events;
+namespace RefactorCircus\Showroom\Domains\ProductModel\Events;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Foundation\Events\Dispatchable;
 use Illuminate\Queue\SerializesModels;
 use RefactorCircus\Foundation\Contracts\ModelLifecycleEvent;
-use RefactorCircus\Keystone\Domains\ProductModel\Models\ProductModelModel;
+use RefactorCircus\Showroom\Domains\ProductModel\Models\ProductModelModel;
 
 /**
  * The ProductModel `created` Eloquent event.

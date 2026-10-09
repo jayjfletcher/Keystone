@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace RefactorCircus\Keystone\Domains\Owner\Models;
+namespace RefactorCircus\Showroom\Domains\Owner\Models;
 
 use Illuminate\Database\Eloquent\Concerns\HasUlids;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -11,12 +11,12 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Support\Carbon;
 use RefactorCircus\Foundation\Models\Concerns\DispatchesModelEvents;
-use RefactorCircus\Keystone\Database\Factories\OwnerFactory;
-use RefactorCircus\Keystone\Domains\Asset\Concerns\HasAssets;
-use RefactorCircus\Keystone\Domains\Product\Models\ProductModel;
-use RefactorCircus\Keystone\Domains\ProductModel\Models\ProductModelModel;
-use RefactorCircus\Keystone\Support\Models\Concerns\HasLabels;
-use RefactorCircus\Keystone\Support\Models\Concerns\HasPath;
+use RefactorCircus\Showroom\Database\Factories\OwnerFactory;
+use RefactorCircus\Showroom\Domains\Asset\Concerns\HasAssets;
+use RefactorCircus\Showroom\Domains\Product\Models\ProductModel;
+use RefactorCircus\Showroom\Domains\ProductModel\Models\ProductModelModel;
+use RefactorCircus\Showroom\Support\Models\Concerns\HasLabels;
+use RefactorCircus\Showroom\Support\Models\Concerns\HasPath;
 
 /**
  * One node of an ownership chain: "Acme" the vendor, "Classic" its series.
@@ -46,7 +46,7 @@ final class OwnerModel extends Model
     use HasPath;
     use HasUlids;
 
-    protected $table = 'keystone_owners';
+    protected $table = 'showroom_owners';
 
     protected $fillable = [
         'owner_type_id',

@@ -2,12 +2,12 @@
 
 declare(strict_types=1);
 
-namespace RefactorCircus\Keystone\Domains\Product\Events;
+namespace RefactorCircus\Showroom\Domains\Product\Events;
 
 use Illuminate\Foundation\Events\Dispatchable;
 use Illuminate\Queue\SerializesModels;
 use RefactorCircus\Foundation\Contracts\ActionFinishedEvent;
-use RefactorCircus\Keystone\Domains\Search\Support\ProductPage;
+use RefactorCircus\Showroom\Domains\Search\Support\ProductPage;
 
 /**
  * Products were listed.

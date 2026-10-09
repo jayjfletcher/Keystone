@@ -2,15 +2,15 @@
 
 declare(strict_types=1);
 
-namespace RefactorCircus\Keystone\Domains\Category\Actions;
+namespace RefactorCircus\Showroom\Domains\Category\Actions;
 
 use Illuminate\Support\Facades\DB;
-use RefactorCircus\Keystone\Domains\Category\Events\CategoryDeletedActionEvent;
-use RefactorCircus\Keystone\Domains\Category\Events\CategoryDeletingActionEvent;
-use RefactorCircus\Keystone\Domains\Category\Models\CategoryModel;
-use RefactorCircus\Keystone\Domains\Channel\Models\ChannelModel;
-use RefactorCircus\Keystone\Domains\Search\Services\ProductIndex;
-use RefactorCircus\Keystone\Exceptions\ModelInUseException;
+use RefactorCircus\Showroom\Domains\Category\Events\CategoryDeletedActionEvent;
+use RefactorCircus\Showroom\Domains\Category\Events\CategoryDeletingActionEvent;
+use RefactorCircus\Showroom\Domains\Category\Models\CategoryModel;
+use RefactorCircus\Showroom\Domains\Channel\Models\ChannelModel;
+use RefactorCircus\Showroom\Domains\Search\Services\ProductIndex;
+use RefactorCircus\Showroom\Exceptions\ModelInUseException;
 
 final class DeleteCategoryAction
 {

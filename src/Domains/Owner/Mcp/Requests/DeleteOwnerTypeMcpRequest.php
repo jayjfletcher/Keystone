@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-namespace RefactorCircus\Keystone\Domains\Owner\Mcp\Requests;
+namespace RefactorCircus\Showroom\Domains\Owner\Mcp\Requests;
 
 use Laravel\Mcp\Response;
 use Laravel\Mcp\ResponseFactory;
-use RefactorCircus\Keystone\Domains\Owner\Actions\DeleteOwnerTypeAction;
+use RefactorCircus\Showroom\Domains\Owner\Actions\DeleteOwnerTypeAction;
 
 final class DeleteOwnerTypeMcpRequest extends OwnerTypeRequest
 {

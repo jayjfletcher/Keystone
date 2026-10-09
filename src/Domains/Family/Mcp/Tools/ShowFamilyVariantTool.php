@@ -2,14 +2,14 @@
 
 declare(strict_types=1);
 
-namespace RefactorCircus\Keystone\Domains\Family\Mcp\Tools;
+namespace RefactorCircus\Showroom\Domains\Family\Mcp\Tools;
 
 use Illuminate\Contracts\JsonSchema\JsonSchema;
 use Laravel\Mcp\Response;
 use Laravel\Mcp\ResponseFactory;
 use Laravel\Mcp\Server\Attributes\Description;
 use RefactorCircus\Foundation\Mcp\Tool;
-use RefactorCircus\Keystone\Domains\Family\Mcp\Requests\ShowFamilyVariantMcpRequest;
+use RefactorCircus\Showroom\Domains\Family\Mcp\Requests\ShowFamilyVariantMcpRequest;
 
 #[Description('Show a family variant with its levels, axes, the attributes set at each level, and the common attributes set on root models.')]
 final class ShowFamilyVariantTool extends Tool

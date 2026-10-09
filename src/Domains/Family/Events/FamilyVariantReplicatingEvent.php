@@ -2,13 +2,13 @@
 
 declare(strict_types=1);
 
-namespace RefactorCircus\Keystone\Domains\Family\Events;
+namespace RefactorCircus\Showroom\Domains\Family\Events;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Foundation\Events\Dispatchable;
 use Illuminate\Queue\SerializesModels;
 use RefactorCircus\Foundation\Contracts\ModelLifecycleEvent;
-use RefactorCircus\Keystone\Domains\Family\Models\FamilyVariantModel;
+use RefactorCircus\Showroom\Domains\Family\Models\FamilyVariantModel;
 
 /**
  * The FamilyVariant `replicating` Eloquent event.

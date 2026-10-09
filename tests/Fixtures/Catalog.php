@@ -2,15 +2,15 @@
 
 declare(strict_types=1);
 
-namespace RefactorCircus\Keystone\Tests\Fixtures;
+namespace RefactorCircus\Showroom\Tests\Fixtures;
 
-use RefactorCircus\Keystone\Domains\Attribute\Actions\CreateAttributeAction;
-use RefactorCircus\Keystone\Domains\Attribute\Actions\CreateAttributeOptionAction;
-use RefactorCircus\Keystone\Domains\Attribute\Models\AttributeModel;
-use RefactorCircus\Keystone\Domains\Channel\Actions\CreateChannelAction;
-use RefactorCircus\Keystone\Domains\Channel\Actions\CreateLocaleAction;
-use RefactorCircus\Keystone\Domains\Family\Actions\CreateFamilyAction;
-use RefactorCircus\Keystone\Domains\Family\Actions\CreateFamilyVariantAction;
+use RefactorCircus\Showroom\Domains\Attribute\Actions\CreateAttributeAction;
+use RefactorCircus\Showroom\Domains\Attribute\Actions\CreateAttributeOptionAction;
+use RefactorCircus\Showroom\Domains\Attribute\Models\AttributeModel;
+use RefactorCircus\Showroom\Domains\Channel\Actions\CreateChannelAction;
+use RefactorCircus\Showroom\Domains\Channel\Actions\CreateLocaleAction;
+use RefactorCircus\Showroom\Domains\Family\Actions\CreateFamilyAction;
+use RefactorCircus\Showroom\Domains\Family\Actions\CreateFamilyVariantAction;
 
 /**
  * A small apparel catalog: shirts that vary by color, then by size, sold

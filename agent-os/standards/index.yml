@@ -1,6 +1,6 @@
 # Agent OS Standards Index
 #
-# Keystone follows the refactor-circus/foundation conventions: the main provider extends
+# Showroom follows the refactor-circus/foundation conventions: the main provider extends
 # RefactorCircus\Foundation\Support\PackageServiceProvider, domain providers extend
 # RefactorCircus\Foundation\Support\ServiceProvider, and event contracts, request
 # bases, MCP tool/server bases, the authorizer and the Cortex integration are

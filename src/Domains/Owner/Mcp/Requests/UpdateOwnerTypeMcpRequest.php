@@ -2,12 +2,12 @@
 
 declare(strict_types=1);
 
-namespace RefactorCircus\Keystone\Domains\Owner\Mcp\Requests;
+namespace RefactorCircus\Showroom\Domains\Owner\Mcp\Requests;
 
 use Laravel\Mcp\Response;
 use Laravel\Mcp\ResponseFactory;
-use RefactorCircus\Keystone\Domains\Owner\Actions\UpdateOwnerTypeAction;
-use RefactorCircus\Keystone\Domains\Owner\Resources\OwnerTypeResource;
+use RefactorCircus\Showroom\Domains\Owner\Actions\UpdateOwnerTypeAction;
+use RefactorCircus\Showroom\Domains\Owner\Resources\OwnerTypeResource;
 
 final class UpdateOwnerTypeMcpRequest extends OwnerTypeRequest
 {

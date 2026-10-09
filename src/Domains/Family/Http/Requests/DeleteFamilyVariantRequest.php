@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace RefactorCircus\Keystone\Domains\Family\Http\Requests;
+namespace RefactorCircus\Showroom\Domains\Family\Http\Requests;
 
 use Illuminate\Http\JsonResponse;
-use RefactorCircus\Keystone\Domains\Family\Actions\DeleteFamilyVariantAction;
+use RefactorCircus\Showroom\Domains\Family\Actions\DeleteFamilyVariantAction;
 
 final class DeleteFamilyVariantRequest extends FamilyVariantRequest
 {

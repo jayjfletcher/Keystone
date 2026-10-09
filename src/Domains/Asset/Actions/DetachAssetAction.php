@@ -2,14 +2,14 @@
 
 declare(strict_types=1);
 
-namespace RefactorCircus\Keystone\Domains\Asset\Actions;
+namespace RefactorCircus\Showroom\Domains\Asset\Actions;
 
 use Illuminate\Validation\Rule;
 use Illuminate\Validation\ValidationException;
-use RefactorCircus\Keystone\Domains\Asset\Events\AssetDetachedActionEvent;
-use RefactorCircus\Keystone\Domains\Asset\Events\AssetDetachingActionEvent;
-use RefactorCircus\Keystone\Domains\Asset\Models\AssetModel;
-use RefactorCircus\Keystone\Domains\Asset\Services\AssetLinks;
+use RefactorCircus\Showroom\Domains\Asset\Events\AssetDetachedActionEvent;
+use RefactorCircus\Showroom\Domains\Asset\Events\AssetDetachingActionEvent;
+use RefactorCircus\Showroom\Domains\Asset\Models\AssetModel;
+use RefactorCircus\Showroom\Domains\Asset\Services\AssetLinks;
 
 final class DetachAssetAction
 {

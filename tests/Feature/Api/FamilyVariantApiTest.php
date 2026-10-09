@@ -2,15 +2,15 @@
 
 declare(strict_types=1);
 
-use RefactorCircus\Keystone\Domains\Attribute\Models\AttributeModel;
-use RefactorCircus\Keystone\Domains\Family\Models\FamilyVariantModel;
-use RefactorCircus\Keystone\Domains\ProductModel\Models\ProductModelModel;
-use RefactorCircus\Keystone\Tests\Fixtures\Catalog;
+use RefactorCircus\Showroom\Domains\Attribute\Models\AttributeModel;
+use RefactorCircus\Showroom\Domains\Family\Models\FamilyVariantModel;
+use RefactorCircus\Showroom\Domains\ProductModel\Models\ProductModelModel;
+use RefactorCircus\Showroom\Tests\Fixtures\Catalog;
 
 beforeEach(fn () => Catalog::apparel());
 
 it('shows the levels, axes and common attributes', function (): void {
-    $this->getJson('/keystone/family-variants/shirts_by_color_size')
+    $this->getJson('/showroom/family-variants/shirts_by_color_size')
         ->assertOk()
         ->assertJsonPath('data.family', 'shirts')
         ->assertJsonPath('data.levels.0.axes', ['color'])
@@ -21,20 +21,20 @@ it('shows the levels, axes and common attributes', function (): void {
 });
 
 it('lists variants by family', function (): void {
-    $this->getJson('/keystone/family-variants?family=shirts')
+    $this->getJson('/showroom/family-variants?family=shirts')
         ->assertOk()
         ->assertJsonCount(2, 'data')
         ->assertJsonPath('data.0.code', 'shirts_by_color_size');
 });
 
 it('refuses axes that cannot be axes', function (): void {
-    $this->postJson('/keystone/family-variants', [
+    $this->postJson('/showroom/family-variants', [
         'code' => 'bad',
         'family' => 'shirts',
         'levels' => [['axes' => ['name']]],
     ])->assertUnprocessable()->assertJsonValidationErrors('levels.0.axes.0');
 
-    $this->postJson('/keystone/family-variants', [
+    $this->postJson('/showroom/family-variants', [
         'code' => 'bad',
         'family' => 'shirts',
         'levels' => [['axes' => ['color']], ['axes' => ['color']]],
@@ -44,7 +44,7 @@ it('refuses axes that cannot be axes', function (): void {
 it('refuses attributes outside the family', function (): void {
     AttributeModel::factory()->select()->create(['code' => 'material']);
 
-    $this->postJson('/keystone/family-variants', [
+    $this->postJson('/showroom/family-variants', [
         'code' => 'bad',
         'family' => 'shirts',
         'levels' => [['axes' => ['material']]],
@@ -52,7 +52,7 @@ it('refuses attributes outside the family', function (): void {
 });
 
 it('requires unique attributes on the last level', function (): void {
-    $this->postJson('/keystone/family-variants', [
+    $this->postJson('/showroom/family-variants', [
         'code' => 'bad',
         'family' => 'shirts',
         'levels' => [['axes' => ['color']]],
@@ -60,7 +60,7 @@ it('requires unique attributes on the last level', function (): void {
 });
 
 it('allows at most two levels', function (): void {
-    $this->postJson('/keystone/family-variants', [
+    $this->postJson('/showroom/family-variants', [
         'code' => 'bad',
         'family' => 'shirts',
         'levels' => [['axes' => ['color']], ['axes' => ['size']], ['axes' => ['organic'], 'attributes' => ['ean']]],
@@ -68,32 +68,32 @@ it('allows at most two levels', function (): void {
 });
 
 it('changes levels only while no product model uses the variant', function (): void {
-    $this->patchJson('/keystone/family-variants/shirts_by_size', [
+    $this->patchJson('/showroom/family-variants/shirts_by_size', [
         'levels' => [['axes' => ['color'], 'attributes' => ['ean']]],
     ])->assertOk()->assertJsonPath('data.levels.0.axes', ['color']);
 
-    $this->postJson('/keystone/product-models', ['code' => 'tee', 'family_variant' => 'shirts_by_size'])->assertCreated();
+    $this->postJson('/showroom/product-models', ['code' => 'tee', 'family_variant' => 'shirts_by_size'])->assertCreated();
 
-    $this->patchJson('/keystone/family-variants/shirts_by_size', [
+    $this->patchJson('/showroom/family-variants/shirts_by_size', [
         'levels' => [['axes' => ['size'], 'attributes' => ['ean']]],
     ])->assertUnprocessable()->assertJsonValidationErrors('levels');
 
-    $this->patchJson('/keystone/family-variants/shirts_by_size', ['labels' => ['en' => 'By size']])->assertOk();
+    $this->patchJson('/showroom/family-variants/shirts_by_size', ['labels' => ['en' => 'By size']])->assertOk();
 });
 
 it('refuses to delete a variant with product models', function (): void {
     ProductModelModel::factory()->create(['family_variant_id' => FamilyVariantModel::query()->where('code', 'shirts_by_size')->value('id')]);
 
-    $this->deleteJson('/keystone/family-variants/shirts_by_size')->assertConflict();
-    $this->deleteJson('/keystone/family-variants/shirts_by_color_size')->assertNoContent();
+    $this->deleteJson('/showroom/family-variants/shirts_by_size')->assertConflict();
+    $this->deleteJson('/showroom/family-variants/shirts_by_color_size')->assertNoContent();
 });
 
 it('keeps variant attributes in the family and refuses to delete them', function (): void {
-    $this->patchJson('/keystone/families/shirts', ['attributes' => [['attribute' => 'name']]])
+    $this->patchJson('/showroom/families/shirts', ['attributes' => [['attribute' => 'name']]])
         ->assertUnprocessable()
         ->assertJsonValidationErrors('attributes');
 
-    $this->deleteJson('/keystone/attributes/size')
+    $this->deleteJson('/showroom/attributes/size')
         ->assertConflict()
         ->assertJsonPath('message', fn (string $message): bool => str_contains($message, 'family variant'));
 });

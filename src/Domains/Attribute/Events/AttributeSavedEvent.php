@@ -2,13 +2,13 @@
 
 declare(strict_types=1);
 
-namespace RefactorCircus\Keystone\Domains\Attribute\Events;
+namespace RefactorCircus\Showroom\Domains\Attribute\Events;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Foundation\Events\Dispatchable;
 use Illuminate\Queue\SerializesModels;
 use RefactorCircus\Foundation\Contracts\ModelLifecycleEvent;
-use RefactorCircus\Keystone\Domains\Attribute\Models\AttributeModel;
+use RefactorCircus\Showroom\Domains\Attribute\Models\AttributeModel;
 
 /**
  * The Attribute `saved` Eloquent event.

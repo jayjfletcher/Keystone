@@ -2,14 +2,14 @@
 
 declare(strict_types=1);
 
-namespace RefactorCircus\Keystone\Domains\Attribute\Actions;
+namespace RefactorCircus\Showroom\Domains\Attribute\Actions;
 
 use Illuminate\Validation\ValidationException;
-use RefactorCircus\Keystone\Domains\Attribute\Events\AttributeOptionCreatedActionEvent;
-use RefactorCircus\Keystone\Domains\Attribute\Events\AttributeOptionCreatingActionEvent;
-use RefactorCircus\Keystone\Domains\Attribute\Exceptions\AttributeHasNoOptionsException;
-use RefactorCircus\Keystone\Domains\Attribute\Models\AttributeModel;
-use RefactorCircus\Keystone\Domains\Attribute\Models\AttributeOptionModel;
+use RefactorCircus\Showroom\Domains\Attribute\Events\AttributeOptionCreatedActionEvent;
+use RefactorCircus\Showroom\Domains\Attribute\Events\AttributeOptionCreatingActionEvent;
+use RefactorCircus\Showroom\Domains\Attribute\Exceptions\AttributeHasNoOptionsException;
+use RefactorCircus\Showroom\Domains\Attribute\Models\AttributeModel;
+use RefactorCircus\Showroom\Domains\Attribute\Models\AttributeOptionModel;
 
 final class CreateAttributeOptionAction
 {

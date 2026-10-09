@@ -2,12 +2,12 @@
 
 declare(strict_types=1);
 
-namespace RefactorCircus\Keystone\Domains\Channel\Concerns;
+namespace RefactorCircus\Showroom\Domains\Channel\Concerns;
 
 use Illuminate\Validation\ValidationException;
-use RefactorCircus\Keystone\Domains\Category\Models\CategoryModel;
-use RefactorCircus\Keystone\Domains\Channel\Models\ChannelModel;
-use RefactorCircus\Keystone\Domains\Channel\Models\LocaleModel;
+use RefactorCircus\Showroom\Domains\Category\Models\CategoryModel;
+use RefactorCircus\Showroom\Domains\Channel\Models\ChannelModel;
+use RefactorCircus\Showroom\Domains\Channel\Models\LocaleModel;
 
 /**
  * Locales, currencies and category tree, shared by creating and updating a channel.
@@ -23,10 +23,10 @@ trait WritesChannels
             'labels' => ['sometimes', 'nullable', 'array'],
             'labels.*' => ['nullable', 'string', 'max:255'],
             'locales' => [$required ? 'required' : 'sometimes', 'array', 'list', 'min:1'],
-            'locales.*' => ['string', 'distinct', 'exists:keystone_locales,code'],
+            'locales.*' => ['string', 'distinct', 'exists:showroom_locales,code'],
             'currencies' => ['sometimes', 'nullable', 'array', 'list'],
             'currencies.*' => ['string', 'distinct', 'regex:/^[A-Z]{3}$/'],
-            'category_tree' => ['sometimes', 'nullable', 'string', 'exists:keystone_categories,code'],
+            'category_tree' => ['sometimes', 'nullable', 'string', 'exists:showroom_categories,code'],
         ];
     }
 

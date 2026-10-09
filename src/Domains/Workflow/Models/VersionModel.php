@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace RefactorCircus\Keystone\Domains\Workflow\Models;
+namespace RefactorCircus\Showroom\Domains\Workflow\Models;
 
 use Illuminate\Database\Eloquent\Concerns\HasUlids;
 use Illuminate\Database\Eloquent\Model;
@@ -33,7 +33,7 @@ final class VersionModel extends Model
 
     public const null UPDATED_AT = null;
 
-    protected $table = 'keystone_versions';
+    protected $table = 'showroom_versions';
 
     protected $fillable = [
         'versionable_type',

@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-namespace RefactorCircus\Keystone\Domains\Channel\Actions;
+namespace RefactorCircus\Showroom\Domains\Channel\Actions;
 
-use RefactorCircus\Keystone\Domains\Channel\Events\LocaleShowingActionEvent;
-use RefactorCircus\Keystone\Domains\Channel\Events\LocaleShownActionEvent;
-use RefactorCircus\Keystone\Domains\Channel\Models\LocaleModel;
+use RefactorCircus\Showroom\Domains\Channel\Events\LocaleShowingActionEvent;
+use RefactorCircus\Showroom\Domains\Channel\Events\LocaleShownActionEvent;
+use RefactorCircus\Showroom\Domains\Channel\Models\LocaleModel;
 
 final class ShowLocaleAction
 {

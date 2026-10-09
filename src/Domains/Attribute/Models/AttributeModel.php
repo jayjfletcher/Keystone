@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace RefactorCircus\Keystone\Domains\Attribute\Models;
+namespace RefactorCircus\Showroom\Domains\Attribute\Models;
 
 use Illuminate\Database\Eloquent\Concerns\HasUlids;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -11,9 +11,9 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Support\Carbon;
 use RefactorCircus\Foundation\Models\Concerns\DispatchesModelEvents;
-use RefactorCircus\Keystone\Database\Factories\AttributeFactory;
-use RefactorCircus\Keystone\Domains\Attribute\Enums\AttributeType;
-use RefactorCircus\Keystone\Support\Models\Concerns\HasLabels;
+use RefactorCircus\Showroom\Database\Factories\AttributeFactory;
+use RefactorCircus\Showroom\Domains\Attribute\Enums\AttributeType;
+use RefactorCircus\Showroom\Support\Models\Concerns\HasLabels;
 
 /**
  * A typed product characteristic, defined at runtime: "color", "weight",
@@ -44,7 +44,7 @@ final class AttributeModel extends Model
     use HasLabels;
     use HasUlids;
 
-    protected $table = 'keystone_attributes';
+    protected $table = 'showroom_attributes';
 
     protected $fillable = [
         'code',

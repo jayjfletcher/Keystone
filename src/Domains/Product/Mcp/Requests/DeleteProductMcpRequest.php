@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-namespace RefactorCircus\Keystone\Domains\Product\Mcp\Requests;
+namespace RefactorCircus\Showroom\Domains\Product\Mcp\Requests;
 
 use Laravel\Mcp\Response;
 use Laravel\Mcp\ResponseFactory;
-use RefactorCircus\Keystone\Domains\Product\Actions\DeleteProductAction;
+use RefactorCircus\Showroom\Domains\Product\Actions\DeleteProductAction;
 
 final class DeleteProductMcpRequest extends ProductRequest
 {

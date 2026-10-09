@@ -2,20 +2,20 @@
 
 declare(strict_types=1);
 
-namespace RefactorCircus\Keystone\Domains\Search\Services;
+namespace RefactorCircus\Showroom\Domains\Search\Services;
 
 use Illuminate\Contracts\Config\Repository as Config;
 use Illuminate\Contracts\Events\Dispatcher as Events;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Collection;
-use RefactorCircus\Keystone\Domains\Category\Models\CategoryModel;
-use RefactorCircus\Keystone\Domains\Owner\Models\OwnerModel;
-use RefactorCircus\Keystone\Domains\Product\Models\ProductModel;
-use RefactorCircus\Keystone\Domains\ProductModel\Models\ProductModelModel;
-use RefactorCircus\Keystone\Domains\Search\Contracts\SearchEngine;
-use RefactorCircus\Keystone\Domains\Search\Events\ProductsQueuedForSync;
-use RefactorCircus\Keystone\Domains\Workflow\Services\CompletenessCalculator;
-use RefactorCircus\Keystone\Jobs\SyncProductIndex;
+use RefactorCircus\Showroom\Domains\Category\Models\CategoryModel;
+use RefactorCircus\Showroom\Domains\Owner\Models\OwnerModel;
+use RefactorCircus\Showroom\Domains\Product\Models\ProductModel;
+use RefactorCircus\Showroom\Domains\ProductModel\Models\ProductModelModel;
+use RefactorCircus\Showroom\Domains\Search\Contracts\SearchEngine;
+use RefactorCircus\Showroom\Domains\Search\Events\ProductsQueuedForSync;
+use RefactorCircus\Showroom\Domains\Workflow\Services\CompletenessCalculator;
+use RefactorCircus\Showroom\Jobs\SyncProductIndex;
 
 /**
  * Keeps what is derived from products — completeness scores and the search
@@ -48,8 +48,8 @@ final class ProductIndex
 
         foreach (array_chunk($ids, 500) as $chunk) {
             SyncProductIndex::dispatch($chunk)
-                ->onConnection($this->config->get('keystone.search.queue.connection'))
-                ->onQueue($this->config->get('keystone.search.queue.queue'))
+                ->onConnection($this->config->get('showroom.search.queue.connection'))
+                ->onQueue($this->config->get('showroom.search.queue.queue'))
                 ->afterCommit();
         }
     }

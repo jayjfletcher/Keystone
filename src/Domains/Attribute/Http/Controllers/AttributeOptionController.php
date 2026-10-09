@@ -2,15 +2,15 @@
 
 declare(strict_types=1);
 
-namespace RefactorCircus\Keystone\Domains\Attribute\Http\Controllers;
+namespace RefactorCircus\Showroom\Domains\Attribute\Http\Controllers;
 
 use Illuminate\Http\JsonResponse;
-use RefactorCircus\Keystone\Domains\Attribute\Http\Requests\DeleteAttributeOptionRequest;
-use RefactorCircus\Keystone\Domains\Attribute\Http\Requests\IndexAttributeOptionsRequest;
-use RefactorCircus\Keystone\Domains\Attribute\Http\Requests\StoreAttributeOptionRequest;
-use RefactorCircus\Keystone\Domains\Attribute\Http\Requests\UpdateAttributeOptionRequest;
-use RefactorCircus\Keystone\Domains\Attribute\Models\AttributeModel;
-use RefactorCircus\Keystone\Domains\Attribute\Models\AttributeOptionModel;
+use RefactorCircus\Showroom\Domains\Attribute\Http\Requests\DeleteAttributeOptionRequest;
+use RefactorCircus\Showroom\Domains\Attribute\Http\Requests\IndexAttributeOptionsRequest;
+use RefactorCircus\Showroom\Domains\Attribute\Http\Requests\StoreAttributeOptionRequest;
+use RefactorCircus\Showroom\Domains\Attribute\Http\Requests\UpdateAttributeOptionRequest;
+use RefactorCircus\Showroom\Domains\Attribute\Models\AttributeModel;
+use RefactorCircus\Showroom\Domains\Attribute\Models\AttributeOptionModel;
 
 final class AttributeOptionController
 {

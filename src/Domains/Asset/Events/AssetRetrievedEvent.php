@@ -2,13 +2,13 @@
 
 declare(strict_types=1);
 
-namespace RefactorCircus\Keystone\Domains\Asset\Events;
+namespace RefactorCircus\Showroom\Domains\Asset\Events;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Foundation\Events\Dispatchable;
 use Illuminate\Queue\SerializesModels;
 use RefactorCircus\Foundation\Contracts\ModelLifecycleEvent;
-use RefactorCircus\Keystone\Domains\Asset\Models\AssetModel;
+use RefactorCircus\Showroom\Domains\Asset\Models\AssetModel;
 
 /**
  * The Asset `retrieved` Eloquent event.

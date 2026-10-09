@@ -2,15 +2,15 @@
 
 declare(strict_types=1);
 
-namespace RefactorCircus\Keystone\Domains\Owner\Actions;
+namespace RefactorCircus\Showroom\Domains\Owner\Actions;
 
 use Illuminate\Support\Facades\DB;
 use Illuminate\Validation\ValidationException;
-use RefactorCircus\Keystone\Domains\Owner\Concerns\PlacesOwners;
-use RefactorCircus\Keystone\Domains\Owner\Events\OwnerCreatedActionEvent;
-use RefactorCircus\Keystone\Domains\Owner\Events\OwnerCreatingActionEvent;
-use RefactorCircus\Keystone\Domains\Owner\Models\OwnerModel;
-use RefactorCircus\Keystone\Domains\Owner\Models\OwnerTypeModel;
+use RefactorCircus\Showroom\Domains\Owner\Concerns\PlacesOwners;
+use RefactorCircus\Showroom\Domains\Owner\Events\OwnerCreatedActionEvent;
+use RefactorCircus\Showroom\Domains\Owner\Events\OwnerCreatingActionEvent;
+use RefactorCircus\Showroom\Domains\Owner\Models\OwnerModel;
+use RefactorCircus\Showroom\Domains\Owner\Models\OwnerTypeModel;
 
 final class CreateOwnerAction
 {
@@ -22,9 +22,9 @@ final class CreateOwnerAction
     public static function rules(): array
     {
         return [
-            'code' => ['required', 'string', 'max:191', 'regex:/^[A-Za-z0-9][A-Za-z0-9_.-]*$/', 'unique:keystone_owners,code'],
-            'type' => ['required', 'string', 'exists:keystone_owner_types,code'],
-            'parent' => ['sometimes', 'nullable', 'string', 'exists:keystone_owners,code'],
+            'code' => ['required', 'string', 'max:191', 'regex:/^[A-Za-z0-9][A-Za-z0-9_.-]*$/', 'unique:showroom_owners,code'],
+            'type' => ['required', 'string', 'exists:showroom_owner_types,code'],
+            'parent' => ['sometimes', 'nullable', 'string', 'exists:showroom_owners,code'],
             'labels' => ['sometimes', 'nullable', 'array'],
             'labels.*' => ['nullable', 'string', 'max:255'],
         ];

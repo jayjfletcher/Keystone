@@ -2,14 +2,14 @@
 
 declare(strict_types=1);
 
-namespace RefactorCircus\Keystone\Domains\Asset\Actions;
+namespace RefactorCircus\Showroom\Domains\Asset\Actions;
 
 use Illuminate\Validation\ValidationException;
-use RefactorCircus\Keystone\Domains\Asset\Concerns\StoresAssetFiles;
-use RefactorCircus\Keystone\Domains\Asset\Events\AssetUpdatedActionEvent;
-use RefactorCircus\Keystone\Domains\Asset\Events\AssetUpdatingActionEvent;
-use RefactorCircus\Keystone\Domains\Asset\Models\AssetModel;
-use RefactorCircus\Keystone\Domains\Asset\Services\AssetStorage;
+use RefactorCircus\Showroom\Domains\Asset\Concerns\StoresAssetFiles;
+use RefactorCircus\Showroom\Domains\Asset\Events\AssetUpdatedActionEvent;
+use RefactorCircus\Showroom\Domains\Asset\Events\AssetUpdatingActionEvent;
+use RefactorCircus\Showroom\Domains\Asset\Models\AssetModel;
+use RefactorCircus\Showroom\Domains\Asset\Services\AssetStorage;
 
 final class UpdateAssetAction
 {

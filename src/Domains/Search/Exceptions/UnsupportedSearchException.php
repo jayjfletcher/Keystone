@@ -2,15 +2,15 @@
 
 declare(strict_types=1);
 
-namespace RefactorCircus\Keystone\Domains\Search\Exceptions;
+namespace RefactorCircus\Showroom\Domains\Search\Exceptions;
 
-use RefactorCircus\Keystone\Exceptions\KeystoneException;
+use RefactorCircus\Showroom\Exceptions\ShowroomException;
 use Symfony\Component\HttpFoundation\Response;
 
 /**
  * The configured search engine cannot run part of a query.
  */
-final class UnsupportedSearchException extends KeystoneException
+final class UnsupportedSearchException extends ShowroomException
 {
     public static function filter(string $engine, string $attribute, string $operator): self
     {
@@ -35,7 +35,7 @@ final class UnsupportedSearchException extends KeystoneException
     public static function removedEngine(string $engine): self
     {
         return new self(sprintf(
-            'Keystone no longer ships the %s search engine. Use "scout" with a Scout driver for it, or the class name of your own SearchEngine, in keystone.search.engine.',
+            'Showroom no longer ships the %s search engine. Use "scout" with a Scout driver for it, or the class name of your own SearchEngine, in showroom.search.engine.',
             $engine,
         ));
     }

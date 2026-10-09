@@ -2,23 +2,23 @@
 
 declare(strict_types=1);
 
-namespace RefactorCircus\Keystone\Atrium\Http\Controllers;
+namespace RefactorCircus\Showroom\Atrium\Http\Controllers;
 
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use RefactorCircus\Atrium\Http\Controllers\Concerns\AuthorizesScreens;
-use RefactorCircus\Keystone\Atrium\Support\CategoryCodes;
-use RefactorCircus\Keystone\Atrium\Support\EditingSlot;
-use RefactorCircus\Keystone\Atrium\Support\ValueForm;
-use RefactorCircus\Keystone\Domains\Family\Models\FamilyVariantModel;
-use RefactorCircus\Keystone\Domains\ProductModel\Actions\CreateProductModelAction;
-use RefactorCircus\Keystone\Domains\ProductModel\Actions\DeleteProductModelAction;
-use RefactorCircus\Keystone\Domains\ProductModel\Actions\ListProductModelsAction;
-use RefactorCircus\Keystone\Domains\ProductModel\Actions\ShowProductModelAction;
-use RefactorCircus\Keystone\Domains\ProductModel\Actions\UpdateProductModelAction;
-use RefactorCircus\Keystone\Domains\ProductModel\Models\ProductModelModel;
+use RefactorCircus\Showroom\Atrium\Support\CategoryCodes;
+use RefactorCircus\Showroom\Atrium\Support\EditingSlot;
+use RefactorCircus\Showroom\Atrium\Support\ValueForm;
+use RefactorCircus\Showroom\Domains\Family\Models\FamilyVariantModel;
+use RefactorCircus\Showroom\Domains\ProductModel\Actions\CreateProductModelAction;
+use RefactorCircus\Showroom\Domains\ProductModel\Actions\DeleteProductModelAction;
+use RefactorCircus\Showroom\Domains\ProductModel\Actions\ListProductModelsAction;
+use RefactorCircus\Showroom\Domains\ProductModel\Actions\ShowProductModelAction;
+use RefactorCircus\Showroom\Domains\ProductModel\Actions\UpdateProductModelAction;
+use RefactorCircus\Showroom\Domains\ProductModel\Models\ProductModelModel;
 
 final class ProductModelUiController
 {
@@ -31,7 +31,7 @@ final class ProductModelUiController
         $filters = $request->validate(ListProductModelsAction::rules());
 
         /** @var view-string $view */
-        $view = 'keystone::ui.product-models.index';
+        $view = 'showroom::ui.product-models.index';
 
         return view($view, [
             'models' => app(ListProductModelsAction::class)->execute($filters + ['roots' => true])->withQueryString(),
@@ -47,8 +47,8 @@ final class ProductModelUiController
         $model = app(CreateProductModelAction::class)->execute($request->validate(CreateProductModelAction::rules()));
 
         return redirect()
-            ->route('atrium.keystone.product-models.show', $model)
-            ->with('status', __('keystone::keystone.product_model_created'));
+            ->route('atrium.showroom.product-models.show', $model)
+            ->with('status', __('showroom::showroom.product_model_created'));
     }
 
     public function show(Request $request, ProductModelModel $productModel): View
@@ -58,7 +58,7 @@ final class ProductModelUiController
         $model = app(ShowProductModelAction::class)->execute($productModel);
 
         /** @var view-string $view */
-        $view = 'keystone::ui.product-models.show';
+        $view = 'showroom::ui.product-models.show';
 
         return view($view, [
             'model' => $model,
@@ -90,8 +90,8 @@ final class ProductModelUiController
         app(UpdateProductModelAction::class)->execute($productModel, Validator::validate($data, UpdateProductModelAction::rules()));
 
         return redirect()
-            ->route('atrium.keystone.product-models.show', ['productModel' => $productModel, ...$slot->query()])
-            ->with('status', __('keystone::keystone.product_model_updated'));
+            ->route('atrium.showroom.product-models.show', ['productModel' => $productModel, ...$slot->query()])
+            ->with('status', __('showroom::showroom.product_model_updated'));
     }
 
     public function destroy(ProductModelModel $productModel): RedirectResponse
@@ -103,7 +103,7 @@ final class ProductModelUiController
         app(DeleteProductModelAction::class)->execute($productModel);
 
         return $parent !== null
-            ? redirect()->route('atrium.keystone.product-models.show', $parent)->with('status', __('keystone::keystone.product_model_deleted'))
-            : redirect()->route('atrium.keystone.product-models.index')->with('status', __('keystone::keystone.product_model_deleted'));
+            ? redirect()->route('atrium.showroom.product-models.show', $parent)->with('status', __('showroom::showroom.product_model_deleted'))
+            : redirect()->route('atrium.showroom.product-models.index')->with('status', __('showroom::showroom.product_model_deleted'));
     }
 }

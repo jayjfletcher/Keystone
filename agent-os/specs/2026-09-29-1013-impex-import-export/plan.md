@@ -8,9 +8,9 @@ Roadmap Milestone 7. Decisions in `shape.md`.
 
 ## Task 2: Integration
 
-- `src/Impex/ImpexIntegration.php` — `active()` (config `keystone.impex.enabled` + Impex loaded), `register()` adds `flows()` to Impex's `FlowRegistry` once resolved, `start()` runs a flow tagged `keystone`.
+- `src/Impex/ImpexIntegration.php` — `active()` (config `showroom.impex.enabled` + Impex loaded), `register()` adds `flows()` to Impex's `FlowRegistry` once resolved, `start()` runs a flow tagged `showroom`.
 - `src/Exceptions/ImpexMissingException.php` — 501 when Impex is absent or off.
-- Config `keystone.impex`: `enabled`, `chunk`, `allow_failures` (default 1.0), `tries`, `export_page_size`, `export_path`, `feeds`.
+- Config `showroom.impex`: `enabled`, `chunk`, `allow_failures` (default 1.0), `tries`, `export_page_size`, `export_path`, `feeds`.
 
 ## Task 3: Row formats
 
@@ -26,14 +26,14 @@ Roadmap Milestone 7. Decisions in `shape.md`.
 ## Task 5: Export and feed flows
 
 - `Actions/ExportProductPages` (`ResumableAction`, JSONL part files), `Actions/JoinProductExport` (join into one JSONL/CSV asset, idempotent), `Actions/DeliverFeed` (`Impex::http()` POST).
-- `Flows/ExportProductsFlow`, `Flows/FeedFlow` (`keystone:feed:{name}`; feed config and query captured in a side effect).
+- `Flows/ExportProductsFlow`, `Flows/FeedFlow` (`showroom:feed:{name}`; feed config and query captured in a side effect).
 
 ## Task 6: Surfaces
 
 - `StartImportAction` (`file` | `url` | `asset`, `format`, `mode`) and `StartExportAction` (search filters, `format`, `code`, `published`) with action events.
-- HTTP `POST /keystone/imports`, `POST /keystone/exports` → Impex `RunResource`, 202.
+- HTTP `POST /showroom/imports`, `POST /showroom/exports` → Impex `RunResource`, 202.
 - MCP `start-import-tool`, `start-export-tool`.
-- Atrium **Import & export** page: upload/import, export form, recent `keystone:*` runs with results.
+- Atrium **Import & export** page: upload/import, export form, recent `showroom:*` runs with results.
 
 ## Task 7: Tests
 

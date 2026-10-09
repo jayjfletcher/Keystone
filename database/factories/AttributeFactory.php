@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-namespace RefactorCircus\Keystone\Database\Factories;
+namespace RefactorCircus\Showroom\Database\Factories;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
-use RefactorCircus\Keystone\Domains\Attribute\Enums\AttributeType;
-use RefactorCircus\Keystone\Domains\Attribute\Models\AttributeModel;
+use RefactorCircus\Showroom\Domains\Attribute\Enums\AttributeType;
+use RefactorCircus\Showroom\Domains\Attribute\Models\AttributeModel;
 
 /**
  * @extends Factory<AttributeModel>

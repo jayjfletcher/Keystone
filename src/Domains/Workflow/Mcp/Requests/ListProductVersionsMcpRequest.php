@@ -2,12 +2,12 @@
 
 declare(strict_types=1);
 
-namespace RefactorCircus\Keystone\Domains\Workflow\Mcp\Requests;
+namespace RefactorCircus\Showroom\Domains\Workflow\Mcp\Requests;
 
 use Laravel\Mcp\ResponseFactory;
-use RefactorCircus\Keystone\Domains\Product\Mcp\Requests\ProductRequest;
-use RefactorCircus\Keystone\Domains\Workflow\Actions\ListProductVersionsAction;
-use RefactorCircus\Keystone\Domains\Workflow\Resources\VersionSummaryResource;
+use RefactorCircus\Showroom\Domains\Product\Mcp\Requests\ProductRequest;
+use RefactorCircus\Showroom\Domains\Workflow\Actions\ListProductVersionsAction;
+use RefactorCircus\Showroom\Domains\Workflow\Resources\VersionSummaryResource;
 
 final class ListProductVersionsMcpRequest extends ProductRequest
 {

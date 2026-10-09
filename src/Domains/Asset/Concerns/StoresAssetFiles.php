@@ -2,12 +2,12 @@
 
 declare(strict_types=1);
 
-namespace RefactorCircus\Keystone\Domains\Asset\Concerns;
+namespace RefactorCircus\Showroom\Domains\Asset\Concerns;
 
 use Illuminate\Http\UploadedFile;
 use Illuminate\Validation\ValidationException;
-use RefactorCircus\Keystone\Domains\Asset\Data\StoredFile;
-use RefactorCircus\Keystone\Domains\Asset\Services\AssetStorage;
+use RefactorCircus\Showroom\Domains\Asset\Data\StoredFile;
+use RefactorCircus\Showroom\Domains\Asset\Services\AssetStorage;
 
 /**
  * Taking a file in from an upload, a path on the disk or a URL, shared by
@@ -20,10 +20,10 @@ trait StoresAssetFiles
      */
     private static function sourceRules(bool $required): array
     {
-        $file = ['file', 'max:'.config('keystone.media.max_kilobytes', 51200)];
+        $file = ['file', 'max:'.config('showroom.media.max_kilobytes', 51200)];
 
         /** @var array<int, string>|null $types */
-        $types = config('keystone.media.mime_types');
+        $types = config('showroom.media.mime_types');
 
         if (is_array($types) && $types !== []) {
             $file[] = 'mimetypes:'.implode(',', $types);
@@ -73,10 +73,10 @@ trait StoresAssetFiles
      */
     private function checkLimits(?AssetStorage $storage, StoredFile $stored, string $key): void
     {
-        $max = (int) config('keystone.media.max_kilobytes', 51200) * 1024;
+        $max = (int) config('showroom.media.max_kilobytes', 51200) * 1024;
 
         /** @var array<int, string>|null $types */
-        $types = config('keystone.media.mime_types');
+        $types = config('showroom.media.mime_types');
 
         $error = match (true) {
             $stored->size > $max => sprintf('The file is %d KB; the limit is %d KB.', intdiv($stored->size, 1024), intdiv($max, 1024)),
@@ -88,7 +88,7 @@ trait StoresAssetFiles
             return;
         }
 
-        // Only discard what Keystone wrote; an adopted file is the caller's.
+        // Only discard what Showroom wrote; an adopted file is the caller's.
         $storage?->discard($stored);
 
         throw ValidationException::withMessages([$key => $error]);

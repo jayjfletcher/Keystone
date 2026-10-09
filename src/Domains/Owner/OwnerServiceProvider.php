@@ -2,12 +2,12 @@
 
 declare(strict_types=1);
 
-namespace RefactorCircus\Keystone\Domains\Owner;
+namespace RefactorCircus\Showroom\Domains\Owner;
 
 use RefactorCircus\Foundation\Audit\AuditHooks;
 use RefactorCircus\Foundation\Support\ServiceProvider;
-use RefactorCircus\Keystone\Domains\Owner\Models\OwnerModel;
-use RefactorCircus\Keystone\Domains\Owner\Models\OwnerTypeModel;
+use RefactorCircus\Showroom\Domains\Owner\Models\OwnerModel;
+use RefactorCircus\Showroom\Domains\Owner\Models\OwnerTypeModel;
 
 class OwnerServiceProvider extends ServiceProvider
 {
@@ -15,7 +15,7 @@ class OwnerServiceProvider extends ServiceProvider
     {
         // Polymorphic columns store this short name, not the class name.
         $this->keepMorphAliases([
-            'keystone_owner' => OwnerModel::class,
+            'showroom_owner' => OwnerModel::class,
         ]);
 
         // How the audit log (refactor-circus/keen) names them: the current locale's label, else the code.

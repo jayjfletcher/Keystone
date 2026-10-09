@@ -2,17 +2,17 @@
 
 declare(strict_types=1);
 
-namespace RefactorCircus\Keystone\Domains\Search;
+namespace RefactorCircus\Showroom\Domains\Search;
 
 use Illuminate\Contracts\Foundation\Application;
 use InvalidArgumentException;
 use Laravel\Scout\EngineManager;
 use RefactorCircus\Foundation\Support\ServiceProvider;
-use RefactorCircus\Keystone\Domains\Search\Console\Commands\ReindexProductsCommand;
-use RefactorCircus\Keystone\Domains\Search\Contracts\SearchEngine;
-use RefactorCircus\Keystone\Domains\Search\Exceptions\UnsupportedSearchException;
-use RefactorCircus\Keystone\Domains\Search\Services\DatabaseEngine;
-use RefactorCircus\Keystone\Domains\Search\Services\ScoutEngine;
+use RefactorCircus\Showroom\Domains\Search\Console\Commands\ReindexProductsCommand;
+use RefactorCircus\Showroom\Domains\Search\Contracts\SearchEngine;
+use RefactorCircus\Showroom\Domains\Search\Exceptions\UnsupportedSearchException;
+use RefactorCircus\Showroom\Domains\Search\Services\DatabaseEngine;
+use RefactorCircus\Showroom\Domains\Search\Services\ScoutEngine;
 
 class SearchServiceProvider extends ServiceProvider
 {
@@ -34,12 +34,12 @@ class SearchServiceProvider extends ServiceProvider
     }
 
     /**
-     * The search engine named by `keystone.search.engine`. Null picks Scout
+     * The search engine named by `showroom.search.engine`. Null picks Scout
      * when laravel/scout is installed, and the database otherwise.
      */
     private function searchEngine(Application $app): SearchEngine
     {
-        $engine = $app->make('config')->get('keystone.search.engine')
+        $engine = $app->make('config')->get('showroom.search.engine')
             ?? (class_exists(EngineManager::class) ? 'scout' : 'database');
 
         return match ($engine) {
@@ -50,7 +50,7 @@ class SearchServiceProvider extends ServiceProvider
                 : throw UnsupportedSearchException::missingPackage('scout', 'laravel/scout'),
             default => is_string($engine) && is_subclass_of($engine, SearchEngine::class)
                 ? $app->make($engine)
-                : throw new InvalidArgumentException(sprintf('Unknown Keystone search engine [%s].', is_scalar($engine) ? $engine : get_debug_type($engine))),
+                : throw new InvalidArgumentException(sprintf('Unknown Showroom search engine [%s].', is_scalar($engine) ? $engine : get_debug_type($engine))),
         };
     }
 }

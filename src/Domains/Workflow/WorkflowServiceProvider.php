@@ -2,12 +2,12 @@
 
 declare(strict_types=1);
 
-namespace RefactorCircus\Keystone\Domains\Workflow;
+namespace RefactorCircus\Showroom\Domains\Workflow;
 
 use RefactorCircus\Foundation\Audit\AuditHooks;
 use RefactorCircus\Foundation\Support\ServiceProvider;
-use RefactorCircus\Keystone\Domains\Workflow\Models\VersionModel;
-use RefactorCircus\Keystone\Domains\Workflow\Services\Versions;
+use RefactorCircus\Showroom\Domains\Workflow\Models\VersionModel;
+use RefactorCircus\Showroom\Domains\Workflow\Services\Versions;
 
 class WorkflowServiceProvider extends ServiceProvider
 {

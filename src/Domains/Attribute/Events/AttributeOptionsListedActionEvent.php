@@ -2,14 +2,14 @@
 
 declare(strict_types=1);
 
-namespace RefactorCircus\Keystone\Domains\Attribute\Events;
+namespace RefactorCircus\Showroom\Domains\Attribute\Events;
 
 use Illuminate\Contracts\Pagination\CursorPaginator;
 use Illuminate\Foundation\Events\Dispatchable;
 use Illuminate\Queue\SerializesModels;
 use RefactorCircus\Foundation\Contracts\ActionFinishedEvent;
-use RefactorCircus\Keystone\Domains\Attribute\Models\AttributeModel;
-use RefactorCircus\Keystone\Domains\Attribute\Models\AttributeOptionModel;
+use RefactorCircus\Showroom\Domains\Attribute\Models\AttributeModel;
+use RefactorCircus\Showroom\Domains\Attribute\Models\AttributeOptionModel;
 
 /**
  * The options of an attribute were listed.

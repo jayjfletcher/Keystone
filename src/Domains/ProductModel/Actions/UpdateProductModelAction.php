@@ -2,18 +2,18 @@
 
 declare(strict_types=1);
 
-namespace RefactorCircus\Keystone\Domains\ProductModel\Actions;
+namespace RefactorCircus\Showroom\Domains\ProductModel\Actions;
 
 use Illuminate\Support\Facades\DB;
 use Illuminate\Validation\ValidationException;
-use RefactorCircus\Keystone\Domains\Association\Services\Associations;
-use RefactorCircus\Keystone\Domains\Attribute\Concerns\WritesValues;
-use RefactorCircus\Keystone\Domains\Category\Concerns\AssignsCategories;
-use RefactorCircus\Keystone\Domains\Owner\Concerns\AssignsOwners;
-use RefactorCircus\Keystone\Domains\ProductModel\Events\ProductModelUpdatedActionEvent;
-use RefactorCircus\Keystone\Domains\ProductModel\Events\ProductModelUpdatingActionEvent;
-use RefactorCircus\Keystone\Domains\ProductModel\Models\ProductModelModel;
-use RefactorCircus\Keystone\Domains\Search\Services\ProductIndex;
+use RefactorCircus\Showroom\Domains\Association\Services\Associations;
+use RefactorCircus\Showroom\Domains\Attribute\Concerns\WritesValues;
+use RefactorCircus\Showroom\Domains\Category\Concerns\AssignsCategories;
+use RefactorCircus\Showroom\Domains\Owner\Concerns\AssignsOwners;
+use RefactorCircus\Showroom\Domains\ProductModel\Events\ProductModelUpdatedActionEvent;
+use RefactorCircus\Showroom\Domains\ProductModel\Events\ProductModelUpdatingActionEvent;
+use RefactorCircus\Showroom\Domains\ProductModel\Models\ProductModelModel;
+use RefactorCircus\Showroom\Domains\Search\Services\ProductIndex;
 
 final class UpdateProductModelAction
 {
@@ -32,7 +32,7 @@ final class UpdateProductModelAction
             'code' => ['prohibited'],
             'family_variant' => ['prohibited'],
             'parent' => ['prohibited'],
-            'owner' => ['sometimes', 'nullable', 'string', 'exists:keystone_owners,code'],
+            'owner' => ['sometimes', 'nullable', 'string', 'exists:showroom_owners,code'],
             'values' => ['sometimes', 'nullable', 'array'],
         ] + self::categoryRules() + Associations::rules();
     }

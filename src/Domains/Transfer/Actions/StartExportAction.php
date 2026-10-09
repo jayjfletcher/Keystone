@@ -2,16 +2,16 @@
 
 declare(strict_types=1);
 
-namespace RefactorCircus\Keystone\Domains\Transfer\Actions;
+namespace RefactorCircus\Showroom\Domains\Transfer\Actions;
 
 use Illuminate\Support\Arr;
 use Illuminate\Validation\Rule;
 use RefactorCircus\Impex\Domains\Run\Models\RunModel;
-use RefactorCircus\Keystone\Domains\Product\Actions\ListProductsAction;
-use RefactorCircus\Keystone\Domains\Transfer\Events\ExportStartedActionEvent;
-use RefactorCircus\Keystone\Domains\Transfer\Events\ExportStartingActionEvent;
-use RefactorCircus\Keystone\Domains\Transfer\Exceptions\ImpexMissingException;
-use RefactorCircus\Keystone\Impex\ImpexIntegration;
+use RefactorCircus\Showroom\Domains\Product\Actions\ListProductsAction;
+use RefactorCircus\Showroom\Domains\Transfer\Events\ExportStartedActionEvent;
+use RefactorCircus\Showroom\Domains\Transfer\Events\ExportStartingActionEvent;
+use RefactorCircus\Showroom\Domains\Transfer\Exceptions\ImpexMissingException;
+use RefactorCircus\Showroom\Impex\ImpexIntegration;
 
 final class StartExportAction
 {
@@ -26,7 +26,7 @@ final class StartExportAction
     {
         return Arr::except(ListProductsAction::rules(), ['sort', 'page', 'per_page', 'facets', 'facets.*']) + [
             'format' => ['sometimes', Rule::in(['jsonl', 'csv'])],
-            'code' => ['sometimes', 'nullable', 'string', 'max:191', 'regex:/^[A-Za-z0-9][A-Za-z0-9_.-]*$/', 'unique:keystone_assets,code'],
+            'code' => ['sometimes', 'nullable', 'string', 'max:191', 'regex:/^[A-Za-z0-9][A-Za-z0-9_.-]*$/', 'unique:showroom_assets,code'],
             // Write each product's live version, and leave out unpublished ones.
             'published' => ['sometimes', 'boolean'],
         ];

@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace RefactorCircus\Keystone\Domains\ProductModel\Models;
+namespace RefactorCircus\Showroom\Domains\ProductModel\Models;
 
 use Illuminate\Database\Eloquent\Collection as EloquentCollection;
 use Illuminate\Database\Eloquent\Concerns\HasUlids;
@@ -13,16 +13,16 @@ use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Support\Carbon;
 use RefactorCircus\Foundation\Models\Concerns\DispatchesModelEvents;
-use RefactorCircus\Keystone\Database\Factories\ProductModelFactory;
-use RefactorCircus\Keystone\Domains\Asset\Concerns\HasAssets;
-use RefactorCircus\Keystone\Domains\Asset\Models\AssetModel;
-use RefactorCircus\Keystone\Domains\Association\Concerns\HasAssociations;
-use RefactorCircus\Keystone\Domains\Attribute\Concerns\HasValues;
-use RefactorCircus\Keystone\Domains\Attribute\Models\AttributeModel;
-use RefactorCircus\Keystone\Domains\Category\Models\CategoryModel;
-use RefactorCircus\Keystone\Domains\Family\Models\FamilyVariantModel;
-use RefactorCircus\Keystone\Domains\Owner\Models\OwnerModel;
-use RefactorCircus\Keystone\Domains\Product\Models\ProductModel;
+use RefactorCircus\Showroom\Database\Factories\ProductModelFactory;
+use RefactorCircus\Showroom\Domains\Asset\Concerns\HasAssets;
+use RefactorCircus\Showroom\Domains\Asset\Models\AssetModel;
+use RefactorCircus\Showroom\Domains\Association\Concerns\HasAssociations;
+use RefactorCircus\Showroom\Domains\Attribute\Concerns\HasValues;
+use RefactorCircus\Showroom\Domains\Attribute\Models\AttributeModel;
+use RefactorCircus\Showroom\Domains\Category\Models\CategoryModel;
+use RefactorCircus\Showroom\Domains\Family\Models\FamilyVariantModel;
+use RefactorCircus\Showroom\Domains\Owner\Models\OwnerModel;
+use RefactorCircus\Showroom\Domains\Product\Models\ProductModel;
 
 /**
  * The shared part of a group of variant products: "Classic tee" holds the
@@ -53,7 +53,7 @@ final class ProductModelModel extends Model
     use HasUlids;
     use HasValues;
 
-    protected $table = 'keystone_product_models';
+    protected $table = 'showroom_product_models';
 
     protected $fillable = [
         'code',
@@ -116,7 +116,7 @@ final class ProductModelModel extends Model
      */
     public function categories(): BelongsToMany
     {
-        return $this->belongsToMany(CategoryModel::class, 'keystone_category_product_model', 'product_model_id', 'category_id')->orderBy('code');
+        return $this->belongsToMany(CategoryModel::class, 'showroom_category_product_model', 'product_model_id', 'category_id')->orderBy('code');
     }
 
     /**

@@ -2,14 +2,14 @@
 
 declare(strict_types=1);
 
-namespace RefactorCircus\Keystone\Domains\Attribute\Mcp\Tools;
+namespace RefactorCircus\Showroom\Domains\Attribute\Mcp\Tools;
 
 use Illuminate\Contracts\JsonSchema\JsonSchema;
 use Laravel\Mcp\Response;
 use Laravel\Mcp\ResponseFactory;
 use Laravel\Mcp\Server\Attributes\Description;
 use RefactorCircus\Foundation\Mcp\Tool;
-use RefactorCircus\Keystone\Domains\Attribute\Mcp\Requests\UpdateAttributeGroupMcpRequest;
+use RefactorCircus\Showroom\Domains\Attribute\Mcp\Requests\UpdateAttributeGroupMcpRequest;
 
 #[Description('Update an attribute group\'s labels or sort order. The code cannot change.')]
 final class UpdateAttributeGroupTool extends Tool

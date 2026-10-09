@@ -2,14 +2,14 @@
 
 declare(strict_types=1);
 
-namespace RefactorCircus\Keystone\Domains\Channel\Mcp\Tools;
+namespace RefactorCircus\Showroom\Domains\Channel\Mcp\Tools;
 
 use Illuminate\Contracts\JsonSchema\JsonSchema;
 use Laravel\Mcp\Response;
 use Laravel\Mcp\ResponseFactory;
 use Laravel\Mcp\Server\Attributes\Description;
 use RefactorCircus\Foundation\Mcp\Tool;
-use RefactorCircus\Keystone\Domains\Channel\Mcp\Requests\DeleteLocaleMcpRequest;
+use RefactorCircus\Showroom\Domains\Channel\Mcp\Requests\DeleteLocaleMcpRequest;
 
 #[Description('Delete a locale no channel uses. Values written in it are purged.')]
 final class DeleteLocaleTool extends Tool

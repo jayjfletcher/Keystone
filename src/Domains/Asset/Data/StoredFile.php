@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace RefactorCircus\Keystone\Domains\Asset\Data;
+namespace RefactorCircus\Showroom\Domains\Asset\Data;
 
 /**
  * A file written to (or found on) the asset disk, with what is known of it.

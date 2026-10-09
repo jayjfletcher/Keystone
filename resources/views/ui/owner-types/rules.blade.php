@@ -4,10 +4,10 @@
 
 <div class="flex flex-col gap-3">
     <input type="hidden" name="any_parent" value="0">
-    <x-atrium::form.checkbox name="any_parent" :label="__('keystone::keystone.any_parent')" :checked="! $restricted" />
+    <x-atrium::form.checkbox name="any_parent" :label="__('showroom::showroom.any_parent')" :checked="! $restricted" />
 
     <div>
-        <p class="mb-1 text-xs font-medium uppercase opacity-70">{{ __('keystone::keystone.parent_types') }}</p>
+        <p class="mb-1 text-xs font-medium uppercase opacity-70">{{ __('showroom::showroom.parent_types') }}</p>
         <div class="flex flex-wrap gap-3">
             @forelse ($all as $code)
                 <label class="flex items-center gap-1.5 text-sm">
@@ -15,14 +15,14 @@
                     <span class="font-mono text-xs">{{ $code }}</span>
                 </label>
             @empty
-                <span class="text-sm opacity-60">{{ __('keystone::keystone.none') }}</span>
+                <span class="text-sm opacity-60">{{ __('showroom::showroom.none') }}</span>
             @endforelse
         </div>
     </div>
 
     <input type="hidden" name="can_be_root" value="0">
-    <x-atrium::form.checkbox name="can_be_root" :label="__('keystone::keystone.can_be_root')" :checked="$type?->can_be_root ?? true" />
+    <x-atrium::form.checkbox name="can_be_root" :label="__('showroom::showroom.can_be_root')" :checked="$type?->can_be_root ?? true" />
 
     <input type="hidden" name="owns_products" value="0">
-    <x-atrium::form.checkbox name="owns_products" :label="__('keystone::keystone.owns_products')" :checked="$type?->owns_products ?? true" />
+    <x-atrium::form.checkbox name="owns_products" :label="__('showroom::showroom.owns_products')" :checked="$type?->owns_products ?? true" />
 </div>

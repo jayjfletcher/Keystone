@@ -1,51 +1,51 @@
-@use(RefactorCircus\Keystone\Atrium\Badges)
-@use(RefactorCircus\Keystone\Atrium\ScreenAccess)
+@use(RefactorCircus\Showroom\Atrium\Badges)
+@use(RefactorCircus\Showroom\Atrium\ScreenAccess)
 
 @php($canUpdate = ScreenAccess::allows('update', $product))
 
 <x-atrium::layout :title="$product->identifier">
     <x-atrium::page-header :title="$product->identifier" :description="$product->family?->label()">
         <x-slot:actions>
-            <x-atrium::status-dot :variant="Badges::forEnabled($product->enabled)" :label="$product->enabled ? __('keystone::keystone.enabled') : __('keystone::keystone.disabled')" data-status="{{ $product->enabled ? 'enabled' : 'disabled' }}" data-testid="product-enabled" />
+            <x-atrium::status-dot :variant="Badges::forEnabled($product->enabled)" :label="$product->enabled ? __('showroom::showroom.enabled') : __('showroom::showroom.disabled')" data-status="{{ $product->enabled ? 'enabled' : 'disabled' }}" data-testid="product-enabled" />
 
             @if ($product->parent)
-                @keystoneCan('view', $product->parent)
-                    <x-atrium::icon-button icon="arrow-left" :label="$product->parent->code" variant="outline" :href="route('atrium.keystone.product-models.show', $product->parent)" data-testid="parent-model" />
-                @endkeystoneCan
+                @showroomCan('view', $product->parent)
+                    <x-atrium::icon-button icon="arrow-left" :label="$product->parent->code" variant="outline" :href="route('atrium.showroom.product-models.show', $product->parent)" data-testid="parent-model" />
+                @endshowroomCan
             @endif
 
-            @keystoneCan('delete', $product)
-                <form method="POST" action="{{ route('atrium.keystone.products.destroy', $product) }}">
+            @showroomCan('delete', $product)
+                <form method="POST" action="{{ route('atrium.showroom.products.destroy', $product) }}">
                     @csrf
                     @method('DELETE')
-                    <x-atrium::icon-button icon="trash" :label="__('keystone::keystone.delete')" variant="danger" type="submit" data-testid="delete-product" />
+                    <x-atrium::icon-button icon="trash" :label="__('showroom::showroom.delete')" variant="danger" type="submit" data-testid="delete-product" />
                 </form>
-            @endkeystoneCan
+            @endshowroomCan
         </x-slot:actions>
     </x-atrium::page-header>
 
     <div class="mt-5 flex flex-col gap-5">
         <x-atrium::flash />
 
-        @include('keystone::ui.products.workflow')
+        @include('showroom::ui.products.workflow')
 
-        @include('keystone::ui.partials.slot-picker')
+        @include('showroom::ui.partials.slot-picker')
 
         {{-- Shown to those who may only view it, read-only and without save. --}}
-        <form method="POST" action="{{ route('atrium.keystone.products.update', $product) }}">
+        <form method="POST" action="{{ route('atrium.showroom.products.update', $product) }}">
             @csrf
             @method('PATCH')
             <input type="hidden" name="add" value="{{ request('add') }}">
 
             <fieldset class="flex min-w-0 flex-col gap-5" @disabled(! $canUpdate)>
 
-                <x-atrium::card :title="__('keystone::keystone.details')">
+                <x-atrium::card :title="__('showroom::showroom.details')">
                     <div class="flex flex-wrap items-start gap-4">
                         @unless ($product->isVariant())
                             <x-atrium::form.select
                                 name="family"
-                                :label="__('keystone::keystone.family')"
-                                :placeholder="__('keystone::keystone.no_family')"
+                                :label="__('showroom::showroom.family')"
+                                :placeholder="__('showroom::showroom.no_family')"
                                 :options="$families"
                                 :selected="$product->family?->code"
                                 wrapper="w-56" />
@@ -53,33 +53,33 @@
 
                         @if ($product->isVariant())
                             <div class="text-sm">
-                                <p class="font-medium">{{ __('keystone::keystone.inherited_owner') }}</p>
-                                <p class="font-mono text-xs">{{ $product->effectiveOwner()?->code ?? __('keystone::keystone.none') }}</p>
+                                <p class="font-medium">{{ __('showroom::showroom.inherited_owner') }}</p>
+                                <p class="font-mono text-xs">{{ $product->effectiveOwner()?->code ?? __('showroom::showroom.none') }}</p>
                             </div>
                         @else
-                            <x-atrium::form.input name="owner" :label="__('keystone::keystone.owner')" :hint="__('keystone::keystone.owner_hint')" :value="$product->owner?->code" wrapper="w-56" />
+                            <x-atrium::form.input name="owner" :label="__('showroom::showroom.owner')" :hint="__('showroom::showroom.owner_hint')" :value="$product->owner?->code" wrapper="w-56" />
                         @endif
                         <x-atrium::form.actions>
                             <input type="hidden" name="enabled" value="0">
-                            <x-atrium::form.checkbox name="enabled" :label="__('keystone::keystone.enabled')" :checked="$product->enabled" wrapper="h-9 w-auto justify-center" />
+                            <x-atrium::form.checkbox name="enabled" :label="__('showroom::showroom.enabled')" :checked="$product->enabled" wrapper="h-9 w-auto justify-center" />
                         </x-atrium::form.actions>
                     </div>
                 </x-atrium::card>
 
-                <x-atrium::card :title="__('keystone::keystone.categories')">
-                    @include('keystone::ui.partials.categories', [
+                <x-atrium::card :title="__('showroom::showroom.categories')">
+                    @include('showroom::ui.partials.categories', [
                         'record' => $product,
                         'inheritedCategories' => $product->parent?->allCategories() ?? collect(),
                     ])
                 </x-atrium::card>
 
-                <x-atrium::card :title="__('keystone::keystone.values')">
-                    @include('keystone::ui.partials.values', ['values' => $product->ownValues()])
+                <x-atrium::card :title="__('showroom::showroom.values')">
+                    @include('showroom::ui.partials.values', ['values' => $product->ownValues()])
                 </x-atrium::card>
 
                 @if ($canUpdate)
                     <div>
-                        <x-atrium::icon-button icon="check" :label="__('keystone::keystone.save')" variant="primary" type="submit" data-testid="save-product" />
+                        <x-atrium::icon-button icon="check" :label="__('showroom::showroom.save')" variant="primary" type="submit" data-testid="save-product" />
                     </div>
                 @endif
             </fieldset>
@@ -87,26 +87,26 @@
 
         @if ($addable !== [] && $canUpdate)
             <x-atrium::card>
-                <form method="GET" action="{{ route('atrium.keystone.products.show', $product) }}" class="flex flex-wrap items-start gap-3">
-                    <x-atrium::form.select name="add" :label="__('keystone::keystone.add_attribute')" :placeholder="__('keystone::keystone.choose_attribute')" :options="$addable" wrapper="w-72" />
+                <form method="GET" action="{{ route('atrium.showroom.products.show', $product) }}" class="flex flex-wrap items-start gap-3">
+                    <x-atrium::form.select name="add" :label="__('showroom::showroom.add_attribute')" :placeholder="__('showroom::showroom.choose_attribute')" :options="$addable" wrapper="w-72" />
                     <x-atrium::form.actions>
-                        <x-atrium::icon-button icon="plus" :label="__('keystone::keystone.add')" variant="outline" type="submit" />
+                        <x-atrium::icon-button icon="plus" :label="__('showroom::showroom.add')" variant="outline" type="submit" />
                     </x-atrium::form.actions>
                 </form>
             </x-atrium::card>
         @endif
 
-        @include('keystone::ui.partials.assets', [
+        @include('showroom::ui.partials.assets', [
             'own' => $product->assets,
             'inheritedAssets' => $product->parent?->allAssets() ?? collect(),
             'linkType' => 'product',
             'linkTarget' => $product->identifier,
         ])
 
-        @include('keystone::ui.partials.associations', ['record' => $product, 'sourceKind' => 'product', 'sourceKey' => $product->identifier])
+        @include('showroom::ui.partials.associations', ['record' => $product, 'sourceKind' => 'product', 'sourceKey' => $product->identifier])
 
-        @include('keystone::ui.partials.inherited')
+        @include('showroom::ui.partials.inherited')
 
-        <x-atrium::audit-trail source="keystone" :subject="$product" />
+        <x-atrium::audit-trail source="showroom" :subject="$product" />
     </div>
 </x-atrium::layout>

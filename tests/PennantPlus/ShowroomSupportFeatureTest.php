@@ -7,8 +7,8 @@ use Illuminate\Http\Request;
 use Laravel\Pennant\Feature;
 use RefactorCircus\Atrium\Domains\Navigation\Data\NavItem;
 use RefactorCircus\Atrium\Domains\Navigation\Services\NavigationRegistry;
-use RefactorCircus\Keystone\Atrium\Features\KeystoneSupportFeature;
-use RefactorCircus\Keystone\Atrium\KeystonePlugin;
+use RefactorCircus\Showroom\Atrium\Features\ShowroomSupportFeature;
+use RefactorCircus\Showroom\Atrium\ShowroomPlugin;
 use Workbench\App\Models\User;
 
 // Pennant's array store keeps values in its cache: Feature::flushCache()
@@ -38,7 +38,7 @@ function catalogUser(): User
 /**
  * Off until its global value is set, to show the class can be overridden.
  */
-class OffKeystoneSupportFeature extends KeystoneSupportFeature
+class OffShowroomSupportFeature extends ShowroomSupportFeature
 {
     protected function default(): bool
     {
@@ -46,41 +46,41 @@ class OffKeystoneSupportFeature extends KeystoneSupportFeature
     }
 }
 
-it('gates keystone on the bundled feature by default', function (): void {
-    expect(app(KeystonePlugin::class)->features())->toBe([KeystoneSupportFeature::class]);
+it('gates showroom on the bundled feature by default', function (): void {
+    expect(app(ShowroomPlugin::class)->features())->toBe([ShowroomSupportFeature::class]);
 });
 
-it('shows keystone until the feature is turned off globally', function (): void {
+it('shows showroom until the feature is turned off globally', function (): void {
     $user = catalogUser();
 
     expect(catalogNavigationFor($user))->toContain('Products');
 
-    $this->actingAs($user)->get(route('atrium.keystone.products.index'))->assertOk();
+    $this->actingAs($user)->get(route('atrium.showroom.products.index'))->assertOk();
 
-    Feature::for(null)->deactivate(KeystoneSupportFeature::class);
+    Feature::for(null)->deactivate(ShowroomSupportFeature::class);
 
     expect(catalogNavigationFor($user))->not->toContain('Products');
 
-    $this->actingAs($user)->get(route('atrium.keystone.products.index'))->assertNotFound();
-    $this->actingAs($user)->get(route('atrium.keystone.attributes.index'))->assertNotFound();
+    $this->actingAs($user)->get(route('atrium.showroom.products.index'))->assertNotFound();
+    $this->actingAs($user)->get(route('atrium.showroom.attributes.index'))->assertNotFound();
 });
 
 it('only counts the global value, leaving per-user access to policies', function (): void {
     $user = catalogUser();
 
-    Feature::for($user)->deactivate(KeystoneSupportFeature::class);
+    Feature::for($user)->deactivate(ShowroomSupportFeature::class);
 
     expect(catalogNavigationFor($user))->toContain('Products');
 
-    $this->actingAs($user)->get(route('atrium.keystone.products.index'))->assertOk();
+    $this->actingAs($user)->get(route('atrium.showroom.products.index'))->assertOk();
 });
 
 it('uses a subclass named in the config instead', function (): void {
-    config()->set('keystone.atrium.features', [OffKeystoneSupportFeature::class]);
+    config()->set('showroom.atrium.features', [OffShowroomSupportFeature::class]);
 
     expect(catalogNavigationFor(catalogUser()))->not->toContain('Products');
 
-    Feature::for(null)->activate(OffKeystoneSupportFeature::class);
+    Feature::for(null)->activate(OffShowroomSupportFeature::class);
 
     expect(catalogNavigationFor(catalogUser()))->toContain('Products');
 });

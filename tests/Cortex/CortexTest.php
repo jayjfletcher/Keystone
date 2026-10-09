@@ -11,30 +11,30 @@ use RefactorCircus\Cortex\Domains\Tool\Actions\CreateToolDescriptionVersionActio
 use RefactorCircus\Cortex\Domains\Tool\Services\ToolRegistry;
 use RefactorCircus\Foundation\Cortex\CortexIntegration;
 use RefactorCircus\Foundation\Packages\PackageRegistry;
-use RefactorCircus\Keystone\Domains\Attribute\Mcp\Tools\ListAttributesTool;
-use RefactorCircus\Keystone\Mcp\KeystoneServer;
+use RefactorCircus\Showroom\Domains\Attribute\Mcp\Tools\ListAttributesTool;
+use RefactorCircus\Showroom\Mcp\ShowroomServer;
 
 it('registers the MCP server with Cortex', function (): void {
     $servers = app(McpServerRegistry::class);
 
-    expect($servers->has('keystone'))->toBeTrue()
-        ->and($servers->get('keystone'))->toBe(KeystoneServer::class)
-        ->and($servers->defaultInstructions('keystone'))->toStartWith('Manage the Keystone product catalog');
+    expect($servers->has('showroom'))->toBeTrue()
+        ->and($servers->get('showroom'))->toBe(ShowroomServer::class)
+        ->and($servers->defaultInstructions('showroom'))->toStartWith('Manage the Showroom product catalog');
 });
 
-it('offers every Keystone tool to Cortex agents under its own name', function (): void {
+it('offers every Showroom tool to Cortex agents under its own name', function (): void {
     $tools = app(ToolRegistry::class);
 
-    $names = array_map(fn (string $class): string => app($class)->name(), KeystoneServer::TOOLS);
+    $names = array_map(fn (string $class): string => app($class)->name(), ShowroomServer::TOOLS);
 
-    expect(KeystoneServer::TOOLS)->toHaveCount(78)
+    expect(ShowroomServer::TOOLS)->toHaveCount(78)
         ->and(array_diff($names, $tools->names()))->toBe([])
         ->and($tools->get('list-attributes-tool'))->toBeInstanceOf(AgentTool::class)
-        ->and($tools->tagsFor('list-attributes-tool'))->toContain('keystone');
+        ->and($tools->tagsFor('list-attributes-tool'))->toContain('showroom');
 });
 
 it('offers only the tools listed in config', function (): void {
-    config()->set('keystone.cortex.tools', ['list-attributes-tool', 'show-attribute-tool']);
+    config()->set('showroom.cortex.tools', ['list-attributes-tool', 'show-attribute-tool']);
     app()->forgetInstance(ToolRegistry::class);
 
     $tools = app(ToolRegistry::class);
@@ -45,9 +45,9 @@ it('offers only the tools listed in config', function (): void {
 });
 
 it('serves the instructions published in Cortex', function (): void {
-    app(CreateMcpInstructionVersionAction::class)->execute('keystone', ['content' => 'Never delete attributes.', 'publish' => true]);
+    app(CreateMcpInstructionVersionAction::class)->execute('showroom', ['content' => 'Never delete attributes.', 'publish' => true]);
 
-    expect((new KeystoneServer(new FakeTransporter))->createContext()->instructions)->toBe('Never delete attributes.');
+    expect((new ShowroomServer(new FakeTransporter))->createContext()->instructions)->toBe('Never delete attributes.');
 });
 
 it('serves tool descriptions published in Cortex, to MCP clients and agents alike', function (): void {
@@ -57,7 +57,7 @@ it('serves tool descriptions published in Cortex, to MCP clients and agents alik
         ->and(app(ToolRegistry::class)->get('list-attributes-tool')->description())->toBe('List the attributes of our storefront catalog.');
 });
 
-it('lets an agent call an Keystone tool with its arguments', function (): void {
+it('lets an agent call an Showroom tool with its arguments', function (): void {
     // The tool takes its own request class; without the arguments it could
     // not look the attribute up at all.
     $result = (string) app(ToolRegistry::class)->get('show-attribute-tool')->handle(new Request(['attribute' => 'missing']));
@@ -66,11 +66,11 @@ it('lets an agent call an Keystone tool with its arguments', function (): void {
 });
 
 it('stays out of Cortex when turned off', function (): void {
-    $integration = CortexIntegration::for(app(PackageRegistry::class)->get('keystone'));
+    $integration = CortexIntegration::for(app(PackageRegistry::class)->get('showroom'));
 
     expect($integration->active())->toBeTrue();
 
-    config()->set('keystone.cortex.enabled', false);
+    config()->set('showroom.cortex.enabled', false);
 
     expect($integration->active())->toBeFalse()
         ->and($integration->instructions())->toBeNull()

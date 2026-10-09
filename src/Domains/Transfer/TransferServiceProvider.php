@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace RefactorCircus\Keystone\Domains\Transfer;
+namespace RefactorCircus\Showroom\Domains\Transfer;
 
 use RefactorCircus\Foundation\Support\ServiceProvider;
 

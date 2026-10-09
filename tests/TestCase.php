@@ -2,13 +2,13 @@
 
 declare(strict_types=1);
 
-namespace RefactorCircus\Keystone\Tests;
+namespace RefactorCircus\Showroom\Tests;
 
 use Laravel\Mcp\Server\McpServiceProvider;
 use Orchestra\Testbench\TestCase as Orchestra;
 use RefactorCircus\Atrium\AtriumServiceProvider;
 use RefactorCircus\Impex\ImpexServiceProvider;
-use RefactorCircus\Keystone\KeystoneServiceProvider;
+use RefactorCircus\Showroom\ShowroomServiceProvider;
 
 abstract class TestCase extends Orchestra
 {
@@ -21,7 +21,7 @@ abstract class TestCase extends Orchestra
             McpServiceProvider::class,
             AtriumServiceProvider::class,
             ImpexServiceProvider::class,
-            KeystoneServiceProvider::class,
+            ShowroomServiceProvider::class,
         ];
     }
 
@@ -35,12 +35,12 @@ abstract class TestCase extends Orchestra
         $app['config']->set('database.default', 'testing');
         $app['config']->set('database.connections.testing.foreign_key_constraints', true);
         // Surface tests cover behaviour; PolicyTest turns authorization on.
-        $app['config']->set('keystone.authorization', false);
+        $app['config']->set('showroom.authorization', false);
         $app['config']->set('cache.default', 'array');
         // Index syncs and value purges run inline, so tests see their effect.
         $app['config']->set('queue.default', 'sync');
         // laravel/scout is a dev dependency, so the default would pick it.
-        $app['config']->set('keystone.search.engine', 'database');
+        $app['config']->set('showroom.search.engine', 'database');
     }
 
     protected function defineDatabaseMigrations(): void

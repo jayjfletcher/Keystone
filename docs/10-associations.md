@@ -3,9 +3,9 @@
 ## Association types
 
 ```http
-POST /keystone/association-types  {"code": "cross_sell"}
-POST /keystone/association-types  {"code": "compatible", "is_two_way": true}
-POST /keystone/association-types  {"code": "bundle", "is_quantified": true}
+POST /showroom/association-types  {"code": "cross_sell"}
+POST /showroom/association-types  {"code": "compatible", "is_two_way": true}
+POST /showroom/association-types  {"code": "bundle", "is_quantified": true}
 ```
 
 | Flag | Meaning |
@@ -41,7 +41,7 @@ Deleting a product or product model removes every association from and to it.
 
 ## Bundles and kits
 
-A bundle or kit is a product whose `quantified_associations` list its components. Keystone holds the composition; pricing and stock for the bundle are left to the commerce system that reads it.
+A bundle or kit is a product whose `quantified_associations` list its components. Showroom holds the composition; pricing and stock for the bundle are left to the commerce system that reads it.
 
 ## Actions
 

@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace RefactorCircus\Keystone\Domains\Asset\Http\Requests;
+namespace RefactorCircus\Showroom\Domains\Asset\Http\Requests;
 
 use Illuminate\Http\JsonResponse;
-use RefactorCircus\Keystone\Domains\Asset\Actions\DeleteAssetAction;
+use RefactorCircus\Showroom\Domains\Asset\Actions\DeleteAssetAction;
 
 final class DeleteAssetRequest extends AssetRequest
 {

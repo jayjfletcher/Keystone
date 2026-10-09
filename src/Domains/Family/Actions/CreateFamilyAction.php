@@ -2,14 +2,14 @@
 
 declare(strict_types=1);
 
-namespace RefactorCircus\Keystone\Domains\Family\Actions;
+namespace RefactorCircus\Showroom\Domains\Family\Actions;
 
 use Illuminate\Support\Facades\DB;
 use Illuminate\Validation\ValidationException;
-use RefactorCircus\Keystone\Domains\Family\Concerns\WritesFamilyAttributes;
-use RefactorCircus\Keystone\Domains\Family\Events\FamilyCreatedActionEvent;
-use RefactorCircus\Keystone\Domains\Family\Events\FamilyCreatingActionEvent;
-use RefactorCircus\Keystone\Domains\Family\Models\FamilyModel;
+use RefactorCircus\Showroom\Domains\Family\Concerns\WritesFamilyAttributes;
+use RefactorCircus\Showroom\Domains\Family\Events\FamilyCreatedActionEvent;
+use RefactorCircus\Showroom\Domains\Family\Events\FamilyCreatingActionEvent;
+use RefactorCircus\Showroom\Domains\Family\Models\FamilyModel;
 
 final class CreateFamilyAction
 {
@@ -24,7 +24,7 @@ final class CreateFamilyAction
     public static function rules(): array
     {
         return [
-            'code' => ['required', 'string', 'max:100', 'regex:/^[a-z][a-z0-9_]*$/', 'unique:keystone_families,code'],
+            'code' => ['required', 'string', 'max:100', 'regex:/^[a-z][a-z0-9_]*$/', 'unique:showroom_families,code'],
         ] + self::familyRules();
     }
 

@@ -2,14 +2,14 @@
 
 declare(strict_types=1);
 
-namespace RefactorCircus\Keystone\Domains\Family\Actions;
+namespace RefactorCircus\Showroom\Domains\Family\Actions;
 
 use Illuminate\Support\Facades\DB;
 use Illuminate\Validation\ValidationException;
-use RefactorCircus\Keystone\Domains\Family\Concerns\WritesFamilyVariantLevels;
-use RefactorCircus\Keystone\Domains\Family\Events\FamilyVariantUpdatedActionEvent;
-use RefactorCircus\Keystone\Domains\Family\Events\FamilyVariantUpdatingActionEvent;
-use RefactorCircus\Keystone\Domains\Family\Models\FamilyVariantModel;
+use RefactorCircus\Showroom\Domains\Family\Concerns\WritesFamilyVariantLevels;
+use RefactorCircus\Showroom\Domains\Family\Events\FamilyVariantUpdatedActionEvent;
+use RefactorCircus\Showroom\Domains\Family\Events\FamilyVariantUpdatingActionEvent;
+use RefactorCircus\Showroom\Domains\Family\Models\FamilyVariantModel;
 
 final class UpdateFamilyVariantAction
 {

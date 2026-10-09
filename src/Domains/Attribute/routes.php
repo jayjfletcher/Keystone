@@ -3,9 +3,9 @@
 declare(strict_types=1);
 
 use Illuminate\Support\Facades\Route;
-use RefactorCircus\Keystone\Domains\Attribute\Http\Controllers\AttributeController;
-use RefactorCircus\Keystone\Domains\Attribute\Http\Controllers\AttributeGroupController;
-use RefactorCircus\Keystone\Domains\Attribute\Http\Controllers\AttributeOptionController;
+use RefactorCircus\Showroom\Domains\Attribute\Http\Controllers\AttributeController;
+use RefactorCircus\Showroom\Domains\Attribute\Http\Controllers\AttributeGroupController;
+use RefactorCircus\Showroom\Domains\Attribute\Http\Controllers\AttributeOptionController;
 
 Route::get('attribute-groups', [AttributeGroupController::class, 'index'])->name('attribute-groups.index');
 Route::post('attribute-groups', [AttributeGroupController::class, 'store'])->name('attribute-groups.store');

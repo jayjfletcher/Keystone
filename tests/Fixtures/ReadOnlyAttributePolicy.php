@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace RefactorCircus\Keystone\Tests\Fixtures;
+namespace RefactorCircus\Showroom\Tests\Fixtures;
 
 use Illuminate\Database\Eloquent\Model;
-use RefactorCircus\Keystone\Domains\Attribute\Policies\AttributePolicy;
+use RefactorCircus\Showroom\Domains\Attribute\Policies\AttributePolicy;
 
 /**
  * An application policy that lets anyone read attributes and no one change them.

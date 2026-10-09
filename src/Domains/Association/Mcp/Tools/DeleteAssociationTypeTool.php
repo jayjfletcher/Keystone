@@ -2,14 +2,14 @@
 
 declare(strict_types=1);
 
-namespace RefactorCircus\Keystone\Domains\Association\Mcp\Tools;
+namespace RefactorCircus\Showroom\Domains\Association\Mcp\Tools;
 
 use Illuminate\Contracts\JsonSchema\JsonSchema;
 use Laravel\Mcp\Response;
 use Laravel\Mcp\ResponseFactory;
 use Laravel\Mcp\Server\Attributes\Description;
 use RefactorCircus\Foundation\Mcp\Tool;
-use RefactorCircus\Keystone\Domains\Association\Mcp\Requests\DeleteAssociationTypeMcpRequest;
+use RefactorCircus\Showroom\Domains\Association\Mcp\Requests\DeleteAssociationTypeMcpRequest;
 
 #[Description('Delete an association type no association uses.')]
 final class DeleteAssociationTypeTool extends Tool

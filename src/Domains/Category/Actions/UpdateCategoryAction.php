@@ -2,15 +2,15 @@
 
 declare(strict_types=1);
 
-namespace RefactorCircus\Keystone\Domains\Category\Actions;
+namespace RefactorCircus\Showroom\Domains\Category\Actions;
 
 use Illuminate\Support\Facades\DB;
 use Illuminate\Validation\ValidationException;
-use RefactorCircus\Keystone\Domains\Category\Events\CategoryUpdatedActionEvent;
-use RefactorCircus\Keystone\Domains\Category\Events\CategoryUpdatingActionEvent;
-use RefactorCircus\Keystone\Domains\Category\Models\CategoryModel;
-use RefactorCircus\Keystone\Domains\Search\Services\ProductIndex;
-use RefactorCircus\Keystone\Support\Concerns\MovesInTree;
+use RefactorCircus\Showroom\Domains\Category\Events\CategoryUpdatedActionEvent;
+use RefactorCircus\Showroom\Domains\Category\Events\CategoryUpdatingActionEvent;
+use RefactorCircus\Showroom\Domains\Category\Models\CategoryModel;
+use RefactorCircus\Showroom\Domains\Search\Services\ProductIndex;
+use RefactorCircus\Showroom\Support\Concerns\MovesInTree;
 
 final class UpdateCategoryAction
 {
@@ -26,7 +26,7 @@ final class UpdateCategoryAction
     {
         return [
             'code' => ['prohibited'],
-            'parent' => ['sometimes', 'nullable', 'string', 'exists:keystone_categories,code'],
+            'parent' => ['sometimes', 'nullable', 'string', 'exists:showroom_categories,code'],
             'labels' => ['sometimes', 'nullable', 'array'],
             'labels.*' => ['nullable', 'string', 'max:255'],
             'sort_order' => ['sometimes', 'integer', 'min:0'],

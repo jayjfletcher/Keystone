@@ -2,13 +2,13 @@
 
 declare(strict_types=1);
 
-namespace RefactorCircus\Keystone\Tests;
+namespace RefactorCircus\Showroom\Tests;
 
 use Laravel\Pennant\PennantServiceProvider;
 use RefactorCircus\PennantPlus\PennantPlusServiceProvider;
 
 /**
- * Keystone booted with refactor-circus/pennantplus answering Atrium's feature checks.
+ * Showroom booted with refactor-circus/pennantplus answering Atrium's feature checks.
  */
 abstract class PennantPlusTestCase extends TestCase
 {

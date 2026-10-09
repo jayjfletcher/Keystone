@@ -2,21 +2,21 @@
 
 declare(strict_types=1);
 
-namespace RefactorCircus\Keystone\Domains;
+namespace RefactorCircus\Showroom\Domains;
 
 use Illuminate\Support\ServiceProvider;
-use RefactorCircus\Keystone\Domains\Asset\AssetServiceProvider;
-use RefactorCircus\Keystone\Domains\Association\AssociationServiceProvider;
-use RefactorCircus\Keystone\Domains\Attribute\AttributeServiceProvider;
-use RefactorCircus\Keystone\Domains\Category\CategoryServiceProvider;
-use RefactorCircus\Keystone\Domains\Channel\ChannelServiceProvider;
-use RefactorCircus\Keystone\Domains\Family\FamilyServiceProvider;
-use RefactorCircus\Keystone\Domains\Owner\OwnerServiceProvider;
-use RefactorCircus\Keystone\Domains\Product\ProductServiceProvider;
-use RefactorCircus\Keystone\Domains\ProductModel\ProductModelServiceProvider;
-use RefactorCircus\Keystone\Domains\Search\SearchServiceProvider;
-use RefactorCircus\Keystone\Domains\Transfer\TransferServiceProvider;
-use RefactorCircus\Keystone\Domains\Workflow\WorkflowServiceProvider;
+use RefactorCircus\Showroom\Domains\Asset\AssetServiceProvider;
+use RefactorCircus\Showroom\Domains\Association\AssociationServiceProvider;
+use RefactorCircus\Showroom\Domains\Attribute\AttributeServiceProvider;
+use RefactorCircus\Showroom\Domains\Category\CategoryServiceProvider;
+use RefactorCircus\Showroom\Domains\Channel\ChannelServiceProvider;
+use RefactorCircus\Showroom\Domains\Family\FamilyServiceProvider;
+use RefactorCircus\Showroom\Domains\Owner\OwnerServiceProvider;
+use RefactorCircus\Showroom\Domains\Product\ProductServiceProvider;
+use RefactorCircus\Showroom\Domains\ProductModel\ProductModelServiceProvider;
+use RefactorCircus\Showroom\Domains\Search\SearchServiceProvider;
+use RefactorCircus\Showroom\Domains\Transfer\TransferServiceProvider;
+use RefactorCircus\Showroom\Domains\Workflow\WorkflowServiceProvider;
 
 class DomainServiceProvider extends ServiceProvider
 {

@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-namespace RefactorCircus\Keystone\Domains\Category\Resources;
+namespace RefactorCircus\Showroom\Domains\Category\Resources;
 
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
-use RefactorCircus\Keystone\Domains\Category\Models\CategoryModel;
+use RefactorCircus\Showroom\Domains\Category\Models\CategoryModel;
 
 /**
  * @mixin CategoryModel

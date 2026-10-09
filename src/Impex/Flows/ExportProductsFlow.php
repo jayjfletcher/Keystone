@@ -2,14 +2,14 @@
 
 declare(strict_types=1);
 
-namespace RefactorCircus\Keystone\Impex\Flows;
+namespace RefactorCircus\Showroom\Impex\Flows;
 
 use RefactorCircus\Impex\Domains\Flow\Support\Flow;
-use RefactorCircus\Keystone\Impex\Actions\ExportProductPages;
-use RefactorCircus\Keystone\Impex\Actions\JoinProductExport;
+use RefactorCircus\Showroom\Impex\Actions\ExportProductPages;
+use RefactorCircus\Showroom\Impex\Actions\JoinProductExport;
 
 /**
- * `keystone:export-products` — the products a search matches, to a `.jsonl`
+ * `showroom:export-products` — the products a search matches, to a `.jsonl`
  * or `.csv` asset. With `published`, each product's live version is written
  * instead of its working copy, and unpublished products are left out.
  */
@@ -21,7 +21,7 @@ final class ExportProductsFlow extends Flow
      */
     public function handle(array $query = [], string $format = 'jsonl', ?string $code = null, bool $published = false): array
     {
-        $this->tag('keystone', 'export');
+        $this->tag('showroom', 'export');
 
         $runId = $this->context()->run->id;
 

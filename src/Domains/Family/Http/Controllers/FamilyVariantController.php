@@ -2,15 +2,15 @@
 
 declare(strict_types=1);
 
-namespace RefactorCircus\Keystone\Domains\Family\Http\Controllers;
+namespace RefactorCircus\Showroom\Domains\Family\Http\Controllers;
 
 use Illuminate\Http\JsonResponse;
-use RefactorCircus\Keystone\Domains\Family\Http\Requests\DeleteFamilyVariantRequest;
-use RefactorCircus\Keystone\Domains\Family\Http\Requests\IndexFamilyVariantsRequest;
-use RefactorCircus\Keystone\Domains\Family\Http\Requests\ShowFamilyVariantRequest;
-use RefactorCircus\Keystone\Domains\Family\Http\Requests\StoreFamilyVariantRequest;
-use RefactorCircus\Keystone\Domains\Family\Http\Requests\UpdateFamilyVariantRequest;
-use RefactorCircus\Keystone\Domains\Family\Models\FamilyVariantModel;
+use RefactorCircus\Showroom\Domains\Family\Http\Requests\DeleteFamilyVariantRequest;
+use RefactorCircus\Showroom\Domains\Family\Http\Requests\IndexFamilyVariantsRequest;
+use RefactorCircus\Showroom\Domains\Family\Http\Requests\ShowFamilyVariantRequest;
+use RefactorCircus\Showroom\Domains\Family\Http\Requests\StoreFamilyVariantRequest;
+use RefactorCircus\Showroom\Domains\Family\Http\Requests\UpdateFamilyVariantRequest;
+use RefactorCircus\Showroom\Domains\Family\Models\FamilyVariantModel;
 
 final class FamilyVariantController
 {

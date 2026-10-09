@@ -2,14 +2,14 @@
 
 declare(strict_types=1);
 
-namespace RefactorCircus\Keystone\Domains\Transfer\Mcp\Tools;
+namespace RefactorCircus\Showroom\Domains\Transfer\Mcp\Tools;
 
 use Illuminate\Contracts\JsonSchema\JsonSchema;
 use Laravel\Mcp\Response;
 use Laravel\Mcp\ResponseFactory;
 use Laravel\Mcp\Server\Attributes\Description;
 use RefactorCircus\Foundation\Mcp\Tool;
-use RefactorCircus\Keystone\Domains\Transfer\Mcp\Requests\StartExportMcpRequest;
+use RefactorCircus\Showroom\Domains\Transfer\Mcp\Requests\StartExportMcpRequest;
 
 #[Description('Start exporting products to a .jsonl or .csv file asset, as an Impex run. Takes the product search filters, plus scope and locales to narrow values. Asynchronous: the run\'s result names the asset.')]
 final class StartExportTool extends Tool

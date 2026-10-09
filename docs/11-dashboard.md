@@ -1,11 +1,11 @@
 # Dashboard
 
-Keystone registers itself with [Atrium](https://github.com/Refactor-Circus/Atrium) — discovered from `composer.json` and switched off with `keystone.ui.enabled`. Atrium owns the dashboard's path (`/atrium` by default), middleware and `viewAtrium` gate.
+Showroom registers itself with [Atrium](https://github.com/Refactor-Circus/Atrium) — discovered from `composer.json` and switched off with `showroom.ui.enabled`. Atrium owns the dashboard's path (`/atrium` by default), middleware and `viewAtrium` gate.
 
 - **Catalog → Products:** search through the configured engine, filter by family and status, create products, edit values (one input per attribute, typed), enable or disable, see inherited values.
 - **Catalog → Product models:** create root models, edit their values, add sub-models and variant products by picking their axis values.
 - **Products — workflow:** each product page shows its status and live version with buttons for the transitions open to it (and a comment), completeness per channel and locale with what is missing, and the latest history with revert. The product list shows and filters status. Family pages narrow each requirement to channels.
-- **Audit history (with [refactor-circus/keen](https://github.com/Refactor-Circus/Keen)):** product, product model, family, attribute, category, owner, asset and channel pages show that record's audit entries, and the product list shows Keystone's latest. Without Keen nothing renders. Product versions and revert stay as they are.
+- **Audit history (with [refactor-circus/keen](https://github.com/Refactor-Circus/Keen)):** product, product model, family, attribute, category, owner, asset and channel pages show that record's audit entries, and the product list shows Showroom's latest. Without Keen nothing renders. Product versions and revert stay as they are.
 - **Catalog → Association types:** create plain, two-way and quantified types. Product and product model pages list associations (inherited ones marked) and add or remove one at a time.
 - **Catalog → Channels:** add and remove locales; create channels with their locales, currencies and category tree.
 - **Values:** product and product model pages pick a locale and a channel, so every localizable and scopable value can be edited.
@@ -26,11 +26,11 @@ Keystone registers itself with [Atrium](https://github.com/Refactor-Circus/Atriu
 
 The pages call the same Actions as the API, so they validate the same way. The dashboard edits the label for the current locale only and keeps every other locale's label. Attribute settings are edited as JSON. 
 
-Publish the views with `--tag="keystone-views"` to change them.
+Publish the views with `--tag="showroom-views"` to change them.
 
 ## Look
 
-The screens follow Atrium's screen conventions. Every action - create, save, delete, filter, upload, link, a workflow transition, a back link - is an `<x-atrium::icon-button>`: an icon whose label is its tooltip and accessible name. Statuses are `<x-atrium::status-dot>`s, coloured in one place, `RefactorCircus\Keystone\Atrium\Badges`:
+The screens follow Atrium's screen conventions. Every action - create, save, delete, filter, upload, link, a workflow transition, a back link - is an `<x-atrium::icon-button>`: an icon whose label is its tooltip and accessible name. Statuses are `<x-atrium::status-dot>`s, coloured in one place, `RefactorCircus\Showroom\Atrium\Badges`:
 
 | Status | Colour |
 |---|---|
@@ -44,7 +44,7 @@ Each dot carries `data-status` with the raw value. Labels such as an attribute's
 
 ## Who sees what
 
-With `keystone.authorization` on, each screen asks the policies in `keystone.policies` exactly as the JSON API and MCP tools ask - the same ability on the same model or model class - through `RefactorCircus\Keystone\Atrium\ScreenAccess`. Controllers refuse with it (403) and views hide controls with it, so a control is shown exactly when its action is allowed:
+With `showroom.authorization` on, each screen asks the policies in `showroom.policies` exactly as the JSON API and MCP tools ask - the same ability on the same model or model class - through `RefactorCircus\Showroom\Atrium\ScreenAccess`. Controllers refuse with it (403) and views hide controls with it, so a control is shown exactly when its action is allowed:
 
 | Shown / allowed | Asks |
 |---|---|
@@ -62,19 +62,19 @@ With `keystone.authorization` on, each screen asks the policies in `keystone.pol
 Forms a user may view but not save (product, product model, attribute and family) are shown read-only, without the save button. In your own views, use the same check:
 
 ```blade
-@keystoneCan('update', $product)
+@showroomCan('update', $product)
     ...
-@endkeystoneCan
+@endshowroomCan
 ```
 
-With `keystone.authorization` off, everything is shown and allowed, and Atrium's `viewAtrium` gate is the only check.
+With `showroom.authorization` off, everything is shown and allowed, and Atrium's `viewAtrium` gate is the only check.
 
-## Switching Keystone off
+## Switching Showroom off
 
-With [refactor-circus/pennantplus](https://github.com/Refactor-Circus/PennantPlus) installed, `RefactorCircus\Keystone\Atrium\Features\KeystoneSupportFeature` switches Keystone in Atrium on and off as a whole: navigation, widgets, settings, search and pages (which answer 404). It is on until its global value is set, and only the global value counts - per-user access stays with the policies:
+With [refactor-circus/pennantplus](https://github.com/Refactor-Circus/PennantPlus) installed, `RefactorCircus\Showroom\Atrium\Features\ShowroomSupportFeature` switches Showroom in Atrium on and off as a whole: navigation, widgets, settings, search and pages (which answer 404). It is on until its global value is set, and only the global value counts - per-user access stays with the policies:
 
 ```php
-Feature::for(null)->deactivate(KeystoneSupportFeature::class);
+Feature::for(null)->deactivate(ShowroomSupportFeature::class);
 ```
 
-`keystone.atrium.features` lists the features that must all be on (default `[KeystoneSupportFeature::class]`): point it at a subclass to change the default, or at your own features. Feature classes that cannot be loaded - KeystoneSupportFeature without refactor-circus/pennantplus - are skipped, so nothing is checked until Pennant is installed. The JSON API and MCP tools are not affected.
+`showroom.atrium.features` lists the features that must all be on (default `[ShowroomSupportFeature::class]`): point it at a subclass to change the default, or at your own features. Feature classes that cannot be loaded - ShowroomSupportFeature without refactor-circus/pennantplus - are skipped, so nothing is checked until Pennant is installed. The JSON API and MCP tools are not affected.

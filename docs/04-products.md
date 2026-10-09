@@ -45,7 +45,7 @@ A product has an `identifier` (its SKU: letters, digits, dots, dashes and unders
 
 ## Unique attributes
 
-A value of an `is_unique` attribute can be held by one product only. The check is enforced by a unique index on `keystone_product_unique_values`, so it holds under concurrent writes. Unique attributes are neither localizable nor scopable, and in a family variant they sit on the last level.
+A value of an `is_unique` attribute can be held by one product only. The check is enforced by a unique index on `showroom_product_unique_values`, so it holds under concurrent writes. Unique attributes are neither localizable nor scopable, and in a family variant they sit on the last level.
 
 ## Variants
 

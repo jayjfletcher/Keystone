@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-namespace RefactorCircus\Keystone\Domains\Attribute\Mcp\Requests;
+namespace RefactorCircus\Showroom\Domains\Attribute\Mcp\Requests;
 
 use Laravel\Mcp\Response;
 use Laravel\Mcp\ResponseFactory;
-use RefactorCircus\Keystone\Domains\Attribute\Actions\DeleteAttributeOptionAction;
+use RefactorCircus\Showroom\Domains\Attribute\Actions\DeleteAttributeOptionAction;
 
 final class DeleteAttributeOptionMcpRequest extends AttributeOptionRequest
 {

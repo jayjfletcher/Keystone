@@ -2,13 +2,13 @@
 
 declare(strict_types=1);
 
-namespace RefactorCircus\Keystone\Domains\Product\Actions;
+namespace RefactorCircus\Showroom\Domains\Product\Actions;
 
-use RefactorCircus\Keystone\Domains\Association\Services\Associations;
-use RefactorCircus\Keystone\Domains\Attribute\Data\ValueFilter;
-use RefactorCircus\Keystone\Domains\Product\Events\ProductShowingActionEvent;
-use RefactorCircus\Keystone\Domains\Product\Events\ProductShownActionEvent;
-use RefactorCircus\Keystone\Domains\Product\Models\ProductModel;
+use RefactorCircus\Showroom\Domains\Association\Services\Associations;
+use RefactorCircus\Showroom\Domains\Attribute\Data\ValueFilter;
+use RefactorCircus\Showroom\Domains\Product\Events\ProductShowingActionEvent;
+use RefactorCircus\Showroom\Domains\Product\Events\ProductShownActionEvent;
+use RefactorCircus\Showroom\Domains\Product\Models\ProductModel;
 
 final class ShowProductAction
 {

@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-namespace RefactorCircus\Keystone\Domains\Asset\Http\Requests;
+namespace RefactorCircus\Showroom\Domains\Asset\Http\Requests;
 
 use Illuminate\Http\JsonResponse;
-use RefactorCircus\Keystone\Domains\Asset\Actions\ShowAssetAction;
-use RefactorCircus\Keystone\Domains\Asset\Resources\AssetResource;
+use RefactorCircus\Showroom\Domains\Asset\Actions\ShowAssetAction;
+use RefactorCircus\Showroom\Domains\Asset\Resources\AssetResource;
 
 final class ShowAssetRequest extends AssetRequest
 {

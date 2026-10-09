@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace RefactorCircus\Keystone\Tests;
+namespace RefactorCircus\Showroom\Tests;
 
 use Laravel\Ai\AiServiceProvider;
 use RefactorCircus\Cortex\CortexServiceProvider;

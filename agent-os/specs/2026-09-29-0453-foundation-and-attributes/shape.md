@@ -17,7 +17,7 @@ Families, products/product models/variants and dynamic ownership are out of scop
 - **Immutability:** `code` and `type` cannot change after creation (PIM convention; values depend on them).
 - **Options:** only allowed on select/multiselect attributes.
 - **Group deletion:** blocked while the group still has attributes.
-- **Tables:** hardcoded `keystone_*` names, no configurable prefix (keeps `exists:` rules in static `rules()` literal, as in Impex).
+- **Tables:** hardcoded `showroom_*` names, no configurable prefix (keeps `exists:` rules in static `rules()` literal, as in Impex).
 - **Addressing (changed during build):** routes, MCP arguments and dashboard URLs address records by immutable `code`, not ULID — codes are what integrations and agents hold. ULIDs remain the primary keys.
 - **Surfaces:** Atrium and Cortex included in this slice (product docs followed as-is).
 

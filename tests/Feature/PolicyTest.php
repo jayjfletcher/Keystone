@@ -3,60 +3,60 @@
 declare(strict_types=1);
 
 use Illuminate\Support\Facades\Gate;
-use RefactorCircus\Keystone\Domains\Asset\Models\AssetModel;
-use RefactorCircus\Keystone\Domains\Asset\Policies\AssetPolicy;
-use RefactorCircus\Keystone\Domains\Association\Models\AssociationTypeModel;
-use RefactorCircus\Keystone\Domains\Association\Policies\AssociationTypePolicy;
-use RefactorCircus\Keystone\Domains\Attribute\Mcp\Tools\CreateAttributeTool;
-use RefactorCircus\Keystone\Domains\Attribute\Mcp\Tools\ListAttributesTool;
-use RefactorCircus\Keystone\Domains\Attribute\Mcp\Tools\ShowAttributeTool;
-use RefactorCircus\Keystone\Domains\Attribute\Models\AttributeGroupModel;
-use RefactorCircus\Keystone\Domains\Attribute\Models\AttributeModel;
-use RefactorCircus\Keystone\Domains\Attribute\Models\AttributeOptionModel;
-use RefactorCircus\Keystone\Domains\Attribute\Policies\AttributeGroupPolicy;
-use RefactorCircus\Keystone\Domains\Attribute\Policies\AttributeOptionPolicy;
-use RefactorCircus\Keystone\Domains\Attribute\Policies\AttributePolicy;
-use RefactorCircus\Keystone\Domains\Category\Models\CategoryModel;
-use RefactorCircus\Keystone\Domains\Category\Policies\CategoryPolicy;
-use RefactorCircus\Keystone\Domains\Channel\Models\ChannelModel;
-use RefactorCircus\Keystone\Domains\Channel\Models\LocaleModel;
-use RefactorCircus\Keystone\Domains\Channel\Policies\ChannelPolicy;
-use RefactorCircus\Keystone\Domains\Channel\Policies\LocalePolicy;
-use RefactorCircus\Keystone\Domains\Family\Models\FamilyModel;
-use RefactorCircus\Keystone\Domains\Family\Models\FamilyVariantModel;
-use RefactorCircus\Keystone\Domains\Family\Policies\FamilyPolicy;
-use RefactorCircus\Keystone\Domains\Family\Policies\FamilyVariantPolicy;
-use RefactorCircus\Keystone\Domains\Owner\Models\OwnerModel;
-use RefactorCircus\Keystone\Domains\Owner\Models\OwnerTypeModel;
-use RefactorCircus\Keystone\Domains\Owner\Policies\OwnerPolicy;
-use RefactorCircus\Keystone\Domains\Owner\Policies\OwnerTypePolicy;
-use RefactorCircus\Keystone\Domains\Product\Models\ProductModel;
-use RefactorCircus\Keystone\Domains\Product\Policies\ProductPolicy;
-use RefactorCircus\Keystone\Domains\ProductModel\Models\ProductModelModel;
-use RefactorCircus\Keystone\Domains\ProductModel\Policies\ProductModelPolicy;
-use RefactorCircus\Keystone\KeystoneServiceProvider;
-use RefactorCircus\Keystone\Tests\Fixtures\ReadOnlyAttributePolicy;
+use RefactorCircus\Showroom\Domains\Asset\Models\AssetModel;
+use RefactorCircus\Showroom\Domains\Asset\Policies\AssetPolicy;
+use RefactorCircus\Showroom\Domains\Association\Models\AssociationTypeModel;
+use RefactorCircus\Showroom\Domains\Association\Policies\AssociationTypePolicy;
+use RefactorCircus\Showroom\Domains\Attribute\Mcp\Tools\CreateAttributeTool;
+use RefactorCircus\Showroom\Domains\Attribute\Mcp\Tools\ListAttributesTool;
+use RefactorCircus\Showroom\Domains\Attribute\Mcp\Tools\ShowAttributeTool;
+use RefactorCircus\Showroom\Domains\Attribute\Models\AttributeGroupModel;
+use RefactorCircus\Showroom\Domains\Attribute\Models\AttributeModel;
+use RefactorCircus\Showroom\Domains\Attribute\Models\AttributeOptionModel;
+use RefactorCircus\Showroom\Domains\Attribute\Policies\AttributeGroupPolicy;
+use RefactorCircus\Showroom\Domains\Attribute\Policies\AttributeOptionPolicy;
+use RefactorCircus\Showroom\Domains\Attribute\Policies\AttributePolicy;
+use RefactorCircus\Showroom\Domains\Category\Models\CategoryModel;
+use RefactorCircus\Showroom\Domains\Category\Policies\CategoryPolicy;
+use RefactorCircus\Showroom\Domains\Channel\Models\ChannelModel;
+use RefactorCircus\Showroom\Domains\Channel\Models\LocaleModel;
+use RefactorCircus\Showroom\Domains\Channel\Policies\ChannelPolicy;
+use RefactorCircus\Showroom\Domains\Channel\Policies\LocalePolicy;
+use RefactorCircus\Showroom\Domains\Family\Models\FamilyModel;
+use RefactorCircus\Showroom\Domains\Family\Models\FamilyVariantModel;
+use RefactorCircus\Showroom\Domains\Family\Policies\FamilyPolicy;
+use RefactorCircus\Showroom\Domains\Family\Policies\FamilyVariantPolicy;
+use RefactorCircus\Showroom\Domains\Owner\Models\OwnerModel;
+use RefactorCircus\Showroom\Domains\Owner\Models\OwnerTypeModel;
+use RefactorCircus\Showroom\Domains\Owner\Policies\OwnerPolicy;
+use RefactorCircus\Showroom\Domains\Owner\Policies\OwnerTypePolicy;
+use RefactorCircus\Showroom\Domains\Product\Models\ProductModel;
+use RefactorCircus\Showroom\Domains\Product\Policies\ProductPolicy;
+use RefactorCircus\Showroom\Domains\ProductModel\Models\ProductModelModel;
+use RefactorCircus\Showroom\Domains\ProductModel\Policies\ProductModelPolicy;
+use RefactorCircus\Showroom\ShowroomServiceProvider;
+use RefactorCircus\Showroom\Tests\Fixtures\ReadOnlyAttributePolicy;
 use Workbench\App\Models\User;
 
 beforeEach(function (): void {
-    config()->set('keystone.authorization', true);
+    config()->set('showroom.authorization', true);
 
     $this->ann = User::forceCreate(['name' => 'Ann', 'email' => 'ann@example.test', 'password' => 'x']);
 });
 
 /**
- * Register the policies again after a test changes `keystone.policies`, as
+ * Register the policies again after a test changes `showroom.policies`, as
  * the provider does on boot.
  *
  * @param  array<class-string, class-string>  $policies
  */
-function useKeystonePolicies(array $policies): void
+function useShowroomPolicies(array $policies): void
 {
     foreach ($policies as $model => $policy) {
-        config()->set('keystone.policies.'.$model, $policy);
+        config()->set('showroom.policies.'.$model, $policy);
     }
 
-    $provider = app()->getProvider(KeystoneServiceProvider::class);
+    $provider = app()->getProvider(ShowroomServiceProvider::class);
 
     (fn () => $this->registerPolicies())->call($provider);
 }
@@ -79,37 +79,37 @@ it('registers the policies from the config', function (): void {
 });
 
 it('refuses a guest once authorization is on', function (): void {
-    $this->getJson('/keystone/attributes')->assertForbidden();
-    $this->postJson('/keystone/attributes', ['code' => 'color', 'type' => 'select'])->assertForbidden();
+    $this->getJson('/showroom/attributes')->assertForbidden();
+    $this->postJson('/showroom/attributes', ['code' => 'color', 'type' => 'select'])->assertForbidden();
     mcpTool(ListAttributesTool::class)->assertHasErrors(['Unauthorized.']);
 });
 
 it('lets an authenticated user manage the catalog by default', function (): void {
     $this->actingAs($this->ann);
 
-    $this->postJson('/keystone/attributes', ['code' => 'color', 'type' => 'select'])->assertCreated();
-    $this->getJson('/keystone/attributes/color')->assertOk();
+    $this->postJson('/showroom/attributes', ['code' => 'color', 'type' => 'select'])->assertCreated();
+    $this->getJson('/showroom/attributes/color')->assertOk();
     mcpTool(ShowAttributeTool::class, ['attribute' => 'color'])->assertOk();
 });
 
 it('leaves the API to the route middleware while authorization is off', function (): void {
-    config()->set('keystone.authorization', false);
+    config()->set('showroom.authorization', false);
 
     AttributeModel::factory()->create(['code' => 'name']);
 
-    $this->getJson('/keystone/attributes/name')->assertOk();
+    $this->getJson('/showroom/attributes/name')->assertOk();
     mcpTool(ShowAttributeTool::class, ['attribute' => 'name'])->assertOk();
 });
 
 it('applies a policy swapped in through the config', function (): void {
-    useKeystonePolicies([AttributeModel::class => ReadOnlyAttributePolicy::class]);
+    useShowroomPolicies([AttributeModel::class => ReadOnlyAttributePolicy::class]);
 
     $this->actingAs($this->ann);
     AttributeModel::factory()->create(['code' => 'name']);
 
-    $this->getJson('/keystone/attributes/name')->assertOk();
-    $this->postJson('/keystone/attributes', ['code' => 'color', 'type' => 'select'])->assertForbidden();
-    $this->patchJson('/keystone/attributes/name', ['labels' => ['en' => 'Name']])->assertForbidden();
-    $this->deleteJson('/keystone/attributes/name')->assertForbidden();
+    $this->getJson('/showroom/attributes/name')->assertOk();
+    $this->postJson('/showroom/attributes', ['code' => 'color', 'type' => 'select'])->assertForbidden();
+    $this->patchJson('/showroom/attributes/name', ['labels' => ['en' => 'Name']])->assertForbidden();
+    $this->deleteJson('/showroom/attributes/name')->assertForbidden();
     mcpTool(CreateAttributeTool::class, ['code' => 'color', 'type' => 'select'])->assertHasErrors(['Unauthorized.']);
 });

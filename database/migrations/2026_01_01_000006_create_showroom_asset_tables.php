@@ -10,7 +10,7 @@ return new class extends Migration
 {
     public function up(): void
     {
-        Schema::create('keystone_assets', function (Blueprint $table): void {
+        Schema::create('showroom_assets', function (Blueprint $table): void {
             $table->ulid('id')->primary();
             $table->string('code', 191)->unique();
             $table->json('labels')->nullable();
@@ -27,8 +27,8 @@ return new class extends Migration
 
         // Polymorphic, so one asset serves products, product models and any
         // level of an ownership chain, each under a role.
-        Schema::create('keystone_asset_links', function (Blueprint $table): void {
-            $table->foreignUlid('asset_id')->constrained('keystone_assets')->cascadeOnDelete();
+        Schema::create('showroom_asset_links', function (Blueprint $table): void {
+            $table->foreignUlid('asset_id')->constrained('showroom_assets')->cascadeOnDelete();
             $table->string('linkable_type', 64);
             $table->ulid('linkable_id');
             $table->string('role', 100)->default('media');
@@ -41,7 +41,7 @@ return new class extends Migration
 
     public function down(): void
     {
-        Schema::dropIfExists('keystone_asset_links');
-        Schema::dropIfExists('keystone_assets');
+        Schema::dropIfExists('showroom_asset_links');
+        Schema::dropIfExists('showroom_assets');
     }
 };

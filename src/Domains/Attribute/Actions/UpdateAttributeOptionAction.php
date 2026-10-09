@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-namespace RefactorCircus\Keystone\Domains\Attribute\Actions;
+namespace RefactorCircus\Showroom\Domains\Attribute\Actions;
 
-use RefactorCircus\Keystone\Domains\Attribute\Events\AttributeOptionUpdatedActionEvent;
-use RefactorCircus\Keystone\Domains\Attribute\Events\AttributeOptionUpdatingActionEvent;
-use RefactorCircus\Keystone\Domains\Attribute\Models\AttributeOptionModel;
+use RefactorCircus\Showroom\Domains\Attribute\Events\AttributeOptionUpdatedActionEvent;
+use RefactorCircus\Showroom\Domains\Attribute\Events\AttributeOptionUpdatingActionEvent;
+use RefactorCircus\Showroom\Domains\Attribute\Models\AttributeOptionModel;
 
 final class UpdateAttributeOptionAction
 {

@@ -2,12 +2,12 @@
 
 declare(strict_types=1);
 
-namespace RefactorCircus\Keystone\Domains\Family\Actions;
+namespace RefactorCircus\Showroom\Domains\Family\Actions;
 
-use RefactorCircus\Keystone\Domains\Family\Events\FamilyVariantDeletedActionEvent;
-use RefactorCircus\Keystone\Domains\Family\Events\FamilyVariantDeletingActionEvent;
-use RefactorCircus\Keystone\Domains\Family\Models\FamilyVariantModel;
-use RefactorCircus\Keystone\Exceptions\ModelInUseException;
+use RefactorCircus\Showroom\Domains\Family\Events\FamilyVariantDeletedActionEvent;
+use RefactorCircus\Showroom\Domains\Family\Events\FamilyVariantDeletingActionEvent;
+use RefactorCircus\Showroom\Domains\Family\Models\FamilyVariantModel;
+use RefactorCircus\Showroom\Exceptions\ModelInUseException;
 
 final class DeleteFamilyVariantAction
 {

@@ -3,10 +3,10 @@
 declare(strict_types=1);
 
 use Laravel\Scout\EngineManager;
-use RefactorCircus\Keystone\Domains\Search\Contracts\SearchEngine;
-use RefactorCircus\Keystone\Domains\Search\Services\ScoutEngine;
-use RefactorCircus\Keystone\Tests\Fixtures\Catalog;
-use RefactorCircus\Keystone\Tests\Fixtures\RecordingScoutEngine;
+use RefactorCircus\Showroom\Domains\Search\Contracts\SearchEngine;
+use RefactorCircus\Showroom\Domains\Search\Services\ScoutEngine;
+use RefactorCircus\Showroom\Tests\Fixtures\Catalog;
+use RefactorCircus\Showroom\Tests\Fixtures\RecordingScoutEngine;
 
 beforeEach(function (): void {
     $scout = $this->scout = new RecordingScoutEngine;
@@ -16,13 +16,13 @@ beforeEach(function (): void {
     app(EngineManager::class)->extend('recording', fn (): RecordingScoutEngine => $scout);
 
     config()->set('scout.driver', 'recording');
-    config()->set('keystone.search.engine', 'scout');
+    config()->set('showroom.search.engine', 'scout');
 
     Catalog::apparel();
 
-    $this->postJson('/keystone/products', ['identifier' => 'TEE-RED', 'family' => 'shirts', 'values' => ['color' => Catalog::value('red')]])->assertCreated();
-    $this->postJson('/keystone/products', ['identifier' => 'TEE-BLUE', 'family' => 'shirts', 'values' => ['color' => Catalog::value('blue')]])->assertCreated();
-    $this->postJson('/keystone/products', ['identifier' => 'MUG', 'enabled' => false])->assertCreated();
+    $this->postJson('/showroom/products', ['identifier' => 'TEE-RED', 'family' => 'shirts', 'values' => ['color' => Catalog::value('red')]])->assertCreated();
+    $this->postJson('/showroom/products', ['identifier' => 'TEE-BLUE', 'family' => 'shirts', 'values' => ['color' => Catalog::value('blue')]])->assertCreated();
+    $this->postJson('/showroom/products', ['identifier' => 'MUG', 'enabled' => false])->assertCreated();
 });
 
 it('resolves the Scout-backed engine', function (): void {
@@ -33,13 +33,13 @@ it('indexes products through the configured Scout engine', function (): void {
     expect($this->scout->documents)->toHaveCount(3)
         ->and(collect($this->scout->documents)->pluck('identifier')->sort()->values()->all())->toBe(['MUG', 'TEE-BLUE', 'TEE-RED']);
 
-    $this->deleteJson('/keystone/products/MUG')->assertNoContent();
+    $this->deleteJson('/showroom/products/MUG')->assertNoContent();
 
     expect($this->scout->documents)->toHaveCount(2);
 });
 
 it('searches with equality filters', function (): void {
-    $this->getJson('/keystone/products?'.http_build_query([
+    $this->getJson('/showroom/products?'.http_build_query([
         'family' => 'shirts',
         'filters' => [['attribute' => 'color', 'operator' => 'in', 'value' => ['red']]],
     ]))
@@ -51,9 +51,9 @@ it('searches with equality filters', function (): void {
 });
 
 it('passes comparisons through to the Scout engine', function (): void {
-    $this->patchJson('/keystone/products/TEE-BLUE', ['values' => ['weight' => Catalog::value(['amount' => 300, 'unit' => 'gram'])]])->assertOk();
+    $this->patchJson('/showroom/products/TEE-BLUE', ['values' => ['weight' => Catalog::value(['amount' => 300, 'unit' => 'gram'])]])->assertOk();
 
-    $this->getJson('/keystone/products?'.http_build_query(['filters' => [['attribute' => 'weight', 'operator' => '>', 'value' => '200']]]))
+    $this->getJson('/showroom/products?'.http_build_query(['filters' => [['attribute' => 'weight', 'operator' => '>', 'value' => '200']]]))
         ->assertOk()
         ->assertJsonPath('meta.total', 1)
         ->assertJsonPath('data.0.identifier', 'TEE-BLUE');
@@ -62,13 +62,13 @@ it('passes comparisons through to the Scout engine', function (): void {
 });
 
 it('refuses filters Scout cannot express', function (): void {
-    $this->getJson('/keystone/products?'.http_build_query(['filters' => [['attribute' => 'color', 'operator' => 'empty']]]))
+    $this->getJson('/showroom/products?'.http_build_query(['filters' => [['attribute' => 'color', 'operator' => 'empty']]]))
         ->assertUnprocessable()
         ->assertJsonPath('message', 'The scout search engine cannot filter attribute "color" with "empty".');
 });
 
 it('rebuilds the Scout index', function (): void {
-    $this->artisan('keystone:search:reindex')->expectsOutputToContain('Indexed 3 products.')->assertSuccessful();
+    $this->artisan('showroom:search:reindex')->expectsOutputToContain('Indexed 3 products.')->assertSuccessful();
 
     expect($this->scout->flushes)->toBe(1)
         ->and($this->scout->documents)->toHaveCount(3);

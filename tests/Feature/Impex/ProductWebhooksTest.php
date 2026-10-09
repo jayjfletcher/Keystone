@@ -9,14 +9,14 @@ use RefactorCircus\Impex\Domains\Subscription\Actions\CreateSubscriberAction;
 use RefactorCircus\Impex\Domains\Subscription\Actions\CreateSubscriptionAction;
 use RefactorCircus\Impex\Domains\Subscription\Models\SubscriptionModel;
 use RefactorCircus\Impex\Domains\Subscription\Services\Exporter;
-use RefactorCircus\Keystone\Impex\ImpexIntegration;
-use RefactorCircus\Keystone\Tests\Fixtures\Catalog;
+use RefactorCircus\Showroom\Impex\ImpexIntegration;
+use RefactorCircus\Showroom\Tests\Fixtures\Catalog;
 
 beforeEach(function (): void {
-    config()->set('keystone.impex.webhooks.enabled', true);
-    config()->set('keystone.workflow.require_approval', false);
+    config()->set('showroom.impex.webhooks.enabled', true);
+    config()->set('showroom.workflow.require_approval', false);
     config()->set('impex.outbound.guard', false);
-    config()->set('keystone.media.disk', 'assets');
+    config()->set('showroom.media.disk', 'assets');
     Storage::fake('assets');
 
     // The integration registers at boot; with webhooks switched on after it,
@@ -26,9 +26,9 @@ beforeEach(function (): void {
     Http::fake(['vendor.test/*' => Http::response(['ok' => true])]);
 
     Catalog::apparel();
-    $this->postJson('/keystone/categories', ['code' => 'master'])->assertCreated();
-    $this->postJson('/keystone/categories', ['code' => 'tools', 'parent' => 'master'])->assertCreated();
-    $this->postJson('/keystone/categories', ['code' => 'garden', 'parent' => 'master'])->assertCreated();
+    $this->postJson('/showroom/categories', ['code' => 'master'])->assertCreated();
+    $this->postJson('/showroom/categories', ['code' => 'tools', 'parent' => 'master'])->assertCreated();
+    $this->postJson('/showroom/categories', ['code' => 'garden', 'parent' => 'master'])->assertCreated();
 });
 
 /**
@@ -38,7 +38,7 @@ function vendorSubscription(array $data = []): SubscriptionModel
 {
     return app(CreateSubscriptionAction::class)->execute(
         app(CreateSubscriberAction::class)->execute(['name' => 'Vendor']),
-        ['stream' => 'keystone.products', 'endpoint' => ['url' => 'https://vendor.test/'.($data['path'] ?? 'hooks')], ...array_diff_key($data, ['path' => true])],
+        ['stream' => 'showroom.products', 'endpoint' => ['url' => 'https://vendor.test/'.($data['path'] ?? 'hooks')], ...array_diff_key($data, ['path' => true])],
     )['subscription'];
 }
 
@@ -48,14 +48,14 @@ function vendorSubscription(array $data = []): SubscriptionModel
  */
 function publishedProduct(string $identifier, array $values, array $categories = ['tools']): void
 {
-    test()->postJson('/keystone/products', [
+    test()->postJson('/showroom/products', [
         'identifier' => $identifier,
         'family' => 'shirts',
         'categories' => $categories,
         'values' => $values,
     ])->assertCreated();
 
-    test()->postJson("/keystone/products/{$identifier}/transitions", ['transition' => 'publish'])->assertOk();
+    test()->postJson("/showroom/products/{$identifier}/transitions", ['transition' => 'publish'])->assertOk();
 }
 
 /**
@@ -96,12 +96,12 @@ it('sends only the topics that changed, and only to vendors following them', fun
 
     publishedProduct('TEE-1', ['name' => Catalog::value('Classic tee'), 'price' => Catalog::value([['amount' => 19.99, 'currency' => 'USD']])]);
 
-    $this->patchJson('/keystone/products/TEE-1', ['values' => ['price' => Catalog::value([['amount' => 24.99, 'currency' => 'USD']])]])->assertOk();
+    $this->patchJson('/showroom/products/TEE-1', ['values' => ['price' => Catalog::value([['amount' => 24.99, 'currency' => 'USD']])]])->assertOk();
 
     // A draft edit is not published, so nothing leaves.
     expect(deliveredTo('pricing'))->toHaveCount(1);
 
-    $this->postJson('/keystone/products/TEE-1/transitions', ['transition' => 'publish'])->assertOk();
+    $this->postJson('/showroom/products/TEE-1/transitions', ['transition' => 'publish'])->assertOk();
 
     $pricing = deliveredTo('pricing');
 
@@ -118,7 +118,7 @@ it('tells vendors to forget an unpublished product', function (): void {
     vendorSubscription(['path' => 'hooks', 'format' => 'thin']);
 
     publishedProduct('TEE-1', ['name' => Catalog::value('Classic tee')]);
-    $this->postJson('/keystone/products/TEE-1/transitions', ['transition' => 'unpublish'])->assertOk();
+    $this->postJson('/showroom/products/TEE-1/transitions', ['transition' => 'unpublish'])->assertOk();
 
     expect(array_column(deliveredTo('hooks'), 'type'))->toBe(['changed', 'removed']);
 });
@@ -127,7 +127,7 @@ it('tells vendors to forget a deleted product', function (): void {
     vendorSubscription(['path' => 'hooks']);
 
     publishedProduct('TEE-1', ['name' => Catalog::value('Classic tee')]);
-    $this->deleteJson('/keystone/products/TEE-1')->assertNoContent();
+    $this->deleteJson('/showroom/products/TEE-1')->assertNoContent();
 
     expect(array_column(deliveredTo('hooks'), 'type'))->toBe(['changed', 'removed']);
 });
@@ -138,8 +138,8 @@ it('pushes linked assets with a URL and checksum, never the storage path', funct
     publishedProduct('TEE-1', ['name' => Catalog::value('Classic tee')]);
 
     Storage::disk('assets')->put('incoming/front.jpg', 'jpeg-bytes');
-    $this->postJson('/keystone/assets', ['code' => 'tee-front', 'path' => 'incoming/front.jpg'])->assertCreated();
-    $this->postJson('/keystone/assets/tee-front/links', ['type' => 'product', 'target' => 'TEE-1', 'role' => 'front'])->assertSuccessful();
+    $this->postJson('/showroom/assets', ['code' => 'tee-front', 'path' => 'incoming/front.jpg'])->assertCreated();
+    $this->postJson('/showroom/assets/tee-front/links', ['type' => 'product', 'target' => 'TEE-1', 'role' => 'front'])->assertSuccessful();
 
     $delivered = deliveredTo('assets');
 

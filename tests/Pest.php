@@ -7,10 +7,10 @@ use Laravel\Mcp\Server\Testing\TestResponse;
 use Laravel\Mcp\Server\Tool;
 use Laravel\Mcp\Server\Transport\FakeTransporter;
 use Laravel\Mcp\Transport\JsonRpcResponse;
-use RefactorCircus\Keystone\Mcp\KeystoneServer;
-use RefactorCircus\Keystone\Tests\CortexTestCase;
-use RefactorCircus\Keystone\Tests\PennantPlusTestCase;
-use RefactorCircus\Keystone\Tests\TestCase;
+use RefactorCircus\Showroom\Mcp\ShowroomServer;
+use RefactorCircus\Showroom\Tests\CortexTestCase;
+use RefactorCircus\Showroom\Tests\PennantPlusTestCase;
+use RefactorCircus\Showroom\Tests\TestCase;
 
 uses(TestCase::class)->in('Feature', 'Unit');
 uses(CortexTestCase::class)->in('Cortex');
@@ -19,7 +19,7 @@ uses(PennantPlusTestCase::class)->in('PennantPlus');
 /**
  * Call a catalog tool the way a client must now reach it.
  *
- * Every Keystone tool sits behind ToolSearch, so the individual tools are no
+ * Every Showroom tool sits behind ToolSearch, so the individual tools are no
  * longer registered primitives: they are reachable only through the
  * execute_tools entry point. This resolves the tool's registered name and
  * routes the call through that entry point, returning the inner tool's own
@@ -30,7 +30,7 @@ uses(PennantPlusTestCase::class)->in('PennantPlus');
  */
 function mcpTool(string $tool, array $arguments = []): TestResponse
 {
-    $entryPoints = (new KeystoneServer(new FakeTransporter))->createContext()->tools();
+    $entryPoints = (new ShowroomServer(new FakeTransporter))->createContext()->tools();
 
     $execute = $entryPoints->firstOrFail(
         fn (Tool $candidate): bool => $candidate->name() === 'execute_tools',

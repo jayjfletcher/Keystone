@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace RefactorCircus\Keystone\Atrium\Http\Controllers;
+namespace RefactorCircus\Showroom\Atrium\Http\Controllers;
 
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\RedirectResponse;
@@ -10,14 +10,14 @@ use Illuminate\Http\Request;
 use RefactorCircus\Atrium\Http\Controllers\Concerns\AuthorizesScreens;
 use RefactorCircus\Impex\Domains\Run\Models\RunModel;
 use RefactorCircus\Impex\Facades\Impex;
-use RefactorCircus\Keystone\Atrium\ScreenAccess;
-use RefactorCircus\Keystone\Domains\Category\Models\CategoryModel;
-use RefactorCircus\Keystone\Domains\Channel\Models\ChannelModel;
-use RefactorCircus\Keystone\Domains\Family\Models\FamilyModel;
-use RefactorCircus\Keystone\Domains\Product\Models\ProductModel;
-use RefactorCircus\Keystone\Domains\Transfer\Actions\StartExportAction;
-use RefactorCircus\Keystone\Domains\Transfer\Actions\StartImportAction;
-use RefactorCircus\Keystone\Impex\ImpexIntegration;
+use RefactorCircus\Showroom\Atrium\ScreenAccess;
+use RefactorCircus\Showroom\Domains\Category\Models\CategoryModel;
+use RefactorCircus\Showroom\Domains\Channel\Models\ChannelModel;
+use RefactorCircus\Showroom\Domains\Family\Models\FamilyModel;
+use RefactorCircus\Showroom\Domains\Product\Models\ProductModel;
+use RefactorCircus\Showroom\Domains\Transfer\Actions\StartExportAction;
+use RefactorCircus\Showroom\Domains\Transfer\Actions\StartImportAction;
+use RefactorCircus\Showroom\Impex\ImpexIntegration;
 
 /**
  * Imports and exports: start one, and follow the latest runs.
@@ -33,12 +33,12 @@ final class TransferUiController
         $active = app(ImpexIntegration::class)->active();
 
         /** @var view-string $view */
-        $view = 'keystone::ui.transfers.index';
+        $view = 'showroom::ui.transfers.index';
 
         return view($view, [
             'active' => $active,
             'runs' => $active
-                ? RunModel::query()->where('flow', 'like', 'keystone:%')->latest('created_at')->limit(20)->get()
+                ? RunModel::query()->where('flow', 'like', 'showroom:%')->latest('created_at')->limit(20)->get()
                     ->map(fn (RunModel $run): array => ['run' => $run, 'result' => $run->status->value === 'completed' ? Impex::result($run) : null])
                 : collect(),
             'families' => FamilyModel::query()->orderBy('code')->pluck('code', 'code')->all(),
@@ -53,7 +53,7 @@ final class TransferUiController
 
         app(StartImportAction::class)->execute($request->validate(StartImportAction::rules()));
 
-        return back()->with('status', __('keystone::keystone.import_started'));
+        return back()->with('status', __('showroom::showroom.import_started'));
     }
 
     public function export(Request $request): RedirectResponse
@@ -64,6 +64,6 @@ final class TransferUiController
 
         app(StartExportAction::class)->execute($data);
 
-        return back()->with('status', __('keystone::keystone.export_started'));
+        return back()->with('status', __('showroom::showroom.export_started'));
     }
 }

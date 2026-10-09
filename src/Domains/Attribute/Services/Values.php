@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace RefactorCircus\Keystone\Domains\Attribute\Services;
+namespace RefactorCircus\Showroom\Domains\Attribute\Services;
 
 /**
- * Converts attribute values between the two shapes Keystone uses.
+ * Converts attribute values between the two shapes Showroom uses.
  *
  * - **Standard** (API, MCP, Actions): per attribute, a list of slots —
  *   `{"name": [{"locale": "en", "scope": null, "data": "Shoe"}]}`.

@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-namespace RefactorCircus\Keystone\Domains\Attribute\Actions;
+namespace RefactorCircus\Showroom\Domains\Attribute\Actions;
 
-use RefactorCircus\Keystone\Domains\Attribute\Events\AttributeGroupCreatedActionEvent;
-use RefactorCircus\Keystone\Domains\Attribute\Events\AttributeGroupCreatingActionEvent;
-use RefactorCircus\Keystone\Domains\Attribute\Models\AttributeGroupModel;
+use RefactorCircus\Showroom\Domains\Attribute\Events\AttributeGroupCreatedActionEvent;
+use RefactorCircus\Showroom\Domains\Attribute\Events\AttributeGroupCreatingActionEvent;
+use RefactorCircus\Showroom\Domains\Attribute\Models\AttributeGroupModel;
 
 final class CreateAttributeGroupAction
 {
@@ -16,7 +16,7 @@ final class CreateAttributeGroupAction
     public static function rules(): array
     {
         return [
-            'code' => ['required', 'string', 'max:100', 'regex:/^[a-z][a-z0-9_]*$/', 'unique:keystone_attribute_groups,code'],
+            'code' => ['required', 'string', 'max:100', 'regex:/^[a-z][a-z0-9_]*$/', 'unique:showroom_attribute_groups,code'],
             'labels' => ['sometimes', 'nullable', 'array'],
             'labels.*' => ['nullable', 'string', 'max:255'],
             'sort_order' => ['sometimes', 'integer', 'min:0'],

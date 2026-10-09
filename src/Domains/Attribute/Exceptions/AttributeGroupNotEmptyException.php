@@ -2,12 +2,12 @@
 
 declare(strict_types=1);
 
-namespace RefactorCircus\Keystone\Domains\Attribute\Exceptions;
+namespace RefactorCircus\Showroom\Domains\Attribute\Exceptions;
 
-use RefactorCircus\Keystone\Domains\Attribute\Models\AttributeGroupModel;
-use RefactorCircus\Keystone\Exceptions\KeystoneException;
+use RefactorCircus\Showroom\Domains\Attribute\Models\AttributeGroupModel;
+use RefactorCircus\Showroom\Exceptions\ShowroomException;
 
-final class AttributeGroupNotEmptyException extends KeystoneException
+final class AttributeGroupNotEmptyException extends ShowroomException
 {
     public static function for(AttributeGroupModel $group, int $attributes): self
     {

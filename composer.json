@@ -1,13 +1,13 @@
 {
     "$schema": "https://getcomposer.org/schema.json",
-    "name": "refactor-circus/keystone",
+    "name": "refactor-circus/showroom",
     "description": "PIM",
     "keywords": [
         "laravel",
         "refactor-circus",
-        "keystone"
+        "showroom"
     ],
-    "homepage": "https://github.com/refactor-circus/keystone",
+    "homepage": "https://github.com/refactor-circus/showroom",
     "license": "MIT",
     "authors": [
         {
@@ -39,21 +39,21 @@
         "phpstan/extension-installer": "^1.4"
     },
     "suggest": {
-        "refactor-circus/cortex": "Let Cortex agents use the Keystone tools and manage the MCP instructions and tool descriptions (dev-main).",
+        "refactor-circus/cortex": "Let Cortex agents use the Showroom tools and manage the MCP instructions and tool descriptions (dev-main).",
         "refactor-circus/impex": "Import, export and syndicate products as Impex flows: file imports, feeds, ERP and storefront connectors (dev-main).",
-        "refactor-circus/keen": "Record Keystone's changes in a tamper-evident audit log and show each record's history in Atrium (dev-main).",
-        "refactor-circus/pennantplus": "Switch Keystone in Atrium on and off with the KeystoneSupportFeature Pennant feature (dev-main).",
+        "refactor-circus/keen": "Record Showroom's changes in a tamper-evident audit log and show each record's history in Atrium (dev-main).",
+        "refactor-circus/pennantplus": "Switch Showroom in Atrium on and off with the ShowroomSupportFeature Pennant feature (dev-main).",
         "laravel/scout": "Search products with any Laravel Scout engine: Meilisearch, Typesense, Algolia (^11.0)."
     },
     "autoload": {
         "psr-4": {
-            "RefactorCircus\\Keystone\\": "src/"
+            "RefactorCircus\\Showroom\\": "src/"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "RefactorCircus\\Keystone\\Database\\Factories\\": "database/factories/",
-            "RefactorCircus\\Keystone\\Tests\\": "tests/",
+            "RefactorCircus\\Showroom\\Database\\Factories\\": "database/factories/",
+            "RefactorCircus\\Showroom\\Tests\\": "tests/",
             "Workbench\\App\\": "workbench/app/",
             "Workbench\\Database\\Factories\\": "workbench/database/factories/",
             "Workbench\\Database\\Seeders\\": "workbench/database/seeders/"
@@ -104,15 +104,15 @@
     "extra": {
         "laravel": {
             "providers": [
-                "RefactorCircus\\Keystone\\KeystoneServiceProvider"
+                "RefactorCircus\\Showroom\\ShowroomServiceProvider"
             ],
             "aliases": {
-                "Keystone": "RefactorCircus\\Keystone\\Facades\\Keystone"
+                "Showroom": "RefactorCircus\\Showroom\\Facades\\Showroom"
             }
         },
         "atrium": {
             "plugins": [
-                "RefactorCircus\\Keystone\\Atrium\\KeystonePlugin"
+                "RefactorCircus\\Showroom\\Atrium\\ShowroomPlugin"
             ]
         }
     },

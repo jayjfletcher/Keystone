@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace RefactorCircus\Keystone\Domains\Asset\Services;
+namespace RefactorCircus\Showroom\Domains\Asset\Services;
 
 use Illuminate\Contracts\Config\Repository as Config;
 use Illuminate\Contracts\Filesystem\Factory as Filesystems;
@@ -12,8 +12,8 @@ use Illuminate\Http\Client\Factory as Http;
 use Illuminate\Http\UploadedFile;
 use Illuminate\Support\Str;
 use Illuminate\Validation\ValidationException;
-use RefactorCircus\Keystone\Domains\Asset\Data\StoredFile;
-use RefactorCircus\Keystone\Domains\Asset\Models\AssetModel;
+use RefactorCircus\Showroom\Domains\Asset\Data\StoredFile;
+use RefactorCircus\Showroom\Domains\Asset\Models\AssetModel;
 
 /**
  * Reads and writes asset files on the configured disk.
@@ -34,7 +34,7 @@ final class AssetStorage
      */
     public function diskName(): string
     {
-        $disk = $this->config->get('keystone.media.disk');
+        $disk = $this->config->get('showroom.media.disk');
 
         return is_string($disk) && $disk !== '' ? $disk : $this->config->string('filesystems.default', 'local');
     }
@@ -68,7 +68,7 @@ final class AssetStorage
     {
         try {
             $response = $this->http
-                ->timeout($this->config->integer('keystone.media.download_timeout', 30))
+                ->timeout($this->config->integer('showroom.media.download_timeout', 30))
                 ->withOptions(['stream' => true])
                 ->get($url);
         } catch (ConnectionException) {
@@ -110,7 +110,7 @@ final class AssetStorage
 
     public function url(AssetModel $asset): string
     {
-        $minutes = $this->config->get('keystone.media.temporary_urls');
+        $minutes = $this->config->get('showroom.media.temporary_urls');
         $disk = $this->filesystems->disk($asset->disk);
 
         if (is_numeric($minutes) && method_exists($disk, 'temporaryUrl')) {
@@ -122,7 +122,7 @@ final class AssetStorage
 
     public function delete(AssetModel $asset): void
     {
-        if ($this->config->get('keystone.media.delete_files', true) === false) {
+        if ($this->config->get('showroom.media.delete_files', true) === false) {
             return;
         }
 
@@ -178,7 +178,7 @@ final class AssetStorage
      */
     private function newPath(string $filename): string
     {
-        return trim($this->config->string('keystone.media.path', 'keystone/assets'), '/').'/'.Str::ulid()->toBase32().'/'.$filename;
+        return trim($this->config->string('showroom.media.path', 'showroom/assets'), '/').'/'.Str::ulid()->toBase32().'/'.$filename;
     }
 
     private function disk(): Filesystem

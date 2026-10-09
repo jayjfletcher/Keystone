@@ -2,12 +2,12 @@
 
 declare(strict_types=1);
 
-namespace RefactorCircus\Keystone\Domains\Attribute\Exceptions;
+namespace RefactorCircus\Showroom\Domains\Attribute\Exceptions;
 
-use RefactorCircus\Keystone\Domains\Attribute\Models\AttributeModel;
-use RefactorCircus\Keystone\Exceptions\KeystoneException;
+use RefactorCircus\Showroom\Domains\Attribute\Models\AttributeModel;
+use RefactorCircus\Showroom\Exceptions\ShowroomException;
 
-final class AttributeLabelsFamiliesException extends KeystoneException
+final class AttributeLabelsFamiliesException extends ShowroomException
 {
     /**
      * @param  array<int, string>  $families

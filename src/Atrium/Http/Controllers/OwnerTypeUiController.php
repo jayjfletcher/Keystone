@@ -2,21 +2,21 @@
 
 declare(strict_types=1);
 
-namespace RefactorCircus\Keystone\Atrium\Http\Controllers;
+namespace RefactorCircus\Showroom\Atrium\Http\Controllers;
 
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use RefactorCircus\Atrium\Http\Controllers\Concerns\AuthorizesScreens;
-use RefactorCircus\Keystone\Atrium\Support\Labels;
-use RefactorCircus\Keystone\Domains\Owner\Actions\CreateOwnerTypeAction;
-use RefactorCircus\Keystone\Domains\Owner\Actions\DeleteOwnerTypeAction;
-use RefactorCircus\Keystone\Domains\Owner\Actions\ListOwnerTypesAction;
-use RefactorCircus\Keystone\Domains\Owner\Actions\ShowOwnerTypeAction;
-use RefactorCircus\Keystone\Domains\Owner\Actions\UpdateOwnerTypeAction;
-use RefactorCircus\Keystone\Domains\Owner\Models\OwnerTypeModel;
-use RefactorCircus\Keystone\Exceptions\KeystoneException;
+use RefactorCircus\Showroom\Atrium\Support\Labels;
+use RefactorCircus\Showroom\Domains\Owner\Actions\CreateOwnerTypeAction;
+use RefactorCircus\Showroom\Domains\Owner\Actions\DeleteOwnerTypeAction;
+use RefactorCircus\Showroom\Domains\Owner\Actions\ListOwnerTypesAction;
+use RefactorCircus\Showroom\Domains\Owner\Actions\ShowOwnerTypeAction;
+use RefactorCircus\Showroom\Domains\Owner\Actions\UpdateOwnerTypeAction;
+use RefactorCircus\Showroom\Domains\Owner\Models\OwnerTypeModel;
+use RefactorCircus\Showroom\Exceptions\ShowroomException;
 
 final class OwnerTypeUiController
 {
@@ -27,7 +27,7 @@ final class OwnerTypeUiController
         $this->authorizeScreen('viewAny', OwnerTypeModel::class);
 
         /** @var view-string $view */
-        $view = 'keystone::ui.owner-types.index';
+        $view = 'showroom::ui.owner-types.index';
 
         return view($view, [
             'types' => app(ListOwnerTypesAction::class)->execute($request->validate(ListOwnerTypesAction::rules()))->withQueryString(),
@@ -44,8 +44,8 @@ final class OwnerTypeUiController
         );
 
         return redirect()
-            ->route('atrium.keystone.owner-types.show', $type)
-            ->with('status', __('keystone::keystone.owner_type_created'));
+            ->route('atrium.showroom.owner-types.show', $type)
+            ->with('status', __('showroom::showroom.owner_type_created'));
     }
 
     public function show(OwnerTypeModel $ownerType): View
@@ -53,7 +53,7 @@ final class OwnerTypeUiController
         $this->authorizeScreen('view', $ownerType);
 
         /** @var view-string $view */
-        $view = 'keystone::ui.owner-types.show';
+        $view = 'showroom::ui.owner-types.show';
 
         return view($view, [
             'type' => app(ShowOwnerTypeAction::class)->execute($ownerType),
@@ -71,8 +71,8 @@ final class OwnerTypeUiController
         );
 
         return redirect()
-            ->route('atrium.keystone.owner-types.show', $ownerType)
-            ->with('status', __('keystone::keystone.owner_type_updated'));
+            ->route('atrium.showroom.owner-types.show', $ownerType)
+            ->with('status', __('showroom::showroom.owner_type_updated'));
     }
 
     public function destroy(OwnerTypeModel $ownerType): RedirectResponse
@@ -81,13 +81,13 @@ final class OwnerTypeUiController
 
         try {
             app(DeleteOwnerTypeAction::class)->execute($ownerType);
-        } catch (KeystoneException $e) {
+        } catch (ShowroomException $e) {
             return back()->withErrors(['owner_type' => $e->getMessage()]);
         }
 
         return redirect()
-            ->route('atrium.keystone.owner-types.index')
-            ->with('status', __('keystone::keystone.owner_type_deleted'));
+            ->route('atrium.showroom.owner-types.index')
+            ->with('status', __('showroom::showroom.owner_type_deleted'));
     }
 
     /**

@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace RefactorCircus\Keystone\Domains\Search\Data;
+namespace RefactorCircus\Showroom\Domains\Search\Data;
 
-use RefactorCircus\Keystone\Domains\Channel\Models\ChannelModel;
+use RefactorCircus\Showroom\Domains\Channel\Models\ChannelModel;
 
 /**
  * A completeness condition: at least `min` percent on a channel — in one

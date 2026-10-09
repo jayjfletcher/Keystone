@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-namespace RefactorCircus\Keystone\Domains\Channel\Actions;
+namespace RefactorCircus\Showroom\Domains\Channel\Actions;
 
-use RefactorCircus\Keystone\Domains\Channel\Events\LocaleCreatedActionEvent;
-use RefactorCircus\Keystone\Domains\Channel\Events\LocaleCreatingActionEvent;
-use RefactorCircus\Keystone\Domains\Channel\Models\LocaleModel;
+use RefactorCircus\Showroom\Domains\Channel\Events\LocaleCreatedActionEvent;
+use RefactorCircus\Showroom\Domains\Channel\Events\LocaleCreatingActionEvent;
+use RefactorCircus\Showroom\Domains\Channel\Models\LocaleModel;
 
 final class CreateLocaleAction
 {
@@ -17,7 +17,7 @@ final class CreateLocaleAction
     {
         return [
             // A language, optionally with a region or script: en, en_US, zh-Hant.
-            'code' => ['required', 'string', 'max:20', 'regex:/^[a-z]{2,3}([_-][A-Za-z0-9]{2,8})*$/', 'unique:keystone_locales,code'],
+            'code' => ['required', 'string', 'max:20', 'regex:/^[a-z]{2,3}([_-][A-Za-z0-9]{2,8})*$/', 'unique:showroom_locales,code'],
             'labels' => ['sometimes', 'nullable', 'array'],
             'labels.*' => ['nullable', 'string', 'max:255'],
         ];

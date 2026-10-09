@@ -2,12 +2,12 @@
 
 declare(strict_types=1);
 
-namespace RefactorCircus\Keystone\Domains\Owner\Actions;
+namespace RefactorCircus\Showroom\Domains\Owner\Actions;
 
-use RefactorCircus\Keystone\Domains\Owner\Events\OwnerTypeDeletedActionEvent;
-use RefactorCircus\Keystone\Domains\Owner\Events\OwnerTypeDeletingActionEvent;
-use RefactorCircus\Keystone\Domains\Owner\Models\OwnerTypeModel;
-use RefactorCircus\Keystone\Exceptions\ModelInUseException;
+use RefactorCircus\Showroom\Domains\Owner\Events\OwnerTypeDeletedActionEvent;
+use RefactorCircus\Showroom\Domains\Owner\Events\OwnerTypeDeletingActionEvent;
+use RefactorCircus\Showroom\Domains\Owner\Models\OwnerTypeModel;
+use RefactorCircus\Showroom\Exceptions\ModelInUseException;
 
 final class DeleteOwnerTypeAction
 {

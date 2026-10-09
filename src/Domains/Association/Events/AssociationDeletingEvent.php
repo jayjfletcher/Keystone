@@ -2,13 +2,13 @@
 
 declare(strict_types=1);
 
-namespace RefactorCircus\Keystone\Domains\Association\Events;
+namespace RefactorCircus\Showroom\Domains\Association\Events;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Foundation\Events\Dispatchable;
 use Illuminate\Queue\SerializesModels;
 use RefactorCircus\Foundation\Contracts\ModelLifecycleEvent;
-use RefactorCircus\Keystone\Domains\Association\Models\AssociationModel;
+use RefactorCircus\Showroom\Domains\Association\Models\AssociationModel;
 
 /**
  * The Association `deleting` Eloquent event.

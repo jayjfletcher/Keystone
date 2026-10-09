@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-namespace RefactorCircus\Keystone\Domains\Workflow\Resources;
+namespace RefactorCircus\Showroom\Domains\Workflow\Resources;
 
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
-use RefactorCircus\Keystone\Domains\Workflow\Models\VersionModel;
+use RefactorCircus\Showroom\Domains\Workflow\Models\VersionModel;
 
 /**
  * One version of a product, with its full snapshot.

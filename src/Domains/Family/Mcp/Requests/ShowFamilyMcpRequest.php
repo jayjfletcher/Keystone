@@ -2,12 +2,12 @@
 
 declare(strict_types=1);
 
-namespace RefactorCircus\Keystone\Domains\Family\Mcp\Requests;
+namespace RefactorCircus\Showroom\Domains\Family\Mcp\Requests;
 
 use Laravel\Mcp\Response;
 use Laravel\Mcp\ResponseFactory;
-use RefactorCircus\Keystone\Domains\Family\Actions\ShowFamilyAction;
-use RefactorCircus\Keystone\Domains\Family\Resources\FamilyResource;
+use RefactorCircus\Showroom\Domains\Family\Actions\ShowFamilyAction;
+use RefactorCircus\Showroom\Domains\Family\Resources\FamilyResource;
 
 final class ShowFamilyMcpRequest extends FamilyRequest
 {

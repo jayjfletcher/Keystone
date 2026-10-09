@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace RefactorCircus\Keystone\Tests\Fixtures;
+namespace RefactorCircus\Showroom\Tests\Fixtures;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Collection;

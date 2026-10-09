@@ -2,17 +2,17 @@
 
 declare(strict_types=1);
 
-namespace RefactorCircus\Keystone\Domains\Asset\Http\Controllers;
+namespace RefactorCircus\Showroom\Domains\Asset\Http\Controllers;
 
 use Illuminate\Http\JsonResponse;
-use RefactorCircus\Keystone\Domains\Asset\Http\Requests\AttachAssetRequest;
-use RefactorCircus\Keystone\Domains\Asset\Http\Requests\DeleteAssetRequest;
-use RefactorCircus\Keystone\Domains\Asset\Http\Requests\DetachAssetRequest;
-use RefactorCircus\Keystone\Domains\Asset\Http\Requests\IndexAssetsRequest;
-use RefactorCircus\Keystone\Domains\Asset\Http\Requests\ShowAssetRequest;
-use RefactorCircus\Keystone\Domains\Asset\Http\Requests\StoreAssetRequest;
-use RefactorCircus\Keystone\Domains\Asset\Http\Requests\UpdateAssetRequest;
-use RefactorCircus\Keystone\Domains\Asset\Models\AssetModel;
+use RefactorCircus\Showroom\Domains\Asset\Http\Requests\AttachAssetRequest;
+use RefactorCircus\Showroom\Domains\Asset\Http\Requests\DeleteAssetRequest;
+use RefactorCircus\Showroom\Domains\Asset\Http\Requests\DetachAssetRequest;
+use RefactorCircus\Showroom\Domains\Asset\Http\Requests\IndexAssetsRequest;
+use RefactorCircus\Showroom\Domains\Asset\Http\Requests\ShowAssetRequest;
+use RefactorCircus\Showroom\Domains\Asset\Http\Requests\StoreAssetRequest;
+use RefactorCircus\Showroom\Domains\Asset\Http\Requests\UpdateAssetRequest;
+use RefactorCircus\Showroom\Domains\Asset\Models\AssetModel;
 
 final class AssetController
 {

@@ -2,17 +2,17 @@
 
 declare(strict_types=1);
 
-namespace RefactorCircus\Keystone\Domains\Attribute\Services;
+namespace RefactorCircus\Showroom\Domains\Attribute\Services;
 
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Validation\Rule;
 use Illuminate\Validation\ValidationException;
-use RefactorCircus\Keystone\Domains\Attribute\Enums\AttributeType;
-use RefactorCircus\Keystone\Domains\Attribute\Models\AttributeModel;
-use RefactorCircus\Keystone\Domains\Attribute\Models\AttributeOptionModel;
-use RefactorCircus\Keystone\Domains\Channel\Models\ChannelModel;
-use RefactorCircus\Keystone\Domains\Channel\Models\LocaleModel;
+use RefactorCircus\Showroom\Domains\Attribute\Enums\AttributeType;
+use RefactorCircus\Showroom\Domains\Attribute\Models\AttributeModel;
+use RefactorCircus\Showroom\Domains\Attribute\Models\AttributeOptionModel;
+use RefactorCircus\Showroom\Domains\Channel\Models\ChannelModel;
+use RefactorCircus\Showroom\Domains\Channel\Models\LocaleModel;
 
 /**
  * Validates values in standard shape against their attributes and returns

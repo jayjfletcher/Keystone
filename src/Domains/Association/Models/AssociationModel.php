@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace RefactorCircus\Keystone\Domains\Association\Models;
+namespace RefactorCircus\Showroom\Domains\Association\Models;
 
 use Illuminate\Database\Eloquent\Concerns\HasUlids;
 use Illuminate\Database\Eloquent\Model;
@@ -10,8 +10,8 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\MorphTo;
 use Illuminate\Support\Carbon;
 use RefactorCircus\Foundation\Models\Concerns\DispatchesModelEvents;
-use RefactorCircus\Keystone\Domains\Product\Models\ProductModel;
-use RefactorCircus\Keystone\Domains\ProductModel\Models\ProductModelModel;
+use RefactorCircus\Showroom\Domains\Product\Models\ProductModel;
+use RefactorCircus\Showroom\Domains\ProductModel\Models\ProductModelModel;
 
 /**
  * One product or product model related to another, under a type — with a
@@ -35,7 +35,7 @@ final class AssociationModel extends Model
     use DispatchesModelEvents;
     use HasUlids;
 
-    protected $table = 'keystone_associations';
+    protected $table = 'showroom_associations';
 
     protected $fillable = [
         'association_type_id',

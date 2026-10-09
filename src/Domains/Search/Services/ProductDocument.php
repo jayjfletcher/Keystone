@@ -2,14 +2,14 @@
 
 declare(strict_types=1);
 
-namespace RefactorCircus\Keystone\Domains\Search\Services;
+namespace RefactorCircus\Showroom\Domains\Search\Services;
 
 use Illuminate\Support\Collection;
-use RefactorCircus\Keystone\Domains\Attribute\Enums\AttributeType;
-use RefactorCircus\Keystone\Domains\Attribute\Models\AttributeModel;
-use RefactorCircus\Keystone\Domains\Category\Models\CategoryModel;
-use RefactorCircus\Keystone\Domains\Product\Models\ProductModel;
-use RefactorCircus\Keystone\Domains\Workflow\Models\CompletenessModel;
+use RefactorCircus\Showroom\Domains\Attribute\Enums\AttributeType;
+use RefactorCircus\Showroom\Domains\Attribute\Models\AttributeModel;
+use RefactorCircus\Showroom\Domains\Category\Models\CategoryModel;
+use RefactorCircus\Showroom\Domains\Product\Models\ProductModel;
+use RefactorCircus\Showroom\Domains\Workflow\Models\CompletenessModel;
 
 /**
  * The document a search index holds for a product: its identity, its own

@@ -2,13 +2,13 @@
 
 declare(strict_types=1);
 
-namespace RefactorCircus\Keystone\Domains\Category\Events;
+namespace RefactorCircus\Showroom\Domains\Category\Events;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Foundation\Events\Dispatchable;
 use Illuminate\Queue\SerializesModels;
 use RefactorCircus\Foundation\Contracts\ModelLifecycleEvent;
-use RefactorCircus\Keystone\Domains\Category\Models\CategoryModel;
+use RefactorCircus\Showroom\Domains\Category\Models\CategoryModel;
 
 /**
  * The Category `creating` Eloquent event.

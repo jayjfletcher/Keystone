@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace RefactorCircus\Keystone\Database\Factories;
+namespace RefactorCircus\Showroom\Database\Factories;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
-use RefactorCircus\Keystone\Domains\Family\Models\FamilyModel;
+use RefactorCircus\Showroom\Domains\Family\Models\FamilyModel;
 
 /**
  * @extends Factory<FamilyModel>

@@ -2,20 +2,20 @@
 
 declare(strict_types=1);
 
-namespace RefactorCircus\Keystone\Atrium\Http\Controllers;
+namespace RefactorCircus\Showroom\Atrium\Http\Controllers;
 
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use RefactorCircus\Atrium\Http\Controllers\Concerns\AuthorizesScreens;
-use RefactorCircus\Keystone\Atrium\Support\Labels;
-use RefactorCircus\Keystone\Domains\Category\Actions\CreateCategoryAction;
-use RefactorCircus\Keystone\Domains\Category\Actions\DeleteCategoryAction;
-use RefactorCircus\Keystone\Domains\Category\Actions\ListCategoriesAction;
-use RefactorCircus\Keystone\Domains\Category\Actions\ShowCategoryAction;
-use RefactorCircus\Keystone\Domains\Category\Actions\UpdateCategoryAction;
-use RefactorCircus\Keystone\Domains\Category\Models\CategoryModel;
-use RefactorCircus\Keystone\Exceptions\KeystoneException;
+use RefactorCircus\Showroom\Atrium\Support\Labels;
+use RefactorCircus\Showroom\Domains\Category\Actions\CreateCategoryAction;
+use RefactorCircus\Showroom\Domains\Category\Actions\DeleteCategoryAction;
+use RefactorCircus\Showroom\Domains\Category\Actions\ListCategoriesAction;
+use RefactorCircus\Showroom\Domains\Category\Actions\ShowCategoryAction;
+use RefactorCircus\Showroom\Domains\Category\Actions\UpdateCategoryAction;
+use RefactorCircus\Showroom\Domains\Category\Models\CategoryModel;
+use RefactorCircus\Showroom\Exceptions\ShowroomException;
 
 final class CategoryUiController
 {
@@ -26,7 +26,7 @@ final class CategoryUiController
         $this->authorizeScreen('viewAny', CategoryModel::class);
 
         /** @var view-string $view */
-        $view = 'keystone::ui.categories.index';
+        $view = 'showroom::ui.categories.index';
 
         return view($view, [
             'trees' => app(ListCategoriesAction::class)->execute(['roots' => true] + $request->validate(ListCategoriesAction::rules()))->withQueryString(),
@@ -40,8 +40,8 @@ final class CategoryUiController
         $category = app(CreateCategoryAction::class)->execute(Labels::fromForm($request->validate(CreateCategoryAction::rules())));
 
         return redirect()
-            ->route('atrium.keystone.categories.show', $category->parent ?? $category)
-            ->with('status', __('keystone::keystone.category_created'));
+            ->route('atrium.showroom.categories.show', $category->parent ?? $category)
+            ->with('status', __('showroom::showroom.category_created'));
     }
 
     public function show(CategoryModel $category): View
@@ -51,7 +51,7 @@ final class CategoryUiController
         $category = app(ShowCategoryAction::class)->execute($category);
 
         /** @var view-string $view */
-        $view = 'keystone::ui.categories.show';
+        $view = 'showroom::ui.categories.show';
 
         return view($view, [
             'category' => $category,
@@ -75,8 +75,8 @@ final class CategoryUiController
         app(UpdateCategoryAction::class)->execute($category, $data);
 
         return redirect()
-            ->route('atrium.keystone.categories.show', $category)
-            ->with('status', __('keystone::keystone.category_updated'));
+            ->route('atrium.showroom.categories.show', $category)
+            ->with('status', __('showroom::showroom.category_updated'));
     }
 
     public function destroy(CategoryModel $category): RedirectResponse
@@ -87,13 +87,13 @@ final class CategoryUiController
 
         try {
             app(DeleteCategoryAction::class)->execute($category);
-        } catch (KeystoneException $e) {
+        } catch (ShowroomException $e) {
             return back()->withErrors(['category' => $e->getMessage()]);
         }
 
         return ($parent !== null
-            ? redirect()->route('atrium.keystone.categories.show', $parent)
-            : redirect()->route('atrium.keystone.categories.index'))
-            ->with('status', __('keystone::keystone.category_deleted'));
+            ? redirect()->route('atrium.showroom.categories.show', $parent)
+            : redirect()->route('atrium.showroom.categories.index'))
+            ->with('status', __('showroom::showroom.category_deleted'));
     }
 }

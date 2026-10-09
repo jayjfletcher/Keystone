@@ -4,13 +4,13 @@ Mirrors the `refactor-circus/impex` package (`../impex`), which serves as the st
 
 ## Frontend
 
-- `refactor-circus/atrium` — dashboard shell and component library; Keystone registers as an Atrium plugin (navigation, pages, settings, widgets, search).
+- `refactor-circus/atrium` — dashboard shell and component library; Showroom registers as an Atrium plugin (navigation, pages, settings, widgets, search).
 
 ## Backend
 
 - PHP `^8.4`
 - Laravel `^13` (`laravel/framework`)
-- Laravel package conventions: service provider wiring, publishable config/migrations, publish tags under `keystone-*`
+- Laravel package conventions: service provider wiring, publishable config/migrations, publish tags under `showroom-*`
 - Action classes shared by HTTP API and MCP (one Action per operation)
 - `laravel/mcp` — MCP server with HTTP API parity
 - `refactor-circus/cortex` (suggested) — agent tool registry and versioned MCP instructions/descriptions

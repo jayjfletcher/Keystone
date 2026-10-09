@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-namespace RefactorCircus\Keystone\Domains\Owner\Actions;
+namespace RefactorCircus\Showroom\Domains\Owner\Actions;
 
-use RefactorCircus\Keystone\Domains\Owner\Events\OwnerShowingActionEvent;
-use RefactorCircus\Keystone\Domains\Owner\Events\OwnerShownActionEvent;
-use RefactorCircus\Keystone\Domains\Owner\Models\OwnerModel;
+use RefactorCircus\Showroom\Domains\Owner\Events\OwnerShowingActionEvent;
+use RefactorCircus\Showroom\Domains\Owner\Events\OwnerShownActionEvent;
+use RefactorCircus\Showroom\Domains\Owner\Models\OwnerModel;
 
 final class ShowOwnerAction
 {

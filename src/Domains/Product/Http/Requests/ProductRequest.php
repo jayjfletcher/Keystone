@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace RefactorCircus\Keystone\Domains\Product\Http\Requests;
+namespace RefactorCircus\Showroom\Domains\Product\Http\Requests;
 
 use RefactorCircus\Foundation\Http\Requests\Request;
-use RefactorCircus\Keystone\Domains\Product\Models\ProductModel;
+use RefactorCircus\Showroom\Domains\Product\Models\ProductModel;
 
 abstract class ProductRequest extends Request
 {

@@ -2,16 +2,16 @@
 
 declare(strict_types=1);
 
-namespace RefactorCircus\Keystone\Domains\Channel\Actions;
+namespace RefactorCircus\Showroom\Domains\Channel\Actions;
 
 use Illuminate\Support\Facades\DB;
 use Illuminate\Validation\ValidationException;
-use RefactorCircus\Keystone\Domains\Channel\Concerns\WritesChannels;
-use RefactorCircus\Keystone\Domains\Channel\Events\ChannelUpdatedActionEvent;
-use RefactorCircus\Keystone\Domains\Channel\Events\ChannelUpdatingActionEvent;
-use RefactorCircus\Keystone\Domains\Channel\Models\ChannelModel;
-use RefactorCircus\Keystone\Domains\Product\Models\ProductModel;
-use RefactorCircus\Keystone\Domains\Search\Services\ProductIndex;
+use RefactorCircus\Showroom\Domains\Channel\Concerns\WritesChannels;
+use RefactorCircus\Showroom\Domains\Channel\Events\ChannelUpdatedActionEvent;
+use RefactorCircus\Showroom\Domains\Channel\Events\ChannelUpdatingActionEvent;
+use RefactorCircus\Showroom\Domains\Channel\Models\ChannelModel;
+use RefactorCircus\Showroom\Domains\Product\Models\ProductModel;
+use RefactorCircus\Showroom\Domains\Search\Services\ProductIndex;
 
 final class UpdateChannelAction
 {

@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace RefactorCircus\Keystone\Domains\Channel\Models;
+namespace RefactorCircus\Showroom\Domains\Channel\Models;
 
 use Illuminate\Database\Eloquent\Concerns\HasUlids;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -11,9 +11,9 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Support\Carbon;
 use RefactorCircus\Foundation\Models\Concerns\DispatchesModelEvents;
-use RefactorCircus\Keystone\Database\Factories\ChannelFactory;
-use RefactorCircus\Keystone\Domains\Category\Models\CategoryModel;
-use RefactorCircus\Keystone\Support\Models\Concerns\HasLabels;
+use RefactorCircus\Showroom\Database\Factories\ChannelFactory;
+use RefactorCircus\Showroom\Domains\Category\Models\CategoryModel;
+use RefactorCircus\Showroom\Support\Models\Concerns\HasLabels;
 
 /**
  * Somewhere products are published — a storefront, a print catalog, a
@@ -39,7 +39,7 @@ final class ChannelModel extends Model
     use HasLabels;
     use HasUlids;
 
-    protected $table = 'keystone_channels';
+    protected $table = 'showroom_channels';
 
     protected $fillable = [
         'code',
@@ -53,7 +53,7 @@ final class ChannelModel extends Model
      */
     public function locales(): BelongsToMany
     {
-        return $this->belongsToMany(LocaleModel::class, 'keystone_channel_locale', 'channel_id', 'locale_id')->orderBy('code');
+        return $this->belongsToMany(LocaleModel::class, 'showroom_channel_locale', 'channel_id', 'locale_id')->orderBy('code');
     }
 
     /**

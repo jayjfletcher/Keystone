@@ -2,13 +2,13 @@
 
 declare(strict_types=1);
 
-namespace RefactorCircus\Keystone\Domains\Owner\Events;
+namespace RefactorCircus\Showroom\Domains\Owner\Events;
 
 use Illuminate\Contracts\Pagination\CursorPaginator;
 use Illuminate\Foundation\Events\Dispatchable;
 use Illuminate\Queue\SerializesModels;
 use RefactorCircus\Foundation\Contracts\ActionFinishedEvent;
-use RefactorCircus\Keystone\Domains\Owner\Models\OwnerModel;
+use RefactorCircus\Showroom\Domains\Owner\Models\OwnerModel;
 
 /**
  * Owners were listed.

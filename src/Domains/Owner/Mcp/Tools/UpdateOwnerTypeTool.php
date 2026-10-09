@@ -2,14 +2,14 @@
 
 declare(strict_types=1);
 
-namespace RefactorCircus\Keystone\Domains\Owner\Mcp\Tools;
+namespace RefactorCircus\Showroom\Domains\Owner\Mcp\Tools;
 
 use Illuminate\Contracts\JsonSchema\JsonSchema;
 use Laravel\Mcp\Response;
 use Laravel\Mcp\ResponseFactory;
 use Laravel\Mcp\Server\Attributes\Description;
 use RefactorCircus\Foundation\Mcp\Tool;
-use RefactorCircus\Keystone\Domains\Owner\Mcp\Requests\UpdateOwnerTypeMcpRequest;
+use RefactorCircus\Showroom\Domains\Owner\Mcp\Requests\UpdateOwnerTypeMcpRequest;
 
 #[Description('Update an owner type\'s labels or chain rules. Rules apply to later writes. The code cannot change.')]
 final class UpdateOwnerTypeTool extends Tool

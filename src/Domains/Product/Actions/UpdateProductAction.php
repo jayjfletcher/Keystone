@@ -2,22 +2,22 @@
 
 declare(strict_types=1);
 
-namespace RefactorCircus\Keystone\Domains\Product\Actions;
+namespace RefactorCircus\Showroom\Domains\Product\Actions;
 
 use Illuminate\Support\Facades\DB;
 use Illuminate\Validation\ValidationException;
-use RefactorCircus\Keystone\Domains\Association\Services\Associations;
-use RefactorCircus\Keystone\Domains\Attribute\Services\UniqueValues;
-use RefactorCircus\Keystone\Domains\Category\Concerns\AssignsCategories;
-use RefactorCircus\Keystone\Domains\Family\Models\FamilyModel;
-use RefactorCircus\Keystone\Domains\Owner\Concerns\AssignsOwners;
-use RefactorCircus\Keystone\Domains\Product\Concerns\WritesProducts;
-use RefactorCircus\Keystone\Domains\Product\Enums\ProductStatus;
-use RefactorCircus\Keystone\Domains\Product\Events\ProductUpdatedActionEvent;
-use RefactorCircus\Keystone\Domains\Product\Events\ProductUpdatingActionEvent;
-use RefactorCircus\Keystone\Domains\Product\Models\ProductModel;
-use RefactorCircus\Keystone\Domains\Search\Services\ProductIndex;
-use RefactorCircus\Keystone\Domains\Workflow\Services\Versions;
+use RefactorCircus\Showroom\Domains\Association\Services\Associations;
+use RefactorCircus\Showroom\Domains\Attribute\Services\UniqueValues;
+use RefactorCircus\Showroom\Domains\Category\Concerns\AssignsCategories;
+use RefactorCircus\Showroom\Domains\Family\Models\FamilyModel;
+use RefactorCircus\Showroom\Domains\Owner\Concerns\AssignsOwners;
+use RefactorCircus\Showroom\Domains\Product\Concerns\WritesProducts;
+use RefactorCircus\Showroom\Domains\Product\Enums\ProductStatus;
+use RefactorCircus\Showroom\Domains\Product\Events\ProductUpdatedActionEvent;
+use RefactorCircus\Showroom\Domains\Product\Events\ProductUpdatingActionEvent;
+use RefactorCircus\Showroom\Domains\Product\Models\ProductModel;
+use RefactorCircus\Showroom\Domains\Search\Services\ProductIndex;
+use RefactorCircus\Showroom\Domains\Workflow\Services\Versions;
 
 final class UpdateProductAction
 {
@@ -35,8 +35,8 @@ final class UpdateProductAction
         return [
             'identifier' => ['prohibited'],
             'parent' => ['prohibited'],
-            'family' => ['sometimes', 'nullable', 'string', 'exists:keystone_families,code'],
-            'owner' => ['sometimes', 'nullable', 'string', 'exists:keystone_owners,code'],
+            'family' => ['sometimes', 'nullable', 'string', 'exists:showroom_families,code'],
+            'owner' => ['sometimes', 'nullable', 'string', 'exists:showroom_owners,code'],
             'enabled' => ['sometimes', 'boolean'],
             'values' => ['sometimes', 'nullable', 'array'],
         ] + self::categoryRules() + Associations::rules();

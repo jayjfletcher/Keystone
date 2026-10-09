@@ -2,15 +2,15 @@
 
 declare(strict_types=1);
 
-namespace RefactorCircus\Keystone\Domains\Owner\Http\Controllers;
+namespace RefactorCircus\Showroom\Domains\Owner\Http\Controllers;
 
 use Illuminate\Http\JsonResponse;
-use RefactorCircus\Keystone\Domains\Owner\Http\Requests\DeleteOwnerRequest;
-use RefactorCircus\Keystone\Domains\Owner\Http\Requests\IndexOwnersRequest;
-use RefactorCircus\Keystone\Domains\Owner\Http\Requests\ShowOwnerRequest;
-use RefactorCircus\Keystone\Domains\Owner\Http\Requests\StoreOwnerRequest;
-use RefactorCircus\Keystone\Domains\Owner\Http\Requests\UpdateOwnerRequest;
-use RefactorCircus\Keystone\Domains\Owner\Models\OwnerModel;
+use RefactorCircus\Showroom\Domains\Owner\Http\Requests\DeleteOwnerRequest;
+use RefactorCircus\Showroom\Domains\Owner\Http\Requests\IndexOwnersRequest;
+use RefactorCircus\Showroom\Domains\Owner\Http\Requests\ShowOwnerRequest;
+use RefactorCircus\Showroom\Domains\Owner\Http\Requests\StoreOwnerRequest;
+use RefactorCircus\Showroom\Domains\Owner\Http\Requests\UpdateOwnerRequest;
+use RefactorCircus\Showroom\Domains\Owner\Models\OwnerModel;
 
 final class OwnerController
 {

@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 return [
 
-    'label' => 'Keystone',
+    'label' => 'Showroom',
     'catalog' => 'Catalog',
 
     // Navigation
@@ -15,7 +15,7 @@ return [
     'attribute_groups' => 'Attribute groups',
 
     // Settings
-    'settings_label' => 'Keystone',
+    'settings_label' => 'Showroom',
     'settings_description' => 'How the catalog is exposed over HTTP and MCP.',
     'api' => 'HTTP API',
     'mcp' => 'MCP',

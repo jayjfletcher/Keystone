@@ -2,13 +2,13 @@
 
 declare(strict_types=1);
 
-namespace RefactorCircus\Keystone\Domains\Owner\Actions;
+namespace RefactorCircus\Showroom\Domains\Owner\Actions;
 
 use Illuminate\Contracts\Pagination\CursorPaginator;
 use Illuminate\Database\Eloquent\Builder;
-use RefactorCircus\Keystone\Domains\Owner\Events\OwnersListedActionEvent;
-use RefactorCircus\Keystone\Domains\Owner\Events\OwnersListingActionEvent;
-use RefactorCircus\Keystone\Domains\Owner\Models\OwnerModel;
+use RefactorCircus\Showroom\Domains\Owner\Events\OwnersListedActionEvent;
+use RefactorCircus\Showroom\Domains\Owner\Events\OwnersListingActionEvent;
+use RefactorCircus\Showroom\Domains\Owner\Models\OwnerModel;
 
 final class ListOwnersAction
 {
@@ -26,7 +26,7 @@ final class ListOwnersAction
             'roots' => ['sometimes', 'boolean'],
             'search' => ['sometimes', 'nullable', 'string', 'max:191'],
             'cursor' => ['sometimes', 'nullable', 'string'],
-            'per_page' => ['sometimes', 'integer', 'min:1', 'max:'.config('keystone.pagination.max_per_page', 100)],
+            'per_page' => ['sometimes', 'integer', 'min:1', 'max:'.config('showroom.pagination.max_per_page', 100)],
         ];
     }
 
@@ -85,7 +85,7 @@ final class ListOwnersAction
         }
 
         return $query->cursorPaginate(
-            perPage: isset($filters['per_page']) ? (int) $filters['per_page'] : (int) config('keystone.pagination.per_page', 25),
+            perPage: isset($filters['per_page']) ? (int) $filters['per_page'] : (int) config('showroom.pagination.per_page', 25),
             cursor: is_string($filters['cursor'] ?? null) ? $filters['cursor'] : null,
         );
     }

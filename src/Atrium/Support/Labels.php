@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace RefactorCircus\Keystone\Atrium\Support;
+namespace RefactorCircus\Showroom\Atrium\Support;
 
 /**
  * The dashboard edits one label — the current locale's — while the Actions

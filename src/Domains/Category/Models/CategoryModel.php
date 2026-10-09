@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace RefactorCircus\Keystone\Domains\Category\Models;
+namespace RefactorCircus\Showroom\Domains\Category\Models;
 
 use Illuminate\Database\Eloquent\Concerns\HasUlids;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -12,11 +12,11 @@ use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Support\Carbon;
 use RefactorCircus\Foundation\Models\Concerns\DispatchesModelEvents;
-use RefactorCircus\Keystone\Database\Factories\CategoryFactory;
-use RefactorCircus\Keystone\Domains\Product\Models\ProductModel;
-use RefactorCircus\Keystone\Domains\ProductModel\Models\ProductModelModel;
-use RefactorCircus\Keystone\Support\Models\Concerns\HasLabels;
-use RefactorCircus\Keystone\Support\Models\Concerns\HasPath;
+use RefactorCircus\Showroom\Database\Factories\CategoryFactory;
+use RefactorCircus\Showroom\Domains\Product\Models\ProductModel;
+use RefactorCircus\Showroom\Domains\ProductModel\Models\ProductModelModel;
+use RefactorCircus\Showroom\Support\Models\Concerns\HasLabels;
+use RefactorCircus\Showroom\Support\Models\Concerns\HasPath;
 
 /**
  * A node of a category tree. A category without a parent is the root of a
@@ -44,7 +44,7 @@ final class CategoryModel extends Model
     use HasPath;
     use HasUlids;
 
-    protected $table = 'keystone_categories';
+    protected $table = 'showroom_categories';
 
     protected $fillable = [
         'parent_id',
@@ -76,7 +76,7 @@ final class CategoryModel extends Model
      */
     public function products(): BelongsToMany
     {
-        return $this->belongsToMany(ProductModel::class, 'keystone_category_product', 'category_id', 'product_id');
+        return $this->belongsToMany(ProductModel::class, 'showroom_category_product', 'category_id', 'product_id');
     }
 
     /**
@@ -84,7 +84,7 @@ final class CategoryModel extends Model
      */
     public function productModels(): BelongsToMany
     {
-        return $this->belongsToMany(ProductModelModel::class, 'keystone_category_product_model', 'category_id', 'product_model_id');
+        return $this->belongsToMany(ProductModelModel::class, 'showroom_category_product_model', 'category_id', 'product_model_id');
     }
 
     /**

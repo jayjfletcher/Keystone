@@ -2,23 +2,23 @@
 
 declare(strict_types=1);
 
-namespace RefactorCircus\Keystone\Atrium\Http\Controllers;
+namespace RefactorCircus\Showroom\Atrium\Http\Controllers;
 
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use RefactorCircus\Atrium\Http\Controllers\Concerns\AuthorizesScreens;
-use RefactorCircus\Keystone\Atrium\Support\Labels;
-use RefactorCircus\Keystone\Domains\Asset\Actions\AttachAssetAction;
-use RefactorCircus\Keystone\Domains\Asset\Actions\CreateAssetAction;
-use RefactorCircus\Keystone\Domains\Asset\Actions\DeleteAssetAction;
-use RefactorCircus\Keystone\Domains\Asset\Actions\DetachAssetAction;
-use RefactorCircus\Keystone\Domains\Asset\Actions\ListAssetsAction;
-use RefactorCircus\Keystone\Domains\Asset\Actions\ShowAssetAction;
-use RefactorCircus\Keystone\Domains\Asset\Actions\UpdateAssetAction;
-use RefactorCircus\Keystone\Domains\Asset\Models\AssetModel;
-use RefactorCircus\Keystone\Domains\Asset\Services\AssetLinks;
+use RefactorCircus\Showroom\Atrium\Support\Labels;
+use RefactorCircus\Showroom\Domains\Asset\Actions\AttachAssetAction;
+use RefactorCircus\Showroom\Domains\Asset\Actions\CreateAssetAction;
+use RefactorCircus\Showroom\Domains\Asset\Actions\DeleteAssetAction;
+use RefactorCircus\Showroom\Domains\Asset\Actions\DetachAssetAction;
+use RefactorCircus\Showroom\Domains\Asset\Actions\ListAssetsAction;
+use RefactorCircus\Showroom\Domains\Asset\Actions\ShowAssetAction;
+use RefactorCircus\Showroom\Domains\Asset\Actions\UpdateAssetAction;
+use RefactorCircus\Showroom\Domains\Asset\Models\AssetModel;
+use RefactorCircus\Showroom\Domains\Asset\Services\AssetLinks;
 
 final class AssetUiController
 {
@@ -31,7 +31,7 @@ final class AssetUiController
         $filters = $request->validate(ListAssetsAction::rules());
 
         /** @var view-string $view */
-        $view = 'keystone::ui.assets.index';
+        $view = 'showroom::ui.assets.index';
 
         return view($view, [
             'assets' => app(ListAssetsAction::class)->execute($filters)->withQueryString(),
@@ -46,8 +46,8 @@ final class AssetUiController
         $asset = app(CreateAssetAction::class)->execute(Labels::fromForm($request->validate(CreateAssetAction::rules())));
 
         return redirect()
-            ->route('atrium.keystone.assets.show', $asset)
-            ->with('status', __('keystone::keystone.asset_created'));
+            ->route('atrium.showroom.assets.show', $asset)
+            ->with('status', __('showroom::showroom.asset_created'));
     }
 
     /**
@@ -71,7 +71,7 @@ final class AssetUiController
             app(AttachAssetAction::class)->execute($asset, $link);
         });
 
-        return back()->with('status', __('keystone::keystone.asset_attached'));
+        return back()->with('status', __('showroom::showroom.asset_attached'));
     }
 
     public function show(AssetModel $asset): View
@@ -79,7 +79,7 @@ final class AssetUiController
         $this->authorizeScreen('view', $asset);
 
         /** @var view-string $view */
-        $view = 'keystone::ui.assets.show';
+        $view = 'showroom::ui.assets.show';
 
         return view($view, [
             'asset' => app(ShowAssetAction::class)->execute($asset),
@@ -94,8 +94,8 @@ final class AssetUiController
         app(UpdateAssetAction::class)->execute($asset, Labels::fromForm($request->validate(UpdateAssetAction::rules()), $asset->labels));
 
         return redirect()
-            ->route('atrium.keystone.assets.show', $asset)
-            ->with('status', __('keystone::keystone.asset_updated'));
+            ->route('atrium.showroom.assets.show', $asset)
+            ->with('status', __('showroom::showroom.asset_updated'));
     }
 
     public function destroy(AssetModel $asset): RedirectResponse
@@ -105,8 +105,8 @@ final class AssetUiController
         app(DeleteAssetAction::class)->execute($asset);
 
         return redirect()
-            ->route('atrium.keystone.assets.index')
-            ->with('status', __('keystone::keystone.asset_deleted'));
+            ->route('atrium.showroom.assets.index')
+            ->with('status', __('showroom::showroom.asset_deleted'));
     }
 
     public function attach(Request $request, AssetModel $asset): RedirectResponse
@@ -115,7 +115,7 @@ final class AssetUiController
 
         app(AttachAssetAction::class)->execute($asset, $request->validate(AttachAssetAction::rules()));
 
-        return back()->with('status', __('keystone::keystone.asset_attached'));
+        return back()->with('status', __('showroom::showroom.asset_attached'));
     }
 
     public function detach(Request $request, AssetModel $asset): RedirectResponse
@@ -124,6 +124,6 @@ final class AssetUiController
 
         app(DetachAssetAction::class)->execute($asset, $request->validate(DetachAssetAction::rules()));
 
-        return back()->with('status', __('keystone::keystone.asset_detached'));
+        return back()->with('status', __('showroom::showroom.asset_detached'));
     }
 }

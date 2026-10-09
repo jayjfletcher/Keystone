@@ -2,12 +2,12 @@
 
 declare(strict_types=1);
 
-namespace RefactorCircus\Keystone\Atrium;
+namespace RefactorCircus\Showroom\Atrium;
 
-use RefactorCircus\Keystone\Domains\Product\Enums\ProductStatus;
+use RefactorCircus\Showroom\Domains\Product\Enums\ProductStatus;
 
 /**
- * The Atrium colour of every status Keystone shows, as a status dot, in one
+ * The Atrium colour of every status Showroom shows, as a status dot, in one
  * place. Pending - awaiting someone's decision - has its own colour, `info`,
  * used by no other status: a product in review, an import or export queued or
  * waiting. `success` is done or live, `danger` failed, `primary` in progress
@@ -45,7 +45,7 @@ final class Badges
     }
 
     /**
-     * An Impex import or export run, by its status value, so Keystone needs
+     * An Impex import or export run, by its status value, so Showroom needs
      * no Impex class to colour it.
      */
     public static function forRun(string $status): string

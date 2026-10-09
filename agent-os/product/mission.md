@@ -2,7 +2,7 @@
 
 ## Problem
 
-Laravel applications need a Product Information Management (PIM) system: a single source of truth for product data — attributes, variants, taxonomy, ownership, media, and channel-ready content. Keystone is that PIM, delivered as a Laravel package rather than a separate platform.
+Laravel applications need a Product Information Management (PIM) system: a single source of truth for product data — attributes, variants, taxonomy, ownership, media, and channel-ready content. Showroom is that PIM, delivered as a Laravel package rather than a separate platform.
 
 ## Target Users
 

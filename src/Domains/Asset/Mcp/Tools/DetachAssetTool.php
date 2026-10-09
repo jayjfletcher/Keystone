@@ -2,14 +2,14 @@
 
 declare(strict_types=1);
 
-namespace RefactorCircus\Keystone\Domains\Asset\Mcp\Tools;
+namespace RefactorCircus\Showroom\Domains\Asset\Mcp\Tools;
 
 use Illuminate\Contracts\JsonSchema\JsonSchema;
 use Laravel\Mcp\Response;
 use Laravel\Mcp\ResponseFactory;
 use Laravel\Mcp\Server\Attributes\Description;
 use RefactorCircus\Foundation\Mcp\Tool;
-use RefactorCircus\Keystone\Domains\Asset\Mcp\Requests\DetachAssetMcpRequest;
+use RefactorCircus\Showroom\Domains\Asset\Mcp\Requests\DetachAssetMcpRequest;
 
 #[Description('Unlink an asset from a product, product model or owner, in one role or all.')]
 final class DetachAssetTool extends Tool

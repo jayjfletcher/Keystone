@@ -2,15 +2,15 @@
 
 declare(strict_types=1);
 
-namespace RefactorCircus\Keystone\Domains\Channel\Http\Controllers;
+namespace RefactorCircus\Showroom\Domains\Channel\Http\Controllers;
 
 use Illuminate\Http\JsonResponse;
-use RefactorCircus\Keystone\Domains\Channel\Http\Requests\DeleteChannelRequest;
-use RefactorCircus\Keystone\Domains\Channel\Http\Requests\IndexChannelsRequest;
-use RefactorCircus\Keystone\Domains\Channel\Http\Requests\ShowChannelRequest;
-use RefactorCircus\Keystone\Domains\Channel\Http\Requests\StoreChannelRequest;
-use RefactorCircus\Keystone\Domains\Channel\Http\Requests\UpdateChannelRequest;
-use RefactorCircus\Keystone\Domains\Channel\Models\ChannelModel;
+use RefactorCircus\Showroom\Domains\Channel\Http\Requests\DeleteChannelRequest;
+use RefactorCircus\Showroom\Domains\Channel\Http\Requests\IndexChannelsRequest;
+use RefactorCircus\Showroom\Domains\Channel\Http\Requests\ShowChannelRequest;
+use RefactorCircus\Showroom\Domains\Channel\Http\Requests\StoreChannelRequest;
+use RefactorCircus\Showroom\Domains\Channel\Http\Requests\UpdateChannelRequest;
+use RefactorCircus\Showroom\Domains\Channel\Models\ChannelModel;
 
 final class ChannelController
 {

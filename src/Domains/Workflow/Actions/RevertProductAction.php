@@ -2,17 +2,17 @@
 
 declare(strict_types=1);
 
-namespace RefactorCircus\Keystone\Domains\Workflow\Actions;
+namespace RefactorCircus\Showroom\Domains\Workflow\Actions;
 
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Validation\ValidationException;
-use RefactorCircus\Keystone\Domains\Association\Models\AssociationModel;
-use RefactorCircus\Keystone\Domains\Attribute\Services\Values;
-use RefactorCircus\Keystone\Domains\Product\Actions\UpdateProductAction;
-use RefactorCircus\Keystone\Domains\Product\Models\ProductModel;
-use RefactorCircus\Keystone\Domains\Workflow\Events\ProductRevertedActionEvent;
-use RefactorCircus\Keystone\Domains\Workflow\Events\ProductRevertingActionEvent;
-use RefactorCircus\Keystone\Domains\Workflow\Services\Versions;
+use RefactorCircus\Showroom\Domains\Association\Models\AssociationModel;
+use RefactorCircus\Showroom\Domains\Attribute\Services\Values;
+use RefactorCircus\Showroom\Domains\Product\Actions\UpdateProductAction;
+use RefactorCircus\Showroom\Domains\Product\Models\ProductModel;
+use RefactorCircus\Showroom\Domains\Workflow\Events\ProductRevertedActionEvent;
+use RefactorCircus\Showroom\Domains\Workflow\Events\ProductRevertingActionEvent;
+use RefactorCircus\Showroom\Domains\Workflow\Services\Versions;
 
 final class RevertProductAction
 {

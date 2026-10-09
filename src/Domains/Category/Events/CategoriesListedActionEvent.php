@@ -2,13 +2,13 @@
 
 declare(strict_types=1);
 
-namespace RefactorCircus\Keystone\Domains\Category\Events;
+namespace RefactorCircus\Showroom\Domains\Category\Events;
 
 use Illuminate\Contracts\Pagination\CursorPaginator;
 use Illuminate\Foundation\Events\Dispatchable;
 use Illuminate\Queue\SerializesModels;
 use RefactorCircus\Foundation\Contracts\ActionFinishedEvent;
-use RefactorCircus\Keystone\Domains\Category\Models\CategoryModel;
+use RefactorCircus\Showroom\Domains\Category\Models\CategoryModel;
 
 /**
  * Categories were listed.

@@ -2,22 +2,22 @@
 
 declare(strict_types=1);
 
-namespace RefactorCircus\Keystone\Domains\Product\Actions;
+namespace RefactorCircus\Showroom\Domains\Product\Actions;
 
 use Illuminate\Support\Facades\DB;
 use Illuminate\Validation\ValidationException;
-use RefactorCircus\Keystone\Domains\Association\Services\Associations;
-use RefactorCircus\Keystone\Domains\Attribute\Services\UniqueValues;
-use RefactorCircus\Keystone\Domains\Category\Concerns\AssignsCategories;
-use RefactorCircus\Keystone\Domains\Family\Models\FamilyModel;
-use RefactorCircus\Keystone\Domains\Owner\Concerns\AssignsOwners;
-use RefactorCircus\Keystone\Domains\Product\Concerns\WritesProducts;
-use RefactorCircus\Keystone\Domains\Product\Events\ProductCreatedActionEvent;
-use RefactorCircus\Keystone\Domains\Product\Events\ProductCreatingActionEvent;
-use RefactorCircus\Keystone\Domains\Product\Models\ProductModel;
-use RefactorCircus\Keystone\Domains\ProductModel\Models\ProductModelModel;
-use RefactorCircus\Keystone\Domains\Search\Services\ProductIndex;
-use RefactorCircus\Keystone\Domains\Workflow\Services\Versions;
+use RefactorCircus\Showroom\Domains\Association\Services\Associations;
+use RefactorCircus\Showroom\Domains\Attribute\Services\UniqueValues;
+use RefactorCircus\Showroom\Domains\Category\Concerns\AssignsCategories;
+use RefactorCircus\Showroom\Domains\Family\Models\FamilyModel;
+use RefactorCircus\Showroom\Domains\Owner\Concerns\AssignsOwners;
+use RefactorCircus\Showroom\Domains\Product\Concerns\WritesProducts;
+use RefactorCircus\Showroom\Domains\Product\Events\ProductCreatedActionEvent;
+use RefactorCircus\Showroom\Domains\Product\Events\ProductCreatingActionEvent;
+use RefactorCircus\Showroom\Domains\Product\Models\ProductModel;
+use RefactorCircus\Showroom\Domains\ProductModel\Models\ProductModelModel;
+use RefactorCircus\Showroom\Domains\Search\Services\ProductIndex;
+use RefactorCircus\Showroom\Domains\Workflow\Services\Versions;
 
 final class CreateProductAction
 {
@@ -34,10 +34,10 @@ final class CreateProductAction
     public static function rules(): array
     {
         return [
-            'identifier' => ['required', 'string', 'max:191', 'regex:/^[A-Za-z0-9][A-Za-z0-9_.-]*$/', 'unique:keystone_products,identifier'],
-            'family' => ['sometimes', 'nullable', 'string', 'exists:keystone_families,code'],
-            'parent' => ['sometimes', 'nullable', 'string', 'exists:keystone_product_models,code'],
-            'owner' => ['sometimes', 'nullable', 'string', 'exists:keystone_owners,code'],
+            'identifier' => ['required', 'string', 'max:191', 'regex:/^[A-Za-z0-9][A-Za-z0-9_.-]*$/', 'unique:showroom_products,identifier'],
+            'family' => ['sometimes', 'nullable', 'string', 'exists:showroom_families,code'],
+            'parent' => ['sometimes', 'nullable', 'string', 'exists:showroom_product_models,code'],
+            'owner' => ['sometimes', 'nullable', 'string', 'exists:showroom_owners,code'],
             'enabled' => ['sometimes', 'boolean'],
             'values' => ['sometimes', 'nullable', 'array'],
         ] + self::categoryRules() + Associations::rules();

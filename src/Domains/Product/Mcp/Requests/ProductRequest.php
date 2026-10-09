@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace RefactorCircus\Keystone\Domains\Product\Mcp\Requests;
+namespace RefactorCircus\Showroom\Domains\Product\Mcp\Requests;
 
 use RefactorCircus\Foundation\Mcp\Requests\Request;
-use RefactorCircus\Keystone\Domains\Product\Models\ProductModel;
+use RefactorCircus\Showroom\Domains\Product\Models\ProductModel;
 
 abstract class ProductRequest extends Request
 {

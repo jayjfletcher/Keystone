@@ -2,18 +2,18 @@
 
 declare(strict_types=1);
 
-namespace RefactorCircus\Keystone\Domains\ProductModel\Actions;
+namespace RefactorCircus\Showroom\Domains\ProductModel\Actions;
 
 use Illuminate\Support\Facades\DB;
 use Illuminate\Validation\ValidationException;
-use RefactorCircus\Keystone\Domains\Association\Services\Associations;
-use RefactorCircus\Keystone\Domains\Attribute\Concerns\WritesValues;
-use RefactorCircus\Keystone\Domains\Category\Concerns\AssignsCategories;
-use RefactorCircus\Keystone\Domains\Family\Models\FamilyVariantModel;
-use RefactorCircus\Keystone\Domains\Owner\Concerns\AssignsOwners;
-use RefactorCircus\Keystone\Domains\ProductModel\Events\ProductModelCreatedActionEvent;
-use RefactorCircus\Keystone\Domains\ProductModel\Events\ProductModelCreatingActionEvent;
-use RefactorCircus\Keystone\Domains\ProductModel\Models\ProductModelModel;
+use RefactorCircus\Showroom\Domains\Association\Services\Associations;
+use RefactorCircus\Showroom\Domains\Attribute\Concerns\WritesValues;
+use RefactorCircus\Showroom\Domains\Category\Concerns\AssignsCategories;
+use RefactorCircus\Showroom\Domains\Family\Models\FamilyVariantModel;
+use RefactorCircus\Showroom\Domains\Owner\Concerns\AssignsOwners;
+use RefactorCircus\Showroom\Domains\ProductModel\Events\ProductModelCreatedActionEvent;
+use RefactorCircus\Showroom\Domains\ProductModel\Events\ProductModelCreatingActionEvent;
+use RefactorCircus\Showroom\Domains\ProductModel\Models\ProductModelModel;
 
 final class CreateProductModelAction
 {
@@ -30,10 +30,10 @@ final class CreateProductModelAction
     public static function rules(): array
     {
         return [
-            'code' => ['required', 'string', 'max:191', 'regex:/^[A-Za-z0-9][A-Za-z0-9_.-]*$/', 'unique:keystone_product_models,code'],
-            'family_variant' => ['required_without:parent', 'nullable', 'string', 'exists:keystone_family_variants,code'],
-            'parent' => ['sometimes', 'nullable', 'string', 'exists:keystone_product_models,code'],
-            'owner' => ['sometimes', 'nullable', 'string', 'exists:keystone_owners,code'],
+            'code' => ['required', 'string', 'max:191', 'regex:/^[A-Za-z0-9][A-Za-z0-9_.-]*$/', 'unique:showroom_product_models,code'],
+            'family_variant' => ['required_without:parent', 'nullable', 'string', 'exists:showroom_family_variants,code'],
+            'parent' => ['sometimes', 'nullable', 'string', 'exists:showroom_product_models,code'],
+            'owner' => ['sometimes', 'nullable', 'string', 'exists:showroom_owners,code'],
             'values' => ['sometimes', 'nullable', 'array'],
         ] + self::categoryRules() + Associations::rules();
     }

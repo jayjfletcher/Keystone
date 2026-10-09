@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace RefactorCircus\Keystone\Domains\Attribute\Mcp\Requests;
+namespace RefactorCircus\Showroom\Domains\Attribute\Mcp\Requests;
 
-use RefactorCircus\Keystone\Domains\Attribute\Models\AttributeOptionModel;
+use RefactorCircus\Showroom\Domains\Attribute\Models\AttributeOptionModel;
 
 abstract class AttributeOptionRequest extends AttributeRequest
 {

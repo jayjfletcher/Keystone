@@ -3,10 +3,10 @@
 declare(strict_types=1);
 
 use RefactorCircus\Atrium\Domains\Navigation\Data\NavItem;
-use RefactorCircus\Keystone\Atrium\KeystonePlugin;
+use RefactorCircus\Showroom\Atrium\ShowroomPlugin;
 
 it('links its own audit log from its sidebar group', function (): void {
-    $urls = array_map(fn (NavItem $item): ?string => $item->resolveUrl(), app(KeystonePlugin::class)->navigation());
+    $urls = array_map(fn (NavItem $item): ?string => $item->resolveUrl(), app(ShowroomPlugin::class)->navigation());
 
-    expect($urls)->toContain(route('atrium.history.show', 'keystone'));
+    expect($urls)->toContain(route('atrium.history.show', 'showroom'));
 });

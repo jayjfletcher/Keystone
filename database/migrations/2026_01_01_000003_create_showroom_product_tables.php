@@ -10,9 +10,9 @@ return new class extends Migration
 {
     public function up(): void
     {
-        Schema::create('keystone_family_variants', function (Blueprint $table): void {
+        Schema::create('showroom_family_variants', function (Blueprint $table): void {
             $table->ulid('id')->primary();
-            $table->foreignUlid('family_id')->constrained('keystone_families')->cascadeOnDelete();
+            $table->foreignUlid('family_id')->constrained('showroom_families')->cascadeOnDelete();
             $table->string('code', 100)->unique();
             $table->json('labels')->nullable();
             // 1 or 2: how many levels of axes sit between the root model and a variant.
@@ -23,9 +23,9 @@ return new class extends Migration
         // Which attributes are set at which variant level, and which of them
         // are axes. Attributes of the family on no level are common: set on
         // the root product model.
-        Schema::create('keystone_family_variant_attributes', function (Blueprint $table): void {
-            $table->foreignUlid('family_variant_id')->constrained('keystone_family_variants')->cascadeOnDelete();
-            $table->foreignUlid('attribute_id')->constrained('keystone_attributes')->cascadeOnDelete();
+        Schema::create('showroom_family_variant_attributes', function (Blueprint $table): void {
+            $table->foreignUlid('family_variant_id')->constrained('showroom_family_variants')->cascadeOnDelete();
+            $table->foreignUlid('attribute_id')->constrained('showroom_attributes')->cascadeOnDelete();
             $table->unsignedTinyInteger('level');
             $table->boolean('is_axis')->default(false);
 
@@ -33,12 +33,12 @@ return new class extends Migration
             $table->index('attribute_id');
         });
 
-        Schema::create('keystone_product_models', function (Blueprint $table): void {
+        Schema::create('showroom_product_models', function (Blueprint $table): void {
             $table->ulid('id')->primary();
             $table->string('code', 191)->unique();
             // Restrict: a family variant in use keeps its models' structure.
-            $table->foreignUlid('family_variant_id')->constrained('keystone_family_variants')->restrictOnDelete();
-            $table->foreignUlid('parent_id')->nullable()->constrained('keystone_product_models')->cascadeOnDelete();
+            $table->foreignUlid('family_variant_id')->constrained('showroom_family_variants')->restrictOnDelete();
+            $table->foreignUlid('parent_id')->nullable()->constrained('showroom_product_models')->cascadeOnDelete();
             // {attribute: {channel|<all_channels>: {locale|<all_locales>: data}}}
             $table->json('values')->nullable();
             $table->timestamps();
@@ -46,11 +46,11 @@ return new class extends Migration
             $table->index('parent_id');
         });
 
-        Schema::create('keystone_products', function (Blueprint $table): void {
+        Schema::create('showroom_products', function (Blueprint $table): void {
             $table->ulid('id')->primary();
             $table->string('identifier', 191)->unique();
-            $table->foreignUlid('family_id')->nullable()->constrained('keystone_families')->restrictOnDelete();
-            $table->foreignUlid('parent_id')->nullable()->constrained('keystone_product_models')->cascadeOnDelete();
+            $table->foreignUlid('family_id')->nullable()->constrained('showroom_families')->restrictOnDelete();
+            $table->foreignUlid('parent_id')->nullable()->constrained('showroom_product_models')->cascadeOnDelete();
             $table->boolean('enabled')->default(true);
             $table->json('values')->nullable();
             $table->timestamps();
@@ -62,9 +62,9 @@ return new class extends Migration
 
         // JSON cannot carry a unique index, so each value of a unique
         // attribute is mirrored here as a hash the database can enforce.
-        Schema::create('keystone_product_unique_values', function (Blueprint $table): void {
-            $table->foreignUlid('attribute_id')->constrained('keystone_attributes')->cascadeOnDelete();
-            $table->foreignUlid('product_id')->constrained('keystone_products')->cascadeOnDelete();
+        Schema::create('showroom_product_unique_values', function (Blueprint $table): void {
+            $table->foreignUlid('attribute_id')->constrained('showroom_attributes')->cascadeOnDelete();
+            $table->foreignUlid('product_id')->constrained('showroom_products')->cascadeOnDelete();
             $table->char('value_hash', 64);
 
             $table->primary(['attribute_id', 'product_id']);
@@ -74,10 +74,10 @@ return new class extends Migration
 
     public function down(): void
     {
-        Schema::dropIfExists('keystone_product_unique_values');
-        Schema::dropIfExists('keystone_products');
-        Schema::dropIfExists('keystone_product_models');
-        Schema::dropIfExists('keystone_family_variant_attributes');
-        Schema::dropIfExists('keystone_family_variants');
+        Schema::dropIfExists('showroom_product_unique_values');
+        Schema::dropIfExists('showroom_products');
+        Schema::dropIfExists('showroom_product_models');
+        Schema::dropIfExists('showroom_family_variant_attributes');
+        Schema::dropIfExists('showroom_family_variants');
     }
 };

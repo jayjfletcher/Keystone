@@ -10,7 +10,7 @@ return new class extends Migration
 {
     public function up(): void
     {
-        Schema::create('keystone_association_types', function (Blueprint $table): void {
+        Schema::create('showroom_association_types', function (Blueprint $table): void {
             $table->ulid('id')->primary();
             $table->string('code', 100)->unique();
             $table->json('labels')->nullable();
@@ -23,9 +23,9 @@ return new class extends Migration
 
         // Polymorphic on both ends: products and product models relate to
         // products and product models.
-        Schema::create('keystone_associations', function (Blueprint $table): void {
+        Schema::create('showroom_associations', function (Blueprint $table): void {
             $table->ulid('id')->primary();
-            $table->foreignUlid('association_type_id')->constrained('keystone_association_types')->restrictOnDelete();
+            $table->foreignUlid('association_type_id')->constrained('showroom_association_types')->restrictOnDelete();
             $table->string('source_type', 64);
             $table->ulid('source_id');
             $table->string('target_type', 64);
@@ -34,7 +34,7 @@ return new class extends Migration
             $table->unsignedInteger('sort_order')->default(0);
             $table->timestamps();
 
-            $table->unique(['association_type_id', 'source_type', 'source_id', 'target_type', 'target_id'], 'keystone_associations_unique');
+            $table->unique(['association_type_id', 'source_type', 'source_id', 'target_type', 'target_id'], 'showroom_associations_unique');
             $table->index(['source_type', 'source_id']);
             $table->index(['target_type', 'target_id']);
         });
@@ -42,7 +42,7 @@ return new class extends Migration
 
     public function down(): void
     {
-        Schema::dropIfExists('keystone_associations');
-        Schema::dropIfExists('keystone_association_types');
+        Schema::dropIfExists('showroom_associations');
+        Schema::dropIfExists('showroom_association_types');
     }
 };

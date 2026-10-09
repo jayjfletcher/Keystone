@@ -1,7 +1,7 @@
 # Associations, Bundles & Kits — Plan
 
 1. Save spec documentation (`shape.md`, this plan).
-2. Migration `2026_01_01_000008_create_keystone_association_tables.php`: association types, polymorphic associations.
+2. Migration `2026_01_01_000008_create_showroom_association_tables.php`: association types, polymorphic associations.
 3. `AssociationType` and `Association` models, model events; `HasAssociations` on products and product models.
 4. `Associations\Associations`: rules, per-type replacement, two-way mirroring, self/target checks, inherited presentation, cleanup on delete.
 5. Association type Actions (5) with events; product and product model Actions take `associations` / `quantified_associations`.

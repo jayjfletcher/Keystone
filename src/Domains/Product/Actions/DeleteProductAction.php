@@ -2,15 +2,15 @@
 
 declare(strict_types=1);
 
-namespace RefactorCircus\Keystone\Domains\Product\Actions;
+namespace RefactorCircus\Showroom\Domains\Product\Actions;
 
-use RefactorCircus\Keystone\Domains\Asset\Services\AssetLinks;
-use RefactorCircus\Keystone\Domains\Association\Services\Associations;
-use RefactorCircus\Keystone\Domains\Product\Events\ProductDeletedActionEvent;
-use RefactorCircus\Keystone\Domains\Product\Events\ProductDeletingActionEvent;
-use RefactorCircus\Keystone\Domains\Product\Models\ProductModel;
-use RefactorCircus\Keystone\Domains\Search\Services\ProductIndex;
-use RefactorCircus\Keystone\Domains\Workflow\Services\Versions;
+use RefactorCircus\Showroom\Domains\Asset\Services\AssetLinks;
+use RefactorCircus\Showroom\Domains\Association\Services\Associations;
+use RefactorCircus\Showroom\Domains\Product\Events\ProductDeletedActionEvent;
+use RefactorCircus\Showroom\Domains\Product\Events\ProductDeletingActionEvent;
+use RefactorCircus\Showroom\Domains\Product\Models\ProductModel;
+use RefactorCircus\Showroom\Domains\Search\Services\ProductIndex;
+use RefactorCircus\Showroom\Domains\Workflow\Services\Versions;
 
 final class DeleteProductAction
 {

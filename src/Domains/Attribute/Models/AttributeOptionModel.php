@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace RefactorCircus\Keystone\Domains\Attribute\Models;
+namespace RefactorCircus\Showroom\Domains\Attribute\Models;
 
 use Illuminate\Database\Eloquent\Concerns\HasUlids;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -10,8 +10,8 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Support\Carbon;
 use RefactorCircus\Foundation\Models\Concerns\DispatchesModelEvents;
-use RefactorCircus\Keystone\Database\Factories\AttributeOptionFactory;
-use RefactorCircus\Keystone\Support\Models\Concerns\HasLabels;
+use RefactorCircus\Showroom\Database\Factories\AttributeOptionFactory;
+use RefactorCircus\Showroom\Support\Models\Concerns\HasLabels;
 
 /**
  * One choice of a select or multiselect attribute. Its code is unique within
@@ -36,7 +36,7 @@ final class AttributeOptionModel extends Model
     use HasLabels;
     use HasUlids;
 
-    protected $table = 'keystone_attribute_options';
+    protected $table = 'showroom_attribute_options';
 
     protected $fillable = [
         'attribute_id',

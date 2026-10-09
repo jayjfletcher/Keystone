@@ -2,15 +2,15 @@
 
 declare(strict_types=1);
 
-namespace RefactorCircus\Keystone\Domains\Product\Http\Controllers;
+namespace RefactorCircus\Showroom\Domains\Product\Http\Controllers;
 
 use Illuminate\Http\JsonResponse;
-use RefactorCircus\Keystone\Domains\Product\Http\Requests\DeleteProductRequest;
-use RefactorCircus\Keystone\Domains\Product\Http\Requests\IndexProductsRequest;
-use RefactorCircus\Keystone\Domains\Product\Http\Requests\ShowProductRequest;
-use RefactorCircus\Keystone\Domains\Product\Http\Requests\StoreProductRequest;
-use RefactorCircus\Keystone\Domains\Product\Http\Requests\UpdateProductRequest;
-use RefactorCircus\Keystone\Domains\Product\Models\ProductModel;
+use RefactorCircus\Showroom\Domains\Product\Http\Requests\DeleteProductRequest;
+use RefactorCircus\Showroom\Domains\Product\Http\Requests\IndexProductsRequest;
+use RefactorCircus\Showroom\Domains\Product\Http\Requests\ShowProductRequest;
+use RefactorCircus\Showroom\Domains\Product\Http\Requests\StoreProductRequest;
+use RefactorCircus\Showroom\Domains\Product\Http\Requests\UpdateProductRequest;
+use RefactorCircus\Showroom\Domains\Product\Models\ProductModel;
 
 final class ProductController
 {

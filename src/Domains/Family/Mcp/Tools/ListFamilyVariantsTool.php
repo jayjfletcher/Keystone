@@ -2,14 +2,14 @@
 
 declare(strict_types=1);
 
-namespace RefactorCircus\Keystone\Domains\Family\Mcp\Tools;
+namespace RefactorCircus\Showroom\Domains\Family\Mcp\Tools;
 
 use Illuminate\Contracts\JsonSchema\JsonSchema;
 use Laravel\Mcp\Response;
 use Laravel\Mcp\ResponseFactory;
 use Laravel\Mcp\Server\Attributes\Description;
 use RefactorCircus\Foundation\Mcp\Tool;
-use RefactorCircus\Keystone\Domains\Family\Mcp\Requests\ListFamilyVariantsMcpRequest;
+use RefactorCircus\Showroom\Domains\Family\Mcp\Requests\ListFamilyVariantsMcpRequest;
 
 #[Description('List family variants: how the products of a family vary (by color, then size). Cursor paginated.')]
 final class ListFamilyVariantsTool extends Tool

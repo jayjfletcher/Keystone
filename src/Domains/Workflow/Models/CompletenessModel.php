@@ -2,14 +2,14 @@
 
 declare(strict_types=1);
 
-namespace RefactorCircus\Keystone\Domains\Workflow\Models;
+namespace RefactorCircus\Showroom\Domains\Workflow\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Support\Carbon;
 use RefactorCircus\Foundation\Models\Concerns\DispatchesModelEvents;
-use RefactorCircus\Keystone\Domains\Channel\Models\ChannelModel;
-use RefactorCircus\Keystone\Domains\Channel\Models\LocaleModel;
+use RefactorCircus\Showroom\Domains\Channel\Models\ChannelModel;
+use RefactorCircus\Showroom\Domains\Channel\Models\LocaleModel;
 
 /**
  * How complete a product is for one channel and locale. Derived: rewritten
@@ -34,7 +34,7 @@ final class CompletenessModel extends Model
 
     public $incrementing = false;
 
-    protected $table = 'keystone_product_completeness';
+    protected $table = 'showroom_product_completeness';
 
     protected $primaryKey = 'product_id';
 

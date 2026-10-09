@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-namespace RefactorCircus\Keystone\Domains\Category\Http\Requests;
+namespace RefactorCircus\Showroom\Domains\Category\Http\Requests;
 
 use Illuminate\Http\JsonResponse;
-use RefactorCircus\Keystone\Domains\Category\Actions\ShowCategoryAction;
-use RefactorCircus\Keystone\Domains\Category\Resources\CategoryResource;
+use RefactorCircus\Showroom\Domains\Category\Actions\ShowCategoryAction;
+use RefactorCircus\Showroom\Domains\Category\Resources\CategoryResource;
 
 final class ShowCategoryRequest extends CategoryRequest
 {

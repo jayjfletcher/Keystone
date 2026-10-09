@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-namespace RefactorCircus\Keystone\Domains\Asset;
+namespace RefactorCircus\Showroom\Domains\Asset;
 
 use RefactorCircus\Foundation\Audit\AuditHooks;
 use RefactorCircus\Foundation\Support\ServiceProvider;
-use RefactorCircus\Keystone\Domains\Asset\Models\AssetModel;
+use RefactorCircus\Showroom\Domains\Asset\Models\AssetModel;
 
 class AssetServiceProvider extends ServiceProvider
 {

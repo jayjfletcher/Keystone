@@ -2,18 +2,18 @@
 
 declare(strict_types=1);
 
-namespace RefactorCircus\Keystone\Domains\Transfer\Actions;
+namespace RefactorCircus\Showroom\Domains\Transfer\Actions;
 
 use Illuminate\Http\UploadedFile;
 use Illuminate\Validation\Rule;
 use Illuminate\Validation\ValidationException;
 use RefactorCircus\Impex\Domains\Run\Models\RunModel;
-use RefactorCircus\Keystone\Domains\Asset\Actions\CreateAssetAction;
-use RefactorCircus\Keystone\Domains\Asset\Models\AssetModel;
-use RefactorCircus\Keystone\Domains\Transfer\Events\ImportStartedActionEvent;
-use RefactorCircus\Keystone\Domains\Transfer\Events\ImportStartingActionEvent;
-use RefactorCircus\Keystone\Domains\Transfer\Exceptions\ImpexMissingException;
-use RefactorCircus\Keystone\Impex\ImpexIntegration;
+use RefactorCircus\Showroom\Domains\Asset\Actions\CreateAssetAction;
+use RefactorCircus\Showroom\Domains\Asset\Models\AssetModel;
+use RefactorCircus\Showroom\Domains\Transfer\Events\ImportStartedActionEvent;
+use RefactorCircus\Showroom\Domains\Transfer\Events\ImportStartingActionEvent;
+use RefactorCircus\Showroom\Domains\Transfer\Exceptions\ImpexMissingException;
+use RefactorCircus\Showroom\Impex\ImpexIntegration;
 
 final class StartImportAction
 {
@@ -26,7 +26,7 @@ final class StartImportAction
     public static function rules(): array
     {
         return [
-            'asset' => ['required_without_all:file,url', 'nullable', 'string', 'exists:keystone_assets,code'],
+            'asset' => ['required_without_all:file,url', 'nullable', 'string', 'exists:showroom_assets,code'],
             'file' => ['sometimes', 'file'],
             'url' => ['sometimes', 'string', 'url:http,https'],
             'format' => ['sometimes', 'nullable', Rule::in(['csv', 'jsonl'])],

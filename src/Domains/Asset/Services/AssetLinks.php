@@ -2,16 +2,16 @@
 
 declare(strict_types=1);
 
-namespace RefactorCircus\Keystone\Domains\Asset\Services;
+namespace RefactorCircus\Showroom\Domains\Asset\Services;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Query\Builder;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Validation\ValidationException;
-use RefactorCircus\Keystone\Domains\Asset\Models\AssetModel;
-use RefactorCircus\Keystone\Domains\Owner\Models\OwnerModel;
-use RefactorCircus\Keystone\Domains\Product\Models\ProductModel;
-use RefactorCircus\Keystone\Domains\ProductModel\Models\ProductModelModel;
+use RefactorCircus\Showroom\Domains\Asset\Models\AssetModel;
+use RefactorCircus\Showroom\Domains\Owner\Models\OwnerModel;
+use RefactorCircus\Showroom\Domains\Product\Models\ProductModel;
+use RefactorCircus\Showroom\Domains\ProductModel\Models\ProductModelModel;
 
 /**
  * Links between assets and the records they illustrate.
@@ -38,9 +38,9 @@ final class AssetLinks
      * @var array<string, class-string<Model>>
      */
     public const array MORPHS = [
-        'keystone_product' => ProductModel::class,
-        'keystone_product_model' => ProductModelModel::class,
-        'keystone_owner' => OwnerModel::class,
+        'showroom_product' => ProductModel::class,
+        'showroom_product_model' => ProductModelModel::class,
+        'showroom_owner' => OwnerModel::class,
     ];
 
     /**

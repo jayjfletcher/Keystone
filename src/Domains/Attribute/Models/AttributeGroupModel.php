@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace RefactorCircus\Keystone\Domains\Attribute\Models;
+namespace RefactorCircus\Showroom\Domains\Attribute\Models;
 
 use Illuminate\Database\Eloquent\Concerns\HasUlids;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -10,8 +10,8 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Support\Carbon;
 use RefactorCircus\Foundation\Models\Concerns\DispatchesModelEvents;
-use RefactorCircus\Keystone\Database\Factories\AttributeGroupFactory;
-use RefactorCircus\Keystone\Support\Models\Concerns\HasLabels;
+use RefactorCircus\Showroom\Database\Factories\AttributeGroupFactory;
+use RefactorCircus\Showroom\Support\Models\Concerns\HasLabels;
 
 /**
  * A named section attributes are organised into, such as "Marketing" or
@@ -34,7 +34,7 @@ final class AttributeGroupModel extends Model
     use HasLabels;
     use HasUlids;
 
-    protected $table = 'keystone_attribute_groups';
+    protected $table = 'showroom_attribute_groups';
 
     protected $fillable = [
         'code',

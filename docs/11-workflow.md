@@ -21,12 +21,12 @@ Without `required_channels`, a required attribute is required on every channel. 
 
 - A required slot is filled when it holds a non-empty value — the product's own or inherited from its product models — in the channel (for scopable attributes) and the locale (for localizable ones).
 - Nothing required counts as 100%. Products without a family have no completeness.
-- Scores are stored and refreshed by the queued sync job whenever the product, its models, its family's requirements or the channels change. `php artisan keystone:search:reindex` recomputes them all.
+- Scores are stored and refreshed by the queued sync job whenever the product, its models, its family's requirements or the channels change. `php artisan showroom:search:reindex` recomputes them all.
 
 Search by completeness:
 
 ```http
-GET /keystone/products?complete[scope]=ecommerce&complete[locale]=en&complete[min]=100
+GET /showroom/products?complete[scope]=ecommerce&complete[locale]=en&complete[min]=100
 ```
 
 Without `locale`, every locale of the channel must reach `min` (default 100).
@@ -40,7 +40,7 @@ Without `locale`, every locale of the channel must reach `min` (default 100).
 | `approved` | Reviewed; ready to publish |
 | `archived` | Retired |
 
-`POST /keystone/products/{identifier}/transitions` with `transition` and an optional `comment`:
+`POST /showroom/products/{identifier}/transitions` with `transition` and an optional `comment`:
 
 | Transition | From | To |
 |---|---|---|
@@ -56,7 +56,7 @@ A transition from the wrong status answers `409` with what it needs.
 
 ### Publishing
 
-`publish` points `published_version` at the product's current version. The working copy stays editable: storefronts read `GET /keystone/products/{identifier}/versions/published`, which does not move until the next publish. Editing an approved product sends it back to `draft`, so changes are reviewed before they go live.
+`publish` points `published_version` at the product's current version. The working copy stays editable: storefronts read `GET /showroom/products/{identifier}/versions/published`, which does not move until the next publish. Editing an approved product sends it back to `draft`, so changes are reviewed before they go live.
 
 The same holds for vendors subscribed to [product webhooks](12-impex.md#product-webhooks): values, family and associations reach them from the published version, so a draft edit is sent only once it is published. Categories, owner and linked assets are not versioned and follow the live product, so a published product's change there is sent straight away. Unpublishing or archiving a product reaches its subscribers as `removed`.
 
@@ -92,9 +92,9 @@ Every write to a product records a version:
 
 | | |
 |---|---|
-| `GET /keystone/products/{identifier}/versions` | History, newest first (filter by `action`) |
-| `GET /keystone/products/{identifier}/versions/{n\|latest\|published}` | One version with its snapshot |
-| `POST /keystone/products/{identifier}/revert` | `{"version": 2}` — restore its values, categories, associations, family, owner and enabled flag as a new `reverted` version |
+| `GET /showroom/products/{identifier}/versions` | History, newest first (filter by `action`) |
+| `GET /showroom/products/{identifier}/versions/{n\|latest\|published}` | One version with its snapshot |
+| `POST /showroom/products/{identifier}/revert` | `{"version": 2}` — restore its values, categories, associations, family, owner and enabled flag as a new `reverted` version |
 
 Revert leaves the workflow status and the live version alone. Versions are deleted with their product.
 

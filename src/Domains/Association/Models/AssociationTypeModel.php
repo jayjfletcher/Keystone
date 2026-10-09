@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace RefactorCircus\Keystone\Domains\Association\Models;
+namespace RefactorCircus\Showroom\Domains\Association\Models;
 
 use Illuminate\Database\Eloquent\Concerns\HasUlids;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -10,8 +10,8 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Support\Carbon;
 use RefactorCircus\Foundation\Models\Concerns\DispatchesModelEvents;
-use RefactorCircus\Keystone\Database\Factories\AssociationTypeFactory;
-use RefactorCircus\Keystone\Support\Models\Concerns\HasLabels;
+use RefactorCircus\Showroom\Database\Factories\AssociationTypeFactory;
+use RefactorCircus\Showroom\Support\Models\Concerns\HasLabels;
 
 /**
  * A kind of relation between products: cross-sell, up-sell, accessories,
@@ -35,7 +35,7 @@ final class AssociationTypeModel extends Model
     use HasLabels;
     use HasUlids;
 
-    protected $table = 'keystone_association_types';
+    protected $table = 'showroom_association_types';
 
     protected $fillable = [
         'code',

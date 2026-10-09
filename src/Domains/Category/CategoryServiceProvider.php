@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-namespace RefactorCircus\Keystone\Domains\Category;
+namespace RefactorCircus\Showroom\Domains\Category;
 
 use RefactorCircus\Foundation\Audit\AuditHooks;
 use RefactorCircus\Foundation\Support\ServiceProvider;
-use RefactorCircus\Keystone\Domains\Category\Models\CategoryModel;
+use RefactorCircus\Showroom\Domains\Category\Models\CategoryModel;
 
 class CategoryServiceProvider extends ServiceProvider
 {

@@ -2,13 +2,13 @@
 
 declare(strict_types=1);
 
-namespace RefactorCircus\Keystone\Domains\Attribute\Mcp\Requests;
+namespace RefactorCircus\Showroom\Domains\Attribute\Mcp\Requests;
 
 use Laravel\Mcp\ResponseFactory;
 use RefactorCircus\Foundation\Mcp\Requests\Request;
-use RefactorCircus\Keystone\Domains\Attribute\Actions\ListAttributeGroupsAction;
-use RefactorCircus\Keystone\Domains\Attribute\Models\AttributeGroupModel;
-use RefactorCircus\Keystone\Domains\Attribute\Resources\AttributeGroupResource;
+use RefactorCircus\Showroom\Domains\Attribute\Actions\ListAttributeGroupsAction;
+use RefactorCircus\Showroom\Domains\Attribute\Models\AttributeGroupModel;
+use RefactorCircus\Showroom\Domains\Attribute\Resources\AttributeGroupResource;
 
 final class ListAttributeGroupsMcpRequest extends Request
 {

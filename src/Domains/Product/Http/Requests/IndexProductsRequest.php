@@ -2,13 +2,13 @@
 
 declare(strict_types=1);
 
-namespace RefactorCircus\Keystone\Domains\Product\Http\Requests;
+namespace RefactorCircus\Showroom\Domains\Product\Http\Requests;
 
 use Illuminate\Http\JsonResponse;
 use RefactorCircus\Foundation\Http\Requests\Request;
-use RefactorCircus\Keystone\Domains\Product\Actions\ListProductsAction;
-use RefactorCircus\Keystone\Domains\Product\Models\ProductModel;
-use RefactorCircus\Keystone\Domains\Product\Resources\ProductResource;
+use RefactorCircus\Showroom\Domains\Product\Actions\ListProductsAction;
+use RefactorCircus\Showroom\Domains\Product\Models\ProductModel;
+use RefactorCircus\Showroom\Domains\Product\Resources\ProductResource;
 
 final class IndexProductsRequest extends Request
 {

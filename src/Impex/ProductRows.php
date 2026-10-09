@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-namespace RefactorCircus\Keystone\Impex;
+namespace RefactorCircus\Showroom\Impex;
 
 use Illuminate\Support\Collection;
-use RefactorCircus\Keystone\Domains\Attribute\Enums\AttributeType;
-use RefactorCircus\Keystone\Domains\Attribute\Models\AttributeModel;
+use RefactorCircus\Showroom\Domains\Attribute\Enums\AttributeType;
+use RefactorCircus\Showroom\Domains\Attribute\Models\AttributeModel;
 
 /**
  * Converts between product records in API shape and flat CSV rows, with

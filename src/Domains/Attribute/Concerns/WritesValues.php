@@ -2,14 +2,14 @@
 
 declare(strict_types=1);
 
-namespace RefactorCircus\Keystone\Domains\Attribute\Concerns;
+namespace RefactorCircus\Showroom\Domains\Attribute\Concerns;
 
 use Illuminate\Support\Collection;
 use Illuminate\Validation\ValidationException;
-use RefactorCircus\Keystone\Domains\Attribute\Models\AttributeModel;
-use RefactorCircus\Keystone\Domains\Attribute\Services\Values;
-use RefactorCircus\Keystone\Domains\Attribute\Services\ValueValidator;
-use RefactorCircus\Keystone\Domains\Family\Models\FamilyVariantModel;
+use RefactorCircus\Showroom\Domains\Attribute\Models\AttributeModel;
+use RefactorCircus\Showroom\Domains\Attribute\Services\Values;
+use RefactorCircus\Showroom\Domains\Attribute\Services\ValueValidator;
+use RefactorCircus\Showroom\Domains\Family\Models\FamilyVariantModel;
 
 /**
  * Value and variant-axis rules shared by the product and product model Actions.

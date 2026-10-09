@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-namespace RefactorCircus\Keystone\Domains\Attribute\Actions;
+namespace RefactorCircus\Showroom\Domains\Attribute\Actions;
 
-use RefactorCircus\Keystone\Domains\Attribute\Events\AttributeGroupUpdatedActionEvent;
-use RefactorCircus\Keystone\Domains\Attribute\Events\AttributeGroupUpdatingActionEvent;
-use RefactorCircus\Keystone\Domains\Attribute\Models\AttributeGroupModel;
+use RefactorCircus\Showroom\Domains\Attribute\Events\AttributeGroupUpdatedActionEvent;
+use RefactorCircus\Showroom\Domains\Attribute\Events\AttributeGroupUpdatingActionEvent;
+use RefactorCircus\Showroom\Domains\Attribute\Models\AttributeGroupModel;
 
 final class UpdateAttributeGroupAction
 {

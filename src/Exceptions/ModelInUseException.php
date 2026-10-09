@@ -2,12 +2,12 @@
 
 declare(strict_types=1);
 
-namespace RefactorCircus\Keystone\Exceptions;
+namespace RefactorCircus\Showroom\Exceptions;
 
 /**
  * A catalog record other records still depend on.
  */
-final class ModelInUseException extends KeystoneException
+final class ModelInUseException extends ShowroomException
 {
     public static function familyHasProducts(string $family, int $products, int $models): self
     {

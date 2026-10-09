@@ -2,14 +2,14 @@
 
 declare(strict_types=1);
 
-namespace RefactorCircus\Keystone\Impex\Webhooks;
+namespace RefactorCircus\Showroom\Impex\Webhooks;
 
 use Illuminate\Database\ConnectionInterface;
 use Illuminate\Database\Query\Builder;
 use Illuminate\Database\Query\JoinClause;
-use RefactorCircus\Keystone\Domains\Attribute\Services\Values;
-use RefactorCircus\Keystone\Domains\Product\Models\ProductModel;
-use RefactorCircus\Keystone\Domains\ProductModel\Models\ProductModelModel;
+use RefactorCircus\Showroom\Domains\Attribute\Services\Values;
+use RefactorCircus\Showroom\Domains\Product\Models\ProductModel;
+use RefactorCircus\Showroom\Domains\ProductModel\Models\ProductModelModel;
 use stdClass;
 
 /**
@@ -17,7 +17,7 @@ use stdClass;
  * with the categories, owner and assets the product has now.
  *
  * Attribute values, family and associations come from the published
- * version, so a draft edit never leaves Keystone. Categorisation and assets
+ * version, so a draft edit never leaves Showroom. Categorisation and assets
  * are not versioned, so they follow the live product; a category change
  * reaches subscribers once the product is published, and an asset change as
  * soon as it is linked.
@@ -123,8 +123,8 @@ final class ProductSnapshots
     {
         $morph = (new ProductModel)->getMorphClass();
 
-        return array_values($this->db->table('keystone_products as p')
-            ->join('keystone_versions as v', function (JoinClause $join) use ($morph): void {
+        return array_values($this->db->table('showroom_products as p')
+            ->join('showroom_versions as v', function (JoinClause $join) use ($morph): void {
                 $join->on('v.versionable_id', '=', 'p.id')
                     ->on('v.version', '=', 'p.published_version')
                     ->where('v.versionable_type', '=', $morph);
@@ -160,7 +160,7 @@ final class ProductSnapshots
         for ($level = 0; $level < 2 && $pending !== []; $level++) {
             $next = [];
 
-            foreach ($this->db->table('keystone_product_models')->whereIn('id', $pending)->get(['id', 'code', 'parent_id', 'owner_id']) as $row) {
+            foreach ($this->db->table('showroom_product_models')->whereIn('id', $pending)->get(['id', 'code', 'parent_id', 'owner_id']) as $row) {
                 /** @var stdClass $row */
                 $models[(string) $row->id] = [
                     'code' => (string) $row->code,
@@ -227,13 +227,13 @@ final class ProductSnapshots
     {
         $categories = [];
 
-        foreach ([['keystone_category_product', 'product_id', $productIds], ['keystone_category_product_model', 'product_model_id', $modelIds]] as [$table, $column, $ids]) {
+        foreach ([['showroom_category_product', 'product_id', $productIds], ['showroom_category_product_model', 'product_model_id', $modelIds]] as [$table, $column, $ids]) {
             if ($ids === []) {
                 continue;
             }
 
             $rows = $this->db->table($table.' as link')
-                ->join('keystone_categories as c', 'c.id', '=', 'link.category_id')
+                ->join('showroom_categories as c', 'c.id', '=', 'link.category_id')
                 ->whereIn('link.'.$column, $ids)
                 ->get(['link.'.$column.' as owner', 'c.code', 'c.path']);
 
@@ -258,7 +258,7 @@ final class ProductSnapshots
             return $owners;
         }
 
-        foreach ($this->db->table('keystone_owners')->whereIn('id', array_values(array_unique($ids)))->get(['id', 'code', 'path']) as $row) {
+        foreach ($this->db->table('showroom_owners')->whereIn('id', array_values(array_unique($ids)))->get(['id', 'code', 'path']) as $row) {
             /** @var stdClass $row */
             $owners[(string) $row->id] = ['code' => (string) $row->code, 'path' => (string) $row->path];
         }
@@ -278,8 +278,8 @@ final class ProductSnapshots
         $productMorph = (new ProductModel)->getMorphClass();
         $modelMorph = (new ProductModelModel)->getMorphClass();
 
-        $rows = $this->db->table('keystone_asset_links as l')
-            ->join('keystone_assets as a', 'a.id', '=', 'l.asset_id')
+        $rows = $this->db->table('showroom_asset_links as l')
+            ->join('showroom_assets as a', 'a.id', '=', 'l.asset_id')
             ->where(function (Builder $query) use ($productMorph, $modelMorph, $productIds, $modelIds): void {
                 $query->where(fn (Builder $q) => $q->where('l.linkable_type', $productMorph)->whereIn('l.linkable_id', $productIds));
 

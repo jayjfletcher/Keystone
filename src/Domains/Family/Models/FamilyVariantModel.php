@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace RefactorCircus\Keystone\Domains\Family\Models;
+namespace RefactorCircus\Showroom\Domains\Family\Models;
 
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Concerns\HasUlids;
@@ -14,10 +14,10 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\Pivot;
 use Illuminate\Support\Carbon;
 use RefactorCircus\Foundation\Models\Concerns\DispatchesModelEvents;
-use RefactorCircus\Keystone\Database\Factories\FamilyVariantFactory;
-use RefactorCircus\Keystone\Domains\Attribute\Models\AttributeModel;
-use RefactorCircus\Keystone\Domains\ProductModel\Models\ProductModelModel;
-use RefactorCircus\Keystone\Support\Models\Concerns\HasLabels;
+use RefactorCircus\Showroom\Database\Factories\FamilyVariantFactory;
+use RefactorCircus\Showroom\Domains\Attribute\Models\AttributeModel;
+use RefactorCircus\Showroom\Domains\ProductModel\Models\ProductModelModel;
+use RefactorCircus\Showroom\Support\Models\Concerns\HasLabels;
 
 /**
  * How a family's products vary: "shirts by color, then by size". Each level
@@ -43,7 +43,7 @@ final class FamilyVariantModel extends Model
     use HasLabels;
     use HasUlids;
 
-    protected $table = 'keystone_family_variants';
+    protected $table = 'showroom_family_variants';
 
     protected $fillable = [
         'family_id',
@@ -67,10 +67,10 @@ final class FamilyVariantModel extends Model
      */
     public function variantAttributes(): BelongsToMany
     {
-        return $this->belongsToMany(AttributeModel::class, 'keystone_family_variant_attributes', 'family_variant_id', 'attribute_id')
+        return $this->belongsToMany(AttributeModel::class, 'showroom_family_variant_attributes', 'family_variant_id', 'attribute_id')
             ->withPivot(['level', 'is_axis'])
             ->orderByPivot('level')
-            ->orderBy('keystone_attributes.code');
+            ->orderBy('showroom_attributes.code');
     }
 
     /**

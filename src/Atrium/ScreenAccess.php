@@ -2,19 +2,19 @@
 
 declare(strict_types=1);
 
-namespace RefactorCircus\Keystone\Atrium;
+namespace RefactorCircus\Showroom\Atrium;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\Request;
 use RefactorCircus\Atrium\Support\ScreenAccess as AtriumScreenAccess;
-use RefactorCircus\Keystone\Domains\Product\Models\ProductModel;
+use RefactorCircus\Showroom\Domains\Product\Models\ProductModel;
 
 /**
- * Keystone's side of Atrium's ScreenAccess: whether the signed-in user may
+ * Showroom's side of Atrium's ScreenAccess: whether the signed-in user may
  * perform an ability, asked the way the JSON API and MCP tools ask it through
- * the policies in `keystone.policies`. Views hide controls with it (as
- * `@keystoneCan`), so a control is shown exactly when its action is allowed.
- * With `keystone.authorization` off, everything is allowed.
+ * the policies in `showroom.policies`. Views hide controls with it (as
+ * `@showroomCan`), so a control is shown exactly when its action is allowed.
+ * With `showroom.authorization` off, everything is allowed.
  */
 final class ScreenAccess
 {
@@ -23,7 +23,7 @@ final class ScreenAccess
      */
     public static function allows(string $ability, Model|string $subject, ?Request $request = null): bool
     {
-        return AtriumScreenAccess::allows('keystone', $ability, $subject, $request);
+        return AtriumScreenAccess::allows('showroom', $ability, $subject, $request);
     }
 
     /**

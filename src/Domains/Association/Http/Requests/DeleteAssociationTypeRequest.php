@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace RefactorCircus\Keystone\Domains\Association\Http\Requests;
+namespace RefactorCircus\Showroom\Domains\Association\Http\Requests;
 
 use Illuminate\Http\JsonResponse;
-use RefactorCircus\Keystone\Domains\Association\Actions\DeleteAssociationTypeAction;
+use RefactorCircus\Showroom\Domains\Association\Actions\DeleteAssociationTypeAction;
 
 final class DeleteAssociationTypeRequest extends AssociationTypeRequest
 {

@@ -2,26 +2,26 @@
 
 declare(strict_types=1);
 
-namespace RefactorCircus\Keystone\Atrium\Http\Controllers;
+namespace RefactorCircus\Showroom\Atrium\Http\Controllers;
 
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Validation\ValidationException;
 use RefactorCircus\Atrium\Http\Controllers\Concerns\AuthorizesScreens;
-use RefactorCircus\Keystone\Atrium\Support\Labels;
-use RefactorCircus\Keystone\Domains\Attribute\Actions\CreateAttributeAction;
-use RefactorCircus\Keystone\Domains\Attribute\Actions\CreateAttributeOptionAction;
-use RefactorCircus\Keystone\Domains\Attribute\Actions\DeleteAttributeAction;
-use RefactorCircus\Keystone\Domains\Attribute\Actions\DeleteAttributeOptionAction;
-use RefactorCircus\Keystone\Domains\Attribute\Actions\ListAttributesAction;
-use RefactorCircus\Keystone\Domains\Attribute\Actions\ShowAttributeAction;
-use RefactorCircus\Keystone\Domains\Attribute\Actions\UpdateAttributeAction;
-use RefactorCircus\Keystone\Domains\Attribute\Enums\AttributeType;
-use RefactorCircus\Keystone\Domains\Attribute\Models\AttributeGroupModel;
-use RefactorCircus\Keystone\Domains\Attribute\Models\AttributeModel;
-use RefactorCircus\Keystone\Domains\Attribute\Models\AttributeOptionModel;
-use RefactorCircus\Keystone\Exceptions\KeystoneException;
+use RefactorCircus\Showroom\Atrium\Support\Labels;
+use RefactorCircus\Showroom\Domains\Attribute\Actions\CreateAttributeAction;
+use RefactorCircus\Showroom\Domains\Attribute\Actions\CreateAttributeOptionAction;
+use RefactorCircus\Showroom\Domains\Attribute\Actions\DeleteAttributeAction;
+use RefactorCircus\Showroom\Domains\Attribute\Actions\DeleteAttributeOptionAction;
+use RefactorCircus\Showroom\Domains\Attribute\Actions\ListAttributesAction;
+use RefactorCircus\Showroom\Domains\Attribute\Actions\ShowAttributeAction;
+use RefactorCircus\Showroom\Domains\Attribute\Actions\UpdateAttributeAction;
+use RefactorCircus\Showroom\Domains\Attribute\Enums\AttributeType;
+use RefactorCircus\Showroom\Domains\Attribute\Models\AttributeGroupModel;
+use RefactorCircus\Showroom\Domains\Attribute\Models\AttributeModel;
+use RefactorCircus\Showroom\Domains\Attribute\Models\AttributeOptionModel;
+use RefactorCircus\Showroom\Exceptions\ShowroomException;
 
 final class AttributeUiController
 {
@@ -36,7 +36,7 @@ final class AttributeUiController
         $filters = $request->validate(ListAttributesAction::rules());
 
         /** @var view-string $view */
-        $view = 'keystone::ui.attributes.index';
+        $view = 'showroom::ui.attributes.index';
 
         return view($view, [
             'catalogAttributes' => app(ListAttributesAction::class)->execute($filters)->withQueryString(),
@@ -51,7 +51,7 @@ final class AttributeUiController
         $this->authorizeScreen('create', AttributeModel::class);
 
         /** @var view-string $view */
-        $view = 'keystone::ui.attributes.create';
+        $view = 'showroom::ui.attributes.create';
 
         return view($view, [
             'types' => AttributeType::cases(),
@@ -68,8 +68,8 @@ final class AttributeUiController
         $attribute = app(CreateAttributeAction::class)->execute(Labels::fromForm($data));
 
         return redirect()
-            ->route('atrium.keystone.attributes.show', $attribute)
-            ->with('status', __('keystone::keystone.attribute_created'));
+            ->route('atrium.showroom.attributes.show', $attribute)
+            ->with('status', __('showroom::showroom.attribute_created'));
     }
 
     public function show(AttributeModel $attribute): View
@@ -77,7 +77,7 @@ final class AttributeUiController
         $this->authorizeScreen('view', $attribute);
 
         /** @var view-string $view */
-        $view = 'keystone::ui.attributes.show';
+        $view = 'showroom::ui.attributes.show';
 
         return view($view, [
             'attribute' => app(ShowAttributeAction::class)->execute($attribute),
@@ -94,8 +94,8 @@ final class AttributeUiController
         app(UpdateAttributeAction::class)->execute($attribute, Labels::fromForm($data, $attribute->labels));
 
         return redirect()
-            ->route('atrium.keystone.attributes.show', $attribute)
-            ->with('status', __('keystone::keystone.attribute_updated'));
+            ->route('atrium.showroom.attributes.show', $attribute)
+            ->with('status', __('showroom::showroom.attribute_updated'));
     }
 
     public function destroy(AttributeModel $attribute): RedirectResponse
@@ -104,13 +104,13 @@ final class AttributeUiController
 
         try {
             app(DeleteAttributeAction::class)->execute($attribute);
-        } catch (KeystoneException $e) {
+        } catch (ShowroomException $e) {
             return back()->withErrors(['attribute' => $e->getMessage()]);
         }
 
         return redirect()
-            ->route('atrium.keystone.attributes.index')
-            ->with('status', __('keystone::keystone.attribute_deleted'));
+            ->route('atrium.showroom.attributes.index')
+            ->with('status', __('showroom::showroom.attribute_deleted'));
     }
 
     public function storeOption(Request $request, AttributeModel $attribute): RedirectResponse
@@ -122,13 +122,13 @@ final class AttributeUiController
 
         try {
             app(CreateAttributeOptionAction::class)->execute($attribute, $data);
-        } catch (KeystoneException $e) {
+        } catch (ShowroomException $e) {
             return back()->withErrors(['option' => $e->getMessage()]);
         }
 
         return redirect()
-            ->route('atrium.keystone.attributes.show', $attribute)
-            ->with('status', __('keystone::keystone.option_created'));
+            ->route('atrium.showroom.attributes.show', $attribute)
+            ->with('status', __('showroom::showroom.option_created'));
     }
 
     public function destroyOption(AttributeModel $attribute, AttributeOptionModel $option): RedirectResponse
@@ -138,8 +138,8 @@ final class AttributeUiController
         app(DeleteAttributeOptionAction::class)->execute($option);
 
         return redirect()
-            ->route('atrium.keystone.attributes.show', $attribute)
-            ->with('status', __('keystone::keystone.option_deleted'));
+            ->route('atrium.showroom.attributes.show', $attribute)
+            ->with('status', __('showroom::showroom.option_deleted'));
     }
 
     /**
@@ -169,7 +169,7 @@ final class AttributeUiController
 
             if (! is_array($decoded)) {
                 throw ValidationException::withMessages([
-                    'settings' => __('keystone::keystone.invalid_settings'),
+                    'settings' => __('showroom::showroom.invalid_settings'),
                 ]);
             }
 

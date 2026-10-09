@@ -2,13 +2,13 @@
 
 declare(strict_types=1);
 
-namespace RefactorCircus\Keystone\Domains\Owner\Http\Requests;
+namespace RefactorCircus\Showroom\Domains\Owner\Http\Requests;
 
 use Illuminate\Http\JsonResponse;
 use RefactorCircus\Foundation\Http\Requests\Request;
-use RefactorCircus\Keystone\Domains\Owner\Actions\CreateOwnerTypeAction;
-use RefactorCircus\Keystone\Domains\Owner\Models\OwnerTypeModel;
-use RefactorCircus\Keystone\Domains\Owner\Resources\OwnerTypeResource;
+use RefactorCircus\Showroom\Domains\Owner\Actions\CreateOwnerTypeAction;
+use RefactorCircus\Showroom\Domains\Owner\Models\OwnerTypeModel;
+use RefactorCircus\Showroom\Domains\Owner\Resources\OwnerTypeResource;
 
 final class StoreOwnerTypeRequest extends Request
 {

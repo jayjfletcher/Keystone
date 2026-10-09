@@ -17,16 +17,16 @@ return new class extends Migration
 {
     public function up(): void
     {
-        Schema::table('keystone_products', function (Blueprint $table): void {
+        Schema::table('showroom_products', function (Blueprint $table): void {
             $table->timestamp('changed_at')->nullable()->index();
         });
 
-        DB::table('keystone_products')->update(['changed_at' => DB::raw('updated_at')]);
+        DB::table('showroom_products')->update(['changed_at' => DB::raw('updated_at')]);
     }
 
     public function down(): void
     {
-        Schema::table('keystone_products', function (Blueprint $table): void {
+        Schema::table('showroom_products', function (Blueprint $table): void {
             $table->dropIndex(['changed_at']);
             $table->dropColumn('changed_at');
         });

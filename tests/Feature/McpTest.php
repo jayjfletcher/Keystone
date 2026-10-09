@@ -4,99 +4,99 @@ declare(strict_types=1);
 
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Storage;
-use RefactorCircus\Keystone\Domains\Asset\Mcp\Tools\AttachAssetTool;
-use RefactorCircus\Keystone\Domains\Asset\Mcp\Tools\CreateAssetTool;
-use RefactorCircus\Keystone\Domains\Asset\Mcp\Tools\DeleteAssetTool;
-use RefactorCircus\Keystone\Domains\Asset\Mcp\Tools\DetachAssetTool;
-use RefactorCircus\Keystone\Domains\Asset\Mcp\Tools\ListAssetsTool;
-use RefactorCircus\Keystone\Domains\Asset\Mcp\Tools\ShowAssetTool;
-use RefactorCircus\Keystone\Domains\Asset\Mcp\Tools\UpdateAssetTool;
-use RefactorCircus\Keystone\Domains\Association\Mcp\Tools\CreateAssociationTypeTool;
-use RefactorCircus\Keystone\Domains\Association\Mcp\Tools\DeleteAssociationTypeTool;
-use RefactorCircus\Keystone\Domains\Association\Mcp\Tools\ListAssociationTypesTool;
-use RefactorCircus\Keystone\Domains\Association\Mcp\Tools\ShowAssociationTypeTool;
-use RefactorCircus\Keystone\Domains\Association\Mcp\Tools\UpdateAssociationTypeTool;
-use RefactorCircus\Keystone\Domains\Attribute\Mcp\Tools\CreateAttributeGroupTool;
-use RefactorCircus\Keystone\Domains\Attribute\Mcp\Tools\CreateAttributeOptionTool;
-use RefactorCircus\Keystone\Domains\Attribute\Mcp\Tools\CreateAttributeTool;
-use RefactorCircus\Keystone\Domains\Attribute\Mcp\Tools\DeleteAttributeGroupTool;
-use RefactorCircus\Keystone\Domains\Attribute\Mcp\Tools\DeleteAttributeOptionTool;
-use RefactorCircus\Keystone\Domains\Attribute\Mcp\Tools\DeleteAttributeTool;
-use RefactorCircus\Keystone\Domains\Attribute\Mcp\Tools\ListAttributeGroupsTool;
-use RefactorCircus\Keystone\Domains\Attribute\Mcp\Tools\ListAttributeOptionsTool;
-use RefactorCircus\Keystone\Domains\Attribute\Mcp\Tools\ListAttributesTool;
-use RefactorCircus\Keystone\Domains\Attribute\Mcp\Tools\ShowAttributeGroupTool;
-use RefactorCircus\Keystone\Domains\Attribute\Mcp\Tools\ShowAttributeTool;
-use RefactorCircus\Keystone\Domains\Attribute\Mcp\Tools\UpdateAttributeGroupTool;
-use RefactorCircus\Keystone\Domains\Attribute\Mcp\Tools\UpdateAttributeOptionTool;
-use RefactorCircus\Keystone\Domains\Attribute\Mcp\Tools\UpdateAttributeTool;
-use RefactorCircus\Keystone\Domains\Attribute\Models\AttributeGroupModel;
-use RefactorCircus\Keystone\Domains\Attribute\Models\AttributeModel;
-use RefactorCircus\Keystone\Domains\Attribute\Models\AttributeOptionModel;
-use RefactorCircus\Keystone\Domains\Category\Mcp\Tools\CreateCategoryTool;
-use RefactorCircus\Keystone\Domains\Category\Mcp\Tools\DeleteCategoryTool;
-use RefactorCircus\Keystone\Domains\Category\Mcp\Tools\ListCategoriesTool;
-use RefactorCircus\Keystone\Domains\Category\Mcp\Tools\ShowCategoryTool;
-use RefactorCircus\Keystone\Domains\Category\Mcp\Tools\UpdateCategoryTool;
-use RefactorCircus\Keystone\Domains\Channel\Mcp\Tools\CreateChannelTool;
-use RefactorCircus\Keystone\Domains\Channel\Mcp\Tools\CreateLocaleTool;
-use RefactorCircus\Keystone\Domains\Channel\Mcp\Tools\DeleteChannelTool;
-use RefactorCircus\Keystone\Domains\Channel\Mcp\Tools\DeleteLocaleTool;
-use RefactorCircus\Keystone\Domains\Channel\Mcp\Tools\ListChannelsTool;
-use RefactorCircus\Keystone\Domains\Channel\Mcp\Tools\ListLocalesTool;
-use RefactorCircus\Keystone\Domains\Channel\Mcp\Tools\ShowChannelTool;
-use RefactorCircus\Keystone\Domains\Channel\Mcp\Tools\ShowLocaleTool;
-use RefactorCircus\Keystone\Domains\Channel\Mcp\Tools\UpdateChannelTool;
-use RefactorCircus\Keystone\Domains\Channel\Mcp\Tools\UpdateLocaleTool;
-use RefactorCircus\Keystone\Domains\Family\Mcp\Tools\CreateFamilyTool;
-use RefactorCircus\Keystone\Domains\Family\Mcp\Tools\CreateFamilyVariantTool;
-use RefactorCircus\Keystone\Domains\Family\Mcp\Tools\DeleteFamilyTool;
-use RefactorCircus\Keystone\Domains\Family\Mcp\Tools\DeleteFamilyVariantTool;
-use RefactorCircus\Keystone\Domains\Family\Mcp\Tools\ListFamiliesTool;
-use RefactorCircus\Keystone\Domains\Family\Mcp\Tools\ListFamilyVariantsTool;
-use RefactorCircus\Keystone\Domains\Family\Mcp\Tools\ShowFamilyTool;
-use RefactorCircus\Keystone\Domains\Family\Mcp\Tools\ShowFamilyVariantTool;
-use RefactorCircus\Keystone\Domains\Family\Mcp\Tools\UpdateFamilyTool;
-use RefactorCircus\Keystone\Domains\Family\Mcp\Tools\UpdateFamilyVariantTool;
-use RefactorCircus\Keystone\Domains\Family\Models\FamilyModel;
-use RefactorCircus\Keystone\Domains\Owner\Mcp\Tools\CreateOwnerTool;
-use RefactorCircus\Keystone\Domains\Owner\Mcp\Tools\CreateOwnerTypeTool;
-use RefactorCircus\Keystone\Domains\Owner\Mcp\Tools\DeleteOwnerTool;
-use RefactorCircus\Keystone\Domains\Owner\Mcp\Tools\DeleteOwnerTypeTool;
-use RefactorCircus\Keystone\Domains\Owner\Mcp\Tools\ListOwnersTool;
-use RefactorCircus\Keystone\Domains\Owner\Mcp\Tools\ListOwnerTypesTool;
-use RefactorCircus\Keystone\Domains\Owner\Mcp\Tools\ShowOwnerTool;
-use RefactorCircus\Keystone\Domains\Owner\Mcp\Tools\ShowOwnerTypeTool;
-use RefactorCircus\Keystone\Domains\Owner\Mcp\Tools\UpdateOwnerTool;
-use RefactorCircus\Keystone\Domains\Owner\Mcp\Tools\UpdateOwnerTypeTool;
-use RefactorCircus\Keystone\Domains\Product\Mcp\Tools\CreateProductTool;
-use RefactorCircus\Keystone\Domains\Product\Mcp\Tools\DeleteProductTool;
-use RefactorCircus\Keystone\Domains\Product\Mcp\Tools\ListProductsTool;
-use RefactorCircus\Keystone\Domains\Product\Mcp\Tools\ShowProductTool;
-use RefactorCircus\Keystone\Domains\Product\Mcp\Tools\UpdateProductTool;
-use RefactorCircus\Keystone\Domains\Product\Models\ProductModel;
-use RefactorCircus\Keystone\Domains\ProductModel\Mcp\Tools\CreateProductModelTool;
-use RefactorCircus\Keystone\Domains\ProductModel\Mcp\Tools\DeleteProductModelTool;
-use RefactorCircus\Keystone\Domains\ProductModel\Mcp\Tools\ListProductModelsTool;
-use RefactorCircus\Keystone\Domains\ProductModel\Mcp\Tools\ShowProductModelTool;
-use RefactorCircus\Keystone\Domains\ProductModel\Mcp\Tools\UpdateProductModelTool;
-use RefactorCircus\Keystone\Domains\Workflow\Mcp\Tools\ListProductVersionsTool;
-use RefactorCircus\Keystone\Domains\Workflow\Mcp\Tools\RevertProductTool;
-use RefactorCircus\Keystone\Domains\Workflow\Mcp\Tools\ShowProductVersionTool;
-use RefactorCircus\Keystone\Domains\Workflow\Mcp\Tools\TransitionProductTool;
-use RefactorCircus\Keystone\Mcp\KeystoneServer;
-use RefactorCircus\Keystone\Mcp\Tools\ListKeystoneHistoryTool;
-use RefactorCircus\Keystone\Tests\Fixtures\Catalog;
+use RefactorCircus\Showroom\Domains\Asset\Mcp\Tools\AttachAssetTool;
+use RefactorCircus\Showroom\Domains\Asset\Mcp\Tools\CreateAssetTool;
+use RefactorCircus\Showroom\Domains\Asset\Mcp\Tools\DeleteAssetTool;
+use RefactorCircus\Showroom\Domains\Asset\Mcp\Tools\DetachAssetTool;
+use RefactorCircus\Showroom\Domains\Asset\Mcp\Tools\ListAssetsTool;
+use RefactorCircus\Showroom\Domains\Asset\Mcp\Tools\ShowAssetTool;
+use RefactorCircus\Showroom\Domains\Asset\Mcp\Tools\UpdateAssetTool;
+use RefactorCircus\Showroom\Domains\Association\Mcp\Tools\CreateAssociationTypeTool;
+use RefactorCircus\Showroom\Domains\Association\Mcp\Tools\DeleteAssociationTypeTool;
+use RefactorCircus\Showroom\Domains\Association\Mcp\Tools\ListAssociationTypesTool;
+use RefactorCircus\Showroom\Domains\Association\Mcp\Tools\ShowAssociationTypeTool;
+use RefactorCircus\Showroom\Domains\Association\Mcp\Tools\UpdateAssociationTypeTool;
+use RefactorCircus\Showroom\Domains\Attribute\Mcp\Tools\CreateAttributeGroupTool;
+use RefactorCircus\Showroom\Domains\Attribute\Mcp\Tools\CreateAttributeOptionTool;
+use RefactorCircus\Showroom\Domains\Attribute\Mcp\Tools\CreateAttributeTool;
+use RefactorCircus\Showroom\Domains\Attribute\Mcp\Tools\DeleteAttributeGroupTool;
+use RefactorCircus\Showroom\Domains\Attribute\Mcp\Tools\DeleteAttributeOptionTool;
+use RefactorCircus\Showroom\Domains\Attribute\Mcp\Tools\DeleteAttributeTool;
+use RefactorCircus\Showroom\Domains\Attribute\Mcp\Tools\ListAttributeGroupsTool;
+use RefactorCircus\Showroom\Domains\Attribute\Mcp\Tools\ListAttributeOptionsTool;
+use RefactorCircus\Showroom\Domains\Attribute\Mcp\Tools\ListAttributesTool;
+use RefactorCircus\Showroom\Domains\Attribute\Mcp\Tools\ShowAttributeGroupTool;
+use RefactorCircus\Showroom\Domains\Attribute\Mcp\Tools\ShowAttributeTool;
+use RefactorCircus\Showroom\Domains\Attribute\Mcp\Tools\UpdateAttributeGroupTool;
+use RefactorCircus\Showroom\Domains\Attribute\Mcp\Tools\UpdateAttributeOptionTool;
+use RefactorCircus\Showroom\Domains\Attribute\Mcp\Tools\UpdateAttributeTool;
+use RefactorCircus\Showroom\Domains\Attribute\Models\AttributeGroupModel;
+use RefactorCircus\Showroom\Domains\Attribute\Models\AttributeModel;
+use RefactorCircus\Showroom\Domains\Attribute\Models\AttributeOptionModel;
+use RefactorCircus\Showroom\Domains\Category\Mcp\Tools\CreateCategoryTool;
+use RefactorCircus\Showroom\Domains\Category\Mcp\Tools\DeleteCategoryTool;
+use RefactorCircus\Showroom\Domains\Category\Mcp\Tools\ListCategoriesTool;
+use RefactorCircus\Showroom\Domains\Category\Mcp\Tools\ShowCategoryTool;
+use RefactorCircus\Showroom\Domains\Category\Mcp\Tools\UpdateCategoryTool;
+use RefactorCircus\Showroom\Domains\Channel\Mcp\Tools\CreateChannelTool;
+use RefactorCircus\Showroom\Domains\Channel\Mcp\Tools\CreateLocaleTool;
+use RefactorCircus\Showroom\Domains\Channel\Mcp\Tools\DeleteChannelTool;
+use RefactorCircus\Showroom\Domains\Channel\Mcp\Tools\DeleteLocaleTool;
+use RefactorCircus\Showroom\Domains\Channel\Mcp\Tools\ListChannelsTool;
+use RefactorCircus\Showroom\Domains\Channel\Mcp\Tools\ListLocalesTool;
+use RefactorCircus\Showroom\Domains\Channel\Mcp\Tools\ShowChannelTool;
+use RefactorCircus\Showroom\Domains\Channel\Mcp\Tools\ShowLocaleTool;
+use RefactorCircus\Showroom\Domains\Channel\Mcp\Tools\UpdateChannelTool;
+use RefactorCircus\Showroom\Domains\Channel\Mcp\Tools\UpdateLocaleTool;
+use RefactorCircus\Showroom\Domains\Family\Mcp\Tools\CreateFamilyTool;
+use RefactorCircus\Showroom\Domains\Family\Mcp\Tools\CreateFamilyVariantTool;
+use RefactorCircus\Showroom\Domains\Family\Mcp\Tools\DeleteFamilyTool;
+use RefactorCircus\Showroom\Domains\Family\Mcp\Tools\DeleteFamilyVariantTool;
+use RefactorCircus\Showroom\Domains\Family\Mcp\Tools\ListFamiliesTool;
+use RefactorCircus\Showroom\Domains\Family\Mcp\Tools\ListFamilyVariantsTool;
+use RefactorCircus\Showroom\Domains\Family\Mcp\Tools\ShowFamilyTool;
+use RefactorCircus\Showroom\Domains\Family\Mcp\Tools\ShowFamilyVariantTool;
+use RefactorCircus\Showroom\Domains\Family\Mcp\Tools\UpdateFamilyTool;
+use RefactorCircus\Showroom\Domains\Family\Mcp\Tools\UpdateFamilyVariantTool;
+use RefactorCircus\Showroom\Domains\Family\Models\FamilyModel;
+use RefactorCircus\Showroom\Domains\Owner\Mcp\Tools\CreateOwnerTool;
+use RefactorCircus\Showroom\Domains\Owner\Mcp\Tools\CreateOwnerTypeTool;
+use RefactorCircus\Showroom\Domains\Owner\Mcp\Tools\DeleteOwnerTool;
+use RefactorCircus\Showroom\Domains\Owner\Mcp\Tools\DeleteOwnerTypeTool;
+use RefactorCircus\Showroom\Domains\Owner\Mcp\Tools\ListOwnersTool;
+use RefactorCircus\Showroom\Domains\Owner\Mcp\Tools\ListOwnerTypesTool;
+use RefactorCircus\Showroom\Domains\Owner\Mcp\Tools\ShowOwnerTool;
+use RefactorCircus\Showroom\Domains\Owner\Mcp\Tools\ShowOwnerTypeTool;
+use RefactorCircus\Showroom\Domains\Owner\Mcp\Tools\UpdateOwnerTool;
+use RefactorCircus\Showroom\Domains\Owner\Mcp\Tools\UpdateOwnerTypeTool;
+use RefactorCircus\Showroom\Domains\Product\Mcp\Tools\CreateProductTool;
+use RefactorCircus\Showroom\Domains\Product\Mcp\Tools\DeleteProductTool;
+use RefactorCircus\Showroom\Domains\Product\Mcp\Tools\ListProductsTool;
+use RefactorCircus\Showroom\Domains\Product\Mcp\Tools\ShowProductTool;
+use RefactorCircus\Showroom\Domains\Product\Mcp\Tools\UpdateProductTool;
+use RefactorCircus\Showroom\Domains\Product\Models\ProductModel;
+use RefactorCircus\Showroom\Domains\ProductModel\Mcp\Tools\CreateProductModelTool;
+use RefactorCircus\Showroom\Domains\ProductModel\Mcp\Tools\DeleteProductModelTool;
+use RefactorCircus\Showroom\Domains\ProductModel\Mcp\Tools\ListProductModelsTool;
+use RefactorCircus\Showroom\Domains\ProductModel\Mcp\Tools\ShowProductModelTool;
+use RefactorCircus\Showroom\Domains\ProductModel\Mcp\Tools\UpdateProductModelTool;
+use RefactorCircus\Showroom\Domains\Workflow\Mcp\Tools\ListProductVersionsTool;
+use RefactorCircus\Showroom\Domains\Workflow\Mcp\Tools\RevertProductTool;
+use RefactorCircus\Showroom\Domains\Workflow\Mcp\Tools\ShowProductVersionTool;
+use RefactorCircus\Showroom\Domains\Workflow\Mcp\Tools\TransitionProductTool;
+use RefactorCircus\Showroom\Mcp\ShowroomServer;
+use RefactorCircus\Showroom\Mcp\Tools\ListShowroomHistoryTool;
+use RefactorCircus\Showroom\Tests\Fixtures\Catalog;
 
 it('offers one tool per use case', function (): void {
-    expect(KeystoneServer::TOOLS)->toHaveCount(78);
+    expect(ShowroomServer::TOOLS)->toHaveCount(78);
 });
 
 it('lists its audit history, answering not installed while no audit log is', function (): void {
-    expect(KeystoneServer::TOOLS)->toContain(ListKeystoneHistoryTool::class)
-        ->and(app(ListKeystoneHistoryTool::class)->name())->toBe('list-keystone-history-tool');
+    expect(ShowroomServer::TOOLS)->toContain(ListShowroomHistoryTool::class)
+        ->and(app(ListShowroomHistoryTool::class)->name())->toBe('list-showroom-history-tool');
 
-    mcpTool(ListKeystoneHistoryTool::class)->assertHasErrors(['No audit log is installed']);
+    mcpTool(ListShowroomHistoryTool::class)->assertHasErrors(['No audit log is installed']);
 });
 
 it('manages attribute groups', function (): void {
@@ -253,7 +253,7 @@ it('manages category trees', function (): void {
 });
 
 it('manages assets from URLs', function (): void {
-    config()->set('keystone.media.disk', 'assets');
+    config()->set('showroom.media.disk', 'assets');
     Storage::fake('assets');
     Http::fake(['*' => Http::response('jpeg-bytes', 200, ['Content-Type' => 'image/jpeg'])]);
 
@@ -319,14 +319,14 @@ it('lists an empty catalog', function (): void {
 });
 
 it('shares one implementation with the HTTP API', function (): void {
-    $this->postJson('/keystone/attributes', ['code' => 'color', 'type' => 'select'])->assertCreated();
+    $this->postJson('/showroom/attributes', ['code' => 'color', 'type' => 'select'])->assertCreated();
 
     // The same Action refuses the duplicate on both surfaces.
     mcpTool(CreateAttributeTool::class, ['code' => 'color', 'type' => 'select'])->assertHasErrors();
 
     mcpTool(CreateAttributeOptionTool::class, ['attribute' => 'color', 'code' => 'red'])->assertOk();
 
-    $this->getJson('/keystone/attributes/color')->assertOk()->assertJsonPath('data.options.0.code', 'red');
+    $this->getJson('/showroom/attributes/color')->assertOk()->assertJsonPath('data.options.0.code', 'red');
 });
 
 it('validates tool input with the same rules as the API', function (): void {

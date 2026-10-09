@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-namespace RefactorCircus\Keystone\Support\Concerns;
+namespace RefactorCircus\Showroom\Support\Concerns;
 
 use Illuminate\Database\Eloquent\Model;
-use RefactorCircus\Keystone\Domains\Category\Models\CategoryModel;
-use RefactorCircus\Keystone\Domains\Owner\Models\OwnerModel;
+use RefactorCircus\Showroom\Domains\Category\Models\CategoryModel;
+use RefactorCircus\Showroom\Domains\Owner\Models\OwnerModel;
 
 /**
  * Placing a node of a materialized-path tree, and carrying its subtree along

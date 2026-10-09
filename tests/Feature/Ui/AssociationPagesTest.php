@@ -3,8 +3,8 @@
 declare(strict_types=1);
 
 use Illuminate\Foundation\Http\Middleware\ValidateCsrfToken;
-use RefactorCircus\Keystone\Domains\Association\Models\AssociationTypeModel;
-use RefactorCircus\Keystone\Domains\Product\Models\ProductModel;
+use RefactorCircus\Showroom\Domains\Association\Models\AssociationTypeModel;
+use RefactorCircus\Showroom\Domains\Product\Models\ProductModel;
 
 beforeEach(function (): void {
     ValidateCsrfToken::except(['*']);
@@ -14,16 +14,16 @@ beforeEach(function (): void {
 });
 
 it('manages association types', function (): void {
-    $this->get(route('atrium.keystone.association-types.index'))->assertOk()->assertSee(__('keystone::keystone.no_association_types'));
+    $this->get(route('atrium.showroom.association-types.index'))->assertOk()->assertSee(__('showroom::showroom.no_association_types'));
 
-    $this->post(route('atrium.keystone.association-types.store'), ['code' => 'bundle', 'is_two_way' => '0', 'is_quantified' => '1'])
-        ->assertRedirect(route('atrium.keystone.association-types.index'));
+    $this->post(route('atrium.showroom.association-types.store'), ['code' => 'bundle', 'is_two_way' => '0', 'is_quantified' => '1'])
+        ->assertRedirect(route('atrium.showroom.association-types.index'));
 
     expect(AssociationTypeModel::query()->firstOrFail()->is_quantified)->toBeTrue();
 
-    $this->get(route('atrium.keystone.association-types.index'))->assertOk()->assertSee('bundle');
+    $this->get(route('atrium.showroom.association-types.index'))->assertOk()->assertSee('bundle');
 
-    $this->delete(route('atrium.keystone.association-types.destroy', 'bundle'))->assertRedirect();
+    $this->delete(route('atrium.showroom.association-types.destroy', 'bundle'))->assertRedirect();
     expect(AssociationTypeModel::query()->count())->toBe(0);
 });
 
@@ -35,7 +35,7 @@ it('adds and removes associations one at a time from a product page', function (
         ProductModel::factory()->create(['identifier' => $identifier]);
     }
 
-    $add = fn (string $type, string $target, ?int $quantity = null) => $this->post(route('atrium.keystone.associations.add'), array_filter([
+    $add = fn (string $type, string $target, ?int $quantity = null) => $this->post(route('atrium.showroom.associations.add'), array_filter([
         'source_kind' => 'product',
         'source' => 'TEE',
         'type' => $type,
@@ -48,20 +48,20 @@ it('adds and removes associations one at a time from a product page', function (
     $add('cross_sell', 'SOCKS');
     $add('bundle', 'SOCKS', 3);
 
-    $this->get(route('atrium.keystone.products.show', 'TEE'))
+    $this->get(route('atrium.showroom.products.show', 'TEE'))
         ->assertOk()
         ->assertSee('data-association-type="cross_sell"', false)
         ->assertSee('× 3');
 
-    $this->delete(route('atrium.keystone.associations.remove'), [
+    $this->delete(route('atrium.showroom.associations.remove'), [
         'source_kind' => 'product', 'source' => 'TEE', 'type' => 'cross_sell', 'target_kind' => 'products', 'target' => 'CAP',
     ])->assertSessionHasNoErrors();
 
-    $this->getJson('/keystone/products/TEE')
+    $this->getJson('/showroom/products/TEE')
         ->assertJsonPath('data.associations.cross_sell.products', ['SOCKS'])
         ->assertJsonPath('data.quantified_associations.bundle.products', [['identifier' => 'SOCKS', 'quantity' => 3]]);
 
-    $this->post(route('atrium.keystone.associations.add'), [
+    $this->post(route('atrium.showroom.associations.add'), [
         'source_kind' => 'product', 'source' => 'TEE', 'type' => 'cross_sell', 'target_kind' => 'products', 'target' => 'NOPE',
     ])->assertSessionHasErrors('associations.cross_sell.products.1');
 });

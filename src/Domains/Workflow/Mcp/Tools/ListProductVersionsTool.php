@@ -2,14 +2,14 @@
 
 declare(strict_types=1);
 
-namespace RefactorCircus\Keystone\Domains\Workflow\Mcp\Tools;
+namespace RefactorCircus\Showroom\Domains\Workflow\Mcp\Tools;
 
 use Illuminate\Contracts\JsonSchema\JsonSchema;
 use Laravel\Mcp\Response;
 use Laravel\Mcp\ResponseFactory;
 use Laravel\Mcp\Server\Attributes\Description;
 use RefactorCircus\Foundation\Mcp\Tool;
-use RefactorCircus\Keystone\Domains\Workflow\Mcp\Requests\ListProductVersionsMcpRequest;
+use RefactorCircus\Showroom\Domains\Workflow\Mcp\Requests\ListProductVersionsMcpRequest;
 
 #[Description('List a product\'s history, newest first: each version\'s action, author, time and what changed. Cursor paginated.')]
 final class ListProductVersionsTool extends Tool

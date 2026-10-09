@@ -2,21 +2,21 @@
 
 declare(strict_types=1);
 
-namespace RefactorCircus\Keystone\Domains\Attribute\Services;
+namespace RefactorCircus\Showroom\Domains\Attribute\Services;
 
 use Illuminate\Database\UniqueConstraintViolationException;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Validation\ValidationException;
-use RefactorCircus\Keystone\Domains\Attribute\Models\AttributeModel;
-use RefactorCircus\Keystone\Domains\Product\Models\ProductModel;
+use RefactorCircus\Showroom\Domains\Attribute\Models\AttributeModel;
+use RefactorCircus\Showroom\Domains\Product\Models\ProductModel;
 
 /**
  * Enforces `is_unique` attributes: each value is mirrored as a hash in
- * `keystone_product_unique_values`, whose unique index the database checks.
+ * `showroom_product_unique_values`, whose unique index the database checks.
  */
 final class UniqueValues
 {
-    private const string TABLE = 'keystone_product_unique_values';
+    private const string TABLE = 'showroom_product_unique_values';
 
     /**
      * Record the product's unique values, refusing any another product holds.
@@ -42,11 +42,11 @@ final class UniqueValues
             $hash = hash('sha256', json_encode($data, JSON_THROW_ON_ERROR));
 
             $holder = DB::table(self::TABLE.' as unique_values')
-                ->join('keystone_products', 'keystone_products.id', '=', 'unique_values.product_id')
+                ->join('showroom_products', 'showroom_products.id', '=', 'unique_values.product_id')
                 ->where('unique_values.attribute_id', $attribute->id)
                 ->where('unique_values.value_hash', $hash)
                 ->where('unique_values.product_id', '!=', $product->id)
-                ->value('keystone_products.identifier');
+                ->value('showroom_products.identifier');
 
             if ($holder !== null) {
                 throw $this->taken($attribute, $data, (string) $holder);

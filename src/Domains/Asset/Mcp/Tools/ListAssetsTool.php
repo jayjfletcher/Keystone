@@ -2,14 +2,14 @@
 
 declare(strict_types=1);
 
-namespace RefactorCircus\Keystone\Domains\Asset\Mcp\Tools;
+namespace RefactorCircus\Showroom\Domains\Asset\Mcp\Tools;
 
 use Illuminate\Contracts\JsonSchema\JsonSchema;
 use Laravel\Mcp\Response;
 use Laravel\Mcp\ResponseFactory;
 use Laravel\Mcp\Server\Attributes\Description;
 use RefactorCircus\Foundation\Mcp\Tool;
-use RefactorCircus\Keystone\Domains\Asset\Mcp\Requests\ListAssetsMcpRequest;
+use RefactorCircus\Showroom\Domains\Asset\Mcp\Requests\ListAssetsMcpRequest;
 
 #[Description('List assets (images, documents, ...), newest first, by type or by the record they are linked to. Cursor paginated.')]
 final class ListAssetsTool extends Tool

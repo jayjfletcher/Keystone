@@ -2,22 +2,22 @@
 
 declare(strict_types=1);
 
-namespace RefactorCircus\Keystone\Atrium\Http\Controllers;
+namespace RefactorCircus\Showroom\Atrium\Http\Controllers;
 
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use RefactorCircus\Atrium\Http\Controllers\Concerns\AuthorizesScreens;
-use RefactorCircus\Keystone\Atrium\Support\Labels;
-use RefactorCircus\Keystone\Domains\Attribute\Enums\AttributeType;
-use RefactorCircus\Keystone\Domains\Attribute\Models\AttributeModel;
-use RefactorCircus\Keystone\Domains\Family\Actions\CreateFamilyAction;
-use RefactorCircus\Keystone\Domains\Family\Actions\DeleteFamilyAction;
-use RefactorCircus\Keystone\Domains\Family\Actions\ListFamiliesAction;
-use RefactorCircus\Keystone\Domains\Family\Actions\ShowFamilyAction;
-use RefactorCircus\Keystone\Domains\Family\Actions\UpdateFamilyAction;
-use RefactorCircus\Keystone\Domains\Family\Models\FamilyModel;
+use RefactorCircus\Showroom\Atrium\Support\Labels;
+use RefactorCircus\Showroom\Domains\Attribute\Enums\AttributeType;
+use RefactorCircus\Showroom\Domains\Attribute\Models\AttributeModel;
+use RefactorCircus\Showroom\Domains\Family\Actions\CreateFamilyAction;
+use RefactorCircus\Showroom\Domains\Family\Actions\DeleteFamilyAction;
+use RefactorCircus\Showroom\Domains\Family\Actions\ListFamiliesAction;
+use RefactorCircus\Showroom\Domains\Family\Actions\ShowFamilyAction;
+use RefactorCircus\Showroom\Domains\Family\Actions\UpdateFamilyAction;
+use RefactorCircus\Showroom\Domains\Family\Models\FamilyModel;
 
 final class FamilyUiController
 {
@@ -32,7 +32,7 @@ final class FamilyUiController
         $filters = $request->validate(ListFamiliesAction::rules());
 
         /** @var view-string $view */
-        $view = 'keystone::ui.families.index';
+        $view = 'showroom::ui.families.index';
 
         return view($view, [
             'families' => app(ListFamiliesAction::class)->execute($filters)->withQueryString(),
@@ -49,8 +49,8 @@ final class FamilyUiController
         $family = app(CreateFamilyAction::class)->execute($data);
 
         return redirect()
-            ->route('atrium.keystone.families.show', $family)
-            ->with('status', __('keystone::keystone.family_created'));
+            ->route('atrium.showroom.families.show', $family)
+            ->with('status', __('showroom::showroom.family_created'));
     }
 
     public function show(FamilyModel $family): View
@@ -60,7 +60,7 @@ final class FamilyUiController
         $family = app(ShowFamilyAction::class)->execute($family)->load('variants');
 
         /** @var view-string $view */
-        $view = 'keystone::ui.families.show';
+        $view = 'showroom::ui.families.show';
 
         return view($view, [
             'family' => $family,
@@ -116,8 +116,8 @@ final class FamilyUiController
         app(UpdateFamilyAction::class)->execute($family, $data);
 
         return redirect()
-            ->route('atrium.keystone.families.show', $family)
-            ->with('status', __('keystone::keystone.family_updated'));
+            ->route('atrium.showroom.families.show', $family)
+            ->with('status', __('showroom::showroom.family_updated'));
     }
 
     public function destroy(FamilyModel $family): RedirectResponse
@@ -127,7 +127,7 @@ final class FamilyUiController
         app(DeleteFamilyAction::class)->execute($family);
 
         return redirect()
-            ->route('atrium.keystone.families.index')
-            ->with('status', __('keystone::keystone.family_deleted'));
+            ->route('atrium.showroom.families.index')
+            ->with('status', __('showroom::showroom.family_deleted'));
     }
 }

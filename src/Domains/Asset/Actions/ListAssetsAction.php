@@ -2,13 +2,13 @@
 
 declare(strict_types=1);
 
-namespace RefactorCircus\Keystone\Domains\Asset\Actions;
+namespace RefactorCircus\Showroom\Domains\Asset\Actions;
 
 use Illuminate\Contracts\Pagination\CursorPaginator;
 use Illuminate\Database\Eloquent\Builder;
-use RefactorCircus\Keystone\Domains\Asset\Events\AssetsListedActionEvent;
-use RefactorCircus\Keystone\Domains\Asset\Events\AssetsListingActionEvent;
-use RefactorCircus\Keystone\Domains\Asset\Models\AssetModel;
+use RefactorCircus\Showroom\Domains\Asset\Events\AssetsListedActionEvent;
+use RefactorCircus\Showroom\Domains\Asset\Events\AssetsListingActionEvent;
+use RefactorCircus\Showroom\Domains\Asset\Models\AssetModel;
 
 final class ListAssetsAction
 {
@@ -26,7 +26,7 @@ final class ListAssetsAction
             'owner' => ['sometimes', 'nullable', 'string', 'max:191'],
             'role' => ['sometimes', 'nullable', 'string', 'max:100'],
             'cursor' => ['sometimes', 'nullable', 'string'],
-            'per_page' => ['sometimes', 'integer', 'min:1', 'max:'.config('keystone.pagination.max_per_page', 100)],
+            'per_page' => ['sometimes', 'integer', 'min:1', 'max:'.config('showroom.pagination.max_per_page', 100)],
         ];
     }
 
@@ -77,12 +77,12 @@ final class ListAssetsAction
 
                 $query->whereHas($relation, fn (Builder $linked): Builder => $linked
                     ->where($key, $target)
-                    ->when($role !== null, fn (Builder $linked): Builder => $linked->where('keystone_asset_links.role', $role)));
+                    ->when($role !== null, fn (Builder $linked): Builder => $linked->where('showroom_asset_links.role', $role)));
             }
         }
 
         return $query->cursorPaginate(
-            perPage: isset($filters['per_page']) ? (int) $filters['per_page'] : (int) config('keystone.pagination.per_page', 25),
+            perPage: isset($filters['per_page']) ? (int) $filters['per_page'] : (int) config('showroom.pagination.per_page', 25),
             cursor: is_string($filters['cursor'] ?? null) ? $filters['cursor'] : null,
         );
     }

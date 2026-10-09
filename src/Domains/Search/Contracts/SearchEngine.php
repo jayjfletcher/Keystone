@@ -2,14 +2,14 @@
 
 declare(strict_types=1);
 
-namespace RefactorCircus\Keystone\Domains\Search\Contracts;
+namespace RefactorCircus\Showroom\Domains\Search\Contracts;
 
-use RefactorCircus\Keystone\Domains\Product\Models\ProductModel;
-use RefactorCircus\Keystone\Domains\Search\Data\ProductQuery;
-use RefactorCircus\Keystone\Domains\Search\Data\SearchResults;
+use RefactorCircus\Showroom\Domains\Product\Models\ProductModel;
+use RefactorCircus\Showroom\Domains\Search\Data\ProductQuery;
+use RefactorCircus\Showroom\Domains\Search\Data\SearchResults;
 
 /**
- * Where products are searched. Chosen with `keystone.search.engine`, or bind
+ * Where products are searched. Chosen with `showroom.search.engine`, or bind
  * your own implementation of this contract.
  */
 interface SearchEngine

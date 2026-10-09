@@ -10,21 +10,21 @@ return new class extends Migration
 {
     public function up(): void
     {
-        Schema::create('keystone_families', function (Blueprint $table): void {
+        Schema::create('showroom_families', function (Blueprint $table): void {
             $table->ulid('id')->primary();
             $table->string('code', 100)->unique();
             $table->json('labels')->nullable();
             // Restrict: an attribute that labels a family's products is refused
             // deletion rather than leaving the family without a label.
             $table->foreignUlid('label_attribute_id')->nullable()
-                ->constrained('keystone_attributes')->restrictOnDelete();
+                ->constrained('showroom_attributes')->restrictOnDelete();
             $table->unsignedInteger('sort_order')->default(0);
             $table->timestamps();
         });
 
-        Schema::create('keystone_family_attributes', function (Blueprint $table): void {
-            $table->foreignUlid('family_id')->constrained('keystone_families')->cascadeOnDelete();
-            $table->foreignUlid('attribute_id')->constrained('keystone_attributes')->cascadeOnDelete();
+        Schema::create('showroom_family_attributes', function (Blueprint $table): void {
+            $table->foreignUlid('family_id')->constrained('showroom_families')->cascadeOnDelete();
+            $table->foreignUlid('attribute_id')->constrained('showroom_attributes')->cascadeOnDelete();
             // Global for now; becomes per channel once channels land.
             $table->boolean('is_required')->default(false);
             $table->unsignedInteger('sort_order')->default(0);
@@ -36,7 +36,7 @@ return new class extends Migration
 
     public function down(): void
     {
-        Schema::dropIfExists('keystone_family_attributes');
-        Schema::dropIfExists('keystone_families');
+        Schema::dropIfExists('showroom_family_attributes');
+        Schema::dropIfExists('showroom_families');
     }
 };

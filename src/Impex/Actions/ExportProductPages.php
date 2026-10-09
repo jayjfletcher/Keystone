@@ -2,15 +2,15 @@
 
 declare(strict_types=1);
 
-namespace RefactorCircus\Keystone\Impex\Actions;
+namespace RefactorCircus\Showroom\Impex\Actions;
 
 use Illuminate\Support\Facades\Storage;
 use RefactorCircus\Impex\Domains\Flow\Support\ResumableAction;
 use RefactorCircus\Impex\Domains\Run\Data\Resume;
-use RefactorCircus\Keystone\Domains\Asset\Services\AssetStorage;
-use RefactorCircus\Keystone\Domains\Attribute\Data\ValueFilter;
-use RefactorCircus\Keystone\Domains\Product\Actions\ListProductsAction;
-use RefactorCircus\Keystone\Impex\ExportRecord;
+use RefactorCircus\Showroom\Domains\Asset\Services\AssetStorage;
+use RefactorCircus\Showroom\Domains\Attribute\Data\ValueFilter;
+use RefactorCircus\Showroom\Domains\Product\Actions\ListProductsAction;
+use RefactorCircus\Showroom\Impex\ExportRecord;
 
 /**
  * Writes the products a search matches as JSONL part files, a page each.
@@ -34,7 +34,7 @@ final class ExportProductPages extends ResumableAction
         $storage = app(AssetStorage::class);
         $disk = Storage::disk($storage->diskName());
         $filter = ValueFilter::fromArray($query);
-        $perPage = (int) config('keystone.impex.export_page_size', 500);
+        $perPage = (int) config('showroom.impex.export_page_size', 500);
 
         while (true) {
             $products = app(ListProductsAction::class)->execute(
@@ -73,6 +73,6 @@ final class ExportProductPages extends ResumableAction
      */
     public static function part(string $runId, int $page): string
     {
-        return trim((string) config('keystone.impex.export_path', 'keystone/exports'), '/').'/'.$runId.'/part-'.str_pad((string) $page, 6, '0', STR_PAD_LEFT).'.jsonl';
+        return trim((string) config('showroom.impex.export_path', 'showroom/exports'), '/').'/'.$runId.'/part-'.str_pad((string) $page, 6, '0', STR_PAD_LEFT).'.jsonl';
     }
 }

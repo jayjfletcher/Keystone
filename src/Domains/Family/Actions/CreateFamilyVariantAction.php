@@ -2,15 +2,15 @@
 
 declare(strict_types=1);
 
-namespace RefactorCircus\Keystone\Domains\Family\Actions;
+namespace RefactorCircus\Showroom\Domains\Family\Actions;
 
 use Illuminate\Support\Facades\DB;
 use Illuminate\Validation\ValidationException;
-use RefactorCircus\Keystone\Domains\Family\Concerns\WritesFamilyVariantLevels;
-use RefactorCircus\Keystone\Domains\Family\Events\FamilyVariantCreatedActionEvent;
-use RefactorCircus\Keystone\Domains\Family\Events\FamilyVariantCreatingActionEvent;
-use RefactorCircus\Keystone\Domains\Family\Models\FamilyModel;
-use RefactorCircus\Keystone\Domains\Family\Models\FamilyVariantModel;
+use RefactorCircus\Showroom\Domains\Family\Concerns\WritesFamilyVariantLevels;
+use RefactorCircus\Showroom\Domains\Family\Events\FamilyVariantCreatedActionEvent;
+use RefactorCircus\Showroom\Domains\Family\Events\FamilyVariantCreatingActionEvent;
+use RefactorCircus\Showroom\Domains\Family\Models\FamilyModel;
+use RefactorCircus\Showroom\Domains\Family\Models\FamilyVariantModel;
 
 final class CreateFamilyVariantAction
 {
@@ -25,8 +25,8 @@ final class CreateFamilyVariantAction
     public static function rules(): array
     {
         return [
-            'code' => ['required', 'string', 'max:100', 'regex:/^[a-z][a-z0-9_]*$/', 'unique:keystone_family_variants,code'],
-            'family' => ['required', 'string', 'exists:keystone_families,code'],
+            'code' => ['required', 'string', 'max:100', 'regex:/^[a-z][a-z0-9_]*$/', 'unique:showroom_family_variants,code'],
+            'family' => ['required', 'string', 'exists:showroom_families,code'],
             'labels' => ['sometimes', 'nullable', 'array'],
             'labels.*' => ['nullable', 'string', 'max:255'],
         ] + self::levelRules(required: true);

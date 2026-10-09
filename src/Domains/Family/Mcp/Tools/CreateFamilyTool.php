@@ -2,14 +2,14 @@
 
 declare(strict_types=1);
 
-namespace RefactorCircus\Keystone\Domains\Family\Mcp\Tools;
+namespace RefactorCircus\Showroom\Domains\Family\Mcp\Tools;
 
 use Illuminate\Contracts\JsonSchema\JsonSchema;
 use Laravel\Mcp\Response;
 use Laravel\Mcp\ResponseFactory;
 use Laravel\Mcp\Server\Attributes\Description;
 use RefactorCircus\Foundation\Mcp\Tool;
-use RefactorCircus\Keystone\Domains\Family\Mcp\Requests\CreateFamilyMcpRequest;
+use RefactorCircus\Showroom\Domains\Family\Mcp\Requests\CreateFamilyMcpRequest;
 
 #[Description('Create a family: a kind of product, the attributes it has, and which of them are required. Attributes must exist first (create-attribute-tool).')]
 final class CreateFamilyTool extends Tool

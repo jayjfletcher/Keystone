@@ -2,12 +2,12 @@
 
 declare(strict_types=1);
 
-namespace RefactorCircus\Keystone\Domains\Family\Concerns;
+namespace RefactorCircus\Showroom\Domains\Family\Concerns;
 
 use Illuminate\Validation\ValidationException;
-use RefactorCircus\Keystone\Domains\Attribute\Enums\AttributeType;
-use RefactorCircus\Keystone\Domains\Attribute\Models\AttributeModel;
-use RefactorCircus\Keystone\Domains\Family\Models\FamilyModel;
+use RefactorCircus\Showroom\Domains\Attribute\Enums\AttributeType;
+use RefactorCircus\Showroom\Domains\Attribute\Models\AttributeModel;
+use RefactorCircus\Showroom\Domains\Family\Models\FamilyModel;
 
 /**
  * Membership and label rules shared by creating and updating a family.
@@ -22,16 +22,16 @@ trait WritesFamilyAttributes
         return [
             'labels' => ['sometimes', 'nullable', 'array'],
             'labels.*' => ['nullable', 'string', 'max:255'],
-            'label_attribute' => ['sometimes', 'nullable', 'string', 'exists:keystone_attributes,code'],
+            'label_attribute' => ['sometimes', 'nullable', 'string', 'exists:showroom_attributes,code'],
             'attributes' => ['sometimes', 'array'],
             'attributes.*' => ['array'],
-            'attributes.*.attribute' => ['required', 'string', 'distinct', 'exists:keystone_attributes,code'],
+            'attributes.*.attribute' => ['required', 'string', 'distinct', 'exists:showroom_attributes,code'],
             'attributes.*.is_required' => ['sometimes', 'boolean'],
             'attributes.*.sort_order' => ['sometimes', 'integer', 'min:0'],
             // Narrow a requirement to some channels; without it, a required
             // attribute is required on every channel.
             'attributes.*.required_channels' => ['sometimes', 'nullable', 'array', 'list'],
-            'attributes.*.required_channels.*' => ['string', 'distinct', 'exists:keystone_channels,code'],
+            'attributes.*.required_channels.*' => ['string', 'distinct', 'exists:showroom_channels,code'],
             'sort_order' => ['sometimes', 'integer', 'min:0'],
         ];
     }

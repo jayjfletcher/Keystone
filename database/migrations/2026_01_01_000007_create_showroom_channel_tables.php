@@ -10,28 +10,28 @@ return new class extends Migration
 {
     public function up(): void
     {
-        Schema::create('keystone_locales', function (Blueprint $table): void {
+        Schema::create('showroom_locales', function (Blueprint $table): void {
             $table->ulid('id')->primary();
             $table->string('code', 20)->unique();
             $table->json('labels')->nullable();
             $table->timestamps();
         });
 
-        Schema::create('keystone_channels', function (Blueprint $table): void {
+        Schema::create('showroom_channels', function (Blueprint $table): void {
             $table->ulid('id')->primary();
             $table->string('code', 100)->unique();
             $table->json('labels')->nullable();
             // ISO 4217 codes the channel sells in.
             $table->json('currencies')->nullable();
             // The root category of the branch this channel sells.
-            $table->foreignUlid('category_tree_id')->nullable()->constrained('keystone_categories')->restrictOnDelete();
+            $table->foreignUlid('category_tree_id')->nullable()->constrained('showroom_categories')->restrictOnDelete();
             $table->timestamps();
         });
 
-        Schema::create('keystone_channel_locale', function (Blueprint $table): void {
-            $table->foreignUlid('channel_id')->constrained('keystone_channels')->cascadeOnDelete();
+        Schema::create('showroom_channel_locale', function (Blueprint $table): void {
+            $table->foreignUlid('channel_id')->constrained('showroom_channels')->cascadeOnDelete();
             // Restrict: a locale a channel publishes in cannot vanish under it.
-            $table->foreignUlid('locale_id')->constrained('keystone_locales')->restrictOnDelete();
+            $table->foreignUlid('locale_id')->constrained('showroom_locales')->restrictOnDelete();
 
             $table->primary(['channel_id', 'locale_id']);
             $table->index('locale_id');
@@ -40,8 +40,8 @@ return new class extends Migration
 
     public function down(): void
     {
-        Schema::dropIfExists('keystone_channel_locale');
-        Schema::dropIfExists('keystone_channels');
-        Schema::dropIfExists('keystone_locales');
+        Schema::dropIfExists('showroom_channel_locale');
+        Schema::dropIfExists('showroom_channels');
+        Schema::dropIfExists('showroom_locales');
     }
 };

@@ -18,8 +18,8 @@ class DatabaseSeeder extends Seeder
         UserFactory::new()->create(['name' => 'Maria Editor', 'email' => 'maria@example.com']);
         UserFactory::new()->create(['name' => 'Sam Reviewer', 'email' => 'sam@example.com']);
 
-        // Keystone records versions and syncs search through model events,
+        // Showroom records versions and syncs search through model events,
         // so the demo catalog is seeded with them on.
-        $this->call(KeystoneSeeder::class);
+        $this->call(ShowroomSeeder::class);
     }
 }

@@ -2,36 +2,36 @@
 
 declare(strict_types=1);
 
-use RefactorCircus\Keystone\Atrium\Features\KeystoneSupportFeature;
-use RefactorCircus\Keystone\Domains\Asset\Models\AssetModel;
-use RefactorCircus\Keystone\Domains\Asset\Policies\AssetPolicy;
-use RefactorCircus\Keystone\Domains\Association\Models\AssociationTypeModel;
-use RefactorCircus\Keystone\Domains\Association\Policies\AssociationTypePolicy;
-use RefactorCircus\Keystone\Domains\Attribute\Models\AttributeGroupModel;
-use RefactorCircus\Keystone\Domains\Attribute\Models\AttributeModel;
-use RefactorCircus\Keystone\Domains\Attribute\Models\AttributeOptionModel;
-use RefactorCircus\Keystone\Domains\Attribute\Policies\AttributeGroupPolicy;
-use RefactorCircus\Keystone\Domains\Attribute\Policies\AttributeOptionPolicy;
-use RefactorCircus\Keystone\Domains\Attribute\Policies\AttributePolicy;
-use RefactorCircus\Keystone\Domains\Category\Models\CategoryModel;
-use RefactorCircus\Keystone\Domains\Category\Policies\CategoryPolicy;
-use RefactorCircus\Keystone\Domains\Channel\Models\ChannelModel;
-use RefactorCircus\Keystone\Domains\Channel\Models\LocaleModel;
-use RefactorCircus\Keystone\Domains\Channel\Policies\ChannelPolicy;
-use RefactorCircus\Keystone\Domains\Channel\Policies\LocalePolicy;
-use RefactorCircus\Keystone\Domains\Family\Models\FamilyModel;
-use RefactorCircus\Keystone\Domains\Family\Models\FamilyVariantModel;
-use RefactorCircus\Keystone\Domains\Family\Policies\FamilyPolicy;
-use RefactorCircus\Keystone\Domains\Family\Policies\FamilyVariantPolicy;
-use RefactorCircus\Keystone\Domains\Owner\Models\OwnerModel;
-use RefactorCircus\Keystone\Domains\Owner\Models\OwnerTypeModel;
-use RefactorCircus\Keystone\Domains\Owner\Policies\OwnerPolicy;
-use RefactorCircus\Keystone\Domains\Owner\Policies\OwnerTypePolicy;
-use RefactorCircus\Keystone\Domains\Product\Models\ProductModel;
-use RefactorCircus\Keystone\Domains\Product\Policies\ProductPolicy;
-use RefactorCircus\Keystone\Domains\ProductModel\Models\ProductModelModel;
-use RefactorCircus\Keystone\Domains\ProductModel\Policies\ProductModelPolicy;
-use RefactorCircus\Keystone\Impex\Webhooks\ProductStream;
+use RefactorCircus\Showroom\Atrium\Features\ShowroomSupportFeature;
+use RefactorCircus\Showroom\Domains\Asset\Models\AssetModel;
+use RefactorCircus\Showroom\Domains\Asset\Policies\AssetPolicy;
+use RefactorCircus\Showroom\Domains\Association\Models\AssociationTypeModel;
+use RefactorCircus\Showroom\Domains\Association\Policies\AssociationTypePolicy;
+use RefactorCircus\Showroom\Domains\Attribute\Models\AttributeGroupModel;
+use RefactorCircus\Showroom\Domains\Attribute\Models\AttributeModel;
+use RefactorCircus\Showroom\Domains\Attribute\Models\AttributeOptionModel;
+use RefactorCircus\Showroom\Domains\Attribute\Policies\AttributeGroupPolicy;
+use RefactorCircus\Showroom\Domains\Attribute\Policies\AttributeOptionPolicy;
+use RefactorCircus\Showroom\Domains\Attribute\Policies\AttributePolicy;
+use RefactorCircus\Showroom\Domains\Category\Models\CategoryModel;
+use RefactorCircus\Showroom\Domains\Category\Policies\CategoryPolicy;
+use RefactorCircus\Showroom\Domains\Channel\Models\ChannelModel;
+use RefactorCircus\Showroom\Domains\Channel\Models\LocaleModel;
+use RefactorCircus\Showroom\Domains\Channel\Policies\ChannelPolicy;
+use RefactorCircus\Showroom\Domains\Channel\Policies\LocalePolicy;
+use RefactorCircus\Showroom\Domains\Family\Models\FamilyModel;
+use RefactorCircus\Showroom\Domains\Family\Models\FamilyVariantModel;
+use RefactorCircus\Showroom\Domains\Family\Policies\FamilyPolicy;
+use RefactorCircus\Showroom\Domains\Family\Policies\FamilyVariantPolicy;
+use RefactorCircus\Showroom\Domains\Owner\Models\OwnerModel;
+use RefactorCircus\Showroom\Domains\Owner\Models\OwnerTypeModel;
+use RefactorCircus\Showroom\Domains\Owner\Policies\OwnerPolicy;
+use RefactorCircus\Showroom\Domains\Owner\Policies\OwnerTypePolicy;
+use RefactorCircus\Showroom\Domains\Product\Models\ProductModel;
+use RefactorCircus\Showroom\Domains\Product\Policies\ProductPolicy;
+use RefactorCircus\Showroom\Domains\ProductModel\Models\ProductModelModel;
+use RefactorCircus\Showroom\Domains\ProductModel\Policies\ProductModelPolicy;
+use RefactorCircus\Showroom\Impex\Webhooks\ProductStream;
 
 return [
 
@@ -83,7 +83,7 @@ return [
     | HTTP API Routes
     |--------------------------------------------------------------------------
     |
-    | The prefix and middleware applied to the Keystone API routes. Add
+    | The prefix and middleware applied to the Showroom API routes. Add
     | authentication middleware before exposing these in production — they
     | change the catalog every product depends on.
     |
@@ -91,7 +91,7 @@ return [
 
     'routes' => [
         'enabled' => true,
-        'prefix' => 'keystone',
+        'prefix' => 'showroom',
         'middleware' => ['api'],
     ],
 
@@ -100,7 +100,7 @@ return [
     | MCP Server
     |--------------------------------------------------------------------------
     |
-    | Keystone exposes the same operations over MCP as over HTTP: both
+    | Showroom exposes the same operations over MCP as over HTTP: both
     | surfaces call one Action, so they cannot drift. Both transports ship
     | disabled. When enabling the web transport, add auth middleware.
     |
@@ -109,12 +109,12 @@ return [
     'mcp' => [
         'web' => [
             'enabled' => false,
-            'route' => 'mcp/keystone',
+            'route' => 'mcp/showroom',
             'middleware' => [],
         ],
         'local' => [
             'enabled' => false,
-            'handle' => 'keystone',
+            'handle' => 'showroom',
         ],
     ],
 
@@ -133,7 +133,7 @@ return [
 
     'cortex' => [
         'enabled' => true,
-        'server' => 'keystone',
+        'server' => 'showroom',
         'tools' => null,
     ],
 
@@ -142,7 +142,7 @@ return [
     | Dashboard UI
     |--------------------------------------------------------------------------
     |
-    | Keystone renders its dashboard through Atrium, which owns the path,
+    | Showroom renders its dashboard through Atrium, which owns the path,
     | middleware and authorization gate.
     |
     */
@@ -150,7 +150,7 @@ return [
     'ui' => [
 
         /*
-        | Whether Keystone registers itself with the Atrium dashboard. The JSON
+        | Whether Showroom registers itself with the Atrium dashboard. The JSON
         | API is unaffected by this switch.
         */
 
@@ -162,26 +162,26 @@ return [
     | Atrium
     |--------------------------------------------------------------------------
     |
-    | features: Features that must all be on for Keystone to appear in
+    | features: Features that must all be on for Showroom to appear in
     |           Atrium at all - its navigation, widgets, settings, search and
     |           pages (which answer 404 otherwise). Atrium asks its feature
     |           resolver, so Pennant (through refactor-circus/pennantplus) or any other
     |           flag system decides.
     |
-    |           KeystoneSupportFeature is on until its global value is set,
+    |           ShowroomSupportFeature is on until its global value is set,
     |           and only its global value counts. Swap in a subclass to change
     |           that, or your own feature names. Feature classes that do not
     |           exist (without refactor-circus/pennantplus) are skipped, so nothing is
     |           checked until Pennant is installed. Empty always shows
-    |           Keystone.
+    |           Showroom.
     |
-    | Individual pages and controls are still shown per Keystone policy.
+    | Individual pages and controls are still shown per Showroom policy.
     |
     */
 
     'atrium' => [
         'features' => [
-            KeystoneSupportFeature::class,
+            ShowroomSupportFeature::class,
         ],
     ],
 
@@ -210,9 +210,9 @@ return [
     | Import, Export and Feeds (Impex)
     |--------------------------------------------------------------------------
     |
-    | With refactor-circus/impex installed, Keystone registers its flows:
-    | `keystone:import-products`, `keystone:upsert-products`,
-    | `keystone:export-products`, and `keystone:feed:{name}` for each feed.
+    | With refactor-circus/impex installed, Showroom registers its flows:
+    | `showroom:import-products`, `showroom:upsert-products`,
+    | `showroom:export-products`, and `showroom:feed:{name}` for each feed.
     |
     | - `chunk`, `allow_failures` (a share, 0.02 = 2%), `tries`: how imports
     |   batch, how many rows may fail before the run fails, retries per row.
@@ -223,7 +223,7 @@ return [
     | - `feeds`: syndication feeds, each a channel's published products:
     |   'google' => ['channel' => 'ecommerce', 'format' => 'jsonl',
     |                'url' => 'https://…', 'ledger_channel' => 'google-feed'],
-    |   Schedule one with Impex: 'schedule' => ['keystone:feed:google' => '0 3 * * *'].
+    |   Schedule one with Impex: 'schedule' => ['showroom:feed:google' => '0 3 * * *'].
     |   Or name an outbound Impex channel with 'deliver_through' => 'google-sftp'
     |   to send the file the channel's way: its transport, signing and headers.
     |
@@ -235,7 +235,7 @@ return [
         'allow_failures' => 1.0,
         'tries' => 1,
         'export_page_size' => 500,
-        'export_path' => 'keystone/exports',
+        'export_path' => 'showroom/exports',
         'feeds' => [],
 
         /*
@@ -257,7 +257,7 @@ return [
 
         'webhooks' => [
             'enabled' => false,
-            'stream' => 'keystone.products',
+            'stream' => 'showroom.products',
             'stream_class' => ProductStream::class,
             'topics' => [
                 'content' => ['default' => true],
@@ -292,7 +292,7 @@ return [
 
     'media' => [
         'disk' => null,
-        'path' => 'keystone/assets',
+        'path' => 'showroom/assets',
         'max_kilobytes' => 51200,
         'mime_types' => null,
         'temporary_urls' => null,
@@ -313,10 +313,10 @@ return [
     | - "scout": whichever Laravel Scout engine `scout.driver` names —
     |   Meilisearch, Typesense, Algolia, or a community driver such as one
     |   for Elasticsearch.
-    | - or the class name of your own RefactorCircus\Keystone\Domains\Search\Contracts\SearchEngine.
+    | - or the class name of your own RefactorCircus\Showroom\Domains\Search\Contracts\SearchEngine.
     |
     | Writes are synced to the index by a queued job after each commit.
-    | Rebuild it with `php artisan keystone:search:reindex`.
+    | Rebuild it with `php artisan showroom:search:reindex`.
     |
     */
 
@@ -329,7 +329,7 @@ return [
         ],
 
         'scout' => [
-            'index' => 'keystone_products',
+            'index' => 'showroom_products',
         ],
     ],
 

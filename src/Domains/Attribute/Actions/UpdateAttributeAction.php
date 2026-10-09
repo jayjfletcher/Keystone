@@ -2,13 +2,13 @@
 
 declare(strict_types=1);
 
-namespace RefactorCircus\Keystone\Domains\Attribute\Actions;
+namespace RefactorCircus\Showroom\Domains\Attribute\Actions;
 
 use Illuminate\Validation\ValidationException;
-use RefactorCircus\Keystone\Domains\Attribute\Events\AttributeUpdatedActionEvent;
-use RefactorCircus\Keystone\Domains\Attribute\Events\AttributeUpdatingActionEvent;
-use RefactorCircus\Keystone\Domains\Attribute\Models\AttributeGroupModel;
-use RefactorCircus\Keystone\Domains\Attribute\Models\AttributeModel;
+use RefactorCircus\Showroom\Domains\Attribute\Events\AttributeUpdatedActionEvent;
+use RefactorCircus\Showroom\Domains\Attribute\Events\AttributeUpdatingActionEvent;
+use RefactorCircus\Showroom\Domains\Attribute\Models\AttributeGroupModel;
+use RefactorCircus\Showroom\Domains\Attribute\Models\AttributeModel;
 
 final class UpdateAttributeAction
 {
@@ -22,7 +22,7 @@ final class UpdateAttributeAction
             // changes once the attribute exists.
             'code' => ['prohibited'],
             'type' => ['prohibited'],
-            'group' => ['sometimes', 'nullable', 'string', 'exists:keystone_attribute_groups,code'],
+            'group' => ['sometimes', 'nullable', 'string', 'exists:showroom_attribute_groups,code'],
             'labels' => ['sometimes', 'nullable', 'array'],
             'labels.*' => ['nullable', 'string', 'max:255'],
             'is_unique' => ['sometimes', 'boolean'],

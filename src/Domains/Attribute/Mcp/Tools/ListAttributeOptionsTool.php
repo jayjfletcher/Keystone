@@ -2,14 +2,14 @@
 
 declare(strict_types=1);
 
-namespace RefactorCircus\Keystone\Domains\Attribute\Mcp\Tools;
+namespace RefactorCircus\Showroom\Domains\Attribute\Mcp\Tools;
 
 use Illuminate\Contracts\JsonSchema\JsonSchema;
 use Laravel\Mcp\Response;
 use Laravel\Mcp\ResponseFactory;
 use Laravel\Mcp\Server\Attributes\Description;
 use RefactorCircus\Foundation\Mcp\Tool;
-use RefactorCircus\Keystone\Domains\Attribute\Mcp\Requests\ListAttributeOptionsMcpRequest;
+use RefactorCircus\Showroom\Domains\Attribute\Mcp\Requests\ListAttributeOptionsMcpRequest;
 
 #[Description('List the options of a select or multiselect attribute, in display order. Cursor paginated.')]
 final class ListAttributeOptionsTool extends Tool

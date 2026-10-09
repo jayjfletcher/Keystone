@@ -2,14 +2,14 @@
 
 declare(strict_types=1);
 
-namespace RefactorCircus\Keystone\Domains\Association\Mcp\Tools;
+namespace RefactorCircus\Showroom\Domains\Association\Mcp\Tools;
 
 use Illuminate\Contracts\JsonSchema\JsonSchema;
 use Laravel\Mcp\Response;
 use Laravel\Mcp\ResponseFactory;
 use Laravel\Mcp\Server\Attributes\Description;
 use RefactorCircus\Foundation\Mcp\Tool;
-use RefactorCircus\Keystone\Domains\Association\Mcp\Requests\ListAssociationTypesMcpRequest;
+use RefactorCircus\Showroom\Domains\Association\Mcp\Requests\ListAssociationTypesMcpRequest;
 
 #[Description('List association types (cross_sell, accessories, compatible parts, bundle, ...) and whether each is two-way or quantified. Cursor paginated.')]
 final class ListAssociationTypesTool extends Tool

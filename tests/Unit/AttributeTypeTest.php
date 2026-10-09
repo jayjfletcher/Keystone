@@ -3,7 +3,7 @@
 declare(strict_types=1);
 
 use Illuminate\Validation\ValidationException;
-use RefactorCircus\Keystone\Domains\Attribute\Enums\AttributeType;
+use RefactorCircus\Showroom\Domains\Attribute\Enums\AttributeType;
 
 it('offers options only on select and multiselect', function (AttributeType $type): void {
     expect($type->hasOptions())->toBe(in_array($type, [AttributeType::Select, AttributeType::Multiselect], true));

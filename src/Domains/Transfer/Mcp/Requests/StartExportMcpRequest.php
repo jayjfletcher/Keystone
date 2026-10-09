@@ -2,14 +2,14 @@
 
 declare(strict_types=1);
 
-namespace RefactorCircus\Keystone\Domains\Transfer\Mcp\Requests;
+namespace RefactorCircus\Showroom\Domains\Transfer\Mcp\Requests;
 
 use Laravel\Mcp\Response;
 use Laravel\Mcp\ResponseFactory;
 use RefactorCircus\Foundation\Mcp\Requests\Request;
 use RefactorCircus\Impex\Domains\Run\Resources\RunResource;
-use RefactorCircus\Keystone\Domains\Product\Models\ProductModel;
-use RefactorCircus\Keystone\Domains\Transfer\Actions\StartExportAction;
+use RefactorCircus\Showroom\Domains\Product\Models\ProductModel;
+use RefactorCircus\Showroom\Domains\Transfer\Actions\StartExportAction;
 
 final class StartExportMcpRequest extends Request
 {

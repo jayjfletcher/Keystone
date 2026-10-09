@@ -11,7 +11,7 @@ arch('it will not use dd(), ddd(), env(), or exit()')
     ->each->not->toBeUsed();
 
 arch('the package source declares strict types')
-    ->expect('RefactorCircus\Keystone')
+    ->expect('RefactorCircus\Showroom')
     ->toUseStrictTypes();
 
 /**
@@ -22,7 +22,7 @@ arch('the package source declares strict types')
 function domainNamespaces(string $directory): array
 {
     return array_map(
-        fn (string $path): string => 'RefactorCircus\\Keystone\\Domains\\'.basename(dirname($path)).'\\'.$directory,
+        fn (string $path): string => 'RefactorCircus\\Showroom\\Domains\\'.basename(dirname($path)).'\\'.$directory,
         (array) glob(dirname(__DIR__).'/src/Domains/*/'.$directory, GLOB_ONLYDIR),
     );
 }

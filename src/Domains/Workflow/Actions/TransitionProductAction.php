@@ -2,20 +2,20 @@
 
 declare(strict_types=1);
 
-namespace RefactorCircus\Keystone\Domains\Workflow\Actions;
+namespace RefactorCircus\Showroom\Domains\Workflow\Actions;
 
 use Illuminate\Support\Facades\DB;
 use Illuminate\Validation\Rule;
-use RefactorCircus\Keystone\Domains\Channel\Models\ChannelModel;
-use RefactorCircus\Keystone\Domains\Channel\Models\LocaleModel;
-use RefactorCircus\Keystone\Domains\Product\Models\ProductModel;
-use RefactorCircus\Keystone\Domains\Search\Services\ProductIndex;
-use RefactorCircus\Keystone\Domains\Workflow\Enums\Transition;
-use RefactorCircus\Keystone\Domains\Workflow\Events\ProductTransitionedActionEvent;
-use RefactorCircus\Keystone\Domains\Workflow\Events\ProductTransitioningActionEvent;
-use RefactorCircus\Keystone\Domains\Workflow\Exceptions\InvalidTransitionException;
-use RefactorCircus\Keystone\Domains\Workflow\Services\CompletenessCalculator;
-use RefactorCircus\Keystone\Domains\Workflow\Services\Versions;
+use RefactorCircus\Showroom\Domains\Channel\Models\ChannelModel;
+use RefactorCircus\Showroom\Domains\Channel\Models\LocaleModel;
+use RefactorCircus\Showroom\Domains\Product\Models\ProductModel;
+use RefactorCircus\Showroom\Domains\Search\Services\ProductIndex;
+use RefactorCircus\Showroom\Domains\Workflow\Enums\Transition;
+use RefactorCircus\Showroom\Domains\Workflow\Events\ProductTransitionedActionEvent;
+use RefactorCircus\Showroom\Domains\Workflow\Events\ProductTransitioningActionEvent;
+use RefactorCircus\Showroom\Domains\Workflow\Exceptions\InvalidTransitionException;
+use RefactorCircus\Showroom\Domains\Workflow\Services\CompletenessCalculator;
+use RefactorCircus\Showroom\Domains\Workflow\Services\Versions;
 
 final class TransitionProductAction
 {
@@ -62,13 +62,13 @@ final class TransitionProductAction
     {
         $transition = Transition::from((string) $data['transition']);
         $comment = is_string($data['comment'] ?? null) ? $data['comment'] : null;
-        $from = $transition->startsFrom(config('keystone.workflow.require_approval', true) !== false);
+        $from = $transition->startsFrom(config('showroom.workflow.require_approval', true) !== false);
 
         if (! in_array($product->status, $from, true)) {
             throw InvalidTransitionException::from($product->identifier, $transition, $product->status, $from);
         }
 
-        if ($transition === Transition::Submit && config('keystone.workflow.require_complete', false) === true) {
+        if ($transition === Transition::Submit && config('showroom.workflow.require_complete', false) === true) {
             $this->checkComplete($product);
         }
 

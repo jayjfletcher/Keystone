@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace RefactorCircus\Keystone\Domains\Category\Mcp\Requests;
+namespace RefactorCircus\Showroom\Domains\Category\Mcp\Requests;
 
 use RefactorCircus\Foundation\Mcp\Requests\Request;
-use RefactorCircus\Keystone\Domains\Category\Models\CategoryModel;
+use RefactorCircus\Showroom\Domains\Category\Models\CategoryModel;
 
 abstract class CategoryRequest extends Request
 {

@@ -2,13 +2,13 @@
 
 declare(strict_types=1);
 
-namespace RefactorCircus\Keystone\Domains\Workflow\Exceptions;
+namespace RefactorCircus\Showroom\Domains\Workflow\Exceptions;
 
-use RefactorCircus\Keystone\Domains\Product\Enums\ProductStatus;
-use RefactorCircus\Keystone\Domains\Workflow\Enums\Transition;
-use RefactorCircus\Keystone\Exceptions\KeystoneException;
+use RefactorCircus\Showroom\Domains\Product\Enums\ProductStatus;
+use RefactorCircus\Showroom\Domains\Workflow\Enums\Transition;
+use RefactorCircus\Showroom\Exceptions\ShowroomException;
 
-final class InvalidTransitionException extends KeystoneException
+final class InvalidTransitionException extends ShowroomException
 {
     /**
      * @param  array<int, ProductStatus>  $from

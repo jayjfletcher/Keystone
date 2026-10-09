@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace RefactorCircus\Keystone\Domains\Product\Enums;
+namespace RefactorCircus\Showroom\Domains\Product\Enums;
 
-use RefactorCircus\Keystone\Atrium\Badges;
+use RefactorCircus\Showroom\Atrium\Badges;
 
 /**
  * Where a product's working copy stands in review. Publishing is separate:
@@ -18,7 +18,7 @@ enum ProductStatus: string
     case Archived = 'archived';
 
     /**
-     * The Atrium colour the status is shown with, from Keystone's one
+     * The Atrium colour the status is shown with, from Showroom's one
      * mapping of statuses to colours.
      */
     public function badge(): string

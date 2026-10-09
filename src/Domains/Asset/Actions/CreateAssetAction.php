@@ -2,15 +2,15 @@
 
 declare(strict_types=1);
 
-namespace RefactorCircus\Keystone\Domains\Asset\Actions;
+namespace RefactorCircus\Showroom\Domains\Asset\Actions;
 
 use Illuminate\Support\Str;
 use Illuminate\Validation\ValidationException;
-use RefactorCircus\Keystone\Domains\Asset\Concerns\StoresAssetFiles;
-use RefactorCircus\Keystone\Domains\Asset\Events\AssetCreatedActionEvent;
-use RefactorCircus\Keystone\Domains\Asset\Events\AssetCreatingActionEvent;
-use RefactorCircus\Keystone\Domains\Asset\Models\AssetModel;
-use RefactorCircus\Keystone\Domains\Asset\Services\AssetStorage;
+use RefactorCircus\Showroom\Domains\Asset\Concerns\StoresAssetFiles;
+use RefactorCircus\Showroom\Domains\Asset\Events\AssetCreatedActionEvent;
+use RefactorCircus\Showroom\Domains\Asset\Events\AssetCreatingActionEvent;
+use RefactorCircus\Showroom\Domains\Asset\Models\AssetModel;
+use RefactorCircus\Showroom\Domains\Asset\Services\AssetStorage;
 use Throwable;
 
 final class CreateAssetAction
@@ -26,7 +26,7 @@ final class CreateAssetAction
     public static function rules(): array
     {
         return [
-            'code' => ['sometimes', 'nullable', 'string', 'max:191', 'regex:/^[A-Za-z0-9][A-Za-z0-9_.-]*$/', 'unique:keystone_assets,code'],
+            'code' => ['sometimes', 'nullable', 'string', 'max:191', 'regex:/^[A-Za-z0-9][A-Za-z0-9_.-]*$/', 'unique:showroom_assets,code'],
             'labels' => ['sometimes', 'nullable', 'array'],
             'labels.*' => ['nullable', 'string', 'max:255'],
         ] + self::sourceRules(required: true);

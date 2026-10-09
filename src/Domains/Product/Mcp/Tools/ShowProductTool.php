@@ -2,14 +2,14 @@
 
 declare(strict_types=1);
 
-namespace RefactorCircus\Keystone\Domains\Product\Mcp\Tools;
+namespace RefactorCircus\Showroom\Domains\Product\Mcp\Tools;
 
 use Illuminate\Contracts\JsonSchema\JsonSchema;
 use Laravel\Mcp\Response;
 use Laravel\Mcp\ResponseFactory;
 use Laravel\Mcp\Server\Attributes\Description;
 use RefactorCircus\Foundation\Mcp\Tool;
-use RefactorCircus\Keystone\Domains\Product\Mcp\Requests\ShowProductMcpRequest;
+use RefactorCircus\Showroom\Domains\Product\Mcp\Requests\ShowProductMcpRequest;
 
 #[Description('Show a product with all its values, including those inherited from its product models.')]
 final class ShowProductTool extends Tool

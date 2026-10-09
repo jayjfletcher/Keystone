@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace RefactorCircus\Keystone\Domains\Channel\Models;
+namespace RefactorCircus\Showroom\Domains\Channel\Models;
 
 use Illuminate\Database\Eloquent\Concerns\HasUlids;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -10,8 +10,8 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Support\Carbon;
 use RefactorCircus\Foundation\Models\Concerns\DispatchesModelEvents;
-use RefactorCircus\Keystone\Database\Factories\LocaleFactory;
-use RefactorCircus\Keystone\Support\Models\Concerns\HasLabels;
+use RefactorCircus\Showroom\Database\Factories\LocaleFactory;
+use RefactorCircus\Showroom\Support\Models\Concerns\HasLabels;
 
 /**
  * A language the catalog holds content in: `en`, `fr_CA`. Localizable values
@@ -33,7 +33,7 @@ final class LocaleModel extends Model
     use HasLabels;
     use HasUlids;
 
-    protected $table = 'keystone_locales';
+    protected $table = 'showroom_locales';
 
     protected $fillable = [
         'code',
@@ -45,7 +45,7 @@ final class LocaleModel extends Model
      */
     public function channels(): BelongsToMany
     {
-        return $this->belongsToMany(ChannelModel::class, 'keystone_channel_locale', 'locale_id', 'channel_id')->orderBy('code');
+        return $this->belongsToMany(ChannelModel::class, 'showroom_channel_locale', 'locale_id', 'channel_id')->orderBy('code');
     }
 
     /**

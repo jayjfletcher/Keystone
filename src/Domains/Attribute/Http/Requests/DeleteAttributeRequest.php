@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace RefactorCircus\Keystone\Domains\Attribute\Http\Requests;
+namespace RefactorCircus\Showroom\Domains\Attribute\Http\Requests;
 
 use Illuminate\Http\JsonResponse;
-use RefactorCircus\Keystone\Domains\Attribute\Actions\DeleteAttributeAction;
+use RefactorCircus\Showroom\Domains\Attribute\Actions\DeleteAttributeAction;
 
 final class DeleteAttributeRequest extends AttributeRequest
 {

@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace RefactorCircus\Keystone\Domains\Category\Policies;
+namespace RefactorCircus\Showroom\Domains\Category\Policies;
 
-use RefactorCircus\Keystone\Support\Policies\Policy;
+use RefactorCircus\Showroom\Support\Policies\Policy;
 
 class CategoryPolicy extends Policy
 {

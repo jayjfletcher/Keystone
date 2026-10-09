@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace RefactorCircus\Keystone\Domains\Association\Policies;
+namespace RefactorCircus\Showroom\Domains\Association\Policies;
 
-use RefactorCircus\Keystone\Support\Policies\Policy;
+use RefactorCircus\Showroom\Support\Policies\Policy;
 
 class AssociationTypePolicy extends Policy
 {

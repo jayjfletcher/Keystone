@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace RefactorCircus\Keystone\Domains\Attribute\Concerns;
+namespace RefactorCircus\Showroom\Domains\Attribute\Concerns;
 
-use RefactorCircus\Keystone\Domains\Attribute\Data\ValueFilter;
-use RefactorCircus\Keystone\Domains\Attribute\Services\Values;
+use RefactorCircus\Showroom\Domains\Attribute\Data\ValueFilter;
+use RefactorCircus\Showroom\Domains\Attribute\Services\Values;
 
 /**
  * Attribute values stored as JSON, plus those inherited from parent models.

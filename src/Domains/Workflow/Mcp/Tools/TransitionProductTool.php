@@ -2,14 +2,14 @@
 
 declare(strict_types=1);
 
-namespace RefactorCircus\Keystone\Domains\Workflow\Mcp\Tools;
+namespace RefactorCircus\Showroom\Domains\Workflow\Mcp\Tools;
 
 use Illuminate\Contracts\JsonSchema\JsonSchema;
 use Laravel\Mcp\Response;
 use Laravel\Mcp\ResponseFactory;
 use Laravel\Mcp\Server\Attributes\Description;
 use RefactorCircus\Foundation\Mcp\Tool;
-use RefactorCircus\Keystone\Domains\Workflow\Mcp\Requests\TransitionProductMcpRequest;
+use RefactorCircus\Showroom\Domains\Workflow\Mcp\Requests\TransitionProductMcpRequest;
 
 #[Description('Move a product through the workflow: submit (draft to in review), approve, reject (back to draft), publish (make the current version the one storefronts read; needs approval by default), unpublish, archive, restore.')]
 final class TransitionProductTool extends Tool

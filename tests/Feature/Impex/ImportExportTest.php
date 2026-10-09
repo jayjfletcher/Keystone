@@ -9,25 +9,25 @@ use RefactorCircus\Impex\Domains\Message\Models\MessageModel;
 use RefactorCircus\Impex\Domains\Run\Enums\RunStatus;
 use RefactorCircus\Impex\Domains\Run\Models\RunModel;
 use RefactorCircus\Impex\Facades\Impex;
-use RefactorCircus\Keystone\Domains\Asset\Models\AssetModel;
-use RefactorCircus\Keystone\Domains\Product\Models\ProductModel;
-use RefactorCircus\Keystone\Domains\Transfer\Mcp\Tools\StartExportTool;
-use RefactorCircus\Keystone\Domains\Transfer\Mcp\Tools\StartImportTool;
-use RefactorCircus\Keystone\Tests\Fixtures\Catalog;
+use RefactorCircus\Showroom\Domains\Asset\Models\AssetModel;
+use RefactorCircus\Showroom\Domains\Product\Models\ProductModel;
+use RefactorCircus\Showroom\Domains\Transfer\Mcp\Tools\StartExportTool;
+use RefactorCircus\Showroom\Domains\Transfer\Mcp\Tools\StartImportTool;
+use RefactorCircus\Showroom\Tests\Fixtures\Catalog;
 
 beforeEach(function (): void {
-    config()->set('keystone.media.disk', 'assets');
+    config()->set('showroom.media.disk', 'assets');
     Storage::fake('assets');
 
     Catalog::apparel();
-    $this->postJson('/keystone/categories', ['code' => 'master'])->assertCreated();
+    $this->postJson('/showroom/categories', ['code' => 'master'])->assertCreated();
 });
 
 function fileAsset(string $code, string $filename, string $contents): void
 {
     Storage::disk('assets')->put('incoming/'.$filename, $contents);
 
-    test()->postJson('/keystone/assets', ['code' => $code, 'path' => 'incoming/'.$filename])->assertCreated();
+    test()->postJson('/showroom/assets', ['code' => $code, 'path' => 'incoming/'.$filename])->assertCreated();
 }
 
 function finishedRun(string $id): RunModel
@@ -40,15 +40,15 @@ function finishedRun(string $id): RunModel
 }
 
 it('registers its flows with Impex, one per feed', function (): void {
-    config()->set('keystone.impex.feeds', ['web' => ['channel' => 'ecommerce']]);
+    config()->set('showroom.impex.feeds', ['web' => ['channel' => 'ecommerce']]);
     app()->forgetInstance(FlowRegistry::class);
 
     $flows = app(FlowRegistry::class);
 
-    expect($flows->has('keystone:import-products'))->toBeTrue()
-        ->and($flows->has('keystone:upsert-products'))->toBeTrue()
-        ->and($flows->has('keystone:export-products'))->toBeTrue()
-        ->and($flows->has('keystone:feed:web'))->toBeTrue();
+    expect($flows->has('showroom:import-products'))->toBeTrue()
+        ->and($flows->has('showroom:upsert-products'))->toBeTrue()
+        ->and($flows->has('showroom:export-products'))->toBeTrue()
+        ->and($flows->has('showroom:feed:web'))->toBeTrue();
 });
 
 it('imports a CSV file with Akeneo columns', function (): void {
@@ -59,11 +59,11 @@ it('imports a CSV file with Akeneo columns', function (): void {
         'TEE-3,shirts,1,,Bad tee,,,purple,,,,,,,',
     ]));
 
-    $id = $this->postJson('/keystone/imports', ['asset' => 'shirts-csv'])->assertStatus(202)->json('data.id');
+    $id = $this->postJson('/showroom/imports', ['asset' => 'shirts-csv'])->assertStatus(202)->json('data.id');
 
     expect(Impex::result(finishedRun($id)))->toMatchArray(['total' => 3, 'succeeded' => 2, 'failed' => 1]);
 
-    $this->getJson('/keystone/products/TEE-1')
+    $this->getJson('/showroom/products/TEE-1')
         ->assertJsonPath('data.family', 'shirts')
         ->assertJsonPath('data.categories', ['master'])
         ->assertJsonPath('data.values.name.0.data', 'Classic tee')
@@ -73,7 +73,7 @@ it('imports a CSV file with Akeneo columns', function (): void {
         ->assertJsonPath('data.values.organic.0.data', true)
         ->assertJsonPath('data.values.pack_size.0.data', 3);
 
-    $this->getJson('/keystone/products/TEE-2')->assertJsonPath('data.enabled', false)->assertJsonPath('data.values.organic.0.data', false);
+    $this->getJson('/showroom/products/TEE-2')->assertJsonPath('data.enabled', false)->assertJsonPath('data.values.organic.0.data', false);
 
     // The bad row's reason is kept with the batch item.
     $failed = collect(Impex::batchItems(Impex::result(finishedRun($id))['batch_id']))->firstWhere('status.value', 'failed');
@@ -82,7 +82,7 @@ it('imports a CSV file with Akeneo columns', function (): void {
 });
 
 it('imports JSONL in each mode', function (): void {
-    $this->postJson('/keystone/products', ['identifier' => 'OLD', 'values' => ['name' => Catalog::value('Old name')]])->assertCreated();
+    $this->postJson('/showroom/products', ['identifier' => 'OLD', 'values' => ['name' => Catalog::value('Old name')]])->assertCreated();
 
     fileAsset('products-jsonl', 'products.jsonl', implode("\n", [
         json_encode(['identifier' => 'OLD', 'values' => ['name' => Catalog::value('New name')]]),
@@ -91,12 +91,12 @@ it('imports JSONL in each mode', function (): void {
         'not json',
     ]));
 
-    $create = $this->postJson('/keystone/imports', ['asset' => 'products-jsonl', 'mode' => 'create'])->json('data.id');
+    $create = $this->postJson('/showroom/imports', ['asset' => 'products-jsonl', 'mode' => 'create'])->json('data.id');
 
     expect(Impex::result(finishedRun($create)))->toMatchArray(['succeeded' => 2, 'failed' => 1]);
     expect(ProductModel::query()->where('identifier', 'OLD')->firstOrFail()->value('name'))->toBe('Old name');
 
-    $update = $this->postJson('/keystone/imports', ['asset' => 'products-jsonl', 'mode' => 'update'])->json('data.id');
+    $update = $this->postJson('/showroom/imports', ['asset' => 'products-jsonl', 'mode' => 'update'])->json('data.id');
     finishedRun($update);
 
     expect(ProductModel::query()->where('identifier', 'OLD')->firstOrFail()->value('name'))->toBe('New name');
@@ -106,17 +106,17 @@ it('fetches the file to import from a URL', function (): void {
     // A fresh response per request: a streamed body is read once.
     Http::fake(['*' => fn () => Http::response(json_encode(['identifier' => 'URL-1'])."\n", 200, ['Content-Type' => 'application/x-ndjson'])]);
 
-    $id = $this->postJson('/keystone/imports', ['url' => 'https://erp.example.test/export.jsonl'])->assertStatus(202)->json('data.id');
+    $id = $this->postJson('/showroom/imports', ['url' => 'https://erp.example.test/export.jsonl'])->assertStatus(202)->json('data.id');
 
     finishedRun($id);
     expect(ProductModel::query()->where('identifier', 'URL-1')->exists())->toBeTrue();
 
-    $this->postJson('/keystone/imports', ['url' => 'https://erp.example.test/export.xml'])
+    $this->postJson('/showroom/imports', ['url' => 'https://erp.example.test/export.xml'])
         ->assertUnprocessable()->assertJsonValidationErrors('format');
 });
 
 it('upserts records pushed by a connector', function (): void {
-    $run = Impex::run('keystone:upsert-products', [['products' => [
+    $run = Impex::run('showroom:upsert-products', [['products' => [
         ['identifier' => 'ERP-1', 'values' => ['name' => Catalog::value('From the ERP')]],
         ['identifier' => 'ERP-2', 'family' => 'nope'],
     ]]]);
@@ -126,14 +126,14 @@ it('upserts records pushed by a connector', function (): void {
 });
 
 it('exports matching products to a JSONL or CSV asset', function (): void {
-    $this->postJson('/keystone/products', ['identifier' => 'A', 'family' => 'shirts', 'categories' => ['master'], 'values' => [
+    $this->postJson('/showroom/products', ['identifier' => 'A', 'family' => 'shirts', 'categories' => ['master'], 'values' => [
         'name' => Catalog::value('Alpha'),
         'description' => [['locale' => 'en', 'scope' => null, 'data' => 'Soft'], ['locale' => 'fr', 'scope' => null, 'data' => 'Doux']],
         'weight' => Catalog::value(['amount' => 180, 'unit' => 'gram']),
     ]])->assertCreated();
-    $this->postJson('/keystone/products', ['identifier' => 'B', 'values' => ['name' => Catalog::value('Beta')]])->assertCreated();
+    $this->postJson('/showroom/products', ['identifier' => 'B', 'values' => ['name' => Catalog::value('Beta')]])->assertCreated();
 
-    $jsonl = $this->postJson('/keystone/exports', ['family' => 'shirts', 'locales' => ['en'], 'code' => 'shirts-export'])->assertStatus(202)->json('data.id');
+    $jsonl = $this->postJson('/showroom/exports', ['family' => 'shirts', 'locales' => ['en'], 'code' => 'shirts-export'])->assertStatus(202)->json('data.id');
 
     expect(Impex::result(finishedRun($jsonl)))->toBe(['asset' => 'shirts-export', 'count' => 1, 'format' => 'jsonl']);
 
@@ -145,7 +145,7 @@ it('exports matching products to a JSONL or CSV asset', function (): void {
         ->and($record['identifier'])->toBe('A')
         ->and($record['values']['description'])->toBe([['locale' => 'en', 'scope' => null, 'data' => 'Soft']]);
 
-    $csv = $this->postJson('/keystone/exports', ['format' => 'csv'])->json('data.id');
+    $csv = $this->postJson('/showroom/exports', ['format' => 'csv'])->json('data.id');
     $result = Impex::result(finishedRun($csv));
 
     $file = (string) Storage::disk('assets')->get(AssetModel::query()->where('code', $result['asset'])->firstOrFail()->path);
@@ -157,20 +157,20 @@ it('exports matching products to a JSONL or CSV asset', function (): void {
 
     // What was exported imports back.
     ProductModel::query()->delete();
-    $back = $this->postJson('/keystone/imports', ['asset' => $result['asset']])->json('data.id');
+    $back = $this->postJson('/showroom/imports', ['asset' => $result['asset']])->json('data.id');
 
     expect(Impex::result(finishedRun($back)))->toMatchArray(['succeeded' => 2, 'failed' => 0]);
 });
 
 it('exports live versions only when asked', function (): void {
-    config()->set('keystone.workflow.require_approval', false);
+    config()->set('showroom.workflow.require_approval', false);
 
-    $this->postJson('/keystone/products', ['identifier' => 'LIVE', 'values' => ['name' => Catalog::value('Live name')]])->assertCreated();
-    $this->postJson('/keystone/products/LIVE/transitions', ['transition' => 'publish'])->assertOk();
-    $this->patchJson('/keystone/products/LIVE', ['values' => ['name' => Catalog::value('Draft name')]])->assertOk();
-    $this->postJson('/keystone/products', ['identifier' => 'NEVER'])->assertCreated();
+    $this->postJson('/showroom/products', ['identifier' => 'LIVE', 'values' => ['name' => Catalog::value('Live name')]])->assertCreated();
+    $this->postJson('/showroom/products/LIVE/transitions', ['transition' => 'publish'])->assertOk();
+    $this->patchJson('/showroom/products/LIVE', ['values' => ['name' => Catalog::value('Draft name')]])->assertOk();
+    $this->postJson('/showroom/products', ['identifier' => 'NEVER'])->assertCreated();
 
-    $id = $this->postJson('/keystone/exports', ['published' => true, 'code' => 'live'])->json('data.id');
+    $id = $this->postJson('/showroom/exports', ['published' => true, 'code' => 'live'])->json('data.id');
 
     expect(Impex::result(finishedRun($id))['count'])->toBe(1);
 
@@ -180,19 +180,19 @@ it('exports live versions only when asked', function (): void {
 });
 
 it('builds and delivers a channel feed', function (): void {
-    config()->set('keystone.workflow.require_approval', false);
-    config()->set('keystone.impex.feeds', ['web' => ['channel' => 'print', 'format' => 'jsonl', 'url' => 'https://feeds.example.test/in', 'ledger_channel' => 'web-feed']]);
+    config()->set('showroom.workflow.require_approval', false);
+    config()->set('showroom.impex.feeds', ['web' => ['channel' => 'print', 'format' => 'jsonl', 'url' => 'https://feeds.example.test/in', 'ledger_channel' => 'web-feed']]);
     app()->forgetInstance(FlowRegistry::class);
 
     Http::fake(['feeds.example.test/*' => Http::response(['ok' => true], 200)]);
 
-    $this->postJson('/keystone/products', ['identifier' => 'LIVE', 'values' => ['description' => [
+    $this->postJson('/showroom/products', ['identifier' => 'LIVE', 'values' => ['description' => [
         ['locale' => 'en', 'scope' => null, 'data' => 'English'],
         ['locale' => 'fr', 'scope' => null, 'data' => 'French'],
     ]]])->assertCreated();
-    $this->postJson('/keystone/products/LIVE/transitions', ['transition' => 'publish'])->assertOk();
+    $this->postJson('/showroom/products/LIVE/transitions', ['transition' => 'publish'])->assertOk();
 
-    $run = Impex::run('keystone:feed:web');
+    $run = Impex::run('showroom:feed:web');
     $result = Impex::result(finishedRun($run->id));
 
     expect($result['count'])->toBe(1)
@@ -208,20 +208,20 @@ it('builds and delivers a channel feed', function (): void {
 });
 
 it('delivers a feed through a named Impex channel, the channel\'s way', function (): void {
-    config()->set('keystone.workflow.require_approval', false);
+    config()->set('showroom.workflow.require_approval', false);
     config()->set('impex.channels.partner-drop', [
         'direction' => 'outbound',
         'transport' => 'file',
         'options' => ['disk' => 'drops', 'path' => 'incoming/{id}.jsonl'],
     ]);
-    config()->set('keystone.impex.feeds', ['partner' => ['channel' => 'print', 'deliver_through' => 'partner-drop']]);
+    config()->set('showroom.impex.feeds', ['partner' => ['channel' => 'print', 'deliver_through' => 'partner-drop']]);
     app()->forgetInstance(FlowRegistry::class);
     Storage::fake('drops');
 
-    $this->postJson('/keystone/products', ['identifier' => 'LIVE'])->assertCreated();
-    $this->postJson('/keystone/products/LIVE/transitions', ['transition' => 'publish'])->assertOk();
+    $this->postJson('/showroom/products', ['identifier' => 'LIVE'])->assertCreated();
+    $this->postJson('/showroom/products/LIVE/transitions', ['transition' => 'publish'])->assertOk();
 
-    $run = Impex::run('keystone:feed:partner');
+    $run = Impex::run('showroom:feed:partner');
     $result = Impex::result(finishedRun($run->id));
 
     Storage::disk('drops')->assertExists('incoming/'.$result['asset'].'.jsonl');
@@ -232,26 +232,26 @@ it('delivers a feed through a named Impex channel, the channel\'s way', function
 it('starts imports and exports over MCP', function (): void {
     fileAsset('products-jsonl', 'products.jsonl', json_encode(['identifier' => 'MCP-1'])."\n");
 
-    mcpTool(StartImportTool::class, ['asset' => 'products-jsonl'])->assertOk()->assertSee('keystone:import-products');
-    mcpTool(StartExportTool::class, ['format' => 'csv'])->assertOk()->assertSee('keystone:export-products');
+    mcpTool(StartImportTool::class, ['asset' => 'products-jsonl'])->assertOk()->assertSee('showroom:import-products');
+    mcpTool(StartExportTool::class, ['format' => 'csv'])->assertOk()->assertSee('showroom:export-products');
 
     expect(ProductModel::query()->where('identifier', 'MCP-1')->exists())->toBeTrue();
 });
 
 it('says so when Impex is switched off', function (): void {
-    config()->set('keystone.impex.enabled', false);
+    config()->set('showroom.impex.enabled', false);
 
-    $this->postJson('/keystone/exports', [])
+    $this->postJson('/showroom/exports', [])
         ->assertStatus(501)
         ->assertJsonPath('message', fn (string $message): bool => str_contains($message, 'composer require refactor-circus/impex'));
 });
 
 it('fails the run when more rows fail than tolerated', function (): void {
-    config()->set('keystone.impex.allow_failures', 0.0);
+    config()->set('showroom.impex.allow_failures', 0.0);
 
     fileAsset('bad-jsonl', 'bad.jsonl', "not json\n");
 
-    $id = $this->postJson('/keystone/imports', ['asset' => 'bad-jsonl'])->json('data.id');
+    $id = $this->postJson('/showroom/imports', ['asset' => 'bad-jsonl'])->json('data.id');
 
     expect(RunModel::query()->findOrFail($id)->status)->toBe(RunStatus::Failed);
 });

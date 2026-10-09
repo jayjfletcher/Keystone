@@ -3,8 +3,8 @@
 declare(strict_types=1);
 
 use Illuminate\Support\Facades\Route;
-use RefactorCircus\Keystone\Domains\Family\Http\Controllers\FamilyController;
-use RefactorCircus\Keystone\Domains\Family\Http\Controllers\FamilyVariantController;
+use RefactorCircus\Showroom\Domains\Family\Http\Controllers\FamilyController;
+use RefactorCircus\Showroom\Domains\Family\Http\Controllers\FamilyVariantController;
 
 Route::get('families', [FamilyController::class, 'index'])->name('families.index');
 Route::post('families', [FamilyController::class, 'store'])->name('families.store');

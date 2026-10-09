@@ -3,14 +3,14 @@
 Categories form independent trees. A category without a parent is the root of a tree, so a catalog can keep several side by side — "Master catalog", "Web navigation", "Print catalog".
 
 ```http
-POST /keystone/categories  {"code": "master"}
-POST /keystone/categories  {"code": "clothing", "parent": "master"}
-POST /keystone/categories  {"code": "shirts", "parent": "clothing", "sort_order": 1}
+POST /showroom/categories  {"code": "master"}
+POST /showroom/categories  {"code": "clothing", "parent": "master"}
+POST /showroom/categories  {"code": "shirts", "parent": "clothing", "sort_order": 1}
 ```
 
 - `code` is unique across all trees and never changes. Codes are lowercase letters, digits and underscores.
 - `sort_order` orders siblings.
-- `GET /keystone/categories/shirts` returns its `chain` from the tree root: `["master", "clothing", "shirts"]`.
+- `GET /showroom/categories/shirts` returns its `chain` from the tree root: `["master", "clothing", "shirts"]`.
 - List the trees with `roots=1`, a category's children with `parent`, or a whole branch with `under`.
 
 ## Moving
@@ -33,7 +33,7 @@ Variant products inherit every category of their product models, on top of their
 
 ## Searching by category
 
-`GET /keystone/products?category=clothing` finds products filed in Clothing **or any category beneath it**, on every search engine. The indexed document carries `categories` (the assigned codes, inherited ones included) and `category_tree` (those plus all their ancestors).
+`GET /showroom/products?category=clothing` finds products filed in Clothing **or any category beneath it**, on every search engine. The indexed document carries `categories` (the assigned codes, inherited ones included) and `category_tree` (those plus all their ancestors).
 
 ## Actions
 

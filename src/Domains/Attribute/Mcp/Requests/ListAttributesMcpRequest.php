@@ -2,13 +2,13 @@
 
 declare(strict_types=1);
 
-namespace RefactorCircus\Keystone\Domains\Attribute\Mcp\Requests;
+namespace RefactorCircus\Showroom\Domains\Attribute\Mcp\Requests;
 
 use Laravel\Mcp\ResponseFactory;
 use RefactorCircus\Foundation\Mcp\Requests\Request;
-use RefactorCircus\Keystone\Domains\Attribute\Actions\ListAttributesAction;
-use RefactorCircus\Keystone\Domains\Attribute\Models\AttributeModel;
-use RefactorCircus\Keystone\Domains\Attribute\Resources\AttributeResource;
+use RefactorCircus\Showroom\Domains\Attribute\Actions\ListAttributesAction;
+use RefactorCircus\Showroom\Domains\Attribute\Models\AttributeModel;
+use RefactorCircus\Showroom\Domains\Attribute\Resources\AttributeResource;
 
 final class ListAttributesMcpRequest extends Request
 {

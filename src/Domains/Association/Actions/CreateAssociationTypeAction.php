@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-namespace RefactorCircus\Keystone\Domains\Association\Actions;
+namespace RefactorCircus\Showroom\Domains\Association\Actions;
 
-use RefactorCircus\Keystone\Domains\Association\Events\AssociationTypeCreatedActionEvent;
-use RefactorCircus\Keystone\Domains\Association\Events\AssociationTypeCreatingActionEvent;
-use RefactorCircus\Keystone\Domains\Association\Models\AssociationTypeModel;
+use RefactorCircus\Showroom\Domains\Association\Events\AssociationTypeCreatedActionEvent;
+use RefactorCircus\Showroom\Domains\Association\Events\AssociationTypeCreatingActionEvent;
+use RefactorCircus\Showroom\Domains\Association\Models\AssociationTypeModel;
 
 final class CreateAssociationTypeAction
 {
@@ -19,7 +19,7 @@ final class CreateAssociationTypeAction
     public static function rules(): array
     {
         return [
-            'code' => ['required', 'string', 'max:100', 'regex:/^[a-z][a-z0-9_]*$/', 'unique:keystone_association_types,code'],
+            'code' => ['required', 'string', 'max:100', 'regex:/^[a-z][a-z0-9_]*$/', 'unique:showroom_association_types,code'],
             'labels' => ['sometimes', 'nullable', 'array'],
             'labels.*' => ['nullable', 'string', 'max:255'],
             'is_two_way' => ['sometimes', 'boolean'],

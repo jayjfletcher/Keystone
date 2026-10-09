@@ -2,12 +2,12 @@
 
 declare(strict_types=1);
 
-namespace RefactorCircus\Keystone\Domains\Family\Concerns;
+namespace RefactorCircus\Showroom\Domains\Family\Concerns;
 
 use Illuminate\Validation\ValidationException;
-use RefactorCircus\Keystone\Domains\Attribute\Enums\AttributeType;
-use RefactorCircus\Keystone\Domains\Attribute\Models\AttributeModel;
-use RefactorCircus\Keystone\Domains\Family\Models\FamilyVariantModel;
+use RefactorCircus\Showroom\Domains\Attribute\Enums\AttributeType;
+use RefactorCircus\Showroom\Domains\Attribute\Models\AttributeModel;
+use RefactorCircus\Showroom\Domains\Family\Models\FamilyVariantModel;
 
 /**
  * The rules for a family variant's levels, shared by create and update.
@@ -23,9 +23,9 @@ trait WritesFamilyVariantLevels
             'levels' => [$required ? 'required' : 'sometimes', 'array', 'list', 'min:1', 'max:2'],
             'levels.*' => ['array'],
             'levels.*.axes' => ['required', 'array', 'list', 'min:1', 'max:5'],
-            'levels.*.axes.*' => ['string', 'exists:keystone_attributes,code'],
+            'levels.*.axes.*' => ['string', 'exists:showroom_attributes,code'],
             'levels.*.attributes' => ['sometimes', 'array', 'list'],
-            'levels.*.attributes.*' => ['string', 'exists:keystone_attributes,code'],
+            'levels.*.attributes.*' => ['string', 'exists:showroom_attributes,code'],
         ];
     }
 

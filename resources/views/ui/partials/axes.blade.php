@@ -1,4 +1,4 @@
-@use(RefactorCircus\Keystone\Domains\Attribute\Enums\AttributeType)
+@use(RefactorCircus\Showroom\Domains\Attribute\Enums\AttributeType)
 
 {{-- The axis values a new variant or sub-model needs, posted as values. --}}
 @foreach ($axes as $axis)
@@ -12,7 +12,7 @@
                 :options="$axis->options()->get()->mapWithKeys(fn ($option) => [$option->code => $option->label()])->all()" />
         @elseif ($axis->type === AttributeType::Boolean)
             <x-atrium::form.select bare required :name="$name"
-                :options="['1' => __('keystone::keystone.yes'), '0' => __('keystone::keystone.no')]" />
+                :options="['1' => __('showroom::showroom.yes'), '0' => __('showroom::showroom.no')]" />
         @else
             <div class="grid grid-cols-2 gap-2">
                 <x-atrium::form.input bare required type="number" step="any" :name="$name.'[amount]'" />

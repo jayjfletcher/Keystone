@@ -2,26 +2,26 @@
 
 declare(strict_types=1);
 
-namespace RefactorCircus\Keystone\Atrium\Http\Controllers;
+namespace RefactorCircus\Showroom\Atrium\Http\Controllers;
 
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use RefactorCircus\Atrium\Http\Controllers\Concerns\AuthorizesScreens;
-use RefactorCircus\Keystone\Atrium\Support\Labels;
-use RefactorCircus\Keystone\Domains\Category\Models\CategoryModel;
-use RefactorCircus\Keystone\Domains\Channel\Actions\CreateChannelAction;
-use RefactorCircus\Keystone\Domains\Channel\Actions\CreateLocaleAction;
-use RefactorCircus\Keystone\Domains\Channel\Actions\DeleteChannelAction;
-use RefactorCircus\Keystone\Domains\Channel\Actions\DeleteLocaleAction;
-use RefactorCircus\Keystone\Domains\Channel\Actions\ListChannelsAction;
-use RefactorCircus\Keystone\Domains\Channel\Actions\ListLocalesAction;
-use RefactorCircus\Keystone\Domains\Channel\Actions\ShowChannelAction;
-use RefactorCircus\Keystone\Domains\Channel\Actions\UpdateChannelAction;
-use RefactorCircus\Keystone\Domains\Channel\Models\ChannelModel;
-use RefactorCircus\Keystone\Domains\Channel\Models\LocaleModel;
-use RefactorCircus\Keystone\Exceptions\KeystoneException;
+use RefactorCircus\Showroom\Atrium\Support\Labels;
+use RefactorCircus\Showroom\Domains\Category\Models\CategoryModel;
+use RefactorCircus\Showroom\Domains\Channel\Actions\CreateChannelAction;
+use RefactorCircus\Showroom\Domains\Channel\Actions\CreateLocaleAction;
+use RefactorCircus\Showroom\Domains\Channel\Actions\DeleteChannelAction;
+use RefactorCircus\Showroom\Domains\Channel\Actions\DeleteLocaleAction;
+use RefactorCircus\Showroom\Domains\Channel\Actions\ListChannelsAction;
+use RefactorCircus\Showroom\Domains\Channel\Actions\ListLocalesAction;
+use RefactorCircus\Showroom\Domains\Channel\Actions\ShowChannelAction;
+use RefactorCircus\Showroom\Domains\Channel\Actions\UpdateChannelAction;
+use RefactorCircus\Showroom\Domains\Channel\Models\ChannelModel;
+use RefactorCircus\Showroom\Domains\Channel\Models\LocaleModel;
+use RefactorCircus\Showroom\Exceptions\ShowroomException;
 
 /**
  * Channels and the locales they publish in, managed on one page.
@@ -35,7 +35,7 @@ final class ChannelUiController
         $this->authorizeScreen('viewAny', ChannelModel::class);
 
         /** @var view-string $view */
-        $view = 'keystone::ui.channels.index';
+        $view = 'showroom::ui.channels.index';
 
         return view($view, [
             'channels' => app(ListChannelsAction::class)->execute(['per_page' => 100]),
@@ -54,8 +54,8 @@ final class ChannelUiController
         );
 
         return redirect()
-            ->route('atrium.keystone.channels.show', $channel)
-            ->with('status', __('keystone::keystone.channel_created'));
+            ->route('atrium.showroom.channels.show', $channel)
+            ->with('status', __('showroom::showroom.channel_created'));
     }
 
     public function show(ChannelModel $channel): View
@@ -63,7 +63,7 @@ final class ChannelUiController
         $this->authorizeScreen('view', $channel);
 
         /** @var view-string $view */
-        $view = 'keystone::ui.channels.show';
+        $view = 'showroom::ui.channels.show';
 
         return view($view, [
             'channel' => app(ShowChannelAction::class)->execute($channel),
@@ -82,8 +82,8 @@ final class ChannelUiController
         );
 
         return redirect()
-            ->route('atrium.keystone.channels.show', $channel)
-            ->with('status', __('keystone::keystone.channel_updated'));
+            ->route('atrium.showroom.channels.show', $channel)
+            ->with('status', __('showroom::showroom.channel_updated'));
     }
 
     public function destroy(ChannelModel $channel): RedirectResponse
@@ -93,8 +93,8 @@ final class ChannelUiController
         app(DeleteChannelAction::class)->execute($channel);
 
         return redirect()
-            ->route('atrium.keystone.channels.index')
-            ->with('status', __('keystone::keystone.channel_deleted'));
+            ->route('atrium.showroom.channels.index')
+            ->with('status', __('showroom::showroom.channel_deleted'));
     }
 
     public function storeLocale(Request $request): RedirectResponse
@@ -104,8 +104,8 @@ final class ChannelUiController
         app(CreateLocaleAction::class)->execute(Labels::fromForm($request->validate(CreateLocaleAction::rules())));
 
         return redirect()
-            ->route('atrium.keystone.channels.index')
-            ->with('status', __('keystone::keystone.locale_created'));
+            ->route('atrium.showroom.channels.index')
+            ->with('status', __('showroom::showroom.locale_created'));
     }
 
     public function destroyLocale(LocaleModel $locale): RedirectResponse
@@ -114,13 +114,13 @@ final class ChannelUiController
 
         try {
             app(DeleteLocaleAction::class)->execute($locale);
-        } catch (KeystoneException $e) {
+        } catch (ShowroomException $e) {
             return back()->withErrors(['locale' => $e->getMessage()]);
         }
 
         return redirect()
-            ->route('atrium.keystone.channels.index')
-            ->with('status', __('keystone::keystone.locale_deleted'));
+            ->route('atrium.showroom.channels.index')
+            ->with('status', __('showroom::showroom.locale_deleted'));
     }
 
     /**

@@ -17,7 +17,7 @@ class WorkbenchServiceProvider extends ServiceProvider
     {
         // Serve demo assets from the public disk (linked by the build), with
         // host-relative URLs so they load on whatever port `serve` picks.
-        config()->set('keystone.media.disk', 'public');
+        config()->set('showroom.media.disk', 'public');
         config()->set('filesystems.disks.public.url', '/storage');
 
         // refactor-circus/pennantplus's layered store: users who follow a feature's

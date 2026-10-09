@@ -1,4 +1,4 @@
-# Keystone documentation
+# Showroom documentation
 
 | Guide | |
 |---|---|
@@ -22,8 +22,8 @@
 ## One page
 
 ```php
-use RefactorCircus\Keystone\Domains\Attribute\Actions\CreateAttributeAction;
-use RefactorCircus\Keystone\Domains\Attribute\Actions\CreateAttributeGroupAction;
+use RefactorCircus\Showroom\Domains\Attribute\Actions\CreateAttributeAction;
+use RefactorCircus\Showroom\Domains\Attribute\Actions\CreateAttributeGroupAction;
 
 app(CreateAttributeGroupAction::class)->execute(['code' => 'technical', 'labels' => ['en' => 'Technical']]);
 
@@ -35,4 +35,4 @@ app(CreateAttributeAction::class)->execute([
 ]);
 ```
 
-The same call over HTTP is `POST /keystone/attributes`, and over MCP `create-attribute-tool`.
+The same call over HTTP is `POST /showroom/attributes`, and over MCP `create-attribute-tool`.

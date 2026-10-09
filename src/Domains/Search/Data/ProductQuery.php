@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace RefactorCircus\Keystone\Domains\Search\Data;
+namespace RefactorCircus\Showroom\Domains\Search\Data;
 
 use Carbon\CarbonImmutable;
 
@@ -70,7 +70,7 @@ final readonly class ProductQuery
             sort: $sort,
             direction: $direction,
             page: isset($input['page']) ? max(1, (int) $input['page']) : 1,
-            perPage: isset($input['per_page']) ? (int) $input['per_page'] : (int) config('keystone.pagination.per_page', 25),
+            perPage: isset($input['per_page']) ? (int) $input['per_page'] : (int) config('showroom.pagination.per_page', 25),
             facets: $facets,
             updatedSince: is_string($input['updated_since'] ?? null) && $input['updated_since'] !== '' ? CarbonImmutable::parse($input['updated_since']) : null,
         );

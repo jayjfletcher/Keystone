@@ -2,14 +2,14 @@
 
 declare(strict_types=1);
 
-namespace RefactorCircus\Keystone\Impex\Sources;
+namespace RefactorCircus\Showroom\Impex\Sources;
 
 use Illuminate\Support\Facades\Storage;
 use RefactorCircus\Impex\Domains\Batch\Contracts\BatchSource;
 use RefactorCircus\Impex\Domains\Batch\Data\BatchChunk;
 use RefactorCircus\Impex\Domains\Batch\Data\BatchChunkItem;
-use RefactorCircus\Keystone\Domains\Asset\Models\AssetModel;
-use RefactorCircus\Keystone\Impex\ProductRows;
+use RefactorCircus\Showroom\Domains\Asset\Models\AssetModel;
+use RefactorCircus\Showroom\Impex\ProductRows;
 use RuntimeException;
 
 /**

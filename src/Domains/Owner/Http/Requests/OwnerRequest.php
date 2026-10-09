@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace RefactorCircus\Keystone\Domains\Owner\Http\Requests;
+namespace RefactorCircus\Showroom\Domains\Owner\Http\Requests;
 
 use RefactorCircus\Foundation\Http\Requests\Request;
-use RefactorCircus\Keystone\Domains\Owner\Models\OwnerModel;
+use RefactorCircus\Showroom\Domains\Owner\Models\OwnerModel;
 
 abstract class OwnerRequest extends Request
 {

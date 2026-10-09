@@ -1,8 +1,8 @@
-# Keystone Foundation + Attributes — Plan
+# Showroom Foundation + Attributes — Plan
 
 ## Context
 
-Keystone (`refactor-circus/keystone`) is a Laravel-native PIM. Product docs (`agent-os/product/`) define the mission and roadmap, but the package is still a skeleton: placeholder config, route, migration, view, command and example tests. This spec starts roadmap Phase 1 / Milestone 1 (Catalog core) with:
+Showroom (`refactor-circus/showroom`) is a Laravel-native PIM. Product docs (`agent-os/product/`) define the mission and roadmap, but the package is still a skeleton: placeholder config, route, migration, view, command and example tests. This spec starts roadmap Phase 1 / Milestone 1 (Catalog core) with:
 
 1. **Foundation** — replace placeholders with the architecture mirrored from `../impex` (standards template): Actions shared by HTTP + MCP, Authorizer/policies, MCP server behind ToolSearch, optional Cortex integration, Atrium plugin, action/model events, config, test harness with parity arch test.
 2. **First vertical slice: attributes** — attribute groups, typed attributes, attribute options, each shipped through Actions + HTTP API + MCP tools + Atrium pages + tests.
@@ -24,37 +24,37 @@ Create `agent-os/specs/2026-09-29-0453-foundation-and-attributes/`:
 
 ## Task 2: Remove skeleton placeholders
 
-Delete: `config` `placeholder` key, `routes/keystone.php` placeholder comment, `database/migrations/2026_01_01_000000_create_keystone_placeholder_table.php`, `resources/views/placeholder.blade.php`, `src/Console/Commands/KeystoneCommand.php` (+ provider registration), `tests/Unit/ExampleTest.php`, `tests/Feature/ExampleTest.php`. Keep `Keystone` class + Facade (entry point, can stay thin).
+Delete: `config` `placeholder` key, `routes/showroom.php` placeholder comment, `database/migrations/2026_01_01_000000_create_showroom_placeholder_table.php`, `resources/views/placeholder.blade.php`, `src/Console/Commands/ShowroomCommand.php` (+ provider registration), `tests/Unit/ExampleTest.php`, `tests/Feature/ExampleTest.php`. Keep `Showroom` class + Facade (entry point, can stay thin).
 
 ## Task 3: Foundation — config + service provider
 
-`config/keystone.php` with Impex boxed-header sections:
+`config/showroom.php` with Impex boxed-header sections:
 - `authorization` (true), `policies` (model ⇒ policy map)
-- `routes` `{enabled: true, prefix: 'keystone', middleware: ['api']}`
-- `mcp` `{web: {enabled: false, route: 'mcp/keystone', middleware: []}, local: {enabled: false, handle: 'keystone'}}`
-- `cortex` `{enabled: true, server: 'keystone', tools: null}`
+- `routes` `{enabled: true, prefix: 'showroom', middleware: ['api']}`
+- `mcp` `{web: {enabled: false, route: 'mcp/showroom', middleware: []}, local: {enabled: false, handle: 'showroom'}}`
+- `cortex` `{enabled: true, server: 'showroom', tools: null}`
 - `ui` `{enabled: true}`
 - `pagination` `{per_page: 25, max_per_page: 100}`
 
-`src/KeystoneServiceProvider.php` boot order mirrors `../impex/src/ImpexServiceProvider.php`: Cortex register → policies → routes (config-gated) → Atrium plugin (`ui.enabled`) → MCP server (`Mcp::web`/`Mcp::local`, config-gated) → views/lang → console-only publishes (keep `keystone`, `keystone-*` tags). Add `extra.atrium.plugins` to `composer.json`.
+`src/ShowroomServiceProvider.php` boot order mirrors `../impex/src/ImpexServiceProvider.php`: Cortex register → policies → routes (config-gated) → Atrium plugin (`ui.enabled`) → MCP server (`Mcp::web`/`Mcp::local`, config-gated) → views/lang → console-only publishes (keep `showroom`, `showroom-*` tags). Add `extra.atrium.plugins` to `composer.json`.
 
 ## Task 4: Foundation — shared plumbing
 
-Mirror impex classes, `RefactorCircus\Keystone` namespace, `declare(strict_types=1)`, `final` where impex is final:
+Mirror impex classes, `RefactorCircus\Showroom` namespace, `declare(strict_types=1)`, `final` where impex is final:
 - `src/Access/Authorizer.php` — `enabled/authenticated/actor/can` (Gate-backed, open when authorization off)
 - `src/Policies/Policy.php` — abstract base
 - `src/Contracts/{ActionStartingEvent,ActionFinishedEvent(ShouldDispatchAfterCommit),ModelLifecycleEvent}.php`
 - `src/Models/Concerns/DispatchesModelEvents.php`
-- `src/Exceptions/KeystoneException.php` (base, messages surfaced by MCP/HTTP)
+- `src/Exceptions/ShowroomException.php` (base, messages surfaced by MCP/HTTP)
 - `src/Http/Request.php` — abstract FormRequest with `persist()`, `actor()`, `allows()`
-- `src/Mcp/{KeystoneServer,Tool,Request}.php` — server `#[Name('Keystone')]`, `TOOLS` const catalog behind `ToolSearch`; Tool description override via Cortex; Request `persist()` with error mapping (Unauthorized / Not found / KeystoneException / validation)
+- `src/Mcp/{ShowroomServer,Tool,Request}.php` — server `#[Name('Showroom')]`, `TOOLS` const catalog behind `ToolSearch`; Tool description override via Cortex; Request `persist()` with error mapping (Unauthorized / Not found / ShowroomException / validation)
 - `src/Cortex/CortexIntegration.php` — `active()` guard, lazy registry registration, instructions/description overrides
-- `src/Atrium/KeystonePlugin.php` — key/label, nav group "Catalog", routes under `atrium.keystone.*`, settings panel, search source
-- `lang/en/keystone.php` — all UI strings
+- `src/Atrium/ShowroomPlugin.php` — key/label, nav group "Catalog", routes under `atrium.showroom.*`, settings panel, search source
+- `lang/en/showroom.php` — all UI strings
 
 ## Task 5: Test harness
 
-- `tests/TestCase.php` — providers `[McpServiceProvider, AtriumServiceProvider, KeystoneServiceProvider]`, `keystone.authorization=false`, sqlite w/ FKs, load package migrations
+- `tests/TestCase.php` — providers `[McpServiceProvider, AtriumServiceProvider, ShowroomServiceProvider]`, `showroom.authorization=false`, sqlite w/ FKs, load package migrations
 - `tests/CortexTestCase.php` + `Cortex` suite in `phpunit.xml.dist`
 - `tests/Pest.php` — `mcpTool()` helper (FakeTransporter → `execute_tools`), `MCP_EXCEPTIONS`, `parityGaps()`
 - `tests/ArchTest.php` — add: models final, every Action reachable from MCP (`parityGaps()` empty)
@@ -62,20 +62,20 @@ Mirror impex classes, `RefactorCircus\Keystone` namespace, `declare(strict_types
 
 ## Task 6: Attribute domain — schema + models + enums
 
-Migration `database/migrations/2026_01_01_000001_create_keystone_attribute_tables.php` (anonymous class, ULIDs):
-- `keystone_attribute_groups`: id, `code` unique, `labels` json (locale ⇒ label), `sort_order`, timestamps
-- `keystone_attributes`: id, `code` unique, `type` string(32), `attribute_group_id` nullable FK (restrict), `labels` json (required-ness lives on families, not here), `is_unique` bool, `is_localizable` bool, `is_scopable` bool (stored now, used in milestone 4), `settings` json (type-specific validation), `sort_order`, timestamps
-- `keystone_attribute_options`: id, `attribute_id` FK cascade, `code` (unique per attribute), `labels` json, `sort_order`, timestamps
+Migration `database/migrations/2026_01_01_000001_create_showroom_attribute_tables.php` (anonymous class, ULIDs):
+- `showroom_attribute_groups`: id, `code` unique, `labels` json (locale ⇒ label), `sort_order`, timestamps
+- `showroom_attributes`: id, `code` unique, `type` string(32), `attribute_group_id` nullable FK (restrict), `labels` json (required-ness lives on families, not here), `is_unique` bool, `is_localizable` bool, `is_scopable` bool (stored now, used in milestone 4), `settings` json (type-specific validation), `sort_order`, timestamps
+- `showroom_attribute_options`: id, `attribute_id` FK cascade, `code` (unique per attribute), `labels` json, `sort_order`, timestamps
 
 `src/Enums/AttributeType.php` — `Text, Textarea, Number, Decimal, Boolean, Date, Select, Multiselect, Price, Metric`; helpers `hasOptions()`, `settingsRules()` (e.g. text `max_length`/`regex`; number/decimal `min`/`max`/`decimals`; price `currencies`; metric `metric_family`/`default_unit`).
 
-Models `AttributeGroup`, `Attribute`, `AttributeOption` — final, `HasUlids`, `HasFactory`, `DispatchesModelEvents`, explicit `$fillable`, `casts()`, typed relations, hardcoded `keystone_*` tables. Factories in `database/factories/`.
+Models `AttributeGroup`, `Attribute`, `AttributeOption` — final, `HasUlids`, `HasFactory`, `DispatchesModelEvents`, explicit `$fillable`, `casts()`, typed relations, hardcoded `showroom_*` tables. Factories in `database/factories/`.
 
 Domain rules:
 - `code`: `^[a-z][a-z0-9_]*$`, max 100, immutable after create
 - `type`: immutable after create
-- options only for `Select`/`Multiselect` (else `KeystoneException`)
-- deleting a group with attributes → `KeystoneException` (PIM convention: reassign first)
+- options only for `Select`/`Multiselect` (else `ShowroomException`)
+- deleting a group with attributes → `ShowroomException` (PIM convention: reassign first)
 
 ## Task 7: Attribute Actions + events
 
@@ -88,14 +88,14 @@ Event pairs in `src/Events/Action/` (`AttributeCreatingActionEvent` / `Attribute
 
 ## Task 8: HTTP API
 
-- `routes/keystone.php` — prefix/middleware from config, names `keystone.attribute-groups.*`, `keystone.attributes.*`, `keystone.attributes.options.*`; ULID implicit binding
+- `routes/showroom.php` — prefix/middleware from config, names `showroom.attribute-groups.*`, `showroom.attributes.*`, `showroom.attributes.options.*`; ULID implicit binding
 - `src/Http/Requests/*Request.php` — `rules()` delegates to Action, `persist()` calls Action
 - `src/Http/Controllers/{AttributeGroup,Attribute,AttributeOption}Controller.php` — one-liners
 - `src/Http/Resources/{AttributeGroup,Attribute,AttributeOption}Resource.php` — enums `->value`, ISO dates, `whenLoaded`
 
 ## Task 9: MCP tools
 
-`src/Mcp/Requests/*McpRequest.php` (Action rules + id params) and `src/Mcp/Tools/*Tool.php` (hand-written schema, `#[Description]`), one per Action, added to `KeystoneServer::TOOLS`. Resources reused via `->resolve()`; list uses `structuredCollection` + `next_cursor`.
+`src/Mcp/Requests/*McpRequest.php` (Action rules + id params) and `src/Mcp/Tools/*Tool.php` (hand-written schema, `#[Description]`), one per Action, added to `ShowroomServer::TOOLS`. Resources reused via `->resolve()`; list uses `structuredCollection` + `next_cursor`.
 
 ## Task 10: Atrium pages
 
@@ -107,15 +107,15 @@ Event pairs in `src/Events/Action/` (`AttributeCreatingActionEvent` / `Attribute
 - `tests/Feature/McpTest.php` — tool per action, same-rules validation, parity behaviour
 - `tests/Feature/EventsTest.php` — every Action dispatches one start + one finish event; action count asserted
 - `tests/Feature/PolicyTest.php` — authorization on, swapped policy via config
-- `tests/Feature/Ui/{KeystonePluginTest,AttributePagesTest}.php`
+- `tests/Feature/Ui/{ShowroomPluginTest,AttributePagesTest}.php`
 - `tests/Cortex/CortexTest.php` — server/tool registration, config filtering, overrides
 
 ## Task 12: Docs + Boost skill
 
-- `README.md` — pitch, status, install (`keystone-migrations`, `keystone-config`), HTTP API, MCP, Cortex, Dashboard, Events, Roadmap
+- `README.md` — pitch, status, install (`showroom-migrations`, `showroom-config`), HTTP API, MCP, Cortex, Dashboard, Events, Roadmap
 - `docs/` numbered guides: `01-installation`, `02-attributes`, `09-api`, `10-mcp`, `11-dashboard`, `13-configuration`
 - `CHANGELOG.md` Unreleased entry
-- Update `resources/boost/skills/keystone-development/SKILL.md` via `package-generate-skill`
+- Update `resources/boost/skills/showroom-development/SKILL.md` via `package-generate-skill`
 
 ## Task 13: Follow-up
 
@@ -126,5 +126,5 @@ Run `/agent-os:discover-standards` to capture the conventions established here i
 ## Verification
 
 - `composer test` — phpstan, pint `--test`, type coverage 100%, Pest parallel (incl. arch parity test)
-- `composer build && composer serve` → visit `/atrium/keystone/attributes`, create group/attribute/options through UI
-- Hit `GET /keystone/attributes` via HTTP; call `create-attribute-tool` through MCP `execute_tools` in tests and confirm same validation errors as HTTP
+- `composer build && composer serve` → visit `/atrium/showroom/attributes`, create group/attribute/options through UI
+- Hit `GET /showroom/attributes` via HTTP; call `create-attribute-tool` through MCP `execute_tools` in tests and confirm same validation errors as HTTP

@@ -2,13 +2,13 @@
 
 declare(strict_types=1);
 
-namespace RefactorCircus\Keystone\Domains\Transfer\Http\Requests;
+namespace RefactorCircus\Showroom\Domains\Transfer\Http\Requests;
 
 use Illuminate\Http\JsonResponse;
 use RefactorCircus\Foundation\Http\Requests\Request;
 use RefactorCircus\Impex\Domains\Run\Resources\RunResource;
-use RefactorCircus\Keystone\Domains\Product\Models\ProductModel;
-use RefactorCircus\Keystone\Domains\Transfer\Actions\StartExportAction;
+use RefactorCircus\Showroom\Domains\Product\Models\ProductModel;
+use RefactorCircus\Showroom\Domains\Transfer\Actions\StartExportAction;
 
 /**
  * A queued export run; its result names the file asset.

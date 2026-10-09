@@ -2,14 +2,14 @@
 
 declare(strict_types=1);
 
-namespace RefactorCircus\Keystone\Domains\Family\Mcp\Tools;
+namespace RefactorCircus\Showroom\Domains\Family\Mcp\Tools;
 
 use Illuminate\Contracts\JsonSchema\JsonSchema;
 use Laravel\Mcp\Response;
 use Laravel\Mcp\ResponseFactory;
 use Laravel\Mcp\Server\Attributes\Description;
 use RefactorCircus\Foundation\Mcp\Tool;
-use RefactorCircus\Keystone\Domains\Family\Mcp\Requests\ShowFamilyMcpRequest;
+use RefactorCircus\Showroom\Domains\Family\Mcp\Requests\ShowFamilyMcpRequest;
 
 #[Description('Show a family with its attributes, which of them are required, and its label attribute.')]
 final class ShowFamilyTool extends Tool

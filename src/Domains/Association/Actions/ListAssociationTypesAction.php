@@ -2,12 +2,12 @@
 
 declare(strict_types=1);
 
-namespace RefactorCircus\Keystone\Domains\Association\Actions;
+namespace RefactorCircus\Showroom\Domains\Association\Actions;
 
 use Illuminate\Contracts\Pagination\CursorPaginator;
-use RefactorCircus\Keystone\Domains\Association\Events\AssociationTypesListedActionEvent;
-use RefactorCircus\Keystone\Domains\Association\Events\AssociationTypesListingActionEvent;
-use RefactorCircus\Keystone\Domains\Association\Models\AssociationTypeModel;
+use RefactorCircus\Showroom\Domains\Association\Events\AssociationTypesListedActionEvent;
+use RefactorCircus\Showroom\Domains\Association\Events\AssociationTypesListingActionEvent;
+use RefactorCircus\Showroom\Domains\Association\Models\AssociationTypeModel;
 
 final class ListAssociationTypesAction
 {
@@ -19,7 +19,7 @@ final class ListAssociationTypesAction
         return [
             'search' => ['sometimes', 'nullable', 'string', 'max:100'],
             'cursor' => ['sometimes', 'nullable', 'string'],
-            'per_page' => ['sometimes', 'integer', 'min:1', 'max:'.config('keystone.pagination.max_per_page', 100)],
+            'per_page' => ['sometimes', 'integer', 'min:1', 'max:'.config('showroom.pagination.max_per_page', 100)],
         ];
     }
 
@@ -51,7 +51,7 @@ final class ListAssociationTypesAction
         }
 
         return $query->cursorPaginate(
-            perPage: isset($filters['per_page']) ? (int) $filters['per_page'] : (int) config('keystone.pagination.per_page', 25),
+            perPage: isset($filters['per_page']) ? (int) $filters['per_page'] : (int) config('showroom.pagination.per_page', 25),
             cursor: is_string($filters['cursor'] ?? null) ? $filters['cursor'] : null,
         );
     }

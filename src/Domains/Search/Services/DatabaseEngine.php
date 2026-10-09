@@ -2,23 +2,23 @@
 
 declare(strict_types=1);
 
-namespace RefactorCircus\Keystone\Domains\Search\Services;
+namespace RefactorCircus\Showroom\Domains\Search\Services;
 
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Query\Builder as QueryBuilder;
 use Illuminate\Database\Query\Grammars\Grammar;
-use RefactorCircus\Keystone\Domains\Attribute\Enums\AttributeType;
-use RefactorCircus\Keystone\Domains\Attribute\Models\AttributeModel;
-use RefactorCircus\Keystone\Domains\Attribute\Services\Values;
-use RefactorCircus\Keystone\Domains\Category\Models\CategoryModel;
-use RefactorCircus\Keystone\Domains\Owner\Models\OwnerModel;
-use RefactorCircus\Keystone\Domains\Product\Models\ProductModel;
-use RefactorCircus\Keystone\Domains\Search\Contracts\SearchEngine;
-use RefactorCircus\Keystone\Domains\Search\Data\Filter;
-use RefactorCircus\Keystone\Domains\Search\Data\ProductQuery;
-use RefactorCircus\Keystone\Domains\Search\Data\SearchResults;
-use RefactorCircus\Keystone\Domains\Search\Exceptions\UnsupportedSearchException;
-use RefactorCircus\Keystone\Domains\Search\Support\SqlFragment;
+use RefactorCircus\Showroom\Domains\Attribute\Enums\AttributeType;
+use RefactorCircus\Showroom\Domains\Attribute\Models\AttributeModel;
+use RefactorCircus\Showroom\Domains\Attribute\Services\Values;
+use RefactorCircus\Showroom\Domains\Category\Models\CategoryModel;
+use RefactorCircus\Showroom\Domains\Owner\Models\OwnerModel;
+use RefactorCircus\Showroom\Domains\Product\Models\ProductModel;
+use RefactorCircus\Showroom\Domains\Search\Contracts\SearchEngine;
+use RefactorCircus\Showroom\Domains\Search\Data\Filter;
+use RefactorCircus\Showroom\Domains\Search\Data\ProductQuery;
+use RefactorCircus\Showroom\Domains\Search\Data\SearchResults;
+use RefactorCircus\Showroom\Domains\Search\Exceptions\UnsupportedSearchException;
+use RefactorCircus\Showroom\Domains\Search\Support\SqlFragment;
 
 /**
  * Searches the products table directly, with no index to keep.
@@ -32,7 +32,7 @@ final class DatabaseEngine implements SearchEngine
     /**
      * The `values` column of each level a value may live on.
      */
-    private const array LEVELS = ['keystone_products.values', 'keystone_level1.values', 'keystone_level2.values'];
+    private const array LEVELS = ['showroom_products.values', 'showroom_level1.values', 'showroom_level2.values'];
 
     public function maintainsIndex(): bool
     {
@@ -57,14 +57,14 @@ final class DatabaseEngine implements SearchEngine
     public function search(ProductQuery $query): SearchResults
     {
         $builder = ProductModel::query()
-            ->leftJoin('keystone_product_models as keystone_level1', 'keystone_level1.id', '=', 'keystone_products.parent_id')
-            ->leftJoin('keystone_product_models as keystone_level2', 'keystone_level2.id', '=', 'keystone_level1.parent_id');
+            ->leftJoin('showroom_product_models as showroom_level1', 'showroom_level1.id', '=', 'showroom_products.parent_id')
+            ->leftJoin('showroom_product_models as showroom_level2', 'showroom_level2.id', '=', 'showroom_level1.parent_id');
 
         if ($query->search !== null) {
             $term = '%'.$query->search.'%';
 
             $builder->where(function (Builder $builder) use ($term): void {
-                $builder->where('keystone_products.identifier', 'like', $term);
+                $builder->where('showroom_products.identifier', 'like', $term);
 
                 foreach (self::LEVELS as $column) {
                     $builder->orWhere(new SqlFragment($this->asText($column)), 'like', $term);
@@ -79,13 +79,13 @@ final class DatabaseEngine implements SearchEngine
         }
 
         if ($query->enabled !== null) {
-            $builder->where('keystone_products.enabled', $query->enabled);
+            $builder->where('showroom_products.enabled', $query->enabled);
         }
 
         if ($query->parent !== null) {
             $builder->where(fn (Builder $builder): Builder => $builder
-                ->whereIn('keystone_level1.code', [$query->parent])
-                ->orWhereIn('keystone_level2.code', [$query->parent]));
+                ->whereIn('showroom_level1.code', [$query->parent])
+                ->orWhereIn('showroom_level2.code', [$query->parent]));
         }
 
         if ($query->owner !== null) {
@@ -93,9 +93,9 @@ final class DatabaseEngine implements SearchEngine
             $owners = $owner === null ? [] : OwnerModel::query()->subtreeOf($owner)->pluck('id')->all();
 
             $builder->where(fn (Builder $builder): Builder => $builder
-                ->whereIn('keystone_products.owner_id', $owners)
-                ->orWhereIn('keystone_level1.owner_id', $owners)
-                ->orWhereIn('keystone_level2.owner_id', $owners));
+                ->whereIn('showroom_products.owner_id', $owners)
+                ->orWhereIn('showroom_level1.owner_id', $owners)
+                ->orWhereIn('showroom_level2.owner_id', $owners));
         }
 
         if ($query->category !== null) {
@@ -103,43 +103,43 @@ final class DatabaseEngine implements SearchEngine
             $categories = $category === null ? [] : CategoryModel::query()->subtreeOf($category)->pluck('id')->all();
 
             $builder->where(function (Builder $builder) use ($categories): void {
-                $builder->whereExists(fn (QueryBuilder $sub) => $sub->from('keystone_category_product')
-                    ->whereColumn('keystone_category_product.product_id', 'keystone_products.id')
-                    ->whereIn('keystone_category_product.category_id', $categories));
+                $builder->whereExists(fn (QueryBuilder $sub) => $sub->from('showroom_category_product')
+                    ->whereColumn('showroom_category_product.product_id', 'showroom_products.id')
+                    ->whereIn('showroom_category_product.category_id', $categories));
 
-                foreach (['keystone_level1', 'keystone_level2'] as $level) {
-                    $builder->orWhereExists(fn (QueryBuilder $sub) => $sub->from('keystone_category_product_model')
-                        ->whereColumn('keystone_category_product_model.product_model_id', $level.'.id')
-                        ->whereIn('keystone_category_product_model.category_id', $categories));
+                foreach (['showroom_level1', 'showroom_level2'] as $level) {
+                    $builder->orWhereExists(fn (QueryBuilder $sub) => $sub->from('showroom_category_product_model')
+                        ->whereColumn('showroom_category_product_model.product_model_id', $level.'.id')
+                        ->whereIn('showroom_category_product_model.category_id', $categories));
                 }
             });
         }
 
         if ($query->status !== null) {
-            $builder->where('keystone_products.status', $query->status);
+            $builder->where('showroom_products.status', $query->status);
         }
 
         if ($query->published !== null) {
             $query->published
-                ? $builder->whereNotNull('keystone_products.published_version')
-                : $builder->whereNull('keystone_products.published_version');
+                ? $builder->whereNotNull('showroom_products.published_version')
+                : $builder->whereNull('showroom_products.published_version');
         }
 
         if ($query->updatedSince !== null) {
-            $builder->where('keystone_products.changed_at', '>=', $query->updatedSince);
+            $builder->where('showroom_products.changed_at', '>=', $query->updatedSince);
         }
 
         if ($query->complete !== null) {
             $complete = $query->complete;
 
             foreach ($complete->locales() ?: ['-'] as $locale) {
-                $builder->whereExists(fn (QueryBuilder $sub) => $sub->from('keystone_product_completeness')
-                    ->join('keystone_channels', 'keystone_channels.id', '=', 'keystone_product_completeness.channel_id')
-                    ->join('keystone_locales', 'keystone_locales.id', '=', 'keystone_product_completeness.locale_id')
-                    ->whereColumn('keystone_product_completeness.product_id', 'keystone_products.id')
-                    ->where('keystone_channels.code', $complete->scope)
-                    ->where('keystone_locales.code', $locale)
-                    ->where('keystone_product_completeness.ratio', '>=', $complete->min));
+                $builder->whereExists(fn (QueryBuilder $sub) => $sub->from('showroom_product_completeness')
+                    ->join('showroom_channels', 'showroom_channels.id', '=', 'showroom_product_completeness.channel_id')
+                    ->join('showroom_locales', 'showroom_locales.id', '=', 'showroom_product_completeness.locale_id')
+                    ->whereColumn('showroom_product_completeness.product_id', 'showroom_products.id')
+                    ->where('showroom_channels.code', $complete->scope)
+                    ->where('showroom_locales.code', $locale)
+                    ->where('showroom_product_completeness.ratio', '>=', $complete->min));
             }
         }
 
@@ -149,15 +149,15 @@ final class DatabaseEngine implements SearchEngine
             $this->applyFilter($builder, $filter, $types[$filter->attribute] ?? AttributeType::Text);
         }
 
-        $total = (clone $builder)->count('keystone_products.id');
+        $total = (clone $builder)->count('showroom_products.id');
 
         /** @var array<int, string> $ids */
         $ids = $builder
-            ->orderBy('keystone_products.'.$query->sort, $query->direction)
-            ->orderBy('keystone_products.id')
+            ->orderBy('showroom_products.'.$query->sort, $query->direction)
+            ->orderBy('showroom_products.id')
             ->offset($query->offset())
             ->limit($query->perPage)
-            ->pluck('keystone_products.id')
+            ->pluck('showroom_products.id')
             ->all();
 
         return new SearchResults($ids, $total);

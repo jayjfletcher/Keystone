@@ -2,13 +2,13 @@
 
 declare(strict_types=1);
 
-namespace RefactorCircus\Keystone\Domains\Workflow\Actions;
+namespace RefactorCircus\Showroom\Domains\Workflow\Actions;
 
 use Illuminate\Contracts\Pagination\CursorPaginator;
-use RefactorCircus\Keystone\Domains\Product\Models\ProductModel;
-use RefactorCircus\Keystone\Domains\Workflow\Events\ProductVersionsListedActionEvent;
-use RefactorCircus\Keystone\Domains\Workflow\Events\ProductVersionsListingActionEvent;
-use RefactorCircus\Keystone\Domains\Workflow\Models\VersionModel;
+use RefactorCircus\Showroom\Domains\Product\Models\ProductModel;
+use RefactorCircus\Showroom\Domains\Workflow\Events\ProductVersionsListedActionEvent;
+use RefactorCircus\Showroom\Domains\Workflow\Events\ProductVersionsListingActionEvent;
+use RefactorCircus\Showroom\Domains\Workflow\Models\VersionModel;
 
 final class ListProductVersionsAction
 {
@@ -20,7 +20,7 @@ final class ListProductVersionsAction
         return [
             'action' => ['sometimes', 'nullable', 'string', 'max:32'],
             'cursor' => ['sometimes', 'nullable', 'string'],
-            'per_page' => ['sometimes', 'integer', 'min:1', 'max:'.config('keystone.pagination.max_per_page', 100)],
+            'per_page' => ['sometimes', 'integer', 'min:1', 'max:'.config('showroom.pagination.max_per_page', 100)],
         ];
     }
 
@@ -54,7 +54,7 @@ final class ListProductVersionsAction
         }
 
         return $query->cursorPaginate(
-            perPage: isset($filters['per_page']) ? (int) $filters['per_page'] : (int) config('keystone.pagination.per_page', 25),
+            perPage: isset($filters['per_page']) ? (int) $filters['per_page'] : (int) config('showroom.pagination.per_page', 25),
             cursor: is_string($filters['cursor'] ?? null) ? $filters['cursor'] : null,
         );
     }

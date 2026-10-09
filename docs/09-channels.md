@@ -5,7 +5,7 @@
 A locale is a language the catalog holds content in: `en`, `en_US`, `zh-Hant`. Localizable values can only be written in a locale that exists.
 
 ```http
-POST /keystone/locales  {"code": "fr_FR", "labels": {"en_US": "French (France)"}}
+POST /showroom/locales  {"code": "fr_FR", "labels": {"en_US": "French (France)"}}
 ```
 
 A locale a channel publishes in cannot be deleted (`409`). Deleting any other locale purges the values written in it, in a queued job.
@@ -43,10 +43,10 @@ Label maps (`labels`) are not held to existing locales, so translations can be p
 
 ## Reading one channel
 
-`GET /keystone/products/{identifier}`, `GET /keystone/product-models/{code}` and `GET /keystone/products` accept `scope` and `locales[]`, returning only that channel's and those locales' values, plus the values that depend on neither — what an export to one storefront needs:
+`GET /showroom/products/{identifier}`, `GET /showroom/product-models/{code}` and `GET /showroom/products` accept `scope` and `locales[]`, returning only that channel's and those locales' values, plus the values that depend on neither — what an export to one storefront needs:
 
 ```http
-GET /keystone/products/TEE-001?scope=print&locales[]=en_US
+GET /showroom/products/TEE-001?scope=print&locales[]=en_US
 ```
 
 ## Actions

@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace RefactorCircus\Keystone\Domains\Attribute\Enums;
+namespace RefactorCircus\Showroom\Domains\Attribute\Enums;
 
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Validation\ValidationException;

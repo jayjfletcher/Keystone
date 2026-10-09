@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace RefactorCircus\Keystone\Domains\Owner\Models;
+namespace RefactorCircus\Showroom\Domains\Owner\Models;
 
 use Illuminate\Database\Eloquent\Concerns\HasUlids;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -12,8 +12,8 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\Pivot;
 use Illuminate\Support\Carbon;
 use RefactorCircus\Foundation\Models\Concerns\DispatchesModelEvents;
-use RefactorCircus\Keystone\Database\Factories\OwnerTypeFactory;
-use RefactorCircus\Keystone\Support\Models\Concerns\HasLabels;
+use RefactorCircus\Showroom\Database\Factories\OwnerTypeFactory;
+use RefactorCircus\Showroom\Support\Models\Concerns\HasLabels;
 
 /**
  * A kind of owner — manufacturer, vendor, brand, series — and the rules for
@@ -39,7 +39,7 @@ final class OwnerTypeModel extends Model
     use HasLabels;
     use HasUlids;
 
-    protected $table = 'keystone_owner_types';
+    protected $table = 'showroom_owner_types';
 
     protected $fillable = [
         'code',
@@ -57,8 +57,8 @@ final class OwnerTypeModel extends Model
      */
     public function parentTypes(): BelongsToMany
     {
-        return $this->belongsToMany(self::class, 'keystone_owner_type_parents', 'owner_type_id', 'parent_type_id')
-            ->orderBy('keystone_owner_types.code');
+        return $this->belongsToMany(self::class, 'showroom_owner_type_parents', 'owner_type_id', 'parent_type_id')
+            ->orderBy('showroom_owner_types.code');
     }
 
     /**

@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace RefactorCircus\Keystone\Atrium\Http\Controllers;
+namespace RefactorCircus\Showroom\Atrium\Http\Controllers;
 
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\RedirectResponse;
@@ -10,22 +10,22 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Validator;
 use RefactorCircus\Atrium\Http\Controllers\Concerns\AuthorizesScreens;
-use RefactorCircus\Keystone\Atrium\Support\CategoryCodes;
-use RefactorCircus\Keystone\Atrium\Support\EditingSlot;
-use RefactorCircus\Keystone\Atrium\Support\ValueForm;
-use RefactorCircus\Keystone\Domains\Attribute\Models\AttributeModel;
-use RefactorCircus\Keystone\Domains\Family\Models\FamilyModel;
-use RefactorCircus\Keystone\Domains\Product\Actions\CreateProductAction;
-use RefactorCircus\Keystone\Domains\Product\Actions\DeleteProductAction;
-use RefactorCircus\Keystone\Domains\Product\Actions\ListProductsAction;
-use RefactorCircus\Keystone\Domains\Product\Actions\ShowProductAction;
-use RefactorCircus\Keystone\Domains\Product\Actions\UpdateProductAction;
-use RefactorCircus\Keystone\Domains\Product\Models\ProductModel;
-use RefactorCircus\Keystone\Domains\Workflow\Actions\ListProductVersionsAction;
-use RefactorCircus\Keystone\Domains\Workflow\Actions\RevertProductAction;
-use RefactorCircus\Keystone\Domains\Workflow\Actions\TransitionProductAction;
-use RefactorCircus\Keystone\Domains\Workflow\Enums\Transition;
-use RefactorCircus\Keystone\Exceptions\KeystoneException;
+use RefactorCircus\Showroom\Atrium\Support\CategoryCodes;
+use RefactorCircus\Showroom\Atrium\Support\EditingSlot;
+use RefactorCircus\Showroom\Atrium\Support\ValueForm;
+use RefactorCircus\Showroom\Domains\Attribute\Models\AttributeModel;
+use RefactorCircus\Showroom\Domains\Family\Models\FamilyModel;
+use RefactorCircus\Showroom\Domains\Product\Actions\CreateProductAction;
+use RefactorCircus\Showroom\Domains\Product\Actions\DeleteProductAction;
+use RefactorCircus\Showroom\Domains\Product\Actions\ListProductsAction;
+use RefactorCircus\Showroom\Domains\Product\Actions\ShowProductAction;
+use RefactorCircus\Showroom\Domains\Product\Actions\UpdateProductAction;
+use RefactorCircus\Showroom\Domains\Product\Models\ProductModel;
+use RefactorCircus\Showroom\Domains\Workflow\Actions\ListProductVersionsAction;
+use RefactorCircus\Showroom\Domains\Workflow\Actions\RevertProductAction;
+use RefactorCircus\Showroom\Domains\Workflow\Actions\TransitionProductAction;
+use RefactorCircus\Showroom\Domains\Workflow\Enums\Transition;
+use RefactorCircus\Showroom\Exceptions\ShowroomException;
 
 final class ProductUiController
 {
@@ -38,12 +38,12 @@ final class ProductUiController
         $filters = $request->validate(ListProductsAction::rules());
 
         /** @var view-string $view */
-        $view = 'keystone::ui.products.index';
+        $view = 'showroom::ui.products.index';
 
         try {
             $products = app(ListProductsAction::class)->execute($filters)->withQueryString();
             $error = null;
-        } catch (KeystoneException $e) {
+        } catch (ShowroomException $e) {
             // A search engine that is down or refuses the query still leaves
             // the page usable.
             $products = null;
@@ -63,7 +63,7 @@ final class ProductUiController
         $this->authorizeScreen('create', ProductModel::class);
 
         /** @var view-string $view */
-        $view = 'keystone::ui.products.create';
+        $view = 'showroom::ui.products.create';
 
         return view($view, ['families' => $this->families()]);
     }
@@ -75,8 +75,8 @@ final class ProductUiController
         $product = app(CreateProductAction::class)->execute($request->validate(CreateProductAction::rules()));
 
         return redirect()
-            ->route('atrium.keystone.products.show', $product)
-            ->with('status', __('keystone::keystone.product_created'));
+            ->route('atrium.showroom.products.show', $product)
+            ->with('status', __('showroom::showroom.product_created'));
     }
 
     public function show(Request $request, ProductModel $product): View
@@ -86,7 +86,7 @@ final class ProductUiController
         $product = app(ShowProductAction::class)->execute($product);
 
         /** @var view-string $view */
-        $view = 'keystone::ui.products.show';
+        $view = 'showroom::ui.products.show';
 
         return view($view, [
             'product' => $product,
@@ -102,7 +102,7 @@ final class ProductUiController
                 Transition::cases(),
                 fn (Transition $transition): bool => in_array(
                     $product->status,
-                    $transition->startsFrom(config('keystone.workflow.require_approval', true) !== false),
+                    $transition->startsFrom(config('showroom.workflow.require_approval', true) !== false),
                     true,
                 ) && ! ($transition === Transition::Unpublish && $product->published_version === null),
             )),
@@ -115,11 +115,11 @@ final class ProductUiController
 
         try {
             app(TransitionProductAction::class)->execute($product, $request->validate(TransitionProductAction::rules()));
-        } catch (KeystoneException $e) {
+        } catch (ShowroomException $e) {
             return back()->withErrors(['transition' => $e->getMessage()]);
         }
 
-        return back()->with('status', __('keystone::keystone.transitioned'));
+        return back()->with('status', __('showroom::showroom.transitioned'));
     }
 
     public function revert(Request $request, ProductModel $product): RedirectResponse
@@ -128,7 +128,7 @@ final class ProductUiController
 
         app(RevertProductAction::class)->execute($product, $request->validate(RevertProductAction::rules()));
 
-        return back()->with('status', __('keystone::keystone.reverted'));
+        return back()->with('status', __('showroom::showroom.reverted'));
     }
 
     public function update(Request $request, ProductModel $product): RedirectResponse
@@ -161,8 +161,8 @@ final class ProductUiController
         app(UpdateProductAction::class)->execute($product, Validator::validate($data, UpdateProductAction::rules()));
 
         return redirect()
-            ->route('atrium.keystone.products.show', ['product' => $product, ...$slot->query()])
-            ->with('status', __('keystone::keystone.product_updated'));
+            ->route('atrium.showroom.products.show', ['product' => $product, ...$slot->query()])
+            ->with('status', __('showroom::showroom.product_updated'));
     }
 
     public function destroy(ProductModel $product): RedirectResponse
@@ -172,8 +172,8 @@ final class ProductUiController
         app(DeleteProductAction::class)->execute($product);
 
         return redirect()
-            ->route('atrium.keystone.products.index')
-            ->with('status', __('keystone::keystone.product_deleted'));
+            ->route('atrium.showroom.products.index')
+            ->with('status', __('showroom::showroom.product_deleted'));
     }
 
     /**

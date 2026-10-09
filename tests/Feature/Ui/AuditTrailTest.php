@@ -7,8 +7,8 @@ use RefactorCircus\Foundation\Audit\Contracts\AuditTrail;
 use RefactorCircus\Foundation\Audit\Data\AuditEntry;
 use RefactorCircus\Foundation\Audit\Data\AuditFilter;
 use RefactorCircus\Foundation\Audit\Data\AuditPage;
-use RefactorCircus\Keystone\Domains\Product\Models\ProductModel;
-use RefactorCircus\Keystone\Tests\Fixtures\Catalog;
+use RefactorCircus\Showroom\Domains\Product\Models\ProductModel;
+use RefactorCircus\Showroom\Tests\Fixtures\Catalog;
 
 beforeEach(function (): void {
     // Atrium denies access outside local until a gate is defined.
@@ -20,11 +20,11 @@ beforeEach(function (): void {
 });
 
 it('shows no history until an audit log is installed', function (): void {
-    $this->get(route('atrium.keystone.products.show', 'TEE-1'))
+    $this->get(route('atrium.showroom.products.show', 'TEE-1'))
         ->assertOk()
         ->assertDontSee('data-testid="audit-trail"', false);
 
-    $this->get(route('atrium.keystone.products.index'))
+    $this->get(route('atrium.showroom.products.index'))
         ->assertOk()
         ->assertDontSee('data-testid="audit-trail"', false);
 });
@@ -45,7 +45,7 @@ it('shows a product its own history from the installed audit log', function (): 
 
             return new AuditPage([new AuditEntry(
                 id: 1,
-                source: 'keystone',
+                source: 'showroom',
                 action: 'product.updated',
                 surface: 'atrium',
                 createdAt: CarbonImmutable::now()->subMinute(),
@@ -59,12 +59,12 @@ it('shows a product its own history from the installed audit log', function (): 
 
     $product = ProductModel::query()->where('identifier', 'TEE-1')->firstOrFail();
 
-    $this->get(route('atrium.keystone.products.show', 'TEE-1'))
+    $this->get(route('atrium.showroom.products.show', 'TEE-1'))
         ->assertOk()
         ->assertSee('data-testid="audit-trail"', false)
         ->assertSee('product.updated')
         ->assertSee('Ada Lovelace');
 
-    expect($trail->filter?->source)->toBe('keystone')
+    expect($trail->filter?->source)->toBe('showroom')
         ->and($trail->filter?->subjectId)->toBe((string) $product->getKey());
 });

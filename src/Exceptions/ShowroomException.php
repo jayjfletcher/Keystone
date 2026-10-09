@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace RefactorCircus\Keystone\Exceptions;
+namespace RefactorCircus\Showroom\Exceptions;
 
 use RefactorCircus\Foundation\Exceptions\PackageException;
 
@@ -14,7 +14,7 @@ use RefactorCircus\Foundation\Exceptions\PackageException;
  * not a validation error: the request was well-formed, the catalog's current
  * state simply makes it impossible.
  */
-abstract class KeystoneException extends PackageException
+abstract class ShowroomException extends PackageException
 {
     protected int $status = 409;
 }

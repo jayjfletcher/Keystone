@@ -2,16 +2,16 @@
 
 declare(strict_types=1);
 
-namespace RefactorCircus\Keystone\Domains\Channel\Actions;
+namespace RefactorCircus\Showroom\Domains\Channel\Actions;
 
 use Illuminate\Support\Facades\DB;
 use Illuminate\Validation\ValidationException;
-use RefactorCircus\Keystone\Domains\Channel\Concerns\WritesChannels;
-use RefactorCircus\Keystone\Domains\Channel\Events\ChannelCreatedActionEvent;
-use RefactorCircus\Keystone\Domains\Channel\Events\ChannelCreatingActionEvent;
-use RefactorCircus\Keystone\Domains\Channel\Models\ChannelModel;
-use RefactorCircus\Keystone\Domains\Product\Models\ProductModel;
-use RefactorCircus\Keystone\Domains\Search\Services\ProductIndex;
+use RefactorCircus\Showroom\Domains\Channel\Concerns\WritesChannels;
+use RefactorCircus\Showroom\Domains\Channel\Events\ChannelCreatedActionEvent;
+use RefactorCircus\Showroom\Domains\Channel\Events\ChannelCreatingActionEvent;
+use RefactorCircus\Showroom\Domains\Channel\Models\ChannelModel;
+use RefactorCircus\Showroom\Domains\Product\Models\ProductModel;
+use RefactorCircus\Showroom\Domains\Search\Services\ProductIndex;
 
 final class CreateChannelAction
 {
@@ -23,7 +23,7 @@ final class CreateChannelAction
     public static function rules(): array
     {
         return [
-            'code' => ['required', 'string', 'max:100', 'regex:/^[a-z][a-z0-9_]*$/', 'unique:keystone_channels,code'],
+            'code' => ['required', 'string', 'max:100', 'regex:/^[a-z][a-z0-9_]*$/', 'unique:showroom_channels,code'],
         ] + self::channelRules(required: true);
     }
 

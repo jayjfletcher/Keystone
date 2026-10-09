@@ -2,14 +2,14 @@
 
 declare(strict_types=1);
 
-namespace RefactorCircus\Keystone\Domains\Attribute\Mcp\Tools;
+namespace RefactorCircus\Showroom\Domains\Attribute\Mcp\Tools;
 
 use Illuminate\Contracts\JsonSchema\JsonSchema;
 use Laravel\Mcp\Response;
 use Laravel\Mcp\ResponseFactory;
 use Laravel\Mcp\Server\Attributes\Description;
 use RefactorCircus\Foundation\Mcp\Tool;
-use RefactorCircus\Keystone\Domains\Attribute\Mcp\Requests\ListAttributesMcpRequest;
+use RefactorCircus\Showroom\Domains\Attribute\Mcp\Requests\ListAttributesMcpRequest;
 
 #[Description('List attributes, the typed product characteristics of the catalog, in display order. Filter by type, group, or search. Cursor paginated.')]
 final class ListAttributesTool extends Tool

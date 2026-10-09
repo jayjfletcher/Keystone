@@ -2,15 +2,15 @@
 
 declare(strict_types=1);
 
-namespace RefactorCircus\Keystone\Domains\Owner\Actions;
+namespace RefactorCircus\Showroom\Domains\Owner\Actions;
 
 use Illuminate\Support\Facades\DB;
 use Illuminate\Validation\ValidationException;
-use RefactorCircus\Keystone\Domains\Owner\Concerns\PlacesOwners;
-use RefactorCircus\Keystone\Domains\Owner\Events\OwnerUpdatedActionEvent;
-use RefactorCircus\Keystone\Domains\Owner\Events\OwnerUpdatingActionEvent;
-use RefactorCircus\Keystone\Domains\Owner\Models\OwnerModel;
-use RefactorCircus\Keystone\Domains\Search\Services\ProductIndex;
+use RefactorCircus\Showroom\Domains\Owner\Concerns\PlacesOwners;
+use RefactorCircus\Showroom\Domains\Owner\Events\OwnerUpdatedActionEvent;
+use RefactorCircus\Showroom\Domains\Owner\Events\OwnerUpdatingActionEvent;
+use RefactorCircus\Showroom\Domains\Owner\Models\OwnerModel;
+use RefactorCircus\Showroom\Domains\Search\Services\ProductIndex;
 
 final class UpdateOwnerAction
 {
@@ -26,7 +26,7 @@ final class UpdateOwnerAction
         return [
             'code' => ['prohibited'],
             'type' => ['prohibited'],
-            'parent' => ['sometimes', 'nullable', 'string', 'exists:keystone_owners,code'],
+            'parent' => ['sometimes', 'nullable', 'string', 'exists:showroom_owners,code'],
             'labels' => ['sometimes', 'nullable', 'array'],
             'labels.*' => ['nullable', 'string', 'max:255'],
         ];

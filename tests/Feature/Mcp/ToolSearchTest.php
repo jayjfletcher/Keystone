@@ -8,25 +8,25 @@ use Laravel\Mcp\Response;
 use Laravel\Mcp\Server\Content\Text;
 use Laravel\Mcp\Server\Tool;
 use Laravel\Mcp\Server\Transport\FakeTransporter;
-use RefactorCircus\Keystone\Mcp\KeystoneServer;
+use RefactorCircus\Showroom\Mcp\ShowroomServer;
 
 /**
  * @return Collection<int, Tool>
  */
-function keystoneServerTools(): Collection
+function showroomServerTools(): Collection
 {
-    return (new KeystoneServer(new FakeTransporter))->createContext()->tools();
+    return (new ShowroomServer(new FakeTransporter))->createContext()->tools();
 }
 
-function keystoneServerTool(string $name): Tool
+function showroomServerTool(string $name): Tool
 {
-    return keystoneServerTools()->firstOrFail(fn (Tool $tool): bool => $tool->name() === $name);
+    return showroomServerTools()->firstOrFail(fn (Tool $tool): bool => $tool->name() === $name);
 }
 
 /**
  * @return array<string, mixed>
  */
-function decodeKeystoneToolSearchPayload(Response $response): array
+function decodeShowroomToolSearchPayload(Response $response): array
 {
     $content = $response->content();
 
@@ -39,13 +39,13 @@ function decodeKeystoneToolSearchPayload(Response $response): array
 }
 
 it('exposes only the tool search entry points', function (): void {
-    expect(keystoneServerTools()->map(fn (Tool $tool): string => $tool->name())->all())
+    expect(showroomServerTools()->map(fn (Tool $tool): string => $tool->name())->all())
         ->toBe(['search_tools', 'execute_tools']);
 });
 
 it('finds catalog tools by search term', function (): void {
-    $payload = decodeKeystoneToolSearchPayload(
-        keystoneServerTool('search_tools')->handle(new Request(['query' => 'attribute options', 'limit' => 5])),
+    $payload = decodeShowroomToolSearchPayload(
+        showroomServerTool('search_tools')->handle(new Request(['query' => 'attribute options', 'limit' => 5])),
     );
 
     expect($payload['ok'])->toBeTrue()
@@ -54,8 +54,8 @@ it('finds catalog tools by search term', function (): void {
 });
 
 it('browses the catalog with an empty query', function (): void {
-    $payload = decodeKeystoneToolSearchPayload(
-        keystoneServerTool('search_tools')->handle(new Request(['query' => '', 'limit' => 50])),
+    $payload = decodeShowroomToolSearchPayload(
+        showroomServerTool('search_tools')->handle(new Request(['query' => '', 'limit' => 50])),
     );
 
     expect($payload['ok'])->toBeTrue()
@@ -63,11 +63,11 @@ it('browses the catalog with an empty query', function (): void {
 });
 
 it('executes a catalog tool through execute_tools', function (): void {
-    $responses = keystoneServerTool('execute_tools')->handle(new Request([
+    $responses = showroomServerTool('execute_tools')->handle(new Request([
         'calls' => [['name' => 'list-attributes-tool', 'arguments' => []]],
     ]));
 
-    $payload = decodeKeystoneToolSearchPayload(collect($responses)->firstOrFail());
+    $payload = decodeShowroomToolSearchPayload(collect($responses)->firstOrFail());
 
     expect($payload['ok'])->toBeTrue()
         ->and($payload['results'][0]['name'])->toBe('list-attributes-tool')
@@ -75,11 +75,11 @@ it('executes a catalog tool through execute_tools', function (): void {
 });
 
 it('reports an error for a tool missing from the catalog', function (): void {
-    $responses = keystoneServerTool('execute_tools')->handle(new Request([
+    $responses = showroomServerTool('execute_tools')->handle(new Request([
         'calls' => [['name' => 'no-such-tool', 'arguments' => []]],
     ]));
 
-    $payload = decodeKeystoneToolSearchPayload(collect($responses)->firstOrFail());
+    $payload = decodeShowroomToolSearchPayload(collect($responses)->firstOrFail());
 
     expect($payload['ok'])->toBeFalse()
         ->and($payload['results'][0]['isError'])->toBeTrue();

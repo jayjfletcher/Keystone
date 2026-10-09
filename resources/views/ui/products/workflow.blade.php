@@ -1,7 +1,7 @@
 {{-- Status and live version, the transitions open from here, completeness per
      channel and locale, and the latest history with revert. --}}
-@use(RefactorCircus\Keystone\Atrium\Badges)
-@use(RefactorCircus\Keystone\Atrium\ScreenAccess)
+@use(RefactorCircus\Showroom\Atrium\Badges)
+@use(RefactorCircus\Showroom\Atrium\ScreenAccess)
 
 @php
     $transitionIcons = [
@@ -15,46 +15,46 @@
     ];
 @endphp
 
-<x-atrium::card :title="__('keystone::keystone.workflow')">
+<x-atrium::card :title="__('showroom::showroom.workflow')">
     <div class="flex flex-wrap items-center gap-3 text-sm" data-testid="workflow">
-        <x-atrium::status-dot :variant="Badges::forStatus($product->status)" :label="__('keystone::keystone.status_'.$product->status->value)" data-status="{{ $product->status->value }}" data-testid="product-status" />
+        <x-atrium::status-dot :variant="Badges::forStatus($product->status)" :label="__('showroom::showroom.status_'.$product->status->value)" data-status="{{ $product->status->value }}" data-testid="product-status" />
         <span>
-            {{ __('keystone::keystone.published_version') }}:
+            {{ __('showroom::showroom.published_version') }}:
             @if ($product->published_version)
                 <span class="font-mono">v{{ $product->published_version }}</span>
                 <span class="opacity-70">{{ $product->published_at?->diffForHumans() }}</span>
             @else
-                <span class="opacity-70">{{ __('keystone::keystone.not_published') }}</span>
+                <span class="opacity-70">{{ __('showroom::showroom.not_published') }}</span>
             @endif
         </span>
     </div>
 
     @if ($transitions !== [])
-        @keystoneCan('update', $product)
-        <form method="POST" action="{{ route('atrium.keystone.products.transition', $product) }}" class="mt-4 flex flex-wrap items-start gap-3" data-testid="transition-form">
+        @showroomCan('update', $product)
+        <form method="POST" action="{{ route('atrium.showroom.products.transition', $product) }}" class="mt-4 flex flex-wrap items-start gap-3" data-testid="transition-form">
             @csrf
-            <x-atrium::form.input name="comment" :label="__('keystone::keystone.comment')" wrapper="w-72" />
+            <x-atrium::form.input name="comment" :label="__('showroom::showroom.comment')" wrapper="w-72" />
             <x-atrium::form.actions>
                 @foreach ($transitions as $transition)
-                    <x-atrium::icon-button :icon="$transitionIcons[$transition->value]" :label="__('keystone::keystone.transition_'.$transition->value)" :variant="$transition->value === 'reject' || $transition->value === 'archive' ? 'outline' : 'primary'" type="submit" name="transition" :value="$transition->value" data-testid="transition-{{ $transition->value }}" />
+                    <x-atrium::icon-button :icon="$transitionIcons[$transition->value]" :label="__('showroom::showroom.transition_'.$transition->value)" :variant="$transition->value === 'reject' || $transition->value === 'archive' ? 'outline' : 'primary'" type="submit" name="transition" :value="$transition->value" data-testid="transition-{{ $transition->value }}" />
                 @endforeach
             </x-atrium::form.actions>
         </form>
-        @endkeystoneCan
+        @endshowroomCan
     @endif
 </x-atrium::card>
 
-<x-atrium::card :title="__('keystone::keystone.completeness')">
+<x-atrium::card :title="__('showroom::showroom.completeness')">
     @if ($product->completeness->isEmpty())
-        <x-atrium::empty-state :title="__('keystone::keystone.no_completeness')" />
+        <x-atrium::empty-state :title="__('showroom::showroom.no_completeness')" />
     @else
         <x-atrium::table compact>
             <x-slot:head>
                 <x-atrium::table.row>
-                    <x-atrium::table.cell heading>{{ __('keystone::keystone.channel') }}</x-atrium::table.cell>
-                    <x-atrium::table.cell heading>{{ __('keystone::keystone.locale') }}</x-atrium::table.cell>
+                    <x-atrium::table.cell heading>{{ __('showroom::showroom.channel') }}</x-atrium::table.cell>
+                    <x-atrium::table.cell heading>{{ __('showroom::showroom.locale') }}</x-atrium::table.cell>
                     <x-atrium::table.cell heading>%</x-atrium::table.cell>
-                    <x-atrium::table.cell heading>{{ __('keystone::keystone.missing') }}</x-atrium::table.cell>
+                    <x-atrium::table.cell heading>{{ __('showroom::showroom.missing') }}</x-atrium::table.cell>
                 </x-atrium::table.row>
             </x-slot:head>
 
@@ -65,16 +65,16 @@
                     <x-atrium::table.cell>
                         <x-atrium::badge :variant="$score->ratio === 100 ? 'success' : ($score->ratio >= 50 ? 'warning' : 'danger')">{{ $score->ratio }}%</x-atrium::badge>
                     </x-atrium::table.cell>
-                    <x-atrium::table.cell class="font-mono text-xs">{{ implode(', ', $score->missing_attributes ?? []) ?: __('keystone::keystone.none') }}</x-atrium::table.cell>
+                    <x-atrium::table.cell class="font-mono text-xs">{{ implode(', ', $score->missing_attributes ?? []) ?: __('showroom::showroom.none') }}</x-atrium::table.cell>
                 </x-atrium::table.row>
             @endforeach
         </x-atrium::table>
     @endif
 </x-atrium::card>
 
-<x-atrium::card :title="__('keystone::keystone.history')">
+<x-atrium::card :title="__('showroom::showroom.history')">
     @if ($history->isEmpty())
-        <x-atrium::empty-state :title="__('keystone::keystone.no_history')" />
+        <x-atrium::empty-state :title="__('showroom::showroom.no_history')" />
     @else
         <ol class="flex flex-col gap-3" data-testid="history">
             @foreach ($history as $version)
@@ -85,7 +85,7 @@
                             <x-atrium::badge>{{ $version->action }}</x-atrium::badge>
                             <span class="opacity-70">{{ $version->created_at?->diffForHumans() }}</span>
                             @if ($version->author_id)
-                                <span class="opacity-70">{{ __('keystone::keystone.by', ['author' => $version->author?->getAttribute('name') ?? $version->author_id]) }}</span>
+                                <span class="opacity-70">{{ __('showroom::showroom.by', ['author' => $version->author?->getAttribute('name') ?? $version->author_id]) }}</span>
                             @endif
                         </p>
                         @if ($version->comment)
@@ -97,10 +97,10 @@
                     </div>
 
                     @unless ($loop->first || ! ScreenAccess::allows('update', $product))
-                        <form method="POST" action="{{ route('atrium.keystone.products.revert', $product) }}">
+                        <form method="POST" action="{{ route('atrium.showroom.products.revert', $product) }}">
                             @csrf
                             <input type="hidden" name="version" value="{{ $version->version }}">
-                            <x-atrium::icon-button icon="arrow-uturn-left" :label="__('keystone::keystone.revert')" variant="ghost" size="sm" type="submit" data-testid="revert-{{ $version->version }}" />
+                            <x-atrium::icon-button icon="arrow-uturn-left" :label="__('showroom::showroom.revert')" variant="ghost" size="sm" type="submit" data-testid="revert-{{ $version->version }}" />
                         </form>
                     @endunless
                 </li>

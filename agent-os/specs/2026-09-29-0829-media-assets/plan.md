@@ -1,7 +1,7 @@
 # Media & Assets — Plan
 
 1. Save spec documentation (`shape.md`, this plan).
-2. Migration `2026_01_01_000006_create_keystone_asset_tables.php`: assets and polymorphic asset links.
+2. Migration `2026_01_01_000006_create_showroom_asset_tables.php`: assets and polymorphic asset links.
 3. `Asset` model, factory, model events; `HasAssets` on products, product models and owners; `allAssets()` inheritance for variants; morph aliases registered without enforcing a map.
 4. `Media\AssetStorage` (streamed upload, adopt disk path, fetch URL, checksum, URLs, delete), `Media\AssetLinks` (resolve, attach, detach, forget), `media` config.
 5. Actions (7) with events; `StoresAssetFiles` concern (one source, limits); link cleanup when products, models and owners are deleted.

@@ -2,16 +2,16 @@
 
 declare(strict_types=1);
 
-namespace RefactorCircus\Keystone\Impex\Flows;
+namespace RefactorCircus\Showroom\Impex\Flows;
 
 use RefactorCircus\Impex\Domains\Flow\Support\Flow;
-use RefactorCircus\Keystone\Domains\Channel\Models\ChannelModel;
-use RefactorCircus\Keystone\Impex\Actions\DeliverFeed;
-use RefactorCircus\Keystone\Impex\Actions\ExportProductPages;
-use RefactorCircus\Keystone\Impex\Actions\JoinProductExport;
+use RefactorCircus\Showroom\Domains\Channel\Models\ChannelModel;
+use RefactorCircus\Showroom\Impex\Actions\DeliverFeed;
+use RefactorCircus\Showroom\Impex\Actions\ExportProductPages;
+use RefactorCircus\Showroom\Impex\Actions\JoinProductExport;
 
 /**
- * `keystone:feed:{name}` — a syndication feed from `keystone.impex.feeds`:
+ * `showroom:feed:{name}` — a syndication feed from `showroom.impex.feeds`:
  * a channel's published products, in its locales and category tree, to a
  * file asset, and optionally delivered over HTTP.
  *
@@ -19,7 +19,7 @@ use RefactorCircus\Keystone\Impex\Actions\JoinProductExport;
  */
 final class FeedFlow extends Flow
 {
-    public const string PREFIX = 'keystone:feed:';
+    public const string PREFIX = 'showroom:feed:';
 
     /**
      * @return array<string, mixed>
@@ -29,12 +29,12 @@ final class FeedFlow extends Flow
         $run = $this->context()->run;
         $name = substr($run->flow, strlen(self::PREFIX));
 
-        $this->tag('keystone', 'feed');
+        $this->tag('showroom', 'feed');
         $this->tag('feed', $name);
 
         // Recorded once, so a config change mid-run cannot shift the replay.
         /** @var array{channel?: string, format?: string, url?: string|null, ledger_channel?: string, deliver_through?: string|null} $feed */
-        $feed = $this->sideEffect('feed', fn (): array => (array) config('keystone.impex.feeds.'.$name, []));
+        $feed = $this->sideEffect('feed', fn (): array => (array) config('showroom.impex.feeds.'.$name, []));
 
         $query = $this->sideEffect('query', function () use ($feed): array {
             $channel = ChannelModel::query()->with(['locales', 'categoryTree'])->where('code', $feed['channel'] ?? '')->firstOrFail();
@@ -63,7 +63,7 @@ final class FeedFlow extends Flow
         $through = is_string($feed['deliver_through'] ?? null) ? $feed['deliver_through'] : null;
 
         if ($url !== '' || $through !== null) {
-            $export['delivery'] = $this->action(DeliverFeed::class, $export['asset'], $url, $feed['ledger_channel'] ?? 'keystone-feeds', $run->id, $through)
+            $export['delivery'] = $this->action(DeliverFeed::class, $export['asset'], $url, $feed['ledger_channel'] ?? 'showroom-feeds', $run->id, $through)
                 ->tries(3)
                 ->run();
         }

@@ -2,14 +2,14 @@
 
 declare(strict_types=1);
 
-namespace RefactorCircus\Keystone\Domains\Workflow\Actions;
+namespace RefactorCircus\Showroom\Domains\Workflow\Actions;
 
 use Illuminate\Database\Eloquent\ModelNotFoundException;
-use RefactorCircus\Keystone\Domains\Product\Models\ProductModel;
-use RefactorCircus\Keystone\Domains\Workflow\Events\ProductVersionShowingActionEvent;
-use RefactorCircus\Keystone\Domains\Workflow\Events\ProductVersionShownActionEvent;
-use RefactorCircus\Keystone\Domains\Workflow\Models\VersionModel;
-use RefactorCircus\Keystone\Domains\Workflow\Services\Versions;
+use RefactorCircus\Showroom\Domains\Product\Models\ProductModel;
+use RefactorCircus\Showroom\Domains\Workflow\Events\ProductVersionShowingActionEvent;
+use RefactorCircus\Showroom\Domains\Workflow\Events\ProductVersionShownActionEvent;
+use RefactorCircus\Showroom\Domains\Workflow\Models\VersionModel;
+use RefactorCircus\Showroom\Domains\Workflow\Services\Versions;
 
 final class ShowProductVersionAction
 {

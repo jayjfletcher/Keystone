@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace RefactorCircus\Keystone\Impex\Webhooks;
+namespace RefactorCircus\Showroom\Impex\Webhooks;
 
 use Illuminate\Contracts\Config\Repository as Config;
 use Illuminate\Database\ConnectionInterface;
@@ -10,7 +10,7 @@ use stdClass;
 
 /**
  * Divides a product into the topics subscribers choose from, as
- * `keystone.impex.webhooks.topics` describes them.
+ * `showroom.impex.webhooks.topics` describes them.
  *
  * Each topic claims attribute values by attribute type (`types`) or group
  * (`groups`), product fields (`fields`), and linked assets (`assets`). What no
@@ -92,7 +92,7 @@ final class TopicMap
     private function definitions(): array
     {
         /** @var array<string, array<string, mixed>> $topics */
-        $topics = $this->config->get('keystone.impex.webhooks.topics', []);
+        $topics = $this->config->get('showroom.impex.webhooks.topics', []);
 
         return $topics;
     }
@@ -164,8 +164,8 @@ final class TopicMap
 
         $attributes = [];
 
-        $rows = $this->db->table('keystone_attributes as a')
-            ->leftJoin('keystone_attribute_groups as g', 'g.id', '=', 'a.attribute_group_id')
+        $rows = $this->db->table('showroom_attributes as a')
+            ->leftJoin('showroom_attribute_groups as g', 'g.id', '=', 'a.attribute_group_id')
             ->get(['a.code', 'a.type', 'g.code as group_code']);
 
         foreach ($rows as $row) {

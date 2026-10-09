@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace RefactorCircus\Keystone\Database\Factories;
+namespace RefactorCircus\Showroom\Database\Factories;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
-use RefactorCircus\Keystone\Domains\Asset\Models\AssetModel;
+use RefactorCircus\Showroom\Domains\Asset\Models\AssetModel;
 
 /**
  * An asset record. The file itself is not written; use CreateAssetAction.
@@ -26,8 +26,8 @@ final class AssetFactory extends Factory
         return [
             'code' => $code,
             'labels' => [],
-            'disk' => (string) (config('keystone.media.disk') ?? config('filesystems.default')),
-            'path' => 'keystone/assets/'.$code.'.jpg',
+            'disk' => (string) (config('showroom.media.disk') ?? config('filesystems.default')),
+            'path' => 'showroom/assets/'.$code.'.jpg',
             'filename' => $code.'.jpg',
             'mime_type' => 'image/jpeg',
             'size' => 1024,

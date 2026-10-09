@@ -2,13 +2,13 @@
 
 declare(strict_types=1);
 
-namespace RefactorCircus\Keystone\Domains\Attribute\Http\Requests;
+namespace RefactorCircus\Showroom\Domains\Attribute\Http\Requests;
 
 use Illuminate\Http\JsonResponse;
 use RefactorCircus\Foundation\Http\Requests\Request;
-use RefactorCircus\Keystone\Domains\Attribute\Actions\CreateAttributeGroupAction;
-use RefactorCircus\Keystone\Domains\Attribute\Models\AttributeGroupModel;
-use RefactorCircus\Keystone\Domains\Attribute\Resources\AttributeGroupResource;
+use RefactorCircus\Showroom\Domains\Attribute\Actions\CreateAttributeGroupAction;
+use RefactorCircus\Showroom\Domains\Attribute\Models\AttributeGroupModel;
+use RefactorCircus\Showroom\Domains\Attribute\Resources\AttributeGroupResource;
 
 final class StoreAttributeGroupRequest extends Request
 {

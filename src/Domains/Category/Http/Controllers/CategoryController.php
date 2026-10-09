@@ -2,15 +2,15 @@
 
 declare(strict_types=1);
 
-namespace RefactorCircus\Keystone\Domains\Category\Http\Controllers;
+namespace RefactorCircus\Showroom\Domains\Category\Http\Controllers;
 
 use Illuminate\Http\JsonResponse;
-use RefactorCircus\Keystone\Domains\Category\Http\Requests\DeleteCategoryRequest;
-use RefactorCircus\Keystone\Domains\Category\Http\Requests\IndexCategoriesRequest;
-use RefactorCircus\Keystone\Domains\Category\Http\Requests\ShowCategoryRequest;
-use RefactorCircus\Keystone\Domains\Category\Http\Requests\StoreCategoryRequest;
-use RefactorCircus\Keystone\Domains\Category\Http\Requests\UpdateCategoryRequest;
-use RefactorCircus\Keystone\Domains\Category\Models\CategoryModel;
+use RefactorCircus\Showroom\Domains\Category\Http\Requests\DeleteCategoryRequest;
+use RefactorCircus\Showroom\Domains\Category\Http\Requests\IndexCategoriesRequest;
+use RefactorCircus\Showroom\Domains\Category\Http\Requests\ShowCategoryRequest;
+use RefactorCircus\Showroom\Domains\Category\Http\Requests\StoreCategoryRequest;
+use RefactorCircus\Showroom\Domains\Category\Http\Requests\UpdateCategoryRequest;
+use RefactorCircus\Showroom\Domains\Category\Models\CategoryModel;
 
 final class CategoryController
 {

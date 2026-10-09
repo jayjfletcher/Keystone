@@ -2,12 +2,12 @@
 
 declare(strict_types=1);
 
-namespace RefactorCircus\Keystone\Domains\Channel\Actions;
+namespace RefactorCircus\Showroom\Domains\Channel\Actions;
 
-use RefactorCircus\Keystone\Domains\Channel\Events\ChannelDeletedActionEvent;
-use RefactorCircus\Keystone\Domains\Channel\Events\ChannelDeletingActionEvent;
-use RefactorCircus\Keystone\Domains\Channel\Models\ChannelModel;
-use RefactorCircus\Keystone\Jobs\PurgeValueSlots;
+use RefactorCircus\Showroom\Domains\Channel\Events\ChannelDeletedActionEvent;
+use RefactorCircus\Showroom\Domains\Channel\Events\ChannelDeletingActionEvent;
+use RefactorCircus\Showroom\Domains\Channel\Models\ChannelModel;
+use RefactorCircus\Showroom\Jobs\PurgeValueSlots;
 
 final class DeleteChannelAction
 {

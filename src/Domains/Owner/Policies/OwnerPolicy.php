@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace RefactorCircus\Keystone\Domains\Owner\Policies;
+namespace RefactorCircus\Showroom\Domains\Owner\Policies;
 
-use RefactorCircus\Keystone\Support\Policies\Policy;
+use RefactorCircus\Showroom\Support\Policies\Policy;
 
 class OwnerPolicy extends Policy
 {

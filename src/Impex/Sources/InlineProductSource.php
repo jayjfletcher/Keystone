@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace RefactorCircus\Keystone\Impex\Sources;
+namespace RefactorCircus\Showroom\Impex\Sources;
 
 use RefactorCircus\Impex\Domains\Batch\Contracts\BatchSource;
 use RefactorCircus\Impex\Domains\Batch\Data\BatchChunk;

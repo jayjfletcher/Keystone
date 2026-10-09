@@ -2,13 +2,13 @@
 
 declare(strict_types=1);
 
-namespace RefactorCircus\Keystone\Domains\Category\Actions;
+namespace RefactorCircus\Showroom\Domains\Category\Actions;
 
 use Illuminate\Support\Facades\DB;
-use RefactorCircus\Keystone\Domains\Category\Events\CategoryCreatedActionEvent;
-use RefactorCircus\Keystone\Domains\Category\Events\CategoryCreatingActionEvent;
-use RefactorCircus\Keystone\Domains\Category\Models\CategoryModel;
-use RefactorCircus\Keystone\Support\Concerns\MovesInTree;
+use RefactorCircus\Showroom\Domains\Category\Events\CategoryCreatedActionEvent;
+use RefactorCircus\Showroom\Domains\Category\Events\CategoryCreatingActionEvent;
+use RefactorCircus\Showroom\Domains\Category\Models\CategoryModel;
+use RefactorCircus\Showroom\Support\Concerns\MovesInTree;
 
 final class CreateCategoryAction
 {
@@ -22,8 +22,8 @@ final class CreateCategoryAction
     public static function rules(): array
     {
         return [
-            'code' => ['required', 'string', 'max:100', 'regex:/^[a-z0-9][a-z0-9_]*$/', 'unique:keystone_categories,code'],
-            'parent' => ['sometimes', 'nullable', 'string', 'exists:keystone_categories,code'],
+            'code' => ['required', 'string', 'max:100', 'regex:/^[a-z0-9][a-z0-9_]*$/', 'unique:showroom_categories,code'],
+            'parent' => ['sometimes', 'nullable', 'string', 'exists:showroom_categories,code'],
             'labels' => ['sometimes', 'nullable', 'array'],
             'labels.*' => ['nullable', 'string', 'max:255'],
             'sort_order' => ['sometimes', 'integer', 'min:0'],

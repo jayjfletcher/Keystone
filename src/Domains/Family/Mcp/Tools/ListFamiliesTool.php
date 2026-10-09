@@ -2,14 +2,14 @@
 
 declare(strict_types=1);
 
-namespace RefactorCircus\Keystone\Domains\Family\Mcp\Tools;
+namespace RefactorCircus\Showroom\Domains\Family\Mcp\Tools;
 
 use Illuminate\Contracts\JsonSchema\JsonSchema;
 use Laravel\Mcp\Response;
 use Laravel\Mcp\ResponseFactory;
 use Laravel\Mcp\Server\Attributes\Description;
 use RefactorCircus\Foundation\Mcp\Tool;
-use RefactorCircus\Keystone\Domains\Family\Mcp\Requests\ListFamiliesMcpRequest;
+use RefactorCircus\Showroom\Domains\Family\Mcp\Requests\ListFamiliesMcpRequest;
 
 #[Description('List families (attribute sets), the kinds of product the catalog describes, in display order. Filter by search or by an attribute they include. Cursor paginated.')]
 final class ListFamiliesTool extends Tool

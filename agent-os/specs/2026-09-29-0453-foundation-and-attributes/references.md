@@ -5,7 +5,7 @@
 ### Impex service provider
 
 - **Location:** `../impex/src/ImpexServiceProvider.php`
-- **Relevance:** Boot order and conditional wiring Keystone mirrors.
+- **Relevance:** Boot order and conditional wiring Showroom mirrors.
 - **Key patterns:** Cortex register → policies from config → config-gated routes → `Atrium::plugin()` when `ui.enabled` → `Mcp::web` / `Mcp::local` when enabled → views/lang → console-only publishes with umbrella + specific tags.
 
 ### Actions

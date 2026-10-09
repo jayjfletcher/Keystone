@@ -2,15 +2,15 @@
 
 declare(strict_types=1);
 
-namespace RefactorCircus\Keystone\Impex\Actions;
+namespace RefactorCircus\Showroom\Impex\Actions;
 
 use Generator;
 use Illuminate\Contracts\Filesystem\Filesystem;
 use Illuminate\Support\Facades\Storage;
-use RefactorCircus\Keystone\Domains\Asset\Actions\CreateAssetAction;
-use RefactorCircus\Keystone\Domains\Asset\Models\AssetModel;
-use RefactorCircus\Keystone\Domains\Asset\Services\AssetStorage;
-use RefactorCircus\Keystone\Impex\ProductRows;
+use RefactorCircus\Showroom\Domains\Asset\Actions\CreateAssetAction;
+use RefactorCircus\Showroom\Domains\Asset\Models\AssetModel;
+use RefactorCircus\Showroom\Domains\Asset\Services\AssetStorage;
+use RefactorCircus\Showroom\Impex\ProductRows;
 use RuntimeException;
 
 /**
@@ -46,7 +46,7 @@ final class JoinProductExport
 
         rewind($out);
 
-        $path = trim((string) config('keystone.impex.export_path', 'keystone/exports'), '/').'/'.$runId.'/'.$code.'.'.$format;
+        $path = trim((string) config('showroom.impex.export_path', 'showroom/exports'), '/').'/'.$runId.'/'.$code.'.'.$format;
         $disk->writeStream($path, $out);
         fclose($out);
 

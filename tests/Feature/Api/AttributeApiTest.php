@@ -2,15 +2,15 @@
 
 declare(strict_types=1);
 
-use RefactorCircus\Keystone\Domains\Attribute\Enums\AttributeType;
-use RefactorCircus\Keystone\Domains\Attribute\Models\AttributeGroupModel;
-use RefactorCircus\Keystone\Domains\Attribute\Models\AttributeModel;
-use RefactorCircus\Keystone\Domains\Attribute\Models\AttributeOptionModel;
+use RefactorCircus\Showroom\Domains\Attribute\Enums\AttributeType;
+use RefactorCircus\Showroom\Domains\Attribute\Models\AttributeGroupModel;
+use RefactorCircus\Showroom\Domains\Attribute\Models\AttributeModel;
+use RefactorCircus\Showroom\Domains\Attribute\Models\AttributeOptionModel;
 
 it('creates an attribute in a group', function (): void {
     AttributeGroupModel::factory()->create(['code' => 'technical']);
 
-    $this->postJson('/keystone/attributes', [
+    $this->postJson('/showroom/attributes', [
         'code' => 'weight',
         'type' => 'metric',
         'group' => 'technical',
@@ -30,7 +30,7 @@ it('creates an attribute in a group', function (): void {
 it('creates an attribute of every type', function (AttributeType $type): void {
     $settings = $type === AttributeType::Metric ? ['metric_family' => 'length', 'default_unit' => 'meter'] : [];
 
-    $this->postJson('/keystone/attributes', ['code' => 'attr_'.$type->value, 'type' => $type->value, 'settings' => $settings])
+    $this->postJson('/showroom/attributes', ['code' => 'attr_'.$type->value, 'type' => $type->value, 'settings' => $settings])
         ->assertCreated()
         ->assertJsonPath('data.type', $type->value);
 })->with(AttributeType::cases());
@@ -38,33 +38,33 @@ it('creates an attribute of every type', function (AttributeType $type): void {
 it('validates the type, code and group', function (): void {
     AttributeModel::factory()->create(['code' => 'color']);
 
-    $this->postJson('/keystone/attributes', ['code' => 'color', 'type' => 'colour', 'group' => 'missing'])
+    $this->postJson('/showroom/attributes', ['code' => 'color', 'type' => 'colour', 'group' => 'missing'])
         ->assertUnprocessable()
         ->assertJsonValidationErrors(['code', 'type', 'group']);
 });
 
 it('validates settings against the type', function (): void {
-    $this->postJson('/keystone/attributes', ['code' => 'weight', 'type' => 'metric'])
+    $this->postJson('/showroom/attributes', ['code' => 'weight', 'type' => 'metric'])
         ->assertUnprocessable()
         ->assertJsonValidationErrors(['settings.metric_family', 'settings.default_unit']);
 
-    $this->postJson('/keystone/attributes', ['code' => 'price', 'type' => 'price', 'settings' => ['decimals' => 9]])
+    $this->postJson('/showroom/attributes', ['code' => 'price', 'type' => 'price', 'settings' => ['decimals' => 9]])
         ->assertUnprocessable()
         ->assertJsonValidationErrors('settings.decimals');
 });
 
 it('drops settings the type does not understand', function (): void {
-    $this->postJson('/keystone/attributes', ['code' => 'name', 'type' => 'text', 'settings' => ['max_length' => 80, 'currencies' => ['USD']]])
+    $this->postJson('/showroom/attributes', ['code' => 'name', 'type' => 'text', 'settings' => ['max_length' => 80, 'currencies' => ['USD']]])
         ->assertCreated()
         ->assertJsonPath('data.settings', ['max_length' => 80]);
 });
 
 it('refuses uniqueness on types that cannot be unique', function (): void {
-    $this->postJson('/keystone/attributes', ['code' => 'active', 'type' => 'boolean', 'is_unique' => true])
+    $this->postJson('/showroom/attributes', ['code' => 'active', 'type' => 'boolean', 'is_unique' => true])
         ->assertUnprocessable()
         ->assertJsonValidationErrors('is_unique');
 
-    $this->postJson('/keystone/attributes', ['code' => 'sku', 'type' => 'text', 'is_unique' => true])
+    $this->postJson('/showroom/attributes', ['code' => 'sku', 'type' => 'text', 'is_unique' => true])
         ->assertCreated()
         ->assertJsonPath('data.is_unique', true);
 });
@@ -75,34 +75,34 @@ it('lists attributes filtered by type, group and search', function (): void {
     AttributeModel::factory()->select()->create(['code' => 'color', 'labels' => ['en' => 'Colour']]);
     AttributeModel::factory()->type(AttributeType::Number)->create(['code' => 'pack_size']);
 
-    $this->getJson('/keystone/attributes?type=select')->assertOk()->assertJsonCount(1, 'data')->assertJsonPath('data.0.code', 'color');
-    $this->getJson('/keystone/attributes?group=marketing')->assertOk()->assertJsonCount(1, 'data')->assertJsonPath('data.0.code', 'headline');
-    $this->getJson('/keystone/attributes?search=colour')->assertOk()->assertJsonCount(1, 'data')->assertJsonPath('data.0.code', 'color');
-    $this->getJson('/keystone/attributes?type=nope')->assertUnprocessable();
+    $this->getJson('/showroom/attributes?type=select')->assertOk()->assertJsonCount(1, 'data')->assertJsonPath('data.0.code', 'color');
+    $this->getJson('/showroom/attributes?group=marketing')->assertOk()->assertJsonCount(1, 'data')->assertJsonPath('data.0.code', 'headline');
+    $this->getJson('/showroom/attributes?search=colour')->assertOk()->assertJsonCount(1, 'data')->assertJsonPath('data.0.code', 'color');
+    $this->getJson('/showroom/attributes?type=nope')->assertUnprocessable();
 });
 
 it('paginates with a cursor', function (): void {
     AttributeModel::factory()->count(3)->sequence(['code' => 'a1'], ['code' => 'a2'], ['code' => 'a3'])->create();
 
-    $first = $this->getJson('/keystone/attributes?per_page=2')->assertOk()->assertJsonCount(2, 'data');
+    $first = $this->getJson('/showroom/attributes?per_page=2')->assertOk()->assertJsonCount(2, 'data');
 
     $cursor = $first->json('meta.next_cursor');
 
-    $this->getJson('/keystone/attributes?per_page=2&cursor='.$cursor)
+    $this->getJson('/showroom/attributes?per_page=2&cursor='.$cursor)
         ->assertOk()
         ->assertJsonCount(1, 'data')
         ->assertJsonPath('data.0.code', 'a3');
 });
 
 it('caps the page size', function (): void {
-    $this->getJson('/keystone/attributes?per_page=1000')->assertUnprocessable()->assertJsonValidationErrors('per_page');
+    $this->getJson('/showroom/attributes?per_page=1000')->assertUnprocessable()->assertJsonValidationErrors('per_page');
 });
 
 it('shows an attribute with its options', function (): void {
     $attribute = AttributeModel::factory()->select()->create(['code' => 'color']);
     AttributeOptionModel::factory()->for($attribute, 'attribute')->create(['code' => 'red']);
 
-    $this->getJson('/keystone/attributes/color')
+    $this->getJson('/showroom/attributes/color')
         ->assertOk()
         ->assertJsonPath('data.code', 'color')
         ->assertJsonPath('data.options.0.code', 'red');
@@ -111,7 +111,7 @@ it('shows an attribute with its options', function (): void {
 it('never changes the code or type', function (): void {
     AttributeModel::factory()->create(['code' => 'name']);
 
-    $this->patchJson('/keystone/attributes/name', ['code' => 'title', 'type' => 'number'])
+    $this->patchJson('/showroom/attributes/name', ['code' => 'title', 'type' => 'number'])
         ->assertUnprocessable()
         ->assertJsonValidationErrors(['code', 'type']);
 });
@@ -120,7 +120,7 @@ it('updates the group, labels, flags and settings', function (): void {
     AttributeGroupModel::factory()->create(['code' => 'marketing']);
     AttributeModel::factory()->create(['code' => 'name', 'settings' => ['max_length' => 10]]);
 
-    $this->patchJson('/keystone/attributes/name', [
+    $this->patchJson('/showroom/attributes/name', [
         'group' => 'marketing',
         'labels' => ['en' => 'Name'],
         'is_localizable' => true,
@@ -131,7 +131,7 @@ it('updates the group, labels, flags and settings', function (): void {
         ->assertJsonPath('data.is_localizable', true)
         ->assertJsonPath('data.settings', ['regex' => '/^[A-Z]/']);
 
-    $this->patchJson('/keystone/attributes/name', ['group' => null])
+    $this->patchJson('/showroom/attributes/name', ['group' => null])
         ->assertOk()
         ->assertJsonPath('data.group', null);
 });
@@ -140,7 +140,7 @@ it('deletes an attribute and its options', function (): void {
     $attribute = AttributeModel::factory()->select()->create(['code' => 'color']);
     AttributeOptionModel::factory()->for($attribute, 'attribute')->create();
 
-    $this->deleteJson('/keystone/attributes/color')->assertNoContent();
+    $this->deleteJson('/showroom/attributes/color')->assertNoContent();
 
     expect(AttributeModel::query()->count())->toBe(0)
         ->and(AttributeOptionModel::query()->count())->toBe(0);

@@ -2,21 +2,21 @@
 
 declare(strict_types=1);
 
-namespace RefactorCircus\Keystone\Domains\Search\Services;
+namespace RefactorCircus\Showroom\Domains\Search\Services;
 
 use Illuminate\Database\Eloquent\Collection;
 use Laravel\Scout\Builder;
 use Laravel\Scout\EngineManager;
 use Laravel\Scout\Engines\Engine;
-use RefactorCircus\Keystone\Domains\Attribute\Enums\AttributeType;
-use RefactorCircus\Keystone\Domains\Attribute\Models\AttributeModel;
-use RefactorCircus\Keystone\Domains\Attribute\Services\Values;
-use RefactorCircus\Keystone\Domains\Search\Contracts\SearchEngine;
-use RefactorCircus\Keystone\Domains\Search\Data\Filter;
-use RefactorCircus\Keystone\Domains\Search\Data\ProductQuery;
-use RefactorCircus\Keystone\Domains\Search\Data\SearchResults;
-use RefactorCircus\Keystone\Domains\Search\Exceptions\UnsupportedSearchException;
-use RefactorCircus\Keystone\Domains\Search\Models\SearchableProductModel;
+use RefactorCircus\Showroom\Domains\Attribute\Enums\AttributeType;
+use RefactorCircus\Showroom\Domains\Attribute\Models\AttributeModel;
+use RefactorCircus\Showroom\Domains\Attribute\Services\Values;
+use RefactorCircus\Showroom\Domains\Search\Contracts\SearchEngine;
+use RefactorCircus\Showroom\Domains\Search\Data\Filter;
+use RefactorCircus\Showroom\Domains\Search\Data\ProductQuery;
+use RefactorCircus\Showroom\Domains\Search\Data\SearchResults;
+use RefactorCircus\Showroom\Domains\Search\Exceptions\UnsupportedSearchException;
+use RefactorCircus\Showroom\Domains\Search\Models\SearchableProductModel;
 
 /**
  * Searches through whichever Laravel Scout engine the application configures

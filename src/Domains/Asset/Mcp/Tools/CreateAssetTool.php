@@ -2,14 +2,14 @@
 
 declare(strict_types=1);
 
-namespace RefactorCircus\Keystone\Domains\Asset\Mcp\Tools;
+namespace RefactorCircus\Showroom\Domains\Asset\Mcp\Tools;
 
 use Illuminate\Contracts\JsonSchema\JsonSchema;
 use Laravel\Mcp\Response;
 use Laravel\Mcp\ResponseFactory;
 use Laravel\Mcp\Server\Attributes\Description;
 use RefactorCircus\Foundation\Mcp\Tool;
-use RefactorCircus\Keystone\Domains\Asset\Mcp\Requests\CreateAssetMcpRequest;
+use RefactorCircus\Showroom\Domains\Asset\Mcp\Requests\CreateAssetMcpRequest;
 
 #[Description('Add an asset from a URL, or from a file already on the asset disk. Link it with attach-asset-tool.')]
 final class CreateAssetTool extends Tool

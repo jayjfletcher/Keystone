@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace RefactorCircus\Keystone\Domains\Product\Models;
+namespace RefactorCircus\Showroom\Domains\Product\Models;
 
 use Illuminate\Database\Eloquent\Collection as EloquentCollection;
 use Illuminate\Database\Eloquent\Concerns\HasUlids;
@@ -14,19 +14,19 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\MorphMany;
 use Illuminate\Support\Carbon;
 use RefactorCircus\Foundation\Models\Concerns\DispatchesModelEvents;
-use RefactorCircus\Keystone\Database\Factories\ProductFactory;
-use RefactorCircus\Keystone\Domains\Asset\Concerns\HasAssets;
-use RefactorCircus\Keystone\Domains\Asset\Models\AssetModel;
-use RefactorCircus\Keystone\Domains\Association\Concerns\HasAssociations;
-use RefactorCircus\Keystone\Domains\Attribute\Concerns\HasValues;
-use RefactorCircus\Keystone\Domains\Attribute\Models\AttributeModel;
-use RefactorCircus\Keystone\Domains\Category\Models\CategoryModel;
-use RefactorCircus\Keystone\Domains\Family\Models\FamilyModel;
-use RefactorCircus\Keystone\Domains\Owner\Models\OwnerModel;
-use RefactorCircus\Keystone\Domains\Product\Enums\ProductStatus;
-use RefactorCircus\Keystone\Domains\ProductModel\Models\ProductModelModel;
-use RefactorCircus\Keystone\Domains\Workflow\Models\CompletenessModel;
-use RefactorCircus\Keystone\Domains\Workflow\Models\VersionModel;
+use RefactorCircus\Showroom\Database\Factories\ProductFactory;
+use RefactorCircus\Showroom\Domains\Asset\Concerns\HasAssets;
+use RefactorCircus\Showroom\Domains\Asset\Models\AssetModel;
+use RefactorCircus\Showroom\Domains\Association\Concerns\HasAssociations;
+use RefactorCircus\Showroom\Domains\Attribute\Concerns\HasValues;
+use RefactorCircus\Showroom\Domains\Attribute\Models\AttributeModel;
+use RefactorCircus\Showroom\Domains\Category\Models\CategoryModel;
+use RefactorCircus\Showroom\Domains\Family\Models\FamilyModel;
+use RefactorCircus\Showroom\Domains\Owner\Models\OwnerModel;
+use RefactorCircus\Showroom\Domains\Product\Enums\ProductStatus;
+use RefactorCircus\Showroom\Domains\ProductModel\Models\ProductModelModel;
+use RefactorCircus\Showroom\Domains\Workflow\Models\CompletenessModel;
+use RefactorCircus\Showroom\Domains\Workflow\Models\VersionModel;
 
 /**
  * A sellable item, identified by its identifier (SKU). A simple product has
@@ -61,7 +61,7 @@ final class ProductModel extends Model
     use HasUlids;
     use HasValues;
 
-    protected $table = 'keystone_products';
+    protected $table = 'showroom_products';
 
     /**
      * The column defaults, so a new product reads them before it is refreshed.
@@ -121,7 +121,7 @@ final class ProductModel extends Model
      */
     public function categories(): BelongsToMany
     {
-        return $this->belongsToMany(CategoryModel::class, 'keystone_category_product', 'product_id', 'category_id')->orderBy('code');
+        return $this->belongsToMany(CategoryModel::class, 'showroom_category_product', 'product_id', 'category_id')->orderBy('code');
     }
 
     /**

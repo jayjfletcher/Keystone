@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace RefactorCircus\Keystone\Domains\Search\Support;
+namespace RefactorCircus\Showroom\Domains\Search\Support;
 
 use Illuminate\Contracts\Database\Query\Expression;
 use Illuminate\Database\Grammar;

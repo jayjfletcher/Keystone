@@ -2,16 +2,16 @@
 
 declare(strict_types=1);
 
-namespace RefactorCircus\Keystone\Domains\Workflow\Services;
+namespace RefactorCircus\Showroom\Domains\Workflow\Services;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\DB;
-use RefactorCircus\Keystone\Domains\Attribute\Models\AttributeModel;
-use RefactorCircus\Keystone\Domains\Attribute\Services\Values;
-use RefactorCircus\Keystone\Domains\Channel\Models\ChannelModel;
-use RefactorCircus\Keystone\Domains\Product\Models\ProductModel;
+use RefactorCircus\Showroom\Domains\Attribute\Models\AttributeModel;
+use RefactorCircus\Showroom\Domains\Attribute\Services\Values;
+use RefactorCircus\Showroom\Domains\Channel\Models\ChannelModel;
+use RefactorCircus\Showroom\Domains\Product\Models\ProductModel;
 
 /**
  * Scores how much of what a product's family requires it holds, for every
@@ -19,7 +19,7 @@ use RefactorCircus\Keystone\Domains\Product\Models\ProductModel;
  */
 final class CompletenessCalculator
 {
-    private const string TABLE = 'keystone_product_completeness';
+    private const string TABLE = 'showroom_product_completeness';
 
     /**
      * @var Collection<int, ChannelModel>|null

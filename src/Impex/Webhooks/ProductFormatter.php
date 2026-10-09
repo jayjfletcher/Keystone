@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace RefactorCircus\Keystone\Impex\Webhooks;
+namespace RefactorCircus\Showroom\Impex\Webhooks;
 
 use Illuminate\Support\Facades\Route;
 use RefactorCircus\Impex\Domains\Subscription\Contracts\Formatter;
@@ -11,9 +11,9 @@ use RefactorCircus\Impex\Domains\Subscription\Data\StreamEvent;
 use RefactorCircus\Impex\Domains\Subscription\Enums\EventKind;
 use RefactorCircus\Impex\Domains\Subscription\Models\SubscriptionModel;
 use RefactorCircus\Impex\Domains\Subscription\Support\TopicMask;
-use RefactorCircus\Keystone\Domains\Asset\Models\AssetModel;
-use RefactorCircus\Keystone\Domains\Attribute\Data\ValueFilter;
-use RefactorCircus\Keystone\Domains\Attribute\Services\Values;
+use RefactorCircus\Showroom\Domains\Asset\Models\AssetModel;
+use RefactorCircus\Showroom\Domains\Attribute\Data\ValueFilter;
+use RefactorCircus\Showroom\Domains\Attribute\Services\Values;
 
 /**
  * Products as a subscriber receives them.
@@ -153,6 +153,6 @@ final class ProductFormatter implements Formatter
 
     private function href(string $identifier): ?string
     {
-        return Route::has('keystone.products.show') ? route('keystone.products.show', $identifier) : null;
+        return Route::has('showroom.products.show') ? route('showroom.products.show', $identifier) : null;
     }
 }

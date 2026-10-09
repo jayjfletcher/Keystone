@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace RefactorCircus\Keystone\Domains\Asset\Models;
+namespace RefactorCircus\Showroom\Domains\Asset\Models;
 
 use Illuminate\Database\Eloquent\Concerns\HasUlids;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -10,12 +10,12 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\MorphToMany;
 use Illuminate\Support\Carbon;
 use RefactorCircus\Foundation\Models\Concerns\DispatchesModelEvents;
-use RefactorCircus\Keystone\Database\Factories\AssetFactory;
-use RefactorCircus\Keystone\Domains\Asset\Services\AssetStorage;
-use RefactorCircus\Keystone\Domains\Owner\Models\OwnerModel;
-use RefactorCircus\Keystone\Domains\Product\Models\ProductModel;
-use RefactorCircus\Keystone\Domains\ProductModel\Models\ProductModelModel;
-use RefactorCircus\Keystone\Support\Models\Concerns\HasLabels;
+use RefactorCircus\Showroom\Database\Factories\AssetFactory;
+use RefactorCircus\Showroom\Domains\Asset\Services\AssetStorage;
+use RefactorCircus\Showroom\Domains\Owner\Models\OwnerModel;
+use RefactorCircus\Showroom\Domains\Product\Models\ProductModel;
+use RefactorCircus\Showroom\Domains\ProductModel\Models\ProductModelModel;
+use RefactorCircus\Showroom\Support\Models\Concerns\HasLabels;
 
 /**
  * A file on the configured disk — an image, a manual, a logo — that can be
@@ -43,9 +43,9 @@ final class AssetModel extends Model
     use HasLabels;
     use HasUlids;
 
-    public const string LINKS = 'keystone_asset_links';
+    public const string LINKS = 'showroom_asset_links';
 
-    protected $table = 'keystone_assets';
+    protected $table = 'showroom_assets';
 
     protected $fillable = [
         'code',

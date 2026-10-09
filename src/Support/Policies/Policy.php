@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace RefactorCircus\Keystone\Support\Policies;
+namespace RefactorCircus\Showroom\Support\Policies;
 
 use Illuminate\Database\Eloquent\Model;
 use RefactorCircus\Foundation\Policies\Policy as BasePolicy;
@@ -10,7 +10,7 @@ use RefactorCircus\Foundation\Policies\Policy as BasePolicy;
 /**
  * The bundled catalog policy: any authenticated user may read and manage.
  *
- * Each policy is registered from `keystone.policies`, so an application
+ * Each policy is registered from `showroom.policies`, so an application
  * restricts the catalog by pointing a model at its own class there.
  */
 abstract class Policy extends BasePolicy

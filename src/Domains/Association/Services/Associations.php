@@ -2,16 +2,16 @@
 
 declare(strict_types=1);
 
-namespace RefactorCircus\Keystone\Domains\Association\Services;
+namespace RefactorCircus\Showroom\Domains\Association\Services;
 
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Validation\ValidationException;
-use RefactorCircus\Keystone\Domains\Association\Models\AssociationModel;
-use RefactorCircus\Keystone\Domains\Association\Models\AssociationTypeModel;
-use RefactorCircus\Keystone\Domains\Product\Models\ProductModel;
-use RefactorCircus\Keystone\Domains\ProductModel\Models\ProductModelModel;
+use RefactorCircus\Showroom\Domains\Association\Models\AssociationModel;
+use RefactorCircus\Showroom\Domains\Association\Models\AssociationTypeModel;
+use RefactorCircus\Showroom\Domains\Product\Models\ProductModel;
+use RefactorCircus\Showroom\Domains\ProductModel\Models\ProductModelModel;
 
 /**
  * Writes and reads the associations of products and product models.

@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-namespace RefactorCircus\Keystone\Domains\Category\Actions;
+namespace RefactorCircus\Showroom\Domains\Category\Actions;
 
-use RefactorCircus\Keystone\Domains\Category\Events\CategoryShowingActionEvent;
-use RefactorCircus\Keystone\Domains\Category\Events\CategoryShownActionEvent;
-use RefactorCircus\Keystone\Domains\Category\Models\CategoryModel;
+use RefactorCircus\Showroom\Domains\Category\Events\CategoryShowingActionEvent;
+use RefactorCircus\Showroom\Domains\Category\Events\CategoryShownActionEvent;
+use RefactorCircus\Showroom\Domains\Category\Models\CategoryModel;
 
 final class ShowCategoryAction
 {

@@ -2,14 +2,14 @@
 
 declare(strict_types=1);
 
-namespace RefactorCircus\Keystone\Domains\Owner\Mcp\Tools;
+namespace RefactorCircus\Showroom\Domains\Owner\Mcp\Tools;
 
 use Illuminate\Contracts\JsonSchema\JsonSchema;
 use Laravel\Mcp\Response;
 use Laravel\Mcp\ResponseFactory;
 use Laravel\Mcp\Server\Attributes\Description;
 use RefactorCircus\Foundation\Mcp\Tool;
-use RefactorCircus\Keystone\Domains\Owner\Mcp\Requests\ShowOwnerTypeMcpRequest;
+use RefactorCircus\Showroom\Domains\Owner\Mcp\Requests\ShowOwnerTypeMcpRequest;
 
 #[Description('Show an owner type with the parent types it allows.')]
 final class ShowOwnerTypeTool extends Tool

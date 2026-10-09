@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace RefactorCircus\Keystone\Atrium\Http\Controllers;
+namespace RefactorCircus\Showroom\Atrium\Http\Controllers;
 
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\RedirectResponse;
@@ -10,16 +10,16 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Validation\Rule;
 use RefactorCircus\Atrium\Http\Controllers\Concerns\AuthorizesScreens;
-use RefactorCircus\Keystone\Atrium\Support\Labels;
-use RefactorCircus\Keystone\Domains\Association\Actions\CreateAssociationTypeAction;
-use RefactorCircus\Keystone\Domains\Association\Actions\DeleteAssociationTypeAction;
-use RefactorCircus\Keystone\Domains\Association\Actions\ListAssociationTypesAction;
-use RefactorCircus\Keystone\Domains\Association\Models\AssociationTypeModel;
-use RefactorCircus\Keystone\Domains\Product\Actions\UpdateProductAction;
-use RefactorCircus\Keystone\Domains\Product\Models\ProductModel;
-use RefactorCircus\Keystone\Domains\ProductModel\Actions\UpdateProductModelAction;
-use RefactorCircus\Keystone\Domains\ProductModel\Models\ProductModelModel;
-use RefactorCircus\Keystone\Exceptions\KeystoneException;
+use RefactorCircus\Showroom\Atrium\Support\Labels;
+use RefactorCircus\Showroom\Domains\Association\Actions\CreateAssociationTypeAction;
+use RefactorCircus\Showroom\Domains\Association\Actions\DeleteAssociationTypeAction;
+use RefactorCircus\Showroom\Domains\Association\Actions\ListAssociationTypesAction;
+use RefactorCircus\Showroom\Domains\Association\Models\AssociationTypeModel;
+use RefactorCircus\Showroom\Domains\Product\Actions\UpdateProductAction;
+use RefactorCircus\Showroom\Domains\Product\Models\ProductModel;
+use RefactorCircus\Showroom\Domains\ProductModel\Actions\UpdateProductModelAction;
+use RefactorCircus\Showroom\Domains\ProductModel\Models\ProductModelModel;
+use RefactorCircus\Showroom\Exceptions\ShowroomException;
 
 /**
  * Association types, and adding or removing one association at a time from
@@ -35,7 +35,7 @@ final class AssociationUiController
         $this->authorizeScreen('viewAny', AssociationTypeModel::class);
 
         /** @var view-string $view */
-        $view = 'keystone::ui.association-types.index';
+        $view = 'showroom::ui.association-types.index';
 
         return view($view, [
             'types' => app(ListAssociationTypesAction::class)->execute($request->validate(ListAssociationTypesAction::rules()))->withQueryString(),
@@ -49,8 +49,8 @@ final class AssociationUiController
         app(CreateAssociationTypeAction::class)->execute(Labels::fromForm($request->validate(CreateAssociationTypeAction::rules())));
 
         return redirect()
-            ->route('atrium.keystone.association-types.index')
-            ->with('status', __('keystone::keystone.association_type_created'));
+            ->route('atrium.showroom.association-types.index')
+            ->with('status', __('showroom::showroom.association_type_created'));
     }
 
     public function destroy(AssociationTypeModel $associationType): RedirectResponse
@@ -59,13 +59,13 @@ final class AssociationUiController
 
         try {
             app(DeleteAssociationTypeAction::class)->execute($associationType);
-        } catch (KeystoneException $e) {
+        } catch (ShowroomException $e) {
             return back()->withErrors(['association_type' => $e->getMessage()]);
         }
 
         return redirect()
-            ->route('atrium.keystone.association-types.index')
-            ->with('status', __('keystone::keystone.association_type_deleted'));
+            ->route('atrium.showroom.association-types.index')
+            ->with('status', __('showroom::showroom.association_type_deleted'));
     }
 
     /**
@@ -76,7 +76,7 @@ final class AssociationUiController
         $input = $request->validate([
             'source_kind' => ['required', Rule::in(['product', 'product_model'])],
             'source' => ['required', 'string'],
-            'type' => ['required', 'string', 'exists:keystone_association_types,code'],
+            'type' => ['required', 'string', 'exists:showroom_association_types,code'],
             'target_kind' => ['required', Rule::in(['products', 'product_models'])],
             'target' => ['required', 'string'],
             'quantity' => ['sometimes', 'nullable', 'integer', 'min:1'],
@@ -96,7 +96,7 @@ final class AssociationUiController
             (int) ($input['quantity'] ?? 1),
         ));
 
-        return back()->with('status', __('keystone::keystone.association_added'));
+        return back()->with('status', __('showroom::showroom.association_added'));
     }
 
     /**
@@ -107,7 +107,7 @@ final class AssociationUiController
         $input = $request->validate([
             'source_kind' => ['required', Rule::in(['product', 'product_model'])],
             'source' => ['required', 'string'],
-            'type' => ['required', 'string', 'exists:keystone_association_types,code'],
+            'type' => ['required', 'string', 'exists:showroom_association_types,code'],
             'target_kind' => ['required', Rule::in(['products', 'product_models'])],
             'target' => ['required', 'string'],
         ]);
@@ -126,7 +126,7 @@ final class AssociationUiController
             null,
         ));
 
-        return back()->with('status', __('keystone::keystone.association_removed'));
+        return back()->with('status', __('showroom::showroom.association_removed'));
     }
 
     private function source(string $kind, string $key): ProductModel|ProductModelModel

@@ -2,20 +2,20 @@
 
 declare(strict_types=1);
 
-namespace RefactorCircus\Keystone\Atrium\Http\Controllers;
+namespace RefactorCircus\Showroom\Atrium\Http\Controllers;
 
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use RefactorCircus\Atrium\Http\Controllers\Concerns\AuthorizesScreens;
-use RefactorCircus\Keystone\Atrium\Support\Labels;
-use RefactorCircus\Keystone\Domains\Attribute\Actions\CreateAttributeGroupAction;
-use RefactorCircus\Keystone\Domains\Attribute\Actions\DeleteAttributeGroupAction;
-use RefactorCircus\Keystone\Domains\Attribute\Actions\ListAttributeGroupsAction;
-use RefactorCircus\Keystone\Domains\Attribute\Actions\ShowAttributeGroupAction;
-use RefactorCircus\Keystone\Domains\Attribute\Actions\UpdateAttributeGroupAction;
-use RefactorCircus\Keystone\Domains\Attribute\Models\AttributeGroupModel;
-use RefactorCircus\Keystone\Exceptions\KeystoneException;
+use RefactorCircus\Showroom\Atrium\Support\Labels;
+use RefactorCircus\Showroom\Domains\Attribute\Actions\CreateAttributeGroupAction;
+use RefactorCircus\Showroom\Domains\Attribute\Actions\DeleteAttributeGroupAction;
+use RefactorCircus\Showroom\Domains\Attribute\Actions\ListAttributeGroupsAction;
+use RefactorCircus\Showroom\Domains\Attribute\Actions\ShowAttributeGroupAction;
+use RefactorCircus\Showroom\Domains\Attribute\Actions\UpdateAttributeGroupAction;
+use RefactorCircus\Showroom\Domains\Attribute\Models\AttributeGroupModel;
+use RefactorCircus\Showroom\Exceptions\ShowroomException;
 
 final class AttributeGroupUiController
 {
@@ -30,7 +30,7 @@ final class AttributeGroupUiController
         $filters = $request->validate(ListAttributeGroupsAction::rules());
 
         /** @var view-string $view */
-        $view = 'keystone::ui.attribute-groups.index';
+        $view = 'showroom::ui.attribute-groups.index';
 
         return view($view, [
             'groups' => app(ListAttributeGroupsAction::class)->execute($filters)->withQueryString(),
@@ -47,8 +47,8 @@ final class AttributeGroupUiController
         $group = app(CreateAttributeGroupAction::class)->execute($data);
 
         return redirect()
-            ->route('atrium.keystone.attribute-groups.show', $group)
-            ->with('status', __('keystone::keystone.group_created'));
+            ->route('atrium.showroom.attribute-groups.show', $group)
+            ->with('status', __('showroom::showroom.group_created'));
     }
 
     public function show(AttributeGroupModel $group): View
@@ -56,7 +56,7 @@ final class AttributeGroupUiController
         $this->authorizeScreen('view', $group);
 
         /** @var view-string $view */
-        $view = 'keystone::ui.attribute-groups.show';
+        $view = 'showroom::ui.attribute-groups.show';
 
         return view($view, [
             'group' => app(ShowAttributeGroupAction::class)->execute($group),
@@ -72,8 +72,8 @@ final class AttributeGroupUiController
         app(UpdateAttributeGroupAction::class)->execute($group, $data);
 
         return redirect()
-            ->route('atrium.keystone.attribute-groups.show', $group)
-            ->with('status', __('keystone::keystone.group_updated'));
+            ->route('atrium.showroom.attribute-groups.show', $group)
+            ->with('status', __('showroom::showroom.group_updated'));
     }
 
     public function destroy(AttributeGroupModel $group): RedirectResponse
@@ -82,12 +82,12 @@ final class AttributeGroupUiController
 
         try {
             app(DeleteAttributeGroupAction::class)->execute($group);
-        } catch (KeystoneException $e) {
+        } catch (ShowroomException $e) {
             return back()->withErrors(['group' => $e->getMessage()]);
         }
 
         return redirect()
-            ->route('atrium.keystone.attribute-groups.index')
-            ->with('status', __('keystone::keystone.group_deleted'));
+            ->route('atrium.showroom.attribute-groups.index')
+            ->with('status', __('showroom::showroom.group_deleted'));
     }
 }

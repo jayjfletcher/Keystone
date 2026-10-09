@@ -2,13 +2,13 @@
 
 declare(strict_types=1);
 
-namespace RefactorCircus\Keystone\Domains\Attribute\Mcp\Requests;
+namespace RefactorCircus\Showroom\Domains\Attribute\Mcp\Requests;
 
 use Laravel\Mcp\Response;
 use Laravel\Mcp\ResponseFactory;
-use RefactorCircus\Keystone\Domains\Attribute\Actions\CreateAttributeOptionAction;
-use RefactorCircus\Keystone\Domains\Attribute\Models\AttributeOptionModel;
-use RefactorCircus\Keystone\Domains\Attribute\Resources\AttributeOptionResource;
+use RefactorCircus\Showroom\Domains\Attribute\Actions\CreateAttributeOptionAction;
+use RefactorCircus\Showroom\Domains\Attribute\Models\AttributeOptionModel;
+use RefactorCircus\Showroom\Domains\Attribute\Resources\AttributeOptionResource;
 
 final class CreateAttributeOptionMcpRequest extends AttributeRequest
 {

@@ -2,17 +2,17 @@
 
 declare(strict_types=1);
 
-namespace RefactorCircus\Keystone\Domains\Attribute\Actions;
+namespace RefactorCircus\Showroom\Domains\Attribute\Actions;
 
 use Illuminate\Database\Eloquent\Builder;
-use RefactorCircus\Keystone\Domains\Attribute\Events\AttributeDeletedActionEvent;
-use RefactorCircus\Keystone\Domains\Attribute\Events\AttributeDeletingActionEvent;
-use RefactorCircus\Keystone\Domains\Attribute\Exceptions\AttributeLabelsFamiliesException;
-use RefactorCircus\Keystone\Domains\Attribute\Models\AttributeModel;
-use RefactorCircus\Keystone\Domains\Family\Models\FamilyModel;
-use RefactorCircus\Keystone\Domains\Family\Models\FamilyVariantModel;
-use RefactorCircus\Keystone\Exceptions\ModelInUseException;
-use RefactorCircus\Keystone\Jobs\PurgeAttributeValues;
+use RefactorCircus\Showroom\Domains\Attribute\Events\AttributeDeletedActionEvent;
+use RefactorCircus\Showroom\Domains\Attribute\Events\AttributeDeletingActionEvent;
+use RefactorCircus\Showroom\Domains\Attribute\Exceptions\AttributeLabelsFamiliesException;
+use RefactorCircus\Showroom\Domains\Attribute\Models\AttributeModel;
+use RefactorCircus\Showroom\Domains\Family\Models\FamilyModel;
+use RefactorCircus\Showroom\Domains\Family\Models\FamilyVariantModel;
+use RefactorCircus\Showroom\Exceptions\ModelInUseException;
+use RefactorCircus\Showroom\Jobs\PurgeAttributeValues;
 
 final class DeleteAttributeAction
 {

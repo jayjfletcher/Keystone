@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace RefactorCircus\Keystone\Impex\Webhooks;
+namespace RefactorCircus\Showroom\Impex\Webhooks;
 
 use Illuminate\Database\ConnectionInterface;
 use RefactorCircus\Impex\Domains\Subscription\Contracts\SubscriptionMatcher;
@@ -80,8 +80,8 @@ final class ProductScopeMatcher implements SubscriptionMatcher
         }
 
         $paths = [
-            'categories' => $this->paths('keystone_categories', array_keys($codes['categories'])),
-            'owners' => $this->paths('keystone_owners', array_keys($codes['owners'])),
+            'categories' => $this->paths('showroom_categories', array_keys($codes['categories'])),
+            'owners' => $this->paths('showroom_owners', array_keys($codes['owners'])),
         ];
 
         $filters = [];

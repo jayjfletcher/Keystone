@@ -2,6 +2,6 @@
 <div class="flex flex-col gap-2">
     @foreach (['is_unique', 'is_localizable', 'is_scopable'] as $flag)
         <input type="hidden" name="{{ $flag }}" value="0">
-        <x-atrium::form.checkbox :name="$flag" :label="__('keystone::keystone.'.$flag)" :checked="(bool) ($attribute?->{$flag} ?? false)" />
+        <x-atrium::form.checkbox :name="$flag" :label="__('showroom::showroom.'.$flag)" :checked="(bool) ($attribute?->{$flag} ?? false)" />
     @endforeach
 </div>

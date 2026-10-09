@@ -2,19 +2,19 @@
 
 declare(strict_types=1);
 
-namespace RefactorCircus\Keystone\Atrium\Http\Controllers;
+namespace RefactorCircus\Showroom\Atrium\Http\Controllers;
 
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use RefactorCircus\Atrium\Http\Controllers\Concerns\AuthorizesScreens;
-use RefactorCircus\Keystone\Atrium\Support\Labels;
-use RefactorCircus\Keystone\Domains\Family\Actions\CreateFamilyVariantAction;
-use RefactorCircus\Keystone\Domains\Family\Actions\DeleteFamilyVariantAction;
-use RefactorCircus\Keystone\Domains\Family\Actions\ShowFamilyVariantAction;
-use RefactorCircus\Keystone\Domains\Family\Models\FamilyVariantModel;
-use RefactorCircus\Keystone\Exceptions\KeystoneException;
+use RefactorCircus\Showroom\Atrium\Support\Labels;
+use RefactorCircus\Showroom\Domains\Family\Actions\CreateFamilyVariantAction;
+use RefactorCircus\Showroom\Domains\Family\Actions\DeleteFamilyVariantAction;
+use RefactorCircus\Showroom\Domains\Family\Actions\ShowFamilyVariantAction;
+use RefactorCircus\Showroom\Domains\Family\Models\FamilyVariantModel;
+use RefactorCircus\Showroom\Exceptions\ShowroomException;
 
 final class FamilyVariantUiController
 {
@@ -45,8 +45,8 @@ final class FamilyVariantUiController
         );
 
         return redirect()
-            ->route('atrium.keystone.family-variants.show', $variant)
-            ->with('status', __('keystone::keystone.family_variant_created'));
+            ->route('atrium.showroom.family-variants.show', $variant)
+            ->with('status', __('showroom::showroom.family_variant_created'));
     }
 
     public function show(FamilyVariantModel $familyVariant): View
@@ -54,7 +54,7 @@ final class FamilyVariantUiController
         $this->authorizeScreen('view', $familyVariant);
 
         /** @var view-string $view */
-        $view = 'keystone::ui.family-variants.show';
+        $view = 'showroom::ui.family-variants.show';
 
         return view($view, [
             'variant' => app(ShowFamilyVariantAction::class)->execute($familyVariant),
@@ -70,12 +70,12 @@ final class FamilyVariantUiController
 
         try {
             app(DeleteFamilyVariantAction::class)->execute($familyVariant);
-        } catch (KeystoneException $e) {
+        } catch (ShowroomException $e) {
             return back()->withErrors(['family_variant' => $e->getMessage()]);
         }
 
         return redirect()
-            ->route('atrium.keystone.families.show', $family)
-            ->with('status', __('keystone::keystone.family_variant_deleted'));
+            ->route('atrium.showroom.families.show', $family)
+            ->with('status', __('showroom::showroom.family_variant_deleted'));
     }
 }

@@ -2,12 +2,12 @@
 
 declare(strict_types=1);
 
-namespace RefactorCircus\Keystone\Domains\Asset\Actions;
+namespace RefactorCircus\Showroom\Domains\Asset\Actions;
 
-use RefactorCircus\Keystone\Domains\Asset\Events\AssetDeletedActionEvent;
-use RefactorCircus\Keystone\Domains\Asset\Events\AssetDeletingActionEvent;
-use RefactorCircus\Keystone\Domains\Asset\Models\AssetModel;
-use RefactorCircus\Keystone\Domains\Asset\Services\AssetStorage;
+use RefactorCircus\Showroom\Domains\Asset\Events\AssetDeletedActionEvent;
+use RefactorCircus\Showroom\Domains\Asset\Events\AssetDeletingActionEvent;
+use RefactorCircus\Showroom\Domains\Asset\Models\AssetModel;
+use RefactorCircus\Showroom\Domains\Asset\Services\AssetStorage;
 
 final class DeleteAssetAction
 {
@@ -34,7 +34,7 @@ final class DeleteAssetAction
 
     /**
      * Links go with the asset; the foreign key cascades. The file goes too,
-     * unless `keystone.media.delete_files` is off.
+     * unless `showroom.media.delete_files` is off.
      */
     private function perform(AssetModel $asset): AssetModel
     {

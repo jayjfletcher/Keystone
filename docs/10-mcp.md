@@ -3,27 +3,27 @@
 The same operations over MCP as over HTTP. Both surfaces call one Action, so they cannot drift — an arch test fails if an Action has no MCP tool.
 
 ```php
-// config/keystone.php — both transports ship disabled
+// config/showroom.php — both transports ship disabled
 'mcp' => [
     'web' => [
         'enabled' => true,
-        'route' => 'mcp/keystone',
+        'route' => 'mcp/showroom',
         'middleware' => ['auth:api'],
     ],
     'local' => [
         'enabled' => true,
-        'handle' => 'keystone',
+        'handle' => 'showroom',
     ],
 ],
 ```
 
 **Add auth middleware to the web transport before enabling it.** The tools change the catalog every product depends on.
 
-With `keystone.authorization` on, each tool acts as the authenticated user and checks the same policy ability as its HTTP endpoint; a denied call answers `Unauthorized.`.
+With `showroom.authorization` on, each tool acts as the authenticated user and checks the same policy ability as its HTTP endpoint; a denied call answers `Unauthorized.`.
 
 ## Tools
 
-The server lists two entry points, `search_tools` and `execute_tools`, and keeps the Keystone tools behind them, so a client loads only the schemas it searches for:
+The server lists two entry points, `search_tools` and `execute_tools`, and keeps the Showroom tools behind them, so a client loads only the schemas it searches for:
 
 ```json
 { "calls": [{ "name": "list-attributes-tool", "arguments": {"type": "select"} }] }
@@ -99,22 +99,22 @@ The server lists two entry points, `search_tools` and `execute_tools`, and keeps
 
 Records are addressed by code: `group`, `attribute`, `option`, `family`, `family_variant`, `product_model`, `owner_type`, `owner`, `category`, `asset`, `locale` and `channel` arguments take codes. `show-product-tool`, `show-product-model-tool` and `list-products-tool` take `scope` and `locales` to return one channel's values; `product` takes an identifier. Catalog rule violations come back as errors with a message an agent can act on.
 
-The catalog is `KeystoneServer::TOOLS`.
+The catalog is `ShowroomServer::TOOLS`.
 
 `list-products-tool`'s `updated_since` (an ISO 8601 moment) keeps products where anything they show changed at or after it, inherited changes included; see [Search](05-search.md#changed-since).
 
 ## Vendor webhooks
 
-Product webhooks ([Import, export and feeds](12-impex.md#product-webhooks)) have no Keystone tools: subscribers, subscriptions and deliveries belong to Impex, and are managed with the Impex MCP server's tools — `list-streams-tool` (the `keystone.products` stream and its topics), `list-subscribers-tool`, `create-subscriber-tool`, `list-subscriptions-tool`, `show-subscription-tool`, `create-subscription-tool`, `update-subscription-tool`, `delete-subscription-tool`, `update-subscription-subjects-tool`, `export-subscription-tool`, `ping-subscription-tool`, `list-subscription-events-tool` and `list-deliveries-tool` (`RefactorCircus\Impex\Mcp\ImpexServer::TOOLS`).
+Product webhooks ([Import, export and feeds](12-impex.md#product-webhooks)) have no Showroom tools: subscribers, subscriptions and deliveries belong to Impex, and are managed with the Impex MCP server's tools — `list-streams-tool` (the `showroom.products` stream and its topics), `list-subscribers-tool`, `create-subscriber-tool`, `list-subscriptions-tool`, `show-subscription-tool`, `create-subscription-tool`, `update-subscription-tool`, `delete-subscription-tool`, `update-subscription-subjects-tool`, `export-subscription-tool`, `ping-subscription-tool`, `list-subscription-events-tool` and `list-deliveries-tool` (`RefactorCircus\Impex\Mcp\ImpexServer::TOOLS`).
 
 ## Cortex
 
-When `refactor-circus/cortex` is installed and loaded, the server is registered with Cortex under `keystone.cortex.server` and every tool joins its tool registry, tagged with the server name. Cortex can then serve published overrides of the server instructions and of each tool's description.
+When `refactor-circus/cortex` is installed and loaded, the server is registered with Cortex under `showroom.cortex.server` and every tool joins its tool registry, tagged with the server name. Cortex can then serve published overrides of the server instructions and of each tool's description.
 
 ```php
 'cortex' => [
     'enabled' => true,
-    'server' => 'keystone',
+    'server' => 'showroom',
     'tools' => ['list-attributes-tool', 'show-attribute-tool'], // or null for all
 ],
 ```

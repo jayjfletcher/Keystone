@@ -2,14 +2,14 @@
 
 declare(strict_types=1);
 
-namespace RefactorCircus\Keystone\Domains\Owner\Mcp\Tools;
+namespace RefactorCircus\Showroom\Domains\Owner\Mcp\Tools;
 
 use Illuminate\Contracts\JsonSchema\JsonSchema;
 use Laravel\Mcp\Response;
 use Laravel\Mcp\ResponseFactory;
 use Laravel\Mcp\Server\Attributes\Description;
 use RefactorCircus\Foundation\Mcp\Tool;
-use RefactorCircus\Keystone\Domains\Owner\Mcp\Requests\CreateOwnerMcpRequest;
+use RefactorCircus\Showroom\Domains\Owner\Mcp\Requests\CreateOwnerMcpRequest;
 
 #[Description('Create an owner, such as a vendor or a series under a vendor. Its type\'s rules decide which parents are allowed.')]
 final class CreateOwnerTool extends Tool

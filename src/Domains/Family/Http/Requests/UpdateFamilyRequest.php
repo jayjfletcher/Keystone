@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-namespace RefactorCircus\Keystone\Domains\Family\Http\Requests;
+namespace RefactorCircus\Showroom\Domains\Family\Http\Requests;
 
 use Illuminate\Http\JsonResponse;
-use RefactorCircus\Keystone\Domains\Family\Actions\UpdateFamilyAction;
-use RefactorCircus\Keystone\Domains\Family\Resources\FamilyResource;
+use RefactorCircus\Showroom\Domains\Family\Actions\UpdateFamilyAction;
+use RefactorCircus\Showroom\Domains\Family\Resources\FamilyResource;
 
 final class UpdateFamilyRequest extends FamilyRequest
 {

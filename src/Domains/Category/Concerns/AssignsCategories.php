@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-namespace RefactorCircus\Keystone\Domains\Category\Concerns;
+namespace RefactorCircus\Showroom\Domains\Category\Concerns;
 
-use RefactorCircus\Keystone\Domains\Category\Models\CategoryModel;
-use RefactorCircus\Keystone\Domains\Product\Models\ProductModel;
-use RefactorCircus\Keystone\Domains\ProductModel\Models\ProductModelModel;
+use RefactorCircus\Showroom\Domains\Category\Models\CategoryModel;
+use RefactorCircus\Showroom\Domains\Product\Models\ProductModel;
+use RefactorCircus\Showroom\Domains\ProductModel\Models\ProductModelModel;
 
 /**
  * Category assignment shared by the product and product model Actions.
@@ -21,7 +21,7 @@ trait AssignsCategories
         return [
             // The whole list of category codes, from any trees; replaced on update.
             'categories' => ['sometimes', 'nullable', 'array', 'list'],
-            'categories.*' => ['string', 'distinct', 'exists:keystone_categories,code'],
+            'categories.*' => ['string', 'distinct', 'exists:showroom_categories,code'],
         ];
     }
 

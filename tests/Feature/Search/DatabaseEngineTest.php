@@ -2,15 +2,15 @@
 
 declare(strict_types=1);
 
-use RefactorCircus\Keystone\Domains\Search\Contracts\SearchEngine;
-use RefactorCircus\Keystone\Domains\Search\Exceptions\UnsupportedSearchException;
-use RefactorCircus\Keystone\Domains\Search\Services\ScoutEngine;
-use RefactorCircus\Keystone\Tests\Fixtures\Catalog;
+use RefactorCircus\Showroom\Domains\Search\Contracts\SearchEngine;
+use RefactorCircus\Showroom\Domains\Search\Exceptions\UnsupportedSearchException;
+use RefactorCircus\Showroom\Domains\Search\Services\ScoutEngine;
+use RefactorCircus\Showroom\Tests\Fixtures\Catalog;
 
 beforeEach(function (): void {
     Catalog::apparel();
 
-    $product = fn (string $identifier, array $values, array $extra = []) => $this->postJson('/keystone/products', [
+    $product = fn (string $identifier, array $values, array $extra = []) => $this->postJson('/showroom/products', [
         'identifier' => $identifier,
         'values' => array_map(fn (mixed $data): array => Catalog::value($data), $values),
     ] + $extra)->assertCreated();
@@ -20,9 +20,9 @@ beforeEach(function (): void {
     $product('MUG', ['name' => 'Coffee mug', 'pack_size' => 6], ['enabled' => false]);
 
     // A variant whose name and color live on its models.
-    $this->postJson('/keystone/product-models', ['code' => 'polo', 'family_variant' => 'shirts_by_color_size', 'values' => ['name' => Catalog::value('Green polo')]])->assertCreated();
-    $this->postJson('/keystone/product-models', ['code' => 'polo-green', 'parent' => 'polo', 'values' => ['color' => Catalog::value('green')]])->assertCreated();
-    $this->postJson('/keystone/products', ['identifier' => 'POLO-GREEN-M', 'parent' => 'polo-green', 'values' => ['size' => Catalog::value('m')]])->assertCreated();
+    $this->postJson('/showroom/product-models', ['code' => 'polo', 'family_variant' => 'shirts_by_color_size', 'values' => ['name' => Catalog::value('Green polo')]])->assertCreated();
+    $this->postJson('/showroom/product-models', ['code' => 'polo-green', 'parent' => 'polo', 'values' => ['color' => Catalog::value('green')]])->assertCreated();
+    $this->postJson('/showroom/products', ['identifier' => 'POLO-GREEN-M', 'parent' => 'polo-green', 'values' => ['size' => Catalog::value('m')]])->assertCreated();
 });
 
 /**
@@ -31,13 +31,13 @@ beforeEach(function (): void {
  */
 function identifiersFor(array $query): array
 {
-    return collect(test()->getJson('/keystone/products?'.http_build_query($query))->assertOk()->json('data'))
+    return collect(test()->getJson('/showroom/products?'.http_build_query($query))->assertOk()->json('data'))
         ->pluck('identifier')
         ->all();
 }
 
 it('lists every product, sorted and page-numbered', function (): void {
-    $this->getJson('/keystone/products?per_page=2&sort=-identifier')
+    $this->getJson('/showroom/products?per_page=2&sort=-identifier')
         ->assertOk()
         ->assertJsonPath('meta.total', 4)
         ->assertJsonPath('meta.last_page', 2)
@@ -88,29 +88,29 @@ it('combines filters', function (): void {
 });
 
 it('refuses filters the engine cannot run', function (): void {
-    $this->getJson('/keystone/products?'.http_build_query(['filters' => [['attribute' => 'price', 'operator' => '=', 'value' => 1]]]))
+    $this->getJson('/showroom/products?'.http_build_query(['filters' => [['attribute' => 'price', 'operator' => '=', 'value' => 1]]]))
         ->assertUnprocessable()
         ->assertJsonPath('message', 'The database search engine cannot filter attribute "price" with "=".');
 
-    $this->getJson('/keystone/products?'.http_build_query(['filters' => [['attribute' => 'color', 'operator' => 'like']]]))
+    $this->getJson('/showroom/products?'.http_build_query(['filters' => [['attribute' => 'color', 'operator' => 'like']]]))
         ->assertUnprocessable()
         ->assertJsonValidationErrors('filters.0.operator');
 });
 
 it('keeps no index', function (): void {
-    $this->artisan('keystone:search:reindex')
+    $this->artisan('showroom:search:reindex')
         ->expectsOutputToContain('the database engine keeps no index')
         ->assertSuccessful();
 });
 
 it('searches with Scout when no engine is named and Scout is installed', function (): void {
-    config()->set('keystone.search.engine', null);
+    config()->set('showroom.search.engine', null);
 
     expect(app(SearchEngine::class))->toBeInstanceOf(ScoutEngine::class);
 });
 
 it('names the replacement when the removed Elasticsearch engine is configured', function (): void {
-    config()->set('keystone.search.engine', 'elasticsearch');
+    config()->set('showroom.search.engine', 'elasticsearch');
 
     app(SearchEngine::class);
 })->throws(UnsupportedSearchException::class, 'no longer ships the elasticsearch search engine');

@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-namespace RefactorCircus\Keystone\Domains\Channel\Mcp\Requests;
+namespace RefactorCircus\Showroom\Domains\Channel\Mcp\Requests;
 
 use Laravel\Mcp\Response;
 use Laravel\Mcp\ResponseFactory;
-use RefactorCircus\Keystone\Domains\Channel\Actions\DeleteLocaleAction;
+use RefactorCircus\Showroom\Domains\Channel\Actions\DeleteLocaleAction;
 
 final class DeleteLocaleMcpRequest extends LocaleRequest
 {

@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace RefactorCircus\Keystone\Domains\Asset\Resources;
+namespace RefactorCircus\Showroom\Domains\Asset\Resources;
 
 use Illuminate\Database\Eloquent\Model;
-use RefactorCircus\Keystone\Domains\Asset\Models\AssetModel;
+use RefactorCircus\Showroom\Domains\Asset\Models\AssetModel;
 
 /**
  * The assets of a product, product model or owner, as its resource shows them.

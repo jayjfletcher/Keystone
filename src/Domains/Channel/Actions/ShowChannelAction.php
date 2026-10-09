@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-namespace RefactorCircus\Keystone\Domains\Channel\Actions;
+namespace RefactorCircus\Showroom\Domains\Channel\Actions;
 
-use RefactorCircus\Keystone\Domains\Channel\Events\ChannelShowingActionEvent;
-use RefactorCircus\Keystone\Domains\Channel\Events\ChannelShownActionEvent;
-use RefactorCircus\Keystone\Domains\Channel\Models\ChannelModel;
+use RefactorCircus\Showroom\Domains\Channel\Events\ChannelShowingActionEvent;
+use RefactorCircus\Showroom\Domains\Channel\Events\ChannelShownActionEvent;
+use RefactorCircus\Showroom\Domains\Channel\Models\ChannelModel;
 
 final class ShowChannelAction
 {

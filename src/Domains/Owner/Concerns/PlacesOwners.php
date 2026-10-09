@@ -2,12 +2,12 @@
 
 declare(strict_types=1);
 
-namespace RefactorCircus\Keystone\Domains\Owner\Concerns;
+namespace RefactorCircus\Showroom\Domains\Owner\Concerns;
 
 use Illuminate\Validation\ValidationException;
-use RefactorCircus\Keystone\Domains\Owner\Models\OwnerModel;
-use RefactorCircus\Keystone\Domains\Owner\Models\OwnerTypeModel;
-use RefactorCircus\Keystone\Support\Concerns\MovesInTree;
+use RefactorCircus\Showroom\Domains\Owner\Models\OwnerModel;
+use RefactorCircus\Showroom\Domains\Owner\Models\OwnerTypeModel;
+use RefactorCircus\Showroom\Support\Concerns\MovesInTree;
 
 /**
  * Where an owner may sit in its chain, shared by create and move.

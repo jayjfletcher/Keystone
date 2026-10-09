@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace RefactorCircus\Keystone\Domains\ProductModel;
+namespace RefactorCircus\Showroom\Domains\ProductModel;
 
 use RefactorCircus\Foundation\Support\ServiceProvider;
-use RefactorCircus\Keystone\Domains\ProductModel\Models\ProductModelModel;
+use RefactorCircus\Showroom\Domains\ProductModel\Models\ProductModelModel;
 
 class ProductModelServiceProvider extends ServiceProvider
 {
@@ -13,7 +13,7 @@ class ProductModelServiceProvider extends ServiceProvider
     {
         // Polymorphic columns store this short name, not the class name.
         $this->keepMorphAliases([
-            'keystone_product_model' => ProductModelModel::class,
+            'showroom_product_model' => ProductModelModel::class,
         ]);
 
         $this->loadApiRoutesFrom(__DIR__.'/routes.php');

@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-namespace RefactorCircus\Keystone\Domains\Channel\Http\Requests;
+namespace RefactorCircus\Showroom\Domains\Channel\Http\Requests;
 
 use Illuminate\Http\JsonResponse;
-use RefactorCircus\Keystone\Domains\Channel\Actions\ShowLocaleAction;
-use RefactorCircus\Keystone\Domains\Channel\Resources\LocaleResource;
+use RefactorCircus\Showroom\Domains\Channel\Actions\ShowLocaleAction;
+use RefactorCircus\Showroom\Domains\Channel\Resources\LocaleResource;
 
 final class ShowLocaleRequest extends LocaleRequest
 {

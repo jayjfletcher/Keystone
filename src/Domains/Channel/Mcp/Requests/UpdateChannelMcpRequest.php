@@ -2,12 +2,12 @@
 
 declare(strict_types=1);
 
-namespace RefactorCircus\Keystone\Domains\Channel\Mcp\Requests;
+namespace RefactorCircus\Showroom\Domains\Channel\Mcp\Requests;
 
 use Laravel\Mcp\Response;
 use Laravel\Mcp\ResponseFactory;
-use RefactorCircus\Keystone\Domains\Channel\Actions\UpdateChannelAction;
-use RefactorCircus\Keystone\Domains\Channel\Resources\ChannelResource;
+use RefactorCircus\Showroom\Domains\Channel\Actions\UpdateChannelAction;
+use RefactorCircus\Showroom\Domains\Channel\Resources\ChannelResource;
 
 final class UpdateChannelMcpRequest extends ChannelRequest
 {

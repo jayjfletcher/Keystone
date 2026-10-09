@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace RefactorCircus\Keystone\Domains\ProductModel\Http\Requests;
+namespace RefactorCircus\Showroom\Domains\ProductModel\Http\Requests;
 
 use Illuminate\Http\JsonResponse;
-use RefactorCircus\Keystone\Domains\ProductModel\Actions\DeleteProductModelAction;
+use RefactorCircus\Showroom\Domains\ProductModel\Actions\DeleteProductModelAction;
 
 final class DeleteProductModelRequest extends ProductModelRequest
 {

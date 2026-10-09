@@ -2,20 +2,20 @@
 
 declare(strict_types=1);
 
-namespace RefactorCircus\Keystone\Domains\Transfer\Exceptions;
+namespace RefactorCircus\Showroom\Domains\Transfer\Exceptions;
 
-use RefactorCircus\Keystone\Exceptions\KeystoneException;
+use RefactorCircus\Showroom\Exceptions\ShowroomException;
 use Symfony\Component\HttpFoundation\Response;
 
 /**
  * Imports, exports and feeds run as Impex flows, and Impex is not installed
  * or is switched off.
  */
-final class ImpexMissingException extends KeystoneException
+final class ImpexMissingException extends ShowroomException
 {
     public static function make(): self
     {
-        return new self('Imports, exports and feeds need refactor-circus/impex. Run: composer require refactor-circus/impex — and keep keystone.impex.enabled on.');
+        return new self('Imports, exports and feeds need refactor-circus/impex. Run: composer require refactor-circus/impex — and keep showroom.impex.enabled on.');
     }
 
     /**

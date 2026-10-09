@@ -33,7 +33,7 @@ Rules are checked when owners are created or moved; changing them later does not
 
 - `code` is unique across all owners and never changes; neither does `type`.
 - Sending `parent` on update **moves** the owner with everything beneath it. Moving an owner under itself or its own descendant is refused.
-- `GET /keystone/owners/classic` returns its `chain`, root first: `["globex", "acme", "classic"]`.
+- `GET /showroom/owners/classic` returns its `chain`, root first: `["globex", "acme", "classic"]`.
 - List by `type`, direct children of a `parent`, everything `under` an owner at any depth, or `roots`.
 - An owner with child owners, products or product models cannot be deleted.
 
@@ -45,7 +45,7 @@ Set `owner` on a simple product or a root product model, naming the deepest owne
 
 ## Searching by owner
 
-`GET /keystone/products?owner=acme` finds every product owned by Acme **or anything beneath it**, on every search engine. The indexed document carries `owner` and `owners` (the whole chain), and moving an owner re-indexes the products beneath it.
+`GET /showroom/products?owner=acme` finds every product owned by Acme **or anything beneath it**, on every search engine. The indexed document carries `owner` and `owners` (the whole chain), and moving an owner re-indexes the products beneath it.
 
 ## Actions
 

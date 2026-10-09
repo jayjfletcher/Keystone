@@ -2,12 +2,12 @@
 
 declare(strict_types=1);
 
-namespace RefactorCircus\Keystone\Impex\Actions;
+namespace RefactorCircus\Showroom\Impex\Actions;
 
 use Illuminate\Support\Facades\Storage;
 use RefactorCircus\Impex\Domains\Channel\Data\OutboundMessage;
 use RefactorCircus\Impex\Impex;
-use RefactorCircus\Keystone\Domains\Asset\Models\AssetModel;
+use RefactorCircus\Showroom\Domains\Asset\Models\AssetModel;
 use RuntimeException;
 
 /**

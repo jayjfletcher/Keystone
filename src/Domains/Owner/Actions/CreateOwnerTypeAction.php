@@ -2,13 +2,13 @@
 
 declare(strict_types=1);
 
-namespace RefactorCircus\Keystone\Domains\Owner\Actions;
+namespace RefactorCircus\Showroom\Domains\Owner\Actions;
 
 use Illuminate\Support\Facades\DB;
-use RefactorCircus\Keystone\Domains\Owner\Concerns\WritesOwnerTypes;
-use RefactorCircus\Keystone\Domains\Owner\Events\OwnerTypeCreatedActionEvent;
-use RefactorCircus\Keystone\Domains\Owner\Events\OwnerTypeCreatingActionEvent;
-use RefactorCircus\Keystone\Domains\Owner\Models\OwnerTypeModel;
+use RefactorCircus\Showroom\Domains\Owner\Concerns\WritesOwnerTypes;
+use RefactorCircus\Showroom\Domains\Owner\Events\OwnerTypeCreatedActionEvent;
+use RefactorCircus\Showroom\Domains\Owner\Events\OwnerTypeCreatingActionEvent;
+use RefactorCircus\Showroom\Domains\Owner\Models\OwnerTypeModel;
 
 final class CreateOwnerTypeAction
 {
@@ -20,7 +20,7 @@ final class CreateOwnerTypeAction
     public static function rules(): array
     {
         return [
-            'code' => ['required', 'string', 'max:100', 'regex:/^[a-z][a-z0-9_]*$/', 'unique:keystone_owner_types,code'],
+            'code' => ['required', 'string', 'max:100', 'regex:/^[a-z][a-z0-9_]*$/', 'unique:showroom_owner_types,code'],
         ] + self::typeRules();
     }
 

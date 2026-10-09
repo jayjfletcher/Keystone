@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace RefactorCircus\Keystone\Domains\Channel\Policies;
+namespace RefactorCircus\Showroom\Domains\Channel\Policies;
 
-use RefactorCircus\Keystone\Support\Policies\Policy;
+use RefactorCircus\Showroom\Support\Policies\Policy;
 
 class ChannelPolicy extends Policy
 {

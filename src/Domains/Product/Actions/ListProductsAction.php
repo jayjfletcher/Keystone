@@ -2,18 +2,18 @@
 
 declare(strict_types=1);
 
-namespace RefactorCircus\Keystone\Domains\Product\Actions;
+namespace RefactorCircus\Showroom\Domains\Product\Actions;
 
 use Illuminate\Validation\Rule;
-use RefactorCircus\Keystone\Domains\Attribute\Data\ValueFilter;
-use RefactorCircus\Keystone\Domains\Product\Enums\ProductStatus;
-use RefactorCircus\Keystone\Domains\Product\Events\ProductsListedActionEvent;
-use RefactorCircus\Keystone\Domains\Product\Events\ProductsListingActionEvent;
-use RefactorCircus\Keystone\Domains\Product\Models\ProductModel;
-use RefactorCircus\Keystone\Domains\Search\Contracts\SearchEngine;
-use RefactorCircus\Keystone\Domains\Search\Data\Filter;
-use RefactorCircus\Keystone\Domains\Search\Data\ProductQuery;
-use RefactorCircus\Keystone\Domains\Search\Support\ProductPage;
+use RefactorCircus\Showroom\Domains\Attribute\Data\ValueFilter;
+use RefactorCircus\Showroom\Domains\Product\Enums\ProductStatus;
+use RefactorCircus\Showroom\Domains\Product\Events\ProductsListedActionEvent;
+use RefactorCircus\Showroom\Domains\Product\Events\ProductsListingActionEvent;
+use RefactorCircus\Showroom\Domains\Product\Models\ProductModel;
+use RefactorCircus\Showroom\Domains\Search\Contracts\SearchEngine;
+use RefactorCircus\Showroom\Domains\Search\Data\Filter;
+use RefactorCircus\Showroom\Domains\Search\Data\ProductQuery;
+use RefactorCircus\Showroom\Domains\Search\Support\ProductPage;
 
 /**
  * Lists and searches products through the configured search engine.
@@ -52,8 +52,8 @@ final class ListProductsAction
             'updated_since' => ['sometimes', 'nullable', 'date'],
             // At least `min` percent complete on a channel, in one locale or all of its locales.
             'complete' => ['sometimes', 'nullable', 'array'],
-            'complete.scope' => ['required_with:complete', 'string', 'exists:keystone_channels,code'],
-            'complete.locale' => ['sometimes', 'nullable', 'string', 'exists:keystone_locales,code'],
+            'complete.scope' => ['required_with:complete', 'string', 'exists:showroom_channels,code'],
+            'complete.locale' => ['sometimes', 'nullable', 'string', 'exists:showroom_locales,code'],
             'complete.min' => ['sometimes', 'integer', 'min:0', 'max:100'],
             'filters' => ['sometimes', 'array', 'list', 'max:20'],
             'filters.*' => ['array'],
@@ -66,7 +66,7 @@ final class ListProductsAction
             'facets.*' => ['string', 'max:100'],
             'sort' => ['sometimes', 'string', Rule::in($sortable)],
             'page' => ['sometimes', 'integer', 'min:1'],
-            'per_page' => ['sometimes', 'integer', 'min:1', 'max:'.config('keystone.pagination.max_per_page', 100)],
+            'per_page' => ['sometimes', 'integer', 'min:1', 'max:'.config('showroom.pagination.max_per_page', 100)],
             // Return only one channel's and some locales' values.
         ] + ValueFilter::rules();
     }

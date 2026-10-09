@@ -2,13 +2,13 @@
 
 declare(strict_types=1);
 
-namespace RefactorCircus\Keystone\Domains\Asset\Mcp\Requests;
+namespace RefactorCircus\Showroom\Domains\Asset\Mcp\Requests;
 
 use Laravel\Mcp\ResponseFactory;
 use RefactorCircus\Foundation\Mcp\Requests\Request;
-use RefactorCircus\Keystone\Domains\Asset\Actions\ListAssetsAction;
-use RefactorCircus\Keystone\Domains\Asset\Models\AssetModel;
-use RefactorCircus\Keystone\Domains\Asset\Resources\AssetResource;
+use RefactorCircus\Showroom\Domains\Asset\Actions\ListAssetsAction;
+use RefactorCircus\Showroom\Domains\Asset\Models\AssetModel;
+use RefactorCircus\Showroom\Domains\Asset\Resources\AssetResource;
 
 final class ListAssetsMcpRequest extends Request
 {

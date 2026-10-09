@@ -2,13 +2,13 @@
 
 declare(strict_types=1);
 
-namespace RefactorCircus\Keystone\Domains\Family\Http\Requests;
+namespace RefactorCircus\Showroom\Domains\Family\Http\Requests;
 
 use Illuminate\Http\JsonResponse;
 use RefactorCircus\Foundation\Http\Requests\Request;
-use RefactorCircus\Keystone\Domains\Family\Actions\CreateFamilyVariantAction;
-use RefactorCircus\Keystone\Domains\Family\Models\FamilyVariantModel;
-use RefactorCircus\Keystone\Domains\Family\Resources\FamilyVariantResource;
+use RefactorCircus\Showroom\Domains\Family\Actions\CreateFamilyVariantAction;
+use RefactorCircus\Showroom\Domains\Family\Models\FamilyVariantModel;
+use RefactorCircus\Showroom\Domains\Family\Resources\FamilyVariantResource;
 
 final class StoreFamilyVariantRequest extends Request
 {

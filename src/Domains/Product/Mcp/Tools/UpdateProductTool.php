@@ -2,14 +2,14 @@
 
 declare(strict_types=1);
 
-namespace RefactorCircus\Keystone\Domains\Product\Mcp\Tools;
+namespace RefactorCircus\Showroom\Domains\Product\Mcp\Tools;
 
 use Illuminate\Contracts\JsonSchema\JsonSchema;
 use Laravel\Mcp\Response;
 use Laravel\Mcp\ResponseFactory;
 use Laravel\Mcp\Server\Attributes\Description;
 use RefactorCircus\Foundation\Mcp\Tool;
-use RefactorCircus\Keystone\Domains\Product\Mcp\Requests\UpdateProductMcpRequest;
+use RefactorCircus\Showroom\Domains\Product\Mcp\Requests\UpdateProductMcpRequest;
 
 #[Description('Update a product\'s family (simple products only), enabled flag or values. Only the value slots sent change.')]
 final class UpdateProductTool extends Tool

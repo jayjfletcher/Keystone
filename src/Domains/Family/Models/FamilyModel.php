@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace RefactorCircus\Keystone\Domains\Family\Models;
+namespace RefactorCircus\Showroom\Domains\Family\Models;
 
 use Illuminate\Database\Eloquent\Concerns\HasUlids;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -13,10 +13,10 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\Pivot;
 use Illuminate\Support\Carbon;
 use RefactorCircus\Foundation\Models\Concerns\DispatchesModelEvents;
-use RefactorCircus\Keystone\Database\Factories\FamilyFactory;
-use RefactorCircus\Keystone\Domains\Attribute\Models\AttributeModel;
-use RefactorCircus\Keystone\Domains\Product\Models\ProductModel;
-use RefactorCircus\Keystone\Support\Models\Concerns\HasLabels;
+use RefactorCircus\Showroom\Database\Factories\FamilyFactory;
+use RefactorCircus\Showroom\Domains\Attribute\Models\AttributeModel;
+use RefactorCircus\Showroom\Domains\Product\Models\ProductModel;
+use RefactorCircus\Showroom\Support\Models\Concerns\HasLabels;
 
 /**
  * An attribute set: which attributes a kind of product has, and which of
@@ -41,7 +41,7 @@ final class FamilyModel extends Model
     use HasLabels;
     use HasUlids;
 
-    protected $table = 'keystone_families';
+    protected $table = 'showroom_families';
 
     protected $fillable = [
         'code',
@@ -60,10 +60,10 @@ final class FamilyModel extends Model
      */
     public function familyAttributes(): BelongsToMany
     {
-        return $this->belongsToMany(AttributeModel::class, 'keystone_family_attributes', 'family_id', 'attribute_id')
+        return $this->belongsToMany(AttributeModel::class, 'showroom_family_attributes', 'family_id', 'attribute_id')
             ->withPivot(['is_required', 'sort_order', 'required_channels'])
             ->orderByPivot('sort_order')
-            ->orderBy('keystone_attributes.code');
+            ->orderBy('showroom_attributes.code');
     }
 
     /**

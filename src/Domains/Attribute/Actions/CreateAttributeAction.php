@@ -2,15 +2,15 @@
 
 declare(strict_types=1);
 
-namespace RefactorCircus\Keystone\Domains\Attribute\Actions;
+namespace RefactorCircus\Showroom\Domains\Attribute\Actions;
 
 use Illuminate\Validation\Rule;
 use Illuminate\Validation\ValidationException;
-use RefactorCircus\Keystone\Domains\Attribute\Enums\AttributeType;
-use RefactorCircus\Keystone\Domains\Attribute\Events\AttributeCreatedActionEvent;
-use RefactorCircus\Keystone\Domains\Attribute\Events\AttributeCreatingActionEvent;
-use RefactorCircus\Keystone\Domains\Attribute\Models\AttributeGroupModel;
-use RefactorCircus\Keystone\Domains\Attribute\Models\AttributeModel;
+use RefactorCircus\Showroom\Domains\Attribute\Enums\AttributeType;
+use RefactorCircus\Showroom\Domains\Attribute\Events\AttributeCreatedActionEvent;
+use RefactorCircus\Showroom\Domains\Attribute\Events\AttributeCreatingActionEvent;
+use RefactorCircus\Showroom\Domains\Attribute\Models\AttributeGroupModel;
+use RefactorCircus\Showroom\Domains\Attribute\Models\AttributeModel;
 
 final class CreateAttributeAction
 {
@@ -23,9 +23,9 @@ final class CreateAttributeAction
     public static function rules(): array
     {
         return [
-            'code' => ['required', 'string', 'max:100', 'regex:/^[a-z][a-z0-9_]*$/', 'unique:keystone_attributes,code'],
+            'code' => ['required', 'string', 'max:100', 'regex:/^[a-z][a-z0-9_]*$/', 'unique:showroom_attributes,code'],
             'type' => ['required', Rule::enum(AttributeType::class)],
-            'group' => ['sometimes', 'nullable', 'string', 'exists:keystone_attribute_groups,code'],
+            'group' => ['sometimes', 'nullable', 'string', 'exists:showroom_attribute_groups,code'],
             'labels' => ['sometimes', 'nullable', 'array'],
             'labels.*' => ['nullable', 'string', 'max:255'],
             'is_unique' => ['sometimes', 'boolean'],

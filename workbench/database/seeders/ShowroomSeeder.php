@@ -6,27 +6,27 @@ use Illuminate\Database\Seeder;
 use Illuminate\Http\UploadedFile;
 use Illuminate\Support\Facades\Auth;
 use RefactorCircus\Impex\Domains\Run\Services\Engine;
-use RefactorCircus\Keystone\Domains\Asset\Actions\AttachAssetAction;
-use RefactorCircus\Keystone\Domains\Asset\Actions\CreateAssetAction;
-use RefactorCircus\Keystone\Domains\Association\Actions\CreateAssociationTypeAction;
-use RefactorCircus\Keystone\Domains\Attribute\Actions\CreateAttributeAction;
-use RefactorCircus\Keystone\Domains\Attribute\Actions\CreateAttributeGroupAction;
-use RefactorCircus\Keystone\Domains\Attribute\Actions\CreateAttributeOptionAction;
-use RefactorCircus\Keystone\Domains\Attribute\Models\AttributeModel;
-use RefactorCircus\Keystone\Domains\Category\Actions\CreateCategoryAction;
-use RefactorCircus\Keystone\Domains\Channel\Actions\CreateChannelAction;
-use RefactorCircus\Keystone\Domains\Channel\Actions\CreateLocaleAction;
-use RefactorCircus\Keystone\Domains\Family\Actions\CreateFamilyAction;
-use RefactorCircus\Keystone\Domains\Family\Actions\CreateFamilyVariantAction;
-use RefactorCircus\Keystone\Domains\Owner\Actions\CreateOwnerAction;
-use RefactorCircus\Keystone\Domains\Owner\Actions\CreateOwnerTypeAction;
-use RefactorCircus\Keystone\Domains\Product\Actions\CreateProductAction;
-use RefactorCircus\Keystone\Domains\Product\Actions\UpdateProductAction;
-use RefactorCircus\Keystone\Domains\Product\Models\ProductModel;
-use RefactorCircus\Keystone\Domains\ProductModel\Actions\CreateProductModelAction;
-use RefactorCircus\Keystone\Domains\Transfer\Actions\StartExportAction;
-use RefactorCircus\Keystone\Domains\Transfer\Actions\StartImportAction;
-use RefactorCircus\Keystone\Domains\Workflow\Actions\TransitionProductAction;
+use RefactorCircus\Showroom\Domains\Asset\Actions\AttachAssetAction;
+use RefactorCircus\Showroom\Domains\Asset\Actions\CreateAssetAction;
+use RefactorCircus\Showroom\Domains\Association\Actions\CreateAssociationTypeAction;
+use RefactorCircus\Showroom\Domains\Attribute\Actions\CreateAttributeAction;
+use RefactorCircus\Showroom\Domains\Attribute\Actions\CreateAttributeGroupAction;
+use RefactorCircus\Showroom\Domains\Attribute\Actions\CreateAttributeOptionAction;
+use RefactorCircus\Showroom\Domains\Attribute\Models\AttributeModel;
+use RefactorCircus\Showroom\Domains\Category\Actions\CreateCategoryAction;
+use RefactorCircus\Showroom\Domains\Channel\Actions\CreateChannelAction;
+use RefactorCircus\Showroom\Domains\Channel\Actions\CreateLocaleAction;
+use RefactorCircus\Showroom\Domains\Family\Actions\CreateFamilyAction;
+use RefactorCircus\Showroom\Domains\Family\Actions\CreateFamilyVariantAction;
+use RefactorCircus\Showroom\Domains\Owner\Actions\CreateOwnerAction;
+use RefactorCircus\Showroom\Domains\Owner\Actions\CreateOwnerTypeAction;
+use RefactorCircus\Showroom\Domains\Product\Actions\CreateProductAction;
+use RefactorCircus\Showroom\Domains\Product\Actions\UpdateProductAction;
+use RefactorCircus\Showroom\Domains\Product\Models\ProductModel;
+use RefactorCircus\Showroom\Domains\ProductModel\Actions\CreateProductModelAction;
+use RefactorCircus\Showroom\Domains\Transfer\Actions\StartExportAction;
+use RefactorCircus\Showroom\Domains\Transfer\Actions\StartImportAction;
+use RefactorCircus\Showroom\Domains\Workflow\Actions\TransitionProductAction;
 use Workbench\App\Models\User;
 
 /**
@@ -34,7 +34,7 @@ use Workbench\App\Models\User;
  * store (en, fr) and a print catalog (en), with owners, categories,
  * variants, associations, assets and products at every workflow stage.
  */
-class KeystoneSeeder extends Seeder
+class ShowroomSeeder extends Seeder
 {
     public function run(): void
     {
@@ -498,8 +498,8 @@ class KeystoneSeeder extends Seeder
         ])]);
 
         // A supplier file with a bad row fails outright when no failures are tolerated.
-        $tolerance = config('keystone.impex.allow_failures');
-        config(['keystone.impex.allow_failures' => 0.0]);
+        $tolerance = config('showroom.impex.allow_failures');
+        config(['showroom.impex.allow_failures' => 0.0]);
 
         app(StartImportAction::class)->execute(['mode' => 'create', 'file' => $this->csv('supplier-feed.csv', [
             ['identifier', 'family', 'name', 'price-USD'],
@@ -507,7 +507,7 @@ class KeystoneSeeder extends Seeder
             ['SCARF-SILK', 'scarves', 'Silk Scarf', '49.00'],
         ])]);
 
-        config(['keystone.impex.allow_failures' => $tolerance]);
+        config(['showroom.impex.allow_failures' => $tolerance]);
 
         $connection = config('impex.queue.connection');
         config(['queue.connections.workbench-held' => ['driver' => 'null'], 'impex.queue.connection' => 'workbench-held']);
