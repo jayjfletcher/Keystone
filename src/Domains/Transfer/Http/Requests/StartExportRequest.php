@@ -5,8 +5,8 @@ declare(strict_types=1);
 namespace RefactorCircus\Showroom\Domains\Transfer\Http\Requests;
 
 use Illuminate\Http\JsonResponse;
-use RefactorCircus\Foundation\Http\Requests\Request;
 use RefactorCircus\Impex\Domains\Run\Resources\RunResource;
+use RefactorCircus\Keystone\Http\Requests\Request;
 use RefactorCircus\Showroom\Domains\Product\Models\ProductModel;
 use RefactorCircus\Showroom\Domains\Transfer\Actions\StartExportAction;
 

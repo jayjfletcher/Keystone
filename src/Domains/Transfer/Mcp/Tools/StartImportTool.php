@@ -8,7 +8,7 @@ use Illuminate\Contracts\JsonSchema\JsonSchema;
 use Laravel\Mcp\Response;
 use Laravel\Mcp\ResponseFactory;
 use Laravel\Mcp\Server\Attributes\Description;
-use RefactorCircus\Foundation\Mcp\Tool;
+use RefactorCircus\Keystone\Mcp\Tool;
 use RefactorCircus\Showroom\Domains\Transfer\Mcp\Requests\StartImportMcpRequest;
 
 #[Description('Start importing products from a .csv or .jsonl file, as an Impex run. Give an existing asset code or a URL to fetch. Asynchronous: poll the run with Impex\'s show-run-tool; its result counts succeeded and failed rows.')]

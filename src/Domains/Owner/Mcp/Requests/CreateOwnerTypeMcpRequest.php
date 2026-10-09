@@ -6,7 +6,7 @@ namespace RefactorCircus\Showroom\Domains\Owner\Mcp\Requests;
 
 use Laravel\Mcp\Response;
 use Laravel\Mcp\ResponseFactory;
-use RefactorCircus\Foundation\Mcp\Requests\Request;
+use RefactorCircus\Keystone\Mcp\Requests\Request;
 use RefactorCircus\Showroom\Domains\Owner\Actions\CreateOwnerTypeAction;
 use RefactorCircus\Showroom\Domains\Owner\Models\OwnerTypeModel;
 use RefactorCircus\Showroom\Domains\Owner\Resources\OwnerTypeResource;

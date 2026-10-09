@@ -8,7 +8,7 @@ use Illuminate\Contracts\JsonSchema\JsonSchema;
 use Laravel\Mcp\Response;
 use Laravel\Mcp\ResponseFactory;
 use Laravel\Mcp\Server\Attributes\Description;
-use RefactorCircus\Foundation\Mcp\Tool;
+use RefactorCircus\Keystone\Mcp\Tool;
 use RefactorCircus\Showroom\Domains\ProductModel\Mcp\Requests\CreateProductModelMcpRequest;
 
 #[Description('Create a product model. A root model names its family variant and sets the common attributes; a sub-model names its parent and sets level-1 attributes, including every level-1 axis.')]

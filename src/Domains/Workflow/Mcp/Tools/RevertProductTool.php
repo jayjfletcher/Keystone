@@ -8,7 +8,7 @@ use Illuminate\Contracts\JsonSchema\JsonSchema;
 use Laravel\Mcp\Response;
 use Laravel\Mcp\ResponseFactory;
 use Laravel\Mcp\Server\Attributes\Description;
-use RefactorCircus\Foundation\Mcp\Tool;
+use RefactorCircus\Keystone\Mcp\Tool;
 use RefactorCircus\Showroom\Domains\Workflow\Mcp\Requests\RevertProductMcpRequest;
 
 #[Description('Restore a product\'s values, categories, associations, family, owner and enabled flag from an earlier version, recorded as a new version.')]

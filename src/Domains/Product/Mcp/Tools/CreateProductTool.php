@@ -8,7 +8,7 @@ use Illuminate\Contracts\JsonSchema\JsonSchema;
 use Laravel\Mcp\Response;
 use Laravel\Mcp\ResponseFactory;
 use Laravel\Mcp\Server\Attributes\Description;
-use RefactorCircus\Foundation\Mcp\Tool;
+use RefactorCircus\Keystone\Mcp\Tool;
 use RefactorCircus\Showroom\Domains\Product\Mcp\Requests\CreateProductMcpRequest;
 
 #[Description('Create a product. A simple product may name a family, which limits its attributes; a variant product names its parent product model, must set every last-level axis, and differ from its siblings on them.')]

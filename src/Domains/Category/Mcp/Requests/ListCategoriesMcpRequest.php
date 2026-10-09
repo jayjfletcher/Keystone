@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace RefactorCircus\Showroom\Domains\Category\Mcp\Requests;
 
 use Laravel\Mcp\ResponseFactory;
-use RefactorCircus\Foundation\Mcp\Requests\Request;
+use RefactorCircus\Keystone\Mcp\Requests\Request;
 use RefactorCircus\Showroom\Domains\Category\Actions\ListCategoriesAction;
 use RefactorCircus\Showroom\Domains\Category\Models\CategoryModel;
 use RefactorCircus\Showroom\Domains\Category\Resources\CategoryResource;

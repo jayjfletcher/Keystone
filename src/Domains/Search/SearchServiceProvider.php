@@ -7,7 +7,7 @@ namespace RefactorCircus\Showroom\Domains\Search;
 use Illuminate\Contracts\Foundation\Application;
 use InvalidArgumentException;
 use Laravel\Scout\EngineManager;
-use RefactorCircus\Foundation\Support\ServiceProvider;
+use RefactorCircus\Keystone\Support\ServiceProvider;
 use RefactorCircus\Showroom\Domains\Search\Console\Commands\ReindexProductsCommand;
 use RefactorCircus\Showroom\Domains\Search\Contracts\SearchEngine;
 use RefactorCircus\Showroom\Domains\Search\Exceptions\UnsupportedSearchException;

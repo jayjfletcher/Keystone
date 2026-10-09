@@ -6,7 +6,7 @@ namespace RefactorCircus\Showroom\Domains\Category\Mcp\Requests;
 
 use Laravel\Mcp\Response;
 use Laravel\Mcp\ResponseFactory;
-use RefactorCircus\Foundation\Mcp\Requests\Request;
+use RefactorCircus\Keystone\Mcp\Requests\Request;
 use RefactorCircus\Showroom\Domains\Category\Actions\CreateCategoryAction;
 use RefactorCircus\Showroom\Domains\Category\Models\CategoryModel;
 use RefactorCircus\Showroom\Domains\Category\Resources\CategoryResource;

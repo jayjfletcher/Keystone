@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace RefactorCircus\Showroom\Domains\Family\Http\Requests;
 
-use RefactorCircus\Foundation\Http\Requests\Request;
+use RefactorCircus\Keystone\Http\Requests\Request;
 use RefactorCircus\Showroom\Domains\Family\Models\FamilyVariantModel;
 
 abstract class FamilyVariantRequest extends Request

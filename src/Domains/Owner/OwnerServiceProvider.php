@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace RefactorCircus\Showroom\Domains\Owner;
 
-use RefactorCircus\Foundation\Audit\AuditHooks;
-use RefactorCircus\Foundation\Support\ServiceProvider;
+use RefactorCircus\Keystone\Audit\AuditHooks;
+use RefactorCircus\Keystone\Support\ServiceProvider;
 use RefactorCircus\Showroom\Domains\Owner\Models\OwnerModel;
 use RefactorCircus\Showroom\Domains\Owner\Models\OwnerTypeModel;
 

@@ -3,9 +3,9 @@
 declare(strict_types=1);
 
 use Illuminate\Support\Facades\Event;
-use RefactorCircus\Foundation\Contracts\ActionFinishedEvent;
-use RefactorCircus\Foundation\Contracts\ActionStartingEvent;
-use RefactorCircus\Foundation\Contracts\ModelLifecycleEvent;
+use RefactorCircus\Keystone\Contracts\ActionFinishedEvent;
+use RefactorCircus\Keystone\Contracts\ActionStartingEvent;
+use RefactorCircus\Keystone\Contracts\ModelLifecycleEvent;
 use RefactorCircus\Showroom\Domains\Attribute\Actions\CreateAttributeAction;
 use RefactorCircus\Showroom\Domains\Attribute\Actions\DeleteAttributeGroupAction;
 use RefactorCircus\Showroom\Domains\Attribute\Events\AttributeCreatedActionEvent;

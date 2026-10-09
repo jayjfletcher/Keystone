@@ -8,7 +8,7 @@ use Illuminate\Contracts\JsonSchema\JsonSchema;
 use Laravel\Mcp\Response;
 use Laravel\Mcp\ResponseFactory;
 use Laravel\Mcp\Server\Attributes\Description;
-use RefactorCircus\Foundation\Mcp\Tool;
+use RefactorCircus\Keystone\Mcp\Tool;
 use RefactorCircus\Showroom\Domains\Product\Mcp\Requests\ListProductsMcpRequest;
 
 #[Description('Search products: full text, family, enabled, parent model, value filters, facets and sorting. Page-numbered; returns total and facets.')]

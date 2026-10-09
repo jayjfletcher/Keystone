@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace RefactorCircus\Showroom\Domains\Association\Mcp\Requests;
 
 use Laravel\Mcp\ResponseFactory;
-use RefactorCircus\Foundation\Mcp\Requests\Request;
+use RefactorCircus\Keystone\Mcp\Requests\Request;
 use RefactorCircus\Showroom\Domains\Association\Actions\ListAssociationTypesAction;
 use RefactorCircus\Showroom\Domains\Association\Models\AssociationTypeModel;
 use RefactorCircus\Showroom\Domains\Association\Resources\AssociationTypeResource;

@@ -6,7 +6,7 @@ namespace RefactorCircus\Showroom\Domains\Family\Events;
 
 use Illuminate\Foundation\Events\Dispatchable;
 use Illuminate\Queue\SerializesModels;
-use RefactorCircus\Foundation\Contracts\ActionStartingEvent;
+use RefactorCircus\Keystone\Contracts\ActionStartingEvent;
 use RefactorCircus\Showroom\Domains\Family\Models\FamilyModel;
 
 /**

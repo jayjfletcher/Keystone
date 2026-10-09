@@ -327,7 +327,7 @@ Showroom is organised into domain modules under `src/Domains/{Domain}`, namespac
 
 Eloquent models are named for their entity with a `Model` suffix, so a product is `RefactorCircus\Showroom\Domains\Product\Models\ProductModel` and a product model is `RefactorCircus\Showroom\Domains\ProductModel\Models\ProductModelModel`. Cross-domain code lives in `src/Support`; the Atrium screens, the Impex integration, the MCP server and the queued jobs keep their own top-level folders (`src/Atrium`, `src/Impex`, `src/Mcp`, `src/Jobs`).
 
-Showroom stands on [refactor-circus/foundation](https://github.com/Refactor-Circus/Foundation), the runtime the Refactor Circus packages share. `ShowroomServiceProvider` extends its `PackageServiceProvider` and describes the package once (`Package::make('showroom', 'RefactorCircus\Showroom')`); requests, MCP tools and the server, the domain providers, the event contracts, `DispatchesModelEvents`, the authorizer and the Cortex integration are Foundation's. `ShowroomException` extends Foundation's `PackageException`. Impex flows, sources and actions and the queued jobs keep their class names because Impex runs and queued payloads store them.
+Showroom stands on [refactor-circus/keystone](https://github.com/Refactor-Circus/Keystone), the runtime the Refactor Circus packages share. `ShowroomServiceProvider` extends its `PackageServiceProvider` and describes the package once (`Package::make('showroom', 'RefactorCircus\Showroom')`); requests, MCP tools and the server, the domain providers, the event contracts, `DispatchesModelEvents`, the authorizer and the Cortex integration are Keystone's. `ShowroomException` extends Keystone's `PackageException`. Impex flows, sources and actions and the queued jobs keep their class names because Impex runs and queued payloads store them.
 
 ## Commands
 
@@ -335,7 +335,7 @@ Showroom stands on [refactor-circus/foundation](https://github.com/Refactor-Circ
 
 ## Events
 
-- **Model events:** every Eloquent hook of every model dispatches its own class, such as `RefactorCircus\Showroom\Domains\Attribute\Events\AttributeCreatedEvent`. Listen to `RefactorCircus\Foundation\Contracts\ModelLifecycleEvent` for all of them.
+- **Model events:** every Eloquent hook of every model dispatches its own class, such as `RefactorCircus\Showroom\Domains\Attribute\Events\AttributeCreatedEvent`. Listen to `RefactorCircus\Keystone\Contracts\ModelLifecycleEvent` for all of them.
 - **Action events:** every Action dispatches a starting and a finished event, such as `AttributeCreatingActionEvent` and `AttributeCreatedActionEvent`. Finished events dispatch after the surrounding transaction commits, and never when the Action throws. Listen to `ActionStartingEvent` or `ActionFinishedEvent` for a whole family.
 
 ## Roadmap

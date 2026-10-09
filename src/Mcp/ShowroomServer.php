@@ -9,7 +9,7 @@ use Laravel\Mcp\Server\Attributes\Name;
 use Laravel\Mcp\Server\Attributes\Version;
 use Laravel\Mcp\Server\Tool;
 use Laravel\Mcp\Server\Tools\ToolSearch;
-use RefactorCircus\Foundation\Mcp\Server;
+use RefactorCircus\Keystone\Mcp\Server;
 use RefactorCircus\Showroom\Domains\Asset\Mcp\Tools\AttachAssetTool;
 use RefactorCircus\Showroom\Domains\Asset\Mcp\Tools\CreateAssetTool;
 use RefactorCircus\Showroom\Domains\Asset\Mcp\Tools\DeleteAssetTool;

@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace RefactorCircus\Showroom\Domains\Channel\Mcp\Requests;
 
 use Laravel\Mcp\ResponseFactory;
-use RefactorCircus\Foundation\Mcp\Requests\Request;
+use RefactorCircus\Keystone\Mcp\Requests\Request;
 use RefactorCircus\Showroom\Domains\Channel\Actions\ListChannelsAction;
 use RefactorCircus\Showroom\Domains\Channel\Models\ChannelModel;
 use RefactorCircus\Showroom\Domains\Channel\Resources\ChannelResource;

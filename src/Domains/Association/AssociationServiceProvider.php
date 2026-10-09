@@ -5,8 +5,8 @@ declare(strict_types=1);
 namespace RefactorCircus\Showroom\Domains\Association;
 
 use Illuminate\Database\Eloquent\Model;
-use RefactorCircus\Foundation\Audit\AuditHooks;
-use RefactorCircus\Foundation\Support\ServiceProvider;
+use RefactorCircus\Keystone\Audit\AuditHooks;
+use RefactorCircus\Keystone\Support\ServiceProvider;
 use RefactorCircus\Showroom\Domains\Association\Models\AssociationModel;
 use RefactorCircus\Showroom\Domains\Association\Models\AssociationTypeModel;
 use RefactorCircus\Showroom\Domains\Product\Models\ProductModel;

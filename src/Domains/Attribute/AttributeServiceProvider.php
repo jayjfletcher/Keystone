@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace RefactorCircus\Showroom\Domains\Attribute;
 
-use RefactorCircus\Foundation\Audit\AuditHooks;
-use RefactorCircus\Foundation\Support\ServiceProvider;
+use RefactorCircus\Keystone\Audit\AuditHooks;
+use RefactorCircus\Keystone\Support\ServiceProvider;
 use RefactorCircus\Showroom\Domains\Attribute\Models\AttributeGroupModel;
 use RefactorCircus\Showroom\Domains\Attribute\Models\AttributeModel;
 use RefactorCircus\Showroom\Domains\Attribute\Models\AttributeOptionModel;

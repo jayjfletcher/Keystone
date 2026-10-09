@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace RefactorCircus\Showroom\Domains\Channel\Http\Requests;
 
 use Illuminate\Http\JsonResponse;
-use RefactorCircus\Foundation\Http\Requests\Request;
+use RefactorCircus\Keystone\Http\Requests\Request;
 use RefactorCircus\Showroom\Domains\Channel\Actions\CreateChannelAction;
 use RefactorCircus\Showroom\Domains\Channel\Models\ChannelModel;
 use RefactorCircus\Showroom\Domains\Channel\Resources\ChannelResource;

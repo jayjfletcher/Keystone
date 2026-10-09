@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace RefactorCircus\Showroom\Domains\ProductModel;
 
-use RefactorCircus\Foundation\Support\ServiceProvider;
+use RefactorCircus\Keystone\Support\ServiceProvider;
 use RefactorCircus\Showroom\Domains\ProductModel\Models\ProductModelModel;
 
 class ProductModelServiceProvider extends ServiceProvider

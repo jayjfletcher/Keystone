@@ -5,8 +5,8 @@ declare(strict_types=1);
 namespace RefactorCircus\Showroom;
 
 use Illuminate\Support\Facades\Blade;
-use RefactorCircus\Foundation\Packages\Package;
-use RefactorCircus\Foundation\Support\PackageServiceProvider;
+use RefactorCircus\Keystone\Packages\Package;
+use RefactorCircus\Keystone\Support\PackageServiceProvider;
 use RefactorCircus\Showroom\Atrium\ScreenAccess;
 use RefactorCircus\Showroom\Atrium\ShowroomPlugin;
 use RefactorCircus\Showroom\Domains\DomainServiceProvider;
@@ -16,7 +16,7 @@ use RefactorCircus\Showroom\Mcp\ShowroomServer;
 class ShowroomServiceProvider extends PackageServiceProvider
 {
     /**
-     * Describe Showroom to the shared refactor-circus/foundation runtime. Every base
+     * Describe Showroom to the shared refactor-circus/keystone runtime. Every base
      * class finds the package through it, and the helpers below read the
      * `showroom.*` config keys it names.
      */

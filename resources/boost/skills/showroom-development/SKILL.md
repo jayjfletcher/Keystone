@@ -70,7 +70,7 @@ Call Actions from each domain's `Actions` namespace (`RefactorCircus\Showroom\Do
 
 ### 6. React to changes
 
-Listen to action events (`RefactorCircus\Showroom\Domains\Attribute\Events\AttributeCreatedActionEvent`, or the `RefactorCircus\Foundation\Contracts\ActionFinishedEvent` family) or model events (`RefactorCircus\Foundation\Contracts\ModelLifecycleEvent`).
+Listen to action events (`RefactorCircus\Showroom\Domains\Attribute\Events\AttributeCreatedActionEvent`, or the `RefactorCircus\Keystone\Contracts\ActionFinishedEvent` family) or model events (`RefactorCircus\Keystone\Contracts\ModelLifecycleEvent`).
 
 To follow every product whose presentation may have changed (own edits, transitions, and changes inherited from models, families, categories, owners or channels), listen to `RefactorCircus\Showroom\Domains\Search\Events\ProductsQueuedForSync` (`$event->ids`, product ids). It fires inside the write's transaction, before the index sync is queued; product webhooks are built on it.
 

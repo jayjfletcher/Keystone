@@ -8,7 +8,7 @@ use Illuminate\Contracts\JsonSchema\JsonSchema;
 use Laravel\Mcp\Response;
 use Laravel\Mcp\ResponseFactory;
 use Laravel\Mcp\Server\Attributes\Description;
-use RefactorCircus\Foundation\Mcp\Tool;
+use RefactorCircus\Keystone\Mcp\Tool;
 use RefactorCircus\Showroom\Domains\Workflow\Mcp\Requests\ListProductVersionsMcpRequest;
 
 #[Description('List a product\'s history, newest first: each version\'s action, author, time and what changed. Cursor paginated.')]

@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace RefactorCircus\Showroom\Domains\Transfer;
 
-use RefactorCircus\Foundation\Support\ServiceProvider;
+use RefactorCircus\Keystone\Support\ServiceProvider;
 
 class TransferServiceProvider extends ServiceProvider
 {

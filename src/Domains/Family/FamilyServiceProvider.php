@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace RefactorCircus\Showroom\Domains\Family;
 
-use RefactorCircus\Foundation\Audit\AuditHooks;
-use RefactorCircus\Foundation\Support\ServiceProvider;
+use RefactorCircus\Keystone\Audit\AuditHooks;
+use RefactorCircus\Keystone\Support\ServiceProvider;
 use RefactorCircus\Showroom\Domains\Family\Models\FamilyModel;
 use RefactorCircus\Showroom\Domains\Family\Models\FamilyVariantModel;
 

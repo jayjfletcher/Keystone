@@ -7,7 +7,7 @@ namespace RefactorCircus\Showroom\Domains\Association\Events;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Foundation\Events\Dispatchable;
 use Illuminate\Queue\SerializesModels;
-use RefactorCircus\Foundation\Contracts\ModelLifecycleEvent;
+use RefactorCircus\Keystone\Contracts\ModelLifecycleEvent;
 use RefactorCircus\Showroom\Domains\Association\Models\AssociationTypeModel;
 
 /**

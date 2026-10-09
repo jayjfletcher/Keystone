@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace RefactorCircus\Showroom\Support\Policies;
 
 use Illuminate\Database\Eloquent\Model;
-use RefactorCircus\Foundation\Policies\Policy as BasePolicy;
+use RefactorCircus\Keystone\Policies\Policy as BasePolicy;
 
 /**
  * The bundled catalog policy: any authenticated user may read and manage.

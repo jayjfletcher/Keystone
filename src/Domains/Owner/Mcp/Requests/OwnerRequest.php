@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace RefactorCircus\Showroom\Domains\Owner\Mcp\Requests;
 
-use RefactorCircus\Foundation\Mcp\Requests\Request;
+use RefactorCircus\Keystone\Mcp\Requests\Request;
 use RefactorCircus\Showroom\Domains\Owner\Models\OwnerModel;
 
 abstract class OwnerRequest extends Request

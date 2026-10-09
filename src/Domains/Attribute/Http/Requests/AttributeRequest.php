@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace RefactorCircus\Showroom\Domains\Attribute\Http\Requests;
 
-use RefactorCircus\Foundation\Http\Requests\Request;
+use RefactorCircus\Keystone\Http\Requests\Request;
 use RefactorCircus\Showroom\Domains\Attribute\Models\AttributeModel;
 
 abstract class AttributeRequest extends Request

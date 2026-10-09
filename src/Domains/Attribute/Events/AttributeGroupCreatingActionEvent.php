@@ -6,7 +6,7 @@ namespace RefactorCircus\Showroom\Domains\Attribute\Events;
 
 use Illuminate\Foundation\Events\Dispatchable;
 use Illuminate\Queue\SerializesModels;
-use RefactorCircus\Foundation\Contracts\ActionStartingEvent;
+use RefactorCircus\Keystone\Contracts\ActionStartingEvent;
 
 /**
  * An attribute group is about to be created.

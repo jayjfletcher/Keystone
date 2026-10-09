@@ -6,7 +6,7 @@ namespace RefactorCircus\Showroom\Domains\Channel\Mcp\Requests;
 
 use Laravel\Mcp\Response;
 use Laravel\Mcp\ResponseFactory;
-use RefactorCircus\Foundation\Mcp\Requests\Request;
+use RefactorCircus\Keystone\Mcp\Requests\Request;
 use RefactorCircus\Showroom\Domains\Channel\Actions\CreateLocaleAction;
 use RefactorCircus\Showroom\Domains\Channel\Models\LocaleModel;
 use RefactorCircus\Showroom\Domains\Channel\Resources\LocaleResource;

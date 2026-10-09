@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-use RefactorCircus\Foundation\Audit\AuditHooks;
+use RefactorCircus\Keystone\Audit\AuditHooks;
 use RefactorCircus\Showroom\Domains\Association\Models\AssociationModel;
 use RefactorCircus\Showroom\Domains\Attribute\Models\AttributeModel;
 use RefactorCircus\Showroom\Domains\Family\Models\FamilyModel;

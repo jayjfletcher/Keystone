@@ -6,8 +6,8 @@ namespace RefactorCircus\Showroom\Domains\Transfer\Mcp\Requests;
 
 use Laravel\Mcp\Response;
 use Laravel\Mcp\ResponseFactory;
-use RefactorCircus\Foundation\Mcp\Requests\Request;
 use RefactorCircus\Impex\Domains\Run\Resources\RunResource;
+use RefactorCircus\Keystone\Mcp\Requests\Request;
 use RefactorCircus\Showroom\Domains\Product\Models\ProductModel;
 use RefactorCircus\Showroom\Domains\Transfer\Actions\StartImportAction;
 
