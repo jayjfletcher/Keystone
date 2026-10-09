@@ -205,6 +205,7 @@
 
 ### Changed
 
+- Requires PHP 8.5 (`php: ^8.5`); CI runs on PHP 8.5 only. Dependency floors raised to the current releases: laravel/framework ^13.35, orchestra/testbench ^11.3, pestphp/pest ^5.3.1, larastan/larastan ^3.13 and laravel/scout ^11.9.
 - Atrium screens follow Atrium's screen conventions: every action is an icon button (tabs and back links too), product, enabled, live and import/export statuses are status dots coloured by `RefactorCircus\Showroom\Atrium\Badges` (`info` only for in review and pending or waiting runs), and every navigation item has an icon. `ProductStatus::badge()` now answers from `Badges`: in review is `info` and draft `primary`.
 - Atrium screens now authorize every page and action against `showroom.policies`, asked exactly as the JSON API and MCP tools ask, and show each navigation item, button, form and card only when its action would be allowed (`ScreenAccess`, `@showroomCan`). Widgets and search are gated the same way. With `showroom.authorization` on (the default) a guest sees nothing; turn it off for an open operator dashboard.
 - Requires refactor-circus/atrium with icon buttons and status dots (f5eb488 or later).

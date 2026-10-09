@@ -149,7 +149,7 @@ it('exports matching products to a JSONL or CSV asset', function (): void {
     $result = Impex::result(finishedRun($csv));
 
     $file = (string) Storage::disk('assets')->get(AssetModel::query()->where('code', $result['asset'])->firstOrFail()->path);
-    $rows = array_map('str_getcsv', array_values(array_filter(explode("\n", $file))));
+    $rows = array_map(static fn (string $line): array => str_getcsv($line, escape: ''), array_values(array_filter(explode("\n", $file))));
 
     expect($rows[0])->toContain('identifier', 'description-en', 'description-fr', 'weight', 'weight-unit')
         ->and($rows)->toHaveCount(3)

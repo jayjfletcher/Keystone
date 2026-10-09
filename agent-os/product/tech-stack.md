@@ -8,7 +8,7 @@ Mirrors the `refactor-circus/impex` package (`../impex`), which serves as the st
 
 ## Backend
 
-- PHP `^8.4`
+- PHP `^8.5`
 - Laravel `^13` (`laravel/framework`)
 - Laravel package conventions: service provider wiring, publishable config/migrations, publish tags under `showroom-*`
 - Action classes shared by HTTP API and MCP (one Action per operation)
