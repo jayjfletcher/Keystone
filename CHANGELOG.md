@@ -21,7 +21,7 @@
 - Showroom ships no stylesheet: `resources/css/atrium.css` and its registration with Atrium's style hook are removed. The screens use only Atrium's components and safelisted utilities (bare form controls in table cells, `description-list`, `progress`, `flash`), and `ui/partials/status.blade.php` is replaced by `<x-atrium::flash />`, which also shows the first validation error. Requires a refactor-circus/atrium with those components. Published views that include `showroom::ui.partials.status` must switch to `<x-atrium::flash />`.
 - `RefactorCircus\Showroom\Atrium\Http\Controllers\Concerns\AuthorizesScreens` is removed; the screen controllers use Atrium's `RefactorCircus\Atrium\Http\Controllers\Concerns\AuthorizesScreens`. `ScreenAccess::allows()` now delegates to `RefactorCircus\Atrium\Support\ScreenAccess`, and `ShowroomPlugin` uses the base plugin's `featuresFromConfig()`, `key()` and `label()`.
 
-- Showroom now stands on [refactor-circus/keystone](https://github.com/jayjfletcher/Foundation), the runtime the Refactor Circus packages share, and its local copies are removed in favour of Keystone's classes:
+- Showroom now stands on [refactor-circus/keystone](https://github.com/Refactor-Circus/Keystone), the runtime the Refactor Circus packages share, and its local copies are removed in favour of Keystone's classes:
   - `RefactorCircus\Showroom\Contracts\{ActionStartingEvent,ActionFinishedEvent,ModelLifecycleEvent}` → `RefactorCircus\Keystone\Contracts\*`. Listening to a Keystone contract now hears every package of the suite.
   - `RefactorCircus\Showroom\Support\Models\Concerns\DispatchesModelEvents` → `RefactorCircus\Keystone\Models\Concerns\DispatchesModelEvents`. A subclass of a Showroom model now fires the Showroom model's events.
   - `RefactorCircus\Showroom\Support\ServiceProvider` → `RefactorCircus\Keystone\Support\ServiceProvider`; `RefactorCircus\Showroom\Support\Authorizer` → `RefactorCircus\Keystone\Auth\Authorizer::for($package)`.
@@ -184,7 +184,7 @@
 
 - With refactor-circus/keen, the product, product model, family, attribute, category, owner, asset and channel pages show the record's audit history, and the product list shows Showroom's (`<x-atrium::audit-trail>`). Product versions and revert stay.
 - Audit labels (`RefactorCircus\Keystone\Audit\AuditHooks`): records with localized labels are named by the current locale's label (else the code), associations by their type and both ends, and versions by what they version and their number.
-- `GET /showroom/history` (`showroom.history.index`) and the `list-showroom-history-tool` MCP tool list Showroom's audit history, newest first, when [refactor-circus/keen](https://github.com/jayjfletcher/Keen) is installed. Without it, both answer that no audit log is installed (`404` over HTTP).
+- `GET /showroom/history` (`showroom.history.index`) and the `list-showroom-history-tool` MCP tool list Showroom's audit history, newest first, when [refactor-circus/keen](https://github.com/Refactor-Circus/Keen) is installed. Without it, both answer that no audit log is installed (`404` over HTTP).
 - Catalog foundation: Actions shared by the HTTP API, MCP server and Atrium dashboard, with starting/finished action events and per-hook model events.
 - Attribute groups, typed attributes (text, textarea, number, decimal, boolean, date, select, multiselect, price, metric) and attribute options.
 - JSON API under `/showroom`, MCP tools behind ToolSearch, optional Cortex registration, and Atrium catalog pages, settings and search.
