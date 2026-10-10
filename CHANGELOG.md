@@ -219,6 +219,6 @@
 - Skeleton placeholder config, route, migration, view, command, translation and public assets tag.
 
 
-## [v0.1.0](https://github.com/jayi/keystone/compare/...v0.1.0) - 202x-xx-xx
+## [v0.1.0](https://github.com/Refactor-Circus/Showroom/compare/...v0.1.0) - 202x-xx-xx
 
 Initial pre-release.
