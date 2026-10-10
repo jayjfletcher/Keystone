@@ -1,4 +1,5 @@
 <div align="center">
+    <img src="art/icon.png" width="160" alt="Showroom icon">
     <h1>Showroom</h1>
 </div>
 
